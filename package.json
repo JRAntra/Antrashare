@@ -1,0 +1,16 @@
+{
+  "name": "antrashare",
+  "version": "1.0.0",
+  "description": "This is the project for Angular Batch training",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Antra",
+    "Angular",
+    "Project"
+  ],
+  "author": "JR Zhang, Daivd Dong",
+  "license": "ISC"
+}
