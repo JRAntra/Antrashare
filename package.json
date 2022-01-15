@@ -4,7 +4,9 @@
   "description": "This is the project for Angular Batch training",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "concurrently \"cd Antrashare_ui && ng serve\" \"cd Antrashare_server && node app.js\" ",
+    "install": "concurrently \"cd Antrashare_ui && npm install\" \"cd Antrashare_server && npm install\""
   },
   "keywords": [
     "Antra",
@@ -12,5 +14,9 @@
     "Project"
   ],
   "author": "JR Zhang, Daivd Dong",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^7.0.0",
+    "express": "^4.17.2"
+  }
 }
