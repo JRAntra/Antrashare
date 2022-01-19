@@ -1,4 +1,5 @@
-# Welcome to our team!!!
+
+#Welcome to Team Best!!!
 
 1. Create our team release branch from master branch. (Release_Branch/Team_Best)
 
@@ -7,3 +8,5 @@
 3. Make a pull request and ask for a code review comment
 
 4. Merge your change to the release branch. (Release_Branch/Team_Best)
+
+Members: Karo/Porry/Zhuoliang
