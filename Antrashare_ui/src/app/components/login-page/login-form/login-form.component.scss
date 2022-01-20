@@ -1,0 +1,45 @@
+@use "../../../../styles.scss" as theme;
+
+.formContainer {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 10px;
+
+    .formTitle {
+        margin-bottom: 10px;
+        font-size: 30px;
+    }
+
+    mat-form-field {
+        width: 100%;
+        color: theme.$font-color;
+    }
+
+    .rememberCheckbox {
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 5px;
+
+        .rememberText {
+            font-size: theme.$secondary-font-size;
+        }
+    }
+
+    .otherFormContainer {
+        margin-top: 20px;
+    }
+
+    .loginButton {
+        background-color: theme.$tertiary-color;
+        color: theme.$font-color;
+        padding: 5px;
+        margin-top: 5px;
+    }
+}
+
+
+
+
+
+
