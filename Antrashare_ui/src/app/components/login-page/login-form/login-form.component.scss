@@ -1,0 +1,18 @@
+.agreement{
+    width:25em;
+    display:flex;
+    justify-content: space-between;
+}
+.loginForm{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.submitButton{
+    display:block;
+    width:25em;
+}
+.formField{
+    width:25em
+}
