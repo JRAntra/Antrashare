@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "antrashare": "file:..",
     "express": "^4.17.2"
   }
 }
