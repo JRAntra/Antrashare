@@ -1,29 +1,99 @@
 #login-modal {
-    width: 35%;
-    height: 40%;
+    width: 25rem;
+    height: 45%;
     text-align: center;
     margin: 0 auto;
-    margin-top: 50%;
+    margin-top: 15%;
+    padding: 2% 2% 10%;
     background-color: rgba(0, 0, 0, 0.795);
     color: white;
+    border-radius: 4px;
 }
 
 h1 {
+    width: 80%;
+    margin: 0 auto;
     text-align: left;
+    font-weight: bold;
+    font-size: 2rem;
+}
+
+#loginInput {
+    height: 40%;
+    margin-top: 5%;
+}
+
+#loginInput input {
+    background-color: rgb(37, 37, 37);
+    margin-top: 2%;
+    margin-bottom: 2%;
+    width: 20rem;
+    border-radius: 4px;
+    height: 2.7rem;
+    border: 0px;
+}
+
+::placeholder {
+    color: darkgrey;
+    padding: 5%;
 }
 
 button {
-    width: 45%;
-    margin-top: 3%;
-    margin-bottom: 1%;
+    width: 20rem;
+    height: 2.7rem;
+    margin-top: 8%;
+    margin-bottom: 3%;
+    background-color: red;
+    color: white;
+    border: 0px;
+    border-radius: 4px;
 }
 
 #checkbox {
     display: grid;
     grid-template-columns: 50% 50%;
     margin: 0 auto;
+    color: darkgrey;
 }
 
-#signup {
+#checkboxInput:checked {
+    background-color: grey;
+    color: black;
+}
+
+#signupSection {
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 5%;
+    text-align: left;
+}
+
+#new, #signupLink {
     display: inline-block;
+    padding-right: 1%;
+    color: darkgrey;
+    font-size: 0.9rem;
+}
+
+#signupLink {
+    color: white;
+    font-weight: bold;
+}
+
+#learnMore {
+    width: 80%;
+    font-size: 0.7rem;
+    margin-top: 5%;
+    line-height: 1;
+    color: grey;
+}
+
+#learnMoreLink {
+    display: inline-block;
+    padding: 1%;
+    color: rgb(46, 46, 235);
+}
+
+#signupLink:hover, #needHelp:hover, #checkboxInput:hover, button:hover, #learnMoreLink {
+    cursor: pointer;
 }

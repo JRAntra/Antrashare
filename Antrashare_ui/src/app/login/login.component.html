@@ -3,27 +3,33 @@
         <h1>
             Sign In
         </h1>
-        <label>Username: <br/>
-            <input type='text'/>
-        </label><br/>
-        <label>Password: <br/>
-            <input type='text'/>
-        </label><br/>
-        <button>Sign In</button><br/>
+        <div id='loginInput'>
+            <input type='text' placeholder='Email or phone number'/><br/>
+            <input type='password' placeholder = 'Password'/><br/>
+        </div>
+        <button (click)='SignIn()'>Sign In</button><br/>
         <div id='checkbox'>
-            <label>
-                <input type='checkbox'/> Remember me
-            </label>
             <div>
+                <input id='checkboxInput' type='checkbox'/> Remember me
+            </div>
+            <div id='needHelp' (click)='NeedHelp()'>
                 Need help?
             </div>
         </div>
-        <div id='signup'>
-            <div>
-                New to Netflix?
+        <div id='signupSection'>
+            <div id='signup'>
+                <div id='new'>
+                    New to Netflix?
+                </div>
+                <div id='signupLink' (click)='SignUp()'>
+                    Sign up now
+                </div>
             </div>
-            <div id='signupLink'>
-                Sign up now
+            <div id='learnMore'>
+                This page is protected by Google reCAPTCHA to ensure you're not a bot.
+                <div id='learnMoreLink' (click)='LearnMore()'>
+                    Learn more.
+                </div>
             </div>
         </div>
     </div>
