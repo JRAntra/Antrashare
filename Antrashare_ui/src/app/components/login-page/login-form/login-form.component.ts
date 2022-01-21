@@ -22,6 +22,8 @@ export class LoginFormComponent implements OnInit {
   rememberMeChecked() {
     console.log('Clicked remember me');
     // Save input into local storage and check with database later
+    localStorage.setItem('login-data', JSON.stringify(this.loginForm.value));
+    console.log(localStorage);
   }
   signIn() {
     console.log('Clicked button sign in');
