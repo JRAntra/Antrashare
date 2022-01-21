@@ -3,11 +3,7 @@
     <p class="formTitle">Sign In</p>
     <mat-form-field>
       <mat-label>Username</mat-label>
-      <input
-        matInput
-        type="text"
-        formControlName="userName"
-      />
+      <input matInput type="text" formControlName="userName" />
     </mat-form-field>
     <br />
     <mat-form-field>
@@ -15,10 +11,12 @@
       <input matInput type="text" formControlName="password" />
     </mat-form-field>
     <br />
-    <mat-checkbox class="rememberCheckbox" color="primary">
-      <span class="rememberText" (click)="rememberMeChecked()"
-        >Remember me</span
-      >
+    <mat-checkbox
+      class="rememberCheckbox"
+      color="primary"
+      (click)="rememberMeChecked()"
+    >
+      <span class="rememberText">Remember me</span>
     </mat-checkbox>
     <button mat-raised-button class="loginButton">Sign In</button>
   </form>
