@@ -1,6 +1,17 @@
+#app {
+    background-image: url('../../assets/images/US-en-20220117-popsignuptwoweeks-perspective_alpha_website_medium.jpg');
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    
+}
+
 #login-modal {
     width: 25rem;
-    height: 45%;
+    height: 30%;
     text-align: center;
     margin: 0 auto;
     margin-top: 15%;
@@ -18,48 +29,6 @@ h1 {
     font-size: 2rem;
 }
 
-#loginInput {
-    height: 40%;
-    margin-top: 5%;
-}
-
-#loginInput input {
-    background-color: rgb(37, 37, 37);
-    margin-top: 2%;
-    margin-bottom: 2%;
-    width: 20rem;
-    border-radius: 4px;
-    height: 2.7rem;
-    border: 0px;
-}
-
-::placeholder {
-    color: darkgrey;
-    padding: 5%;
-}
-
-button {
-    width: 20rem;
-    height: 2.7rem;
-    margin-top: 8%;
-    margin-bottom: 3%;
-    background-color: red;
-    color: white;
-    border: 0px;
-    border-radius: 4px;
-}
-
-#checkbox {
-    display: grid;
-    grid-template-columns: 50% 50%;
-    margin: 0 auto;
-    color: darkgrey;
-}
-
-#checkboxInput:checked {
-    background-color: grey;
-    color: black;
-}
 
 #signupSection {
     width: 80%;
@@ -94,6 +63,6 @@ button {
     color: rgb(46, 46, 235);
 }
 
-#signupLink:hover, #needHelp:hover, #checkboxInput:hover, button:hover, #learnMoreLink {
+#signupLink:hover, #learnMoreLink {
     cursor: pointer;
 }

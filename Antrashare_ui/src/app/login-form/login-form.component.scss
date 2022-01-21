@@ -1,0 +1,60 @@
+#loginInput {
+    height: 40%;
+    margin-top: 5%;
+}
+
+#loginInput input {
+    background-color: rgb(37, 37, 37);
+    margin-top: 2%;
+    margin-bottom: 2%;
+    width: 19rem;
+    border-radius: 4px;
+    height: 2.7rem;
+    border: 0px;
+    color: white;
+    padding-left: 5%;
+    transition: 0.2s ease-in-out;
+}
+
+::placeholder {
+    color: darkgrey;
+}
+
+#loginInput input:focus {
+    transition: 0.2s ease-in-out;
+    border: 0px;
+    background-color: rgb(65, 65, 65);
+}
+
+#loginInput input:focus::placeholder {
+    font-size: 0.7rem;
+    position: absolute;
+    transition: 0.2s ease-in-out;
+}
+
+button {
+    width: 20rem;
+    height: 2.7rem;
+    margin-top: 8%;
+    margin-bottom: 3%;
+    background-color: red;
+    color: white;
+    border: 0px;
+    border-radius: 4px;
+}
+
+#checkbox {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    margin: 0 auto;
+    color: darkgrey;
+}
+
+#checkboxInput:checked {
+    background-color: grey;
+    color: black;
+}
+
+#needHelp:hover, #checkboxInput:hover, button:hover {
+    cursor: pointer;
+}
