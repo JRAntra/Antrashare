@@ -17,7 +17,7 @@ Release Branch of the group CallbackCats
 ## After you have the project:
 - [ ] Move to the release branch: git checkout Release_Branch/CallbackCats
 - [ ] Make sure you have the newest changes: git pull
-- [ ] install dependencies: npm install
+- [ ] install dependencies: npm run installAll
 - [ ] create/update/delete files.
 - [ ] save the changes: git add <.file_name>; git commit -m "message about the changes"; git push
 - [ ] Create a pull request and ask for a code review comment.

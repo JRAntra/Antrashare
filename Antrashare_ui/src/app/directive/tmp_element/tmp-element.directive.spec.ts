@@ -1,4 +1,4 @@
-import { TmpElementDirective } from './tmp-element.directive';
+// import { TmpElementDirective } from './tmp-element.directive';
 
 // describe('TmpElementDirective', () => {
 //     it('should create an instance', () => {
