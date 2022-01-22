@@ -1,0 +1,13 @@
+<app-user-display></app-user-display>
+<table>
+    <tr *ngFor="let item of dataSource; let i = index">
+        <td>{{key[i]}}</td>
+        <td>{{item[key[i]]}}</td>
+    </tr>
+</table>
+<div>
+    <mat-icon aria-hidden="false" aria-label="Example home icon">home</mat-icon>
+    <p>Amount of Posts</p>
+    <mat-icon aria-hidden="false" aria-label="Example home icon">home</mat-icon>
+    <p>Amount of Likes</p>
+</div>

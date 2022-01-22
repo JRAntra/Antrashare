@@ -10,12 +10,21 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatTableModule} from '@angular/material/table';
+import {MatIconModule} from '@angular/material/icon';
+
+import { UserDisplayComponent } from './components/user-display/user-display.component';
+import { MyProfileComponent } from './components/my-profile/my-profile.component';
+import { ContentComponent } from './components/content/content.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginPageComponent,
-    LoginFormComponent
+    LoginFormComponent,
+    UserDisplayComponent,
+    MyProfileComponent,
+    ContentComponent
   ],
   imports: [
     BrowserModule,
@@ -23,6 +32,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatInputModule,
     MatButtonModule,
     MatCheckboxModule,
+    MatTableModule,
+    MatIconModule,
     BrowserAnimationsModule
   ],
   providers: [],
