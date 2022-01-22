@@ -49,7 +49,7 @@ import { ErrorPageComponent } from './components/error-page/error-page.component
     MatFormFieldModule,
     MatInputModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
