@@ -14,6 +14,9 @@ import { LoginPageComponent } from './components/login-page/login-page.component
 import { LoginFormComponent } from './components/login-page/login-form/login-form.component';
 
 import { AutoHideDirective } from './directives/auto-hide.directive';
+import { ProfileTabComponent } from './components/profile-tab/profile-tab.component';
+import { NewsFeedTabComponent } from './components/news-feed-tab/news-feed-tab.component';
+import { SettingsTabComponent } from './components/settings-tab/settings-tab.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +24,9 @@ import { AutoHideDirective } from './directives/auto-hide.directive';
     LoginPageComponent,
     LoginFormComponent,
     AutoHideDirective,
+    ProfileTabComponent,
+    NewsFeedTabComponent,
+    SettingsTabComponent,
   ],
   imports: [
     BrowserModule,
