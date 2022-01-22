@@ -16,6 +16,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { NewsFeedComponent } from './components/news-feed/news-feed.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { MyProfileComponent } from './components/my-profile/my-profile.component';
+import { SettingsComponent } from './components/settings/settings.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +27,10 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     TmpElementDirective,
     LoginPageComponent,
     LoginFormComponent,
+    NewsFeedComponent,
+    PageNotFoundComponent,
+    MyProfileComponent,
+    SettingsComponent,
   ],
   imports: [
     BrowserModule,

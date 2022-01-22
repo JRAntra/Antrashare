@@ -1,6 +1,17 @@
+<header>
+  <mat-toolbar color="primary" class="navbar">
+    <div>
+      <span routerLink="/" routerLinkActive="active">Main Page</span>
+    </div>
+    <div>
+      <span routerLink="/login">Log In</span>
+    </div>
+  </mat-toolbar>
+  <!-- The routed views render in the <router-outlet>-->
+  <router-outlet></router-outlet>
+</header>
+
 <main>
-  <div class="container">
-    <p [TmpElement]="5000">Removed after 5 seconds</p>
-    <app-login-page></app-login-page>  
-  </div>
+  <div class="container"></div>
+  <p [TmpElement]="5000">Removed after 5 seconds</p>
 </main>
