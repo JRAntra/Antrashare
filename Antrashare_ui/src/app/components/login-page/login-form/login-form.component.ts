@@ -19,13 +19,26 @@ export class LoginFormComponent implements OnInit {
     password: ['', Validators.required]
   });
 
-  rememberMeChecked() {
+
+  loginData: string = '';
+  rememberedUserIsChecked: boolean = false;
+  rememberMeChecked(event: any) {
     console.log('Clicked remember me');
-    // Save input into local storage and check with database later
-    localStorage.setItem('login-data', JSON.stringify(this.loginForm.value));
-    console.log(localStorage);
+    this.rememberedUserIsChecked = true;
   }
+
   signIn() {
     console.log('Clicked button sign in');
+
+    // If remember me checkbox is checked
+    // Save input into local storage and check with database later
+    if (this.rememberedUserIsChecked === true) {
+      this.loginData = JSON.stringify(this.loginForm.value);
+      localStorage.setItem('login-data', this.loginData);
+    }
+
+    // debug
+    console.log(this.loginData);
+    console.log(localStorage.getItem('login-data'));
   }
 }
