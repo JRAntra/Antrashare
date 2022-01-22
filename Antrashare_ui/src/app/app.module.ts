@@ -18,6 +18,13 @@ import { AutoHideDirective } from './directives/auto-hide.directive';
 import { ProfileTabComponent } from './components/profile-tab/profile-tab.component';
 import { NewsFeedTabComponent } from './components/news-feed-tab/news-feed-tab.component';
 import { SettingsTabComponent } from './components/settings-tab/settings-tab.component';
+import { StoryListComponent } from './components/news-feed-tab/story-list/story-list.component';
+import { StoryComponent } from './components/news-feed-tab/story-list/story/story.component';
+import { CommentListComponent } from './components/news-feed-tab/story-list/comment-list/comment-list.component';
+import { CommentComponent } from './components/news-feed-tab/story-list/comment-list/comment/comment.component';
+import { StoryCardComponent } from './components/news-feed-tab/story-list/story/story-card/story-card.component';
+import { CommentInputComponent } from './components/news-feed-tab/story-list/comment-input/comment-input.component';
+import { ErrorPageComponent } from './components/error-page/error-page.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +35,13 @@ import { SettingsTabComponent } from './components/settings-tab/settings-tab.com
     ProfileTabComponent,
     NewsFeedTabComponent,
     SettingsTabComponent,
+    StoryListComponent,
+    StoryComponent,
+    CommentListComponent,
+    CommentComponent,
+    StoryCardComponent,
+    CommentInputComponent,
+    ErrorPageComponent,
   ],
   imports: [
     BrowserModule,
