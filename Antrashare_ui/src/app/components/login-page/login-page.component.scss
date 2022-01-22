@@ -1,0 +1,15 @@
+.container{
+    
+    margin-top: 10em;
+}
+
+.agreement{
+    width: 25em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+::ng-deep .mat-checkbox .mat-checkbox-frame {
+    border-color: grey;
+  }
