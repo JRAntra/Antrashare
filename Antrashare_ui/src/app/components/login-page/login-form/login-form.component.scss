@@ -1,0 +1,17 @@
+.loginContainer {
+  text-align: center;
+  display: block;
+  padding: 0;
+}
+.loginCard {
+  display: inline-block;
+  padding: 0;
+}
+
+.loginForm {
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
