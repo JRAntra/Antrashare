@@ -24,7 +24,7 @@ export class LoginFormComponent implements OnInit {
   rememberedUserIsChecked: boolean = false;
   rememberMeChecked(event: any) {
     console.log('Clicked remember me');
-    this.rememberedUserIsChecked = true;
+    this.rememberedUserIsChecked = !this.rememberedUserIsChecked;
   }
 
   signIn() {
