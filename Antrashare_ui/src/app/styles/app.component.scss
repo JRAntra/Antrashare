@@ -1,20 +1,23 @@
 // @import "../../styles.scss";
 
+main {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
 .container {
-  margin-top: 10em;
-  width: 300px;
-  height: 500px;
-  border: solid #000;
-  border-width: 1px 1px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-main {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
+.navbar {
+  justify-content: space-between;
+}
+
+span {
+  padding-right: 1rem;
 }
