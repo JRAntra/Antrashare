@@ -1,10 +1,12 @@
-// @import "../../styles.scss";
+@import "../../styles.scss";
 
 main {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-top: 15em;
+  opacity: 1;
 }
 
 .container {
@@ -16,8 +18,34 @@ main {
 
 .navbar {
   justify-content: space-between;
+  background-color: transparent;
+  color: red;
+  opacity: 1;
 }
 
 span {
   padding-right: 1rem;
+}
+
+.background-image {
+  background-image: url('../../public/netflix_background.jpg');
+  background-size: cover;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  z-index: -2;
+}
+
+.black {
+  background-color: black;
+  background-size: cover;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  z-index: -1;
+  opacity: .6;
 }
