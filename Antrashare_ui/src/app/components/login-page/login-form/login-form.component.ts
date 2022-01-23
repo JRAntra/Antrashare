@@ -8,37 +8,36 @@ import { FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./login-form.component.scss']
 })
 export class LoginFormComponent implements OnInit {
-
-  constructor(private formBuilder: FormBuilder) { }
-
-  ngOnInit(): void {
-  }
-
   loginForm = this.formBuilder.group({
     userName: ['', Validators.required],
     password: ['', Validators.required]
   });
-
-
   loginData: string = '';
   rememberedUserIsChecked: boolean = false;
+
+  constructor(private formBuilder: FormBuilder) { }
+
+  ngOnInit(): void {
+    let rememberedData: RememeberedUser = JSON.parse(localStorage.getItem('login-data') || "");
+    this.loginForm.controls["userName"].setValue(rememberedData.userName);
+    this.loginForm.controls["password"].setValue(rememberedData.password);
+  }
+
   rememberMeChecked(event: any) {
-    console.log('Clicked remember me');
     this.rememberedUserIsChecked = !this.rememberedUserIsChecked;
   }
 
   signIn() {
-    console.log('Clicked button sign in');
-
     // If remember me checkbox is checked
     // Save input into local storage and check with database later
     if (this.rememberedUserIsChecked === true) {
       this.loginData = JSON.stringify(this.loginForm.value);
       localStorage.setItem('login-data', this.loginData);
     }
-
-    // debug
-    console.log(this.loginData);
-    console.log(localStorage.getItem('login-data'));
   }
+}
+
+interface RememeberedUser {
+  userName: string,
+  password: string
 }
