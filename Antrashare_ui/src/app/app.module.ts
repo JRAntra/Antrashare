@@ -7,14 +7,22 @@ import { LoginPageComponent } from './components/login-page/login-page.component
 import { LoginFormComponent } from './components/login-page/login-form/login-form.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
-import { MatCheckboxModule } from '@angular/material/checkbox';
-import { ReactiveFormsModule } from '@angular/forms';
+import {MatInputModule} from '@angular/material/input';
+import {MatButtonModule} from '@angular/material/button';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatTableModule} from '@angular/material/table';
+import {MatIconModule} from '@angular/material/icon';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatDialogModule} from '@angular/material/dialog';
+import {ReactiveFormsModule} from '@angular/forms';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 
 
+import { UserDisplayComponent } from './components/user-display/user-display.component';
+import { MyProfileComponent } from './components/my-profile/my-profile.component';
+import { ContentComponent } from './components/content/content.component';
 import { TimeoutElementDirective } from './directives/timeoutElement.directive';
+import { TimeoutDialogComponent } from './components/timeout-dialog/timeout-dialog.component';
 import { NavigationBarComponent } from './components/navigation-bar/navigation-bar.component';
 import { NewsFeedComponent } from './components/news-feed/news-feed.component';
 import { StoriesComponent } from './components/news-feed/stories/stories.component';
@@ -25,7 +33,11 @@ import { SettingPanelComponent } from './components/settings/setting-panel/setti
     AppComponent,
     LoginPageComponent,
     LoginFormComponent,
+    UserDisplayComponent,
+    MyProfileComponent,
+    ContentComponent,
     TimeoutElementDirective,
+    TimeoutDialogComponent,
     NavigationBarComponent,
     NewsFeedComponent,
     StoriesComponent,
@@ -38,6 +50,10 @@ import { SettingPanelComponent } from './components/settings/setting-panel/setti
     MatInputModule,
     MatButtonModule,
     MatCheckboxModule,
+    MatTableModule,
+    MatIconModule,
+    MatDialogModule,
+    MatPaginatorModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
     MatButtonToggleModule

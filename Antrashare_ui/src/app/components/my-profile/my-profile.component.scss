@@ -1,0 +1,24 @@
+.profilePage {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 0.5fr 1.5fr;
+    grid-column-gap: 50px;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.profileTable {
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+td, tr {
+    padding: 10px;
+    padding-right: 100px;
+}
+
+.postLikeContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+

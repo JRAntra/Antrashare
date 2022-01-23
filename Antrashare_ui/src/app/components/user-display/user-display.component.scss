@@ -1,0 +1,11 @@
+.userDisplay {
+    display: grid;
+    grid-template-columns: 0.5fr 1.5fr;
+    margin: 20px;
+}
+
+.userDisplayContent {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 20px;
+}
