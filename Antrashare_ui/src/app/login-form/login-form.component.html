@@ -1,7 +1,19 @@
 <div>
     <div id='loginInput'>
-        <input type='text' placeholder='Email or phone number'/><br/>
-        <input type='password' placeholder = 'Password'/><br/>
+        <!-- by YuxuanWu form group-->
+        <form [formGroup] = "userFormGroup">
+            <input type='text' formControlName="usernameFormControl" placeholder='Email or phone number'/><br/>
+            <input type='password' formControlName="passwordFormControl" placeholder = 'Password'/><br/>
+        </form>
+        <!-- by YuxuanWu form control
+            <input type='text' [formControl]="username" placeholder='Email or phone number'/><br/>
+            <input type='password' [formControl]="password" placeholder = 'Password'/><br/>
+        -->
+        <!-- by Daniel original
+            <input type='text' placeholder='Email or phone number'/><br/>
+            <input type='password' placeholder = 'Password'/><br/>
+        -->
+      
     </div>
     <button (click)='SignIn()'>Sign In</button><br/>
     <div id='checkbox'>
