@@ -21,6 +21,11 @@ main {
   background-color: transparent;
   color: red;
   opacity: 1;
+  overflow: hidden;
+  background-color: #333;
+  position: fixed;
+  bottom: -10px;
+  width: 100%;
 }
 
 span {

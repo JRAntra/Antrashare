@@ -20,6 +20,7 @@ import { NewsFeedComponent } from './components/news-feed/news-feed.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { MyProfileComponent } from './components/my-profile/my-profile.component';
 import { SettingsComponent } from './components/settings/settings.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { SettingsComponent } from './components/settings/settings.component';
     MatButtonModule,
     MatCardModule,
     MatToolbarModule,
+    MatCheckboxModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

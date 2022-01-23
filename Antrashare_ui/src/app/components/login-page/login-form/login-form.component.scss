@@ -2,10 +2,14 @@
   text-align: center;
   display: block;
   padding: 0;
+  position: fixed;
+ left: 32%;
+  top: 25%;
 }
 .loginCard {
   display: inline-block;
   padding: 0;
+  
 }
 
 .loginForm {
@@ -13,5 +17,19 @@
   grid-template-columns: 1fr;
   justify-content: center;
   align-items: center;
-  padding: 1rem;
+ 
+    height: 15rem;
+    width: 28rem;
+  
+  
+}
+
+
+.example-margin {
+  float: left ;
+  
+}
+
+.href1 {
+  float: right;
 }
