@@ -7,7 +7,6 @@ import { MyProfileComponent } from './components/my-profile/my-profile.component
 import { NewsFeedComponent } from './components/news-feed/news-feed.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
-// import { ContentComponent } from './components/content/content.component';
 
 const routes: Routes = [
   // List of objects of possible paths
