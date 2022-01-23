@@ -5,7 +5,7 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 15em;
+  margin-top: 7em;
   opacity: 1;
 }
 
@@ -14,18 +14,18 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  z-index: 2;
 }
 
 .navbar {
   justify-content: space-between;
   background-color: transparent;
   color: red;
-  opacity: 1;
   overflow: hidden;
-  background-color: #333;
   position: fixed;
   bottom: -10px;
   width: 100%;
+  cursor: pointer;
 }
 
 span {
