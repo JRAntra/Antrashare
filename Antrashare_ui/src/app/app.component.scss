@@ -1,10 +1,5 @@
 @use "../styles.scss" as theme;
 
-.loginPage {
-    display: flex;
-    justify-content: center;
-}
-
 .pageHeader {
     font-size: theme.$font-size-header;
     margin: 40px;
