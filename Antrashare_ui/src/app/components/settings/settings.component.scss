@@ -1,0 +1,19 @@
+button {
+  color: black;
+  background-color: lightcyan;
+}
+
+.wrapper{
+  text-align: center;
+  // background: gray; /* so we can actually see what's happening */
+  padding: 20px; /* Give us some breathing room */
+  z-index: 10000;
+  position: fixed;
+  bottom: 50px;
+  width: 100%;
+
+  /* Additional */
+  // display: flex;
+  // justify-content: center;
+
+}
