@@ -1,0 +1,18 @@
+#fixedBar {
+  z-index: 10000;
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+}
+
+.navigationBar {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.navigationBar mat-button-toggle {
+  //   position: absolute;
+  background-color: lightcyan;
+  list-style: none;
+  flex: 0 0 33.333333%;
+}
