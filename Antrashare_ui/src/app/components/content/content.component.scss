@@ -1,0 +1,17 @@
+.contentPage {
+    margin-left: 20%;
+    margin-right: 20%; 
+}
+
+.avatarDisplay {
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.postLikeNumber {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    margin-left: 10%;
+    margin-right: 10%;
+    padding: 10px;
+}
