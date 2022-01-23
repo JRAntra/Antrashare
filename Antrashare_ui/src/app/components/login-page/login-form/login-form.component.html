@@ -1,1 +1,22 @@
-<p>login-form works!</p>
+this is the login page
+<form class="login-form" [formGroup]="userLoginForm" (ngSubmit)="onSubmit()">
+    <label>
+        Email: 
+        <br>
+        <input type="text" formControlName="email">
+    </label>
+<div>
+    <label>
+        Password:
+        <br>
+        <input type="password" formControlName="password">
+    </label>
+</div>
+    <div>
+        <br>
+        <!-- this button cannot be clicked until user inputs data -->
+        <button type="submit" [disabled]="!userLoginForm.valid">Login</button>
+    </div>
+    
+</form>
+
