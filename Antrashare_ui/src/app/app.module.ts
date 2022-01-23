@@ -28,6 +28,7 @@ import { NewsFeedComponent } from './components/news-feed/news-feed.component';
 import { StoriesComponent } from './components/news-feed/stories/stories.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { SettingPanelComponent } from './components/settings/setting-panel/setting-panel.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,7 +43,8 @@ import { SettingPanelComponent } from './components/settings/setting-panel/setti
     NewsFeedComponent,
     StoriesComponent,
     SettingsComponent,
-    SettingPanelComponent
+    SettingPanelComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,

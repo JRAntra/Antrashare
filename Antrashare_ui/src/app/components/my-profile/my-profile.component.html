@@ -1,21 +1,24 @@
 <div class="profilePage">
-    <div>
-        <app-user-display class="avatarDisplay"></app-user-display>
-        <div class="postLikeContainer">
-            <mat-icon aria-hidden="false" aria-label="Example home icon">home</mat-icon>
-            <p>Amount of Posts</p>
-            <mat-icon aria-hidden="false" aria-label="Example home icon">home</mat-icon>
-            <p>Amount of Likes</p>
-        </div>
+  <div>
+    <app-user-display class="avatarDisplay"></app-user-display>
+    <div class="postLikeContainer">
+      <mat-icon aria-hidden="false" aria-label="Example home icon"
+        >home</mat-icon
+      >
+      <p>Amount of Posts</p>
+      <mat-icon aria-hidden="false" aria-label="Example home icon"
+        >home</mat-icon
+      >
+      <p>Amount of Likes</p>
     </div>
-    <div>
-        <table class="profileTable">
-            <tr *ngFor="let item of dataSource; let i = index">
-                <td>{{key[i]}}</td>
-                <td>{{item[key[i]]}}</td>
-            </tr>
-        </table>
-    </div>
+  </div>
+  <div>
+    <table class="profileTable">
+      <tr *ngFor="let item of dataSource; let i = index">
+        <td>{{ key[i] }}</td>
+        <td>{{ item[key[i]] }}</td>
+      </tr>
+    </table>
+  </div>
 </div>
-
-
+<app-navigation-bar></app-navigation-bar>
