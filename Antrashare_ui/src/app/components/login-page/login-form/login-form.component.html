@@ -4,40 +4,24 @@
     <form [formGroup]="form" (ngSubmit)="submitForm()" class="loginForm">
       <mat-form-field appearance="fill" class="loginField">
         <mat-label class="loginLabel">Username</mat-label>
-        <input
-          [formControlName]="'username'"
-          matInput
-          placeholder="Username"
-          class="loginInput"
-        />
+        <input [formControlName]="'username'" matInput placeholder="Username" class="loginInput" />
       </mat-form-field>
 
       <mat-form-field appearance="fill" class="loginField">
         <mat-label class="loginLabel">Password</mat-label>
-        <input
-          [formControlName]="'password'"
-          matInput
-          type="password"
-          placeholder="Password"
-          class="loginInput"
-        />
-        
+        <input [formControlName]="'password'" matInput type="password" placeholder="Password" class="loginInput" />
+
       </mat-form-field>
       <section>
         <mat-checkbox class="example-margin">Remember Me!</mat-checkbox>
         <a href="" class="href1">Register</a>
       </section>
-      
-     
-      <button
-        mat-raised-button
-        color="warn"
-        type="submit"
-        [disabled]="form.invalid"
-      >
+
+
+      <button mat-raised-button color="warn" type="submit" [disabled]="form.invalid">
         Log In
       </button>
-      
+
     </form>
   </mat-card>
 </div>
