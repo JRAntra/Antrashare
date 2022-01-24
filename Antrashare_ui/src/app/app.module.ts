@@ -18,11 +18,12 @@ import { NewsFeedComponent } from './components/news-feed/news-feed/news-feed.co
 import { SettingsComponent } from './components/settings/settings/settings.component';
 import { StoryComponent } from './components/story/story/story.component';
 import { TimeoutDialogComponent } from './components/timeout-dialog/timeout-dialog/timeout-dialog.component';
+import { ErrorPageComponent } from './components/error-page/error-page.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent, LoginWindowComponent, LoginFormComponent, HideElementDirective, MyProfilePageComponent, NewsFeedComponent, SettingsComponent, StoryComponent, TimeoutDialogComponent
+    AppComponent, LoginWindowComponent, LoginFormComponent, HideElementDirective, MyProfilePageComponent, NewsFeedComponent, SettingsComponent, StoryComponent, TimeoutDialogComponent, ErrorPageComponent
   ],
   imports: [
     BrowserModule,

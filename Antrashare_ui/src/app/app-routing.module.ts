@@ -6,6 +6,7 @@ import { MyProfilePageComponent } from './components/my-profile-page/my-profile-
 import { NewsFeedComponent } from './components/news-feed/news-feed/news-feed.component';
 import { SettingsComponent } from './components/settings/settings/settings.component';
 import { StoryComponent } from './components/story/story/story.component';
+import { ErrorPageComponent } from './components/error-page/error-page.component';
 
 
 const routes: Routes = [
@@ -16,6 +17,7 @@ const routes: Routes = [
   {path:'newsFeed',component:NewsFeedComponent},
   {path:'settings',component:SettingsComponent},
   {path:'story',component:StoryComponent},
+  { path: '**', component: ErrorPageComponent }
  
 ];
 
