@@ -1,7 +1,23 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-const routes: Routes = [];
+import { LoginWindowComponent } from './components/login-window/login-window.component';
+import { MyProfilePageComponent } from './components/my-profile-page/my-profile-page/my-profile-page.component';
+import { NewsFeedComponent } from './components/news-feed/news-feed/news-feed.component';
+import { SettingsComponent } from './components/settings/settings/settings.component';
+import { StoryComponent } from './components/story/story/story.component';
+
+
+const routes: Routes = [
+  //by YuxuanWu router
+  {path:'',component:LoginWindowComponent},
+  {path:'login',component:LoginWindowComponent},
+  {path:'myProfile',component:MyProfilePageComponent},
+  {path:'newsFeed',component:NewsFeedComponent},
+  {path:'settings',component:SettingsComponent},
+  {path:'story',component:StoryComponent},
+ 
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
