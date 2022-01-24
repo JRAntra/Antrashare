@@ -12,4 +12,5 @@ export class StoryListComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  totalStory: Number[] = [1,2,3,4]
 }

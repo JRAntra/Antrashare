@@ -12,4 +12,5 @@ export class StoryCardComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  
 }

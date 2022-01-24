@@ -6,12 +6,14 @@ import { LoginPageComponent } from './components/login-page/login-page.component
 import { NewsFeedTabComponent } from './components/news-feed-tab/news-feed-tab.component';
 import { ProfileTabComponent } from './components/profile-tab/profile-tab.component';
 import { SettingsTabComponent } from './components/settings-tab/settings-tab.component';
+import { StoryListComponent } from './components/news-feed-tab/story-list/story-list.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginPageComponent },
   { path: 'profile', component: ProfileTabComponent },
   { path: 'newsfeed', component: NewsFeedTabComponent },
   { path: 'settings', component: SettingsTabComponent },
+  { path: 'story', component: StoryListComponent },
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: '**', component: ErrorPageComponent }
 ];
