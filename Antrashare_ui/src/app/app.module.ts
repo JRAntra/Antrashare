@@ -26,6 +26,7 @@ import { SettingsTabComponent } from './components/settings-tab/settings-tab.com
 import { StoryCardComponent } from './components/news-feed-tab/story-list/story/story-card/story-card.component';
 import { StoryComponent } from './components/news-feed-tab/story-list/story/story.component';
 import { StoryListComponent } from './components/news-feed-tab/story-list/story-list.component';
+import { ProfileFormComponent } from './components/profile-tab/profile-form/profile-form.component';
 import { ProfileTabComponent } from './components/profile-tab/profile-tab.component';
 
 @NgModule({
@@ -43,6 +44,7 @@ import { ProfileTabComponent } from './components/profile-tab/profile-tab.compon
     StoryCardComponent,
     StoryComponent,
     StoryListComponent,
+    ProfileFormComponent,
     ProfileTabComponent,
   ],
   imports: [
