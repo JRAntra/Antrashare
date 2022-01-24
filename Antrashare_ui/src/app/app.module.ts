@@ -21,6 +21,7 @@ import { StoryComponent } from './components/story/story/story.component';
 import { TimeoutDialogComponent } from './components/timeout-dialog/timeout-dialog/timeout-dialog.component';
 import { HeaderComponent } from './components/header/header.component';
 import { NavbarComponent } from './components/header/navbar/navbar.component';
+import { ErrorPageComponent } from './components/error-page/error-page.component';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { NavbarComponent } from './components/header/navbar/navbar.component';
     StoryComponent, 
     TimeoutDialogComponent, 
     HeaderComponent, 
-    NavbarComponent
+    NavbarComponent,
+    ErrorPageComponent
   ],
   imports: [
     BrowserModule,
