@@ -1,4 +1,31 @@
-<p>story works!</p>
-<div class = 'container'>
-    <p>{{tempText}}</p>
-</div>
+<!-- <p>story works!</p> -->
+
+
+<mat-card class = 'container'>
+    <div class = 'cardHead'>
+        <!-- <img mat-card-avatar> -->
+        <button mat-icon-button>
+            <mat-icon>person_outline</mat-icon>
+        </button>
+        <span>
+            <mat-card-content>Some User</mat-card-content>
+            <mat-card-content>01/24/2022</mat-card-content>
+        </span>
+    </div>
+    <mat-card-content>{{tempText}}</mat-card-content>
+    <div class = 'cardFoot'>
+        <button mat-icon-button (click) = "MoreLikes()">
+            <mat-icon>thumb_up_alt</mat-icon>
+        </button>
+        <p>{{likes}}</p>
+        <button mat-icon-button (click) = "showComment()">
+            <mat-icon> comment</mat-icon>
+        </button>
+        <p>0</p>
+        
+    </div>
+    <div *ngIf = "cmtStatus" class = 'comment' id = "cmt">
+        <input placeholder = 'Comment Here'/>
+        <app-comment-list></app-comment-list>
+    </div>
+</mat-card>
