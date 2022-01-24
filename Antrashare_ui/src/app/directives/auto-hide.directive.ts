@@ -1,20 +1,34 @@
-import { Directive, TemplateRef, Input, OnInit, ViewContainerRef } from '@angular/core';
+import { animate, AnimationBuilder, AnimationMetadata, style } from '@angular/animations';
+import { Directive, OnInit, ElementRef } from '@angular/core';
 
 @Directive({
   selector: '[autoHide]'
 })
 export class AutoHideDirective implements OnInit {
-  time: number = DEFAULT_TIME;
+  private time: number = DEFAULT_TIME;
 
-  constructor(private templateRef: TemplateRef<any>, private viewRef: ViewContainerRef) { }
+  constructor(private el: ElementRef, private builder: AnimationBuilder) { }
 
   ngOnInit(): void {
-    // display the template
-    this.viewRef.createEmbeddedView(this.templateRef);
-    // set a time to hide the view
-    setTimeout(() => {
-      this.viewRef.clear();
-    }, this.time);
+    // based on a time to hide the element
+    const factory = this.builder.build(this.fadeOut());
+    const player = factory.create(this.el.nativeElement);
+    player.onDone(() => {
+      // after the animation is done, the element is removed
+      this.el.nativeElement.remove();
+    });
+    player.play();
+  }
+
+  /**
+  * This is the fadeOut function that set the fade out effect for the AnimationBuilder
+  * @returns returns an AnimationMetadata array 
+  */
+  private fadeOut(): AnimationMetadata[] {
+    return [
+      style({ opacity: '*' }),
+      animate(this.time + 'ms ease-in', style({ opacity: 0 })),
+    ];
   }
 }
 
