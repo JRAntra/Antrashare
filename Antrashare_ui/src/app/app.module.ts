@@ -26,7 +26,6 @@ import { CommentInputComponent } from './components/news-feed-tab/story-list/com
 import { CommentListComponent } from './components/news-feed-tab/story-list/comment-list/comment-list.component';
 import { NewsFeedTabComponent } from './components/news-feed-tab/news-feed-tab.component';
 import { SettingsTabComponent } from './components/settings-tab/settings-tab.component';
-import { StoryCardComponent } from './components/news-feed-tab/story-list/story/story-card/story-card.component';
 import { StoryComponent } from './components/news-feed-tab/story-list/story/story.component';
 import { StoryListComponent } from './components/news-feed-tab/story-list/story-list.component';
 import { ProfileFormComponent } from './components/profile-tab/profile-form/profile-form.component';
@@ -44,7 +43,6 @@ import { ProfileTabComponent } from './components/profile-tab/profile-tab.compon
     CommentInputComponent,
     CommentListComponent,
     SettingsTabComponent,
-    StoryCardComponent,
     StoryComponent,
     StoryListComponent,
     ProfileFormComponent,
