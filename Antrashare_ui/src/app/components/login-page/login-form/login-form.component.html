@@ -1,21 +1,19 @@
-<form class="login-form" [formGroup]="userLoginForm" (ngSubmit)="onSubmit()">
-    <label>
+<mat-form-field class="login-form" floatLabel="auto" appearance="fill" [formGroup]="userLoginForm">
+    <mat-label>
         Email: 
         <br>
-        <input type="text" formControlName="email">
-    </label>
+        <input matInput formControlName="email">
+    </mat-label>
+</mat-form-field>
+
 <div>
-    <label>
+    <mat-form-field floatLabel="auto" appearance="fill" [formGroup]="userLoginForm">
+    <mat-label>
         Password:
         <br>
-        <input type="password" formControlName="password">
-    </label>
+        <input matInput type="password" formControlName="password">
+    </mat-label>
+</mat-form-field>
+    <br>
+    <button mat-raised-button type="submit" color="primary" (click)="onSubmit()">Login</button>
 </div>
-    <div>
-        <br>
-        <!-- this button cannot be clicked until user inputs data -->
-        <button type="submit" [disabled]="!userLoginForm.valid">Login</button>
-    </div>
-    
-</form>
-
