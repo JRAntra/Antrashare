@@ -18,9 +18,9 @@ export class LoginFormComponent implements OnInit {
   constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
-    let rememberedData: RememeberedUser = JSON.parse(localStorage.getItem('login-data') || "");
-    this.loginForm.controls["userName"].setValue(rememberedData.userName);
-    this.loginForm.controls["password"].setValue(rememberedData.password);
+    let rememberedData = localStorage.getItem('login-data') ? JSON.parse(localStorage.getItem('login-data') || "") : "";
+    this.loginForm.controls["userName"].setValue(rememberedData.userName ? rememberedData.userName : "");
+    this.loginForm.controls["password"].setValue(rememberedData.password ? rememberedData.password : "");
   }
 
   rememberMeChecked(event: any) {

@@ -1,3 +1,5 @@
+@use "../../../styles.scss" as theme;
+
 #fixedBar {
   z-index: 10000;
   position: fixed;
@@ -12,7 +14,8 @@
 
 .navigationBar mat-button-toggle {
   //   position: absolute;
-  background-color: lightcyan;
+  background-color: theme.$secondary-color;
+  color: white;
   list-style: none;
   flex: 0 0 33.333333%;
 }
