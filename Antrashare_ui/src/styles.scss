@@ -32,7 +32,7 @@ $Antrashare_ui-theme: mat.define-light-theme((
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
 @include mat.all-component-themes($Antrashare_ui-theme);
-
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 // color variables 
 
 $background-color: #01161E;

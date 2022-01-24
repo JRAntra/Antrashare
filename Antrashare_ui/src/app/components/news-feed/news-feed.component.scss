@@ -1,13 +1,26 @@
-.number {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 2px solid red;
-  box-sizing: border-box;
-}
-
 #stories {
   width: 100%;
   height: 100%;
-  overflow: scroll;
+  //overflow: scroll;
+  padding-bottom: 5%;
+}
+
+#stories {
+  position: absolute;
+  top: 0;
+  animation: slide 5s infinite;  
+}
+@keyframes slide {
+  0%{
+    top:0;
+  }
+  25%{
+    top: -4rem;    
+  }
+  50%{
+    top: -8rem;
+  }
+  72.5%{
+    top: -12.25rem;
+  }
 }

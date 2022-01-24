@@ -1,6 +1,7 @@
+@use "../../../styles.scss" as theme;
+
 .userDisplay {
-    display: grid;
-    grid-template-columns: 0.5fr 1.5fr;
+    display: flex;
     margin: 20px;
 }
 
@@ -8,4 +9,8 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-column-gap: 20px;
+    margin-top: 30px;
+    padding: 20px;
+    background-color: theme.$primary-color;
+    border-radius: 20px;
 }

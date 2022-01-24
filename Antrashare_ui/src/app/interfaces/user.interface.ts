@@ -1,3 +1,4 @@
+//user profile
 export interface UserProfile {
     id: string,
     userEmail: string,
@@ -7,4 +8,17 @@ export interface UserProfile {
     gender?: string,
     age?: number,
     phone?: string
+}
+
+//user account
+export interface UserAccount {
+    id: string,
+    userEmail: string,
+    userRole: string, 
+    password: string
+}
+
+//role permission
+export interface Role {
+    canAccess: boolean
 }
