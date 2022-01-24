@@ -13,6 +13,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatCardModule } from '@angular/material/card';
+import { MatExpansionModule} from '@angular/material/expansion';
 
 import { LoginPageComponent } from './components/login-page/login-page.component';
 import { LoginFormComponent } from './components/login-page/login-form/login-form.component';
@@ -24,7 +26,6 @@ import { CommentInputComponent } from './components/news-feed-tab/story-list/com
 import { CommentListComponent } from './components/news-feed-tab/story-list/comment-list/comment-list.component';
 import { NewsFeedTabComponent } from './components/news-feed-tab/news-feed-tab.component';
 import { SettingsTabComponent } from './components/settings-tab/settings-tab.component';
-import { StoryCardComponent } from './components/news-feed-tab/story-list/story/story-card/story-card.component';
 import { StoryComponent } from './components/news-feed-tab/story-list/story/story.component';
 import { StoryListComponent } from './components/news-feed-tab/story-list/story-list.component';
 import { ProfileFormComponent } from './components/profile-tab/profile-form/profile-form.component';
@@ -42,7 +43,6 @@ import { ProfileTabComponent } from './components/profile-tab/profile-tab.compon
     CommentInputComponent,
     CommentListComponent,
     SettingsTabComponent,
-    StoryCardComponent,
     StoryComponent,
     StoryListComponent,
     ProfileFormComponent,
@@ -60,6 +60,8 @@ import { ProfileTabComponent } from './components/profile-tab/profile-tab.compon
     MatInputModule,
     MatListModule,
     MatSidenavModule,
+    MatCardModule,
+    MatExpansionModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
