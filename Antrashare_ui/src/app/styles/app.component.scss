@@ -1,5 +1,8 @@
 @import "../../styles.scss";
 
+$primary-red: red;
+$primary-white: white;
+
 main {
   display: flex;
   flex-direction: column;
@@ -20,7 +23,7 @@ main {
 .navbar {
   justify-content: space-between;
   background-color: transparent;
-  color: red;
+  color: $primary-white;
   overflow: hidden;
   position: fixed;
   bottom: -10px;
@@ -33,7 +36,7 @@ span {
 }
 
 .background-image {
-  background-image: url('../../public/netflix_background.jpg');
+  background-image: url("../../public/netflix_background.jpg");
   background-size: cover;
   position: absolute;
   top: 0px;
@@ -52,5 +55,5 @@ span {
   bottom: 0px;
   left: 0px;
   z-index: -1;
-  opacity: .6;
+  opacity: 0.6;
 }
