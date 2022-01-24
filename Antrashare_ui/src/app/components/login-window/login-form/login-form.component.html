@@ -19,7 +19,11 @@
         -->
       
     </div>
+     <!-- by Huazhen xu check formgroup vaild-->
+    <button mat-raised-button color="warn" type="submit" [disabled]="!userFormGroup.valid" (click)='SignIn()'>Sign In</button>
+    <!-- by Daniel original
     <button (click)='SignIn()'>Sign In</button><br/>
+     -->
     <div id='checkbox'>
         <div>
             <input id='checkboxInput' type='checkbox'/> Remember me
