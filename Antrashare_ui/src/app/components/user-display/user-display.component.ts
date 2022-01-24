@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-display',
@@ -6,8 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user-display.component.scss']
 })
 export class UserDisplayComponent implements OnInit {
-
-  constructor() { }
+  correctPath: string = '';
+  constructor(private router: Router) {
+    const path = this.router.url;
+    this.correctPath = path.slice(1, path.length);
+  }
 
   ngOnInit(): void {
   }
