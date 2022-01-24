@@ -10,6 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HideElementDirective } from './directives/hide-element/hide-element.directive';
@@ -18,11 +19,23 @@ import { NewsFeedComponent } from './components/news-feed/news-feed/news-feed.co
 import { SettingsComponent } from './components/settings/settings/settings.component';
 import { StoryComponent } from './components/story/story/story.component';
 import { TimeoutDialogComponent } from './components/timeout-dialog/timeout-dialog/timeout-dialog.component';
+import { HeaderComponent } from './components/header/header.component';
+import { NavbarComponent } from './components/header/navbar/navbar.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent, LoginWindowComponent, LoginFormComponent, HideElementDirective, MyProfilePageComponent, NewsFeedComponent, SettingsComponent, StoryComponent, TimeoutDialogComponent
+    AppComponent,
+    LoginWindowComponent,
+    LoginFormComponent,
+    HideElementDirective,
+    MyProfilePageComponent,
+    NewsFeedComponent,
+    SettingsComponent, 
+    StoryComponent, 
+    TimeoutDialogComponent, 
+    HeaderComponent, 
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
@@ -31,6 +44,7 @@ import { TimeoutDialogComponent } from './components/timeout-dialog/timeout-dial
     MatFormFieldModule,
     MatInputModule,
     MatIconModule,
+    MatMenuModule,
     MatButtonModule,
     ReactiveFormsModule
   ],

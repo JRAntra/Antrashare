@@ -3,10 +3,9 @@
     background-size: cover;
     height: 100%;
     width: 100%;
-    position: fixed;
     top: 0;
     left: 0;
-    
+    padding-top: 15%;
 }
 
 #login-modal {
@@ -14,7 +13,6 @@
     height: 30%;
     text-align: center;
     margin: 0 auto;
-    margin-top: 15%;
     padding: 2% 2% 10%;
     background-color: rgba(0, 0, 0, 0.795);
     color: white;

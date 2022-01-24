@@ -19,7 +19,8 @@
         -->
       
     </div>
-    <button (click)='SignIn()'>Sign In</button><br/>
+     <!-- by Huazhen xu check formgroup vaild-->
+    <button [disabled]="!userFormGroup.valid" (click)='SignIn()'>Sign In</button><br/>
     <div id='checkbox'>
         <div>
             <input id='checkboxInput' type='checkbox'/> Remember me
