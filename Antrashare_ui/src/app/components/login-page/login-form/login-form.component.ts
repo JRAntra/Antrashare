@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import {Router} from "@angular/router";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-login-form',
@@ -19,7 +19,7 @@ export class LoginFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onSubmit(){
+  onSubmit() {
     //placeholder
     console.log(this.userLoginForm.value);
     this.router.navigate(['newsfeed']);
