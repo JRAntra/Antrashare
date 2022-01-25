@@ -1,7 +1,6 @@
-
 <!-- Creates a layout with a left-positioned sidenav and explicit content. -->
 <mat-sidenav-container>
-    <mat-sidenav opened mode="side">
+    <mat-sidenav [opened]="this.currentRoute != '/login'" mode="side">
         <div class="branding">
             <img src="https://material.angular.io/assets/img/homepage/angular-white-transparent.svg" alt="logo"/>
             <span>Team Best DEVs</span>
