@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Router} from "@angular/router";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-settings-tab',
@@ -13,7 +13,7 @@ export class SettingsTabComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  logOut(){
+  logOut() {
     console.log("Logged out")
     this.router.navigate(['login'])
   }
