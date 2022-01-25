@@ -8,11 +8,13 @@ import { ProfileTabComponent } from './components/profile-tab/profile-tab.compon
 import { SettingsTabComponent } from './components/settings-tab/settings-tab.component';
 
 const routes: Routes = [
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginPageComponent },
+
   { path: 'profile', component: ProfileTabComponent },
   { path: 'newsfeed', component: NewsFeedTabComponent },
   { path: 'settings', component: SettingsTabComponent },
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
+
   { path: '**', component: ErrorPageComponent }
 ];
 

@@ -22,6 +22,7 @@ import { LoginFormComponent } from './components/login-page/login-form/login-for
 
 import { AutoHideDirective } from './directives/auto-hide.directive';
 import { ErrorPageComponent } from './components/error-page/error-page.component';
+import { Error404Component } from './components/error-page/error404/error404.component';
 import { CommentComponent } from './components/news-feed-tab/story-list/comment-list/comment/comment.component';
 import { CommentInputComponent } from './components/news-feed-tab/story-list/comment-input/comment-input.component';
 import { CommentListComponent } from './components/news-feed-tab/story-list/comment-list/comment-list.component';
@@ -39,6 +40,7 @@ import { ProfileTabComponent } from './components/profile-tab/profile-tab.compon
     LoginFormComponent,
     AutoHideDirective,
     ErrorPageComponent,
+    Error404Component,
     NewsFeedTabComponent,
     CommentComponent,
     CommentInputComponent,
