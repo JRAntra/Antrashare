@@ -1,1 +1,4 @@
-<p>comment-list works!</p>
+<app-comment
+    *ngFor = "let cmt of cmtList"
+    [cmt] = "cmt"
+></app-comment>

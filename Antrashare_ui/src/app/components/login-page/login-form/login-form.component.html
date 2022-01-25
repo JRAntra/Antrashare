@@ -1,19 +1,12 @@
-<mat-form-field class="login-form" floatLabel="auto" appearance="fill" [formGroup]="userLoginForm">
-    <mat-label>
-        Email: 
-        <br>
+<div class = 'container'>
+    <mat-form-field class="formField" floatLabel="auto" appearance="fill" [formGroup]="userLoginForm">
+        <mat-label>Email:</mat-label>
         <input matInput formControlName="email">
-    </mat-label>
-</mat-form-field>
+    </mat-form-field>
 
-<div>
-    <mat-form-field floatLabel="auto" appearance="fill" [formGroup]="userLoginForm">
-    <mat-label>
-        Password:
-        <br>
+    <mat-form-field class = "formField" floatLabel="auto" appearance="fill" [formGroup]="userLoginForm">
+        <mat-label>Password:</mat-label>
         <input matInput type="password" formControlName="password">
-    </mat-label>
-</mat-form-field>
-    <br>
-    <button mat-raised-button type="submit" color="primary" (click)="onSubmit()">Login</button>
+    </mat-form-field>
+    <button mat-raised-button class = "loginButton" type="submit" color="primary" (click)="onSubmit()">Login</button>
 </div>

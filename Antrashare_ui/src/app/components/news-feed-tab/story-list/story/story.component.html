@@ -15,17 +15,19 @@
     <mat-card-content>{{tempText}}</mat-card-content>
     <div class = 'cardFoot'>
         <button mat-icon-button (click) = "MoreLikes()">
-            <mat-icon>thumb_up_alt</mat-icon>
+            <mat-icon color = 'accent'>thumb_up_alt</mat-icon>
         </button>
         <p>{{likes}}</p>
         <button mat-icon-button (click) = "showComment()">
-            <mat-icon> comment</mat-icon>
+            <mat-icon color = 'accent'> comment</mat-icon>
         </button>
-        <p>0</p>
+        <p>{{cmtCount}}</p>
         
     </div>
     <div *ngIf = "cmtStatus" class = 'comment' id = "cmt">
-        <input placeholder = 'Comment Here'/>
-        <app-comment-list></app-comment-list>
+        <mat-form-field class = "cmtField" (keyup.enter) = "onEnter()">
+            <input matInput placeholder = 'Comment Here' [formControl] = "cmtForm"/>
+        </mat-form-field>
+        <app-comment-list [userInput] = "userInput" (cmtNumChange) = "cmtNumber($event)"></app-comment-list>
     </div>
 </mat-card>
