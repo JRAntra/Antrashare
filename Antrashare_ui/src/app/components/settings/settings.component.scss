@@ -1,0 +1,94 @@
+#settings {
+    background-image: url('../../../assets/images/US-en-20220117-popsignuptwoweeks-perspective_alpha_website_medium.jpg');
+    background-size: cover;
+    height: 100%;
+    width: auto;
+    top: 0;
+    left: 0;
+    margin-top: -1.8%;
+}
+
+#settingsMain {
+    display: grid;
+    grid-template-rows: 80% 20%;
+    height: 80vh;
+}
+
+#settingsOptions {
+    width: 80%;
+    margin: 5% auto;
+    background-color: rgba(0, 0, 0, 0.795);
+}
+
+#settingsOptions h1 {
+    margin: 1.5%;
+    color: white;
+    font-weight: bold;
+    font-size: 2rem;
+}
+
+#options {
+    display: grid;
+    grid-template-columns: 20% 20% 20% 20% 20%;
+    text-align: center;
+    height: 55%;
+    margin-top: 3%;
+}
+
+#options button {
+    width: 80%;
+    margin: 0 auto;
+    height: 100%;
+    border: 0;
+    background-color: red;
+    color: white;
+    transition: 0.3s ease-in-out;
+    font-size: 1.7rem;
+    border-radius: 4px;
+}
+
+#settingsLogout {
+    width: 30%;
+    height: 50%;
+    margin: 5% auto;
+}
+
+#settingsLogout button {
+    border: 0;
+    color: white;
+    background-color: red;
+    height: 100%;
+    width: 100%;
+    transition: 0.3s ease-in-out;
+    border-radius: 4px;
+    font-size: 1.5rem;
+}
+
+#settingsRedirect {
+    position: absolute;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 33% 34% 33%;
+    text-align: center;
+    height: 3rem;
+    bottom: 0;
+}
+
+#redirectTile {
+    border: 0;
+    background-color: red;
+    color: white;
+    transition: 0.3s ease-in-out;
+    margin: 0 auto;
+    width: 98%;
+    vertical-align: middle;
+    border-radius: 4px;
+    font-size: 1.2rem;
+}
+
+#redirectTile:hover, #settingsLogout button:hover, #options button:hover {
+    cursor: pointer;
+    background-color: white;
+    transition: 0.3s ease-in-out;
+    color: red;
+}
