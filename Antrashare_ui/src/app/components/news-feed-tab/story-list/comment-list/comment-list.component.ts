@@ -10,20 +10,20 @@ export class CommentListComponent implements OnInit, OnChanges {
   @Input() userInput!: String;
   @Output() cmtNumChange = new EventEmitter<number>();
 
-
-  cmtList: String[] = []; 
+  cmtList: String[] = [];
+  
   constructor() { }
 
   ngOnInit(): void {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-      if(this.userInput !== undefined){
-        // console.log(changes['userInput'].currentValue);
-        this.cmtList.push(this.userInput);
-      }
-      // console.log("onChange" + this.cmtList + this.cmtList.length);
-      this.cmtNumChange.emit(this.cmtList.length);
+    if (this.userInput !== undefined) {
+      // console.log(changes['userInput'].currentValue);
+      this.cmtList.push(this.userInput);
+    }
+    // console.log("onChange" + this.cmtList + this.cmtList.length);
+    this.cmtNumChange.emit(this.cmtList.length);
   }
 
 
