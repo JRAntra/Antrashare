@@ -22,7 +22,7 @@ export class CommentListComponent implements OnInit, OnChanges {
         // console.log(changes['userInput'].currentValue);
         this.cmtList.push(this.userInput);
       }
-      console.log("onChange" + this.cmtList + this.cmtList.length);
+      // console.log("onChange" + this.cmtList + this.cmtList.length);
       this.cmtNumChange.emit(this.cmtList.length);
   }
 
