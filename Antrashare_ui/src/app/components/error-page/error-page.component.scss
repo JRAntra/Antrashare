@@ -1,0 +1,19 @@
+#error {
+    text-align: center;
+    margin-top: 20vh;
+}
+
+h1 {
+    font-size: 3rem;
+}
+
+#redirect {
+    transition: 0.3s ease-in-out;
+    text-decoration: underline;
+}
+
+#redirect:hover {
+    cursor: pointer;
+    color: red;
+    transition: 0.3s ease-in-out;
+}

@@ -14,7 +14,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HideElementDirective } from './directives/hide-element/hide-element.directive';
-import { MyProfilePageComponent } from './components/my-profile-page/my-profile-page/my-profile-page.component';
+import { MyProfilePageComponent } from './components/my-profile-page/my-profile-page.component';
 import { NewsFeedComponent } from './components/news-feed/news-feed/news-feed.component';
 import { SettingsComponent } from './components/settings/settings/settings.component';
 import { StoryComponent } from './components/story/story/story.component';
