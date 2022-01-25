@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -12,4 +13,14 @@ export class AppComponent {
     {name: 'News Feed', path: 'newsfeed'},
     {name: 'Settings', path: 'settings'}
   ];
+
+  currentRoute: string = '';
+
+  constructor(private router: Router) {
+    router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.currentRoute = event.url;
+      }
+    });;
+  };
 }
