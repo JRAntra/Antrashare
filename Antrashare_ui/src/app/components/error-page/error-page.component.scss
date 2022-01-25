@@ -1,6 +1,24 @@
 #error {
+    background-image: url('../../../assets/images/US-en-20220117-popsignuptwoweeks-perspective_alpha_website_medium.jpg');
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    float: left;
+    margin-top: -1.8%;
+    z-index: -1;
+    padding: 10% auto;
+}
+
+
+#errorContent {
+    width: 60%;
+    height: 30%;
+    color: white;
     text-align: center;
-    margin-top: 20vh;
+    background-color: rgba(0, 0, 0, 0.795);
+    margin: 10% auto;
+    padding-top: 7%;
+    border-radius: 4px;
 }
 
 h1 {
