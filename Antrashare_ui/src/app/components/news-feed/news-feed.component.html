@@ -1,0 +1,11 @@
+<div>
+    <dialog open class="newsFeedNotification" appHideElement>Fide Out Notification(5s)</dialog>
+    <app-timeout-dialog></app-timeout-dialog>
+    <div class="newsFeedContent"> 
+        <app-story *ngFor="let story of storyList" [storyItem]="story" class="newsFeedStory" (click)="selectStory(story)" > </app-story>
+
+      
+    </div>
+    <app-bottom-bar></app-bottom-bar>
+    
+</div>

@@ -15,13 +15,14 @@ import { MatButtonModule } from '@angular/material/button';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HideElementDirective } from './directives/hide-element/hide-element.directive';
 import { MyProfilePageComponent } from './components/my-profile-page/my-profile-page.component';
-import { NewsFeedComponent } from './components/news-feed/news-feed/news-feed.component';
+import { NewsFeedComponent } from './components/news-feed/news-feed.component';
 import { SettingsComponent } from './components/settings/settings/settings.component';
-import { StoryComponent } from './components/story/story/story.component';
-import { TimeoutDialogComponent } from './components/timeout-dialog/timeout-dialog/timeout-dialog.component';
+import { StoryComponent } from './components/story/story.component';
+import { TimeoutDialogComponent } from './components/timeout-dialog/timeout-dialog.component';
 import { HeaderComponent } from './components/header/header.component';
 import { NavbarComponent } from './components/header/navbar/navbar.component';
 import { ErrorPageComponent } from './components/error-page/error-page.component';
+import { BottomBarComponent } from './components/bottom/bottom-bar/bottom-bar.component';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { ErrorPageComponent } from './components/error-page/error-page.component
     TimeoutDialogComponent, 
     HeaderComponent, 
     NavbarComponent,
-    ErrorPageComponent
+    ErrorPageComponent,
+    BottomBarComponent
   ],
   imports: [
     BrowserModule,
