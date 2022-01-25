@@ -1,0 +1,24 @@
+<div class="contentPage">
+    <div class="avatarDisplay">
+        <app-user-display [userInNewFeed] = "userInfo"></app-user-display>
+    </div>
+    <div class="content">
+        <p>{{currentStory.content.text}}</p>
+        <div>
+            {{currentStory.content.image}}
+            {{currentStory.content.video}}
+        </div>
+    </div>
+    <div class="postLikeNumber">
+        <mat-icon aria-hidden="false" aria-label="comment">home</mat-icon>
+        <p>Comments number</p>
+        <mat-icon aria-hidden="false" aria-label="like">home</mat-icon>
+        <p>Like number</p>
+    </div>
+    <!-- frontend pagination is for comment -->
+    <!-- <mat-paginator [length]="10"
+              [pageSize]="11"
+              [pageSizeOptions]="[1, 5, 10]"
+              aria-label="Select page">
+    </mat-paginator> -->
+</div>

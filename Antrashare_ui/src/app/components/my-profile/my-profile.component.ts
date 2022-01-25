@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UserProfile } from 'src/app/interfaces/user.interface';
 import { MatIconRegistry } from '@angular/material/icon'; 
-import {DomSanitizer} from '@angular/platform-browser';
+import { DomSanitizer } from '@angular/platform-browser';
+import { UserInfo } from '../../interfaces/user-display.interface';
 
 const THUMBUP_ICON =
   `
@@ -18,7 +19,7 @@ const THUMBUP_ICON =
   styleUrls: ['./my-profile.component.scss']
 })
 export class MyProfileComponent implements OnInit {
-  userData: UserProfile = {
+  public userData: UserProfile = {
     id: '123',
     userEmail: 'Cat@gmail.com',
     userRole: 'user', 
@@ -28,18 +29,30 @@ export class MyProfileComponent implements OnInit {
     age: 20,
     phone: '3498234'
   }
-  dataSource = Object.keys(this.userData).map((item, index) => {
+
+  public userInfo: UserInfo = {
+    username: "",
+    userEmail: ""
+  };
+
+  public userProfileList = Object.keys(this.userData).map((item, index) => {
     return {
       [item] : Object.values(this.userData)[index]
     };
   });
+
   key = Object.keys(this.userData);
   value = Object.values(this.userData);
+
   constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) { 
     iconRegistry.addSvgIconLiteral('thumbs-up', sanitizer.bypassSecurityTrustHtml(THUMBUP_ICON));
   }
 
   ngOnInit(): void {
+    this.userInfo = {
+      username: this.userData.username,
+      userEmail: this.userData.userEmail,
+    }
   }
 
 }

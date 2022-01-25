@@ -1,9 +1,15 @@
 <div class="userDisplay">
     <img/>
     <div class="userDisplayContent" [ngSwitch]="correctPath">
-        <p>Username</p>
-        <p *ngSwitchCase="'myProfile'">Email</p>
-        <p *ngSwitchCase="'content'">Published time</p>
+        <div *ngSwitchCase="'myProfile'" class="infoBox">
+            <p>{{userInProfile.username}}</p>
+            <p>{{userInProfile.userEmail}}</p>
+        </div>
+        <div *ngSwitchCase="'newsFeed'" class="infoBox">
+            <p>{{userInNewFeed.publisherName}}</p>
+            <p>{{userInNewFeed.publishedTime}}</p>
+        </div>
+        
     </div>
 </div>
 
