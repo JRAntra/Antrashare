@@ -12,4 +12,8 @@ export class SettingsComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  logOut() {
+    console.log('Log Out Function Here')
+  }
+
 }

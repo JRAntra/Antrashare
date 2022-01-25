@@ -15,8 +15,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HideElementDirective } from './directives/hide-element/hide-element.directive';
 import { MyProfilePageComponent } from './components/my-profile-page/my-profile-page.component';
+
+import { SettingsComponent } from './components/settings/settings.component';onent';
 import { NewsFeedComponent } from './components/news-feed/news-feed.component';
-import { SettingsComponent } from './components/settings/settings/settings.component';
 import { StoryComponent } from './components/story/story.component';
 import { TimeoutDialogComponent } from './components/timeout-dialog/timeout-dialog.component';
 import { HeaderComponent } from './components/header/header.component';

@@ -1,0 +1,30 @@
+<div id='settings'>
+    <div id='settingsMain'>
+        <div id='settingsOptions'>
+            <h1>Settings</h1>
+            <div id='options'>
+                <button>Option</button>
+                <button>Option</button>
+                <button>Option</button>
+                <button>Option</button>
+                <button>Option</button>
+            </div>
+        </div>
+        <div id='settingsLogout'>
+            <button (click)='logOut()'>
+                Log Out
+            </button>
+        </div>
+    </div>
+    <div id='settingsRedirect'>
+        <button id='redirectTile' routerLink="../myProfile">
+            My Profile
+        </button>
+        <button id='redirectTile' routerLink="../newsFeed">
+            News Feed
+        </button>
+        <button id='redirectTile' routerLink="../settings">
+            Settings
+        </button>
+    </div>
+</div>
