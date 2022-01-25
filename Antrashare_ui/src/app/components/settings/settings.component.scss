@@ -64,31 +64,3 @@
     font-size: 1.5rem;
 }
 
-#settingsRedirect {
-    position: absolute;
-    width: 100%;
-    display: grid;
-    grid-template-columns: 33% 34% 33%;
-    text-align: center;
-    height: 3rem;
-    bottom: 0;
-}
-
-#redirectTile {
-    border: 0;
-    background-color: red;
-    color: white;
-    transition: 0.3s ease-in-out;
-    margin: 0 auto;
-    width: 98%;
-    vertical-align: middle;
-    border-radius: 4px;
-    font-size: 1.2rem;
-}
-
-#redirectTile:hover, #settingsLogout button:hover, #options button:hover {
-    cursor: pointer;
-    background-color: white;
-    transition: 0.3s ease-in-out;
-    color: red;
-}
