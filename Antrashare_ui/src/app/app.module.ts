@@ -21,6 +21,8 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { MyProfileComponent } from './components/my-profile/my-profile.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { NewsListComponent } from './components/news-feed/news-list/news-list.component';
+import { NewsItemComponent } from './components/news-feed/news-list/news-item/news-item.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +34,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     PageNotFoundComponent,
     MyProfileComponent,
     SettingsComponent,
+    NewsListComponent,
+    NewsItemComponent,
   ],
   imports: [
     BrowserModule,
