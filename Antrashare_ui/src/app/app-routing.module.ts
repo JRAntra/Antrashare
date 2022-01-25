@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginWindowComponent } from './components/login-window/login-window.component';
 import { MyProfilePageComponent } from './components/my-profile-page/my-profile-page.component';
 import { NewsFeedComponent } from './components/news-feed/news-feed/news-feed.component';
-import { SettingsComponent } from './components/settings/settings/settings.component';
+import { SettingsComponent } from './components/settings/settings.component';
 import { StoryComponent } from './components/story/story/story.component';
 import { ErrorPageComponent } from './components/error-page/error-page.component';
 
