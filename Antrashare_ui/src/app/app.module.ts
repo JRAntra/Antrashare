@@ -16,7 +16,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HideElementDirective } from './directives/hide-element/hide-element.directive';
 import { MyProfilePageComponent } from './components/my-profile-page/my-profile-page.component';
 
-import { SettingsComponent } from './components/settings/settings.component';onent';
+import { SettingsComponent } from './components/settings/settings.component';
 import { NewsFeedComponent } from './components/news-feed/news-feed.component';
 import { StoryComponent } from './components/story/story.component';
 import { TimeoutDialogComponent } from './components/timeout-dialog/timeout-dialog.component';
