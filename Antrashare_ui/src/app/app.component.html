@@ -1,8 +1,8 @@
 <!-- Creates a layout with a left-positioned sidenav and explicit content. -->
 <mat-sidenav-container>
-    <mat-sidenav [opened]="this.currentRoute != '/login'" mode="side">
+    <mat-sidenav #drawer [opened]="isOpen" mode="side">
         <div class="branding">
-            <img src="https://material.angular.io/assets/img/homepage/angular-white-transparent.svg" alt="logo"/>
+            <img src="https://material.angular.io/assets/img/homepage/angular-white-transparent.svg" alt="logo" />
             <span>Team Best DEVs</span>
         </div>
 
@@ -15,6 +15,12 @@
         <div autoHide>This is the index page</div>
     </mat-sidenav>
     <mat-sidenav-content>
+        <mat-toolbar color="primary" *ngIf="isOpen">
+            <button mat-icon-button (click)="drawer.toggle()">
+                <mat-icon>menu</mat-icon>
+            </button>
+            <span>Greetings</span>
+        </mat-toolbar>
         <router-outlet></router-outlet>
     </mat-sidenav-content>
 </mat-sidenav-container>

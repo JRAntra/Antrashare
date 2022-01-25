@@ -7,14 +7,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatCardModule } from '@angular/material/card';
-import { MatExpansionModule} from '@angular/material/expansion';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { LoginPageComponent } from './components/login-page/login-page.component';
 import { LoginFormComponent } from './components/login-page/login-form/login-form.component';
@@ -55,14 +56,15 @@ import { ProfileTabComponent } from './components/profile-tab/profile-tab.compon
     FormsModule,
     AppRoutingModule,
     MatButtonModule,
+    MatCardModule,
     MatCheckboxModule,
+    MatExpansionModule,
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
     MatListModule,
     MatSidenavModule,
-    MatCardModule,
-    MatExpansionModule,
+    MatToolbarModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
