@@ -6,11 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./story-list.component.scss']
 })
 export class StoryListComponent implements OnInit {
+  totalStory: Number[] = [1, 2, 3, 4];
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  totalStory: Number[] = [1,2,3,4]
 }
