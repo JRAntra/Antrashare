@@ -1,6 +1,6 @@
 //newfeed
 export interface NewFeed {
-    avatar: ImageBitmap;
+    avatar?: ImageBitmap;
     publisherName: string, 
     publishedTime: string,
     content: {
@@ -8,12 +8,13 @@ export interface NewFeed {
         video?: string;
         text?: string;
     },
-    comment: Story[]
+    comment?: Story[],
+    likedList?: []
 }
 
 //story item
 export interface Story {
-    avatar: ImageBitmap;
+    avatar?: ImageBitmap;
     publisherName: string, 
     publishedTime: string,
     content: {
