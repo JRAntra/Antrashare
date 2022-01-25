@@ -1,0 +1,30 @@
+.story {
+    border: gray solid;
+    margin-bottom: 10%;
+}
+.storyHeader {
+    display: flex;
+    margin-left: 5%;
+}
+
+.storyContent {
+    height: 30rem;
+    margin: 5%;
+    border: gray solid;
+}
+
+.storyBottomBar {
+    display: grid;
+    grid-template-columns: 33.33% 33.33% 33.33%;
+    align-items: center;
+    justify-items: center;
+    margin-left: 5%;
+    margin-right: 5%;
+    border: solid gray;
+    
+}
+
+.storyBottomBarItem {
+    
+    
+}

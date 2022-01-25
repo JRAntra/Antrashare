@@ -1,0 +1,12 @@
+.bottomBar {
+    display: grid;
+    grid-template-columns: 33.33% 33.33% 33.33%;
+    align-items: center;
+    justify-items: center;
+    
+}
+
+.bottomBarItem {
+    width: 100%;
+    border: solid gray;
+}

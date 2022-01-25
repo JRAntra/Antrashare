@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Story } from '../news-feed/news-feed.component';
 
 @Component({
   selector: 'app-story',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./story.component.scss']
 })
 export class StoryComponent implements OnInit {
+  @Input() storyItem!:Story
+  @Output() storyEmiter = new EventEmitter()
 
   constructor() { }
 
