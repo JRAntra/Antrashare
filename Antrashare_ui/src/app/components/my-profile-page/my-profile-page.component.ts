@@ -10,7 +10,7 @@ export class MyProfilePageComponent implements OnInit {
   isEditInfo: boolean = false;
   
   public userInfoFormGroup = new FormGroup({
-    userFnameFormControl: new FormControl('', Validators.required),
+    userFnameFormControl: new FormControl('',  Validators.required),
     userLnameFormControl: new FormControl('', Validators.required),
     userEmailFormControl: new FormControl('',  Validators.required),
     userBDFormControl: new FormControl('')
