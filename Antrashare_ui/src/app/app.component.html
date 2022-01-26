@@ -1,6 +1,7 @@
 <!-- Creates a layout with a left-positioned sidenav and explicit content. -->
 <mat-sidenav-container>
-    <mat-sidenav #drawer [opened]="isOpen" mode="side">
+    <mat-sidenav #sidenav *ngIf="(isOpen$ | async)" [opened]="(isHandset$ | async) == false"
+        [mode]="(isHandset$ | async) ? 'over' : 'side'">
         <div class="branding">
             <img src="https://material.angular.io/assets/img/homepage/angular-white-transparent.svg" alt="logo" />
             <span>Team Best DEVs</span>
@@ -15,12 +16,14 @@
         <div autoHide>This is the index page</div>
     </mat-sidenav>
     <mat-sidenav-content>
-        <mat-toolbar color="primary" *ngIf="isOpen">
-            <button mat-icon-button (click)="drawer.toggle()">
+        <mat-toolbar color="primary" *ngIf="(isOpen$ | async)">
+            <button mat-icon-button (click)="toggleSidenav()">
                 <mat-icon>menu</mat-icon>
             </button>
             <span>Greetings</span>
         </mat-toolbar>
+
+        <!-- Shows our router-outlet. -->
         <router-outlet></router-outlet>
     </mat-sidenav-content>
 </mat-sidenav-container>
