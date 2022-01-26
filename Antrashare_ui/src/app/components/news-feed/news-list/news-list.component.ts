@@ -18,5 +18,10 @@ export class NewsListComponent implements OnInit {
 
 export interface story {
   id?: number;
-  text: string;
+  username: string,
+  avatar_url?: string;
+  published_time: Date;
+  comment_number: number;
+  likes: number;
+  content: string;
 }
