@@ -1,5 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
+
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { MatSidenav } from '@angular/material/sidenav';
+
+import { Observable } from 'rxjs';
+import { filter, map, shareReplay } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -14,17 +20,25 @@ export class AppComponent {
     { name: 'Settings', path: 'settings' }
   ];
 
-  private currentRoute: string = '';
+  @ViewChild('sidenav')
+  sidenav!: MatSidenav;
 
-  get isOpen(): boolean {
-    return this.currentRoute != '/login' && this.currentRoute != '/';
-  }
+  isOpen$: Observable<boolean> = this.router.events.pipe(
+    filter((event) => event instanceof NavigationEnd),
+    map((rount: any) => {
+      return rount.url != '/login' && rount.url != '/';
+    }),
+    shareReplay()
+  );
 
-  constructor(private router: Router) {
-    this.router.events.subscribe(event => {
-      if (event instanceof NavigationEnd) {
-        this.currentRoute = event.url;
-      }
-    });
+  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
+    map(result => result.matches),
+    shareReplay()
+  );
+
+  constructor(private router: Router, private breakpointObserver: BreakpointObserver) { }
+
+  toggleSidenav() {
+    this.sidenav.toggle();
   }
 }
