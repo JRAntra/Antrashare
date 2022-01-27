@@ -19,22 +19,25 @@ export class MyProfilePageComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    this.userInfoFormGroup.disable();
   }
 
-  OnFileChanged(event: any) {
+  onFileChanged(event: any) {
     const file: File = event.target.files[0];
     console.log(file.name);
   }
   
-  triggerInput() {
+  onTriggerInput() {
     console.log("save");
   }
   
-  SaveInfo() {
+  onSaveInfo() {
     this.isEditInfo = false;
+    this.userInfoFormGroup.disable();
   }
   
-  EditInfo() {
+  onEditInfo() {
     this.isEditInfo = true;
+    this.userInfoFormGroup.enable();
   }
 }
