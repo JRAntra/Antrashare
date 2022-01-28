@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-error404',
   templateUrl: './error404.component.html',
-  styleUrls: ['../../../css/error404.component.scss']
+  styleUrls: ['../../../css/error-page.component.scss']
 })
 export class Error404Component implements OnInit {
 
