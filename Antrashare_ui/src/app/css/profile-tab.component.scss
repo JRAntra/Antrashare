@@ -1,0 +1,26 @@
+.contents {
+    width: 410px;
+}
+
+.form {
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 4px;
+    margin: 12px;
+    padding: 12px;
+
+    h4 {
+        margin: 0;
+        padding-bottom: 12px;
+    }
+}
+
+.profile-container {
+    display: flex;
+    .mat-form-field + .mat-form-field {
+        margin-left: 8px;
+    }
+}
+
+.pull-right {
+    margin-left: auto;
+}
