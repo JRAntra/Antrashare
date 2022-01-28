@@ -3,7 +3,7 @@ import { Component, OnInit, Input, OnChanges, SimpleChanges, Output, EventEmitte
 @Component({
   selector: 'app-comment-list',
   templateUrl: './comment-list.component.html',
-  styleUrls: ['./comment-list.component.scss']
+  styleUrls: ['../../../../css/comment-list.component.scss']
 })
 export class CommentListComponent implements OnInit, OnChanges {
 

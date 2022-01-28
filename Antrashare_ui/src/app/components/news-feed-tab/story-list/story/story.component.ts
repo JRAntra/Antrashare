@@ -4,7 +4,7 @@ import { FormControl } from '@angular/forms';
 @Component({
   selector: 'app-story',
   templateUrl: './story.component.html',
-  styleUrls: ['./story.component.scss']
+  styleUrls: ['../../../../css/story.component.scss']
 })
 export class StoryComponent implements OnInit {
   userInput!: String;

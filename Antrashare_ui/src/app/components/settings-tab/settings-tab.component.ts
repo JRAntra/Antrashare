@@ -4,7 +4,7 @@ import { Router } from "@angular/router";
 @Component({
   selector: 'app-settings-tab',
   templateUrl: './settings-tab.component.html',
-  styleUrls: ['./settings-tab.component.scss']
+  styleUrls: ['../../css/settings-tab.component.scss']
 })
 export class SettingsTabComponent implements OnInit {
 
