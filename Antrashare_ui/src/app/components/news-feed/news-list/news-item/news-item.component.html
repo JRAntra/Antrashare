@@ -1,18 +1,20 @@
 <li class="newslistitem">
   <img src={{newsfeedItem.avatar_url}} alt="Avatar Image" width="30px" width="30px" border-radius />
-  <p>{{ newsfeedItem.username }}</p>
-  <p>{{ newsfeedItem.published_time }}</p>
+  <p>{{ newsfeedItem.publisherName }}</p>
+  <p>{{ newsfeedItem.publisherTime }}</p>
   <p>{{ newsfeedItem.content }}</p>
   <div class="commentsAndLikes">
     <div></div>
     <div class="comments">
       <section>comment_icon </section>
-      <section>{{newsfeedItem.comment_number}}</section>
+      <!-- Need to create a new component to display the comments -->
+      <section>newsfeed_comment</section>
     </div>
     <div></div>
     <div class="likes">
       <section>likes_icon </section>
-      <section>{{newsfeedItem.likes}}</section>
+      <!-- Need to calculate the likes based on the story -->
+      <section>like_number</section>
     </div>
     <div></div>
   </div>

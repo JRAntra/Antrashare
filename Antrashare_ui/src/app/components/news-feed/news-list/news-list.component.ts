@@ -12,16 +12,28 @@ export class NewsListComponent implements OnInit {
   constructor(private dataService: DataService) { }
 
   ngOnInit(): void {
-    this.dataService.getNewsList().subscribe(data => this.newsfeedList = data);
+    this.dataService.getNewsFeed().subscribe(data => this.newsfeedList = data);
   }
 }
 
 export interface story {
-  id?: number;
-  username: string,
   avatar_url?: string;
-  published_time: Date;
-  comment_number: number;
-  likes: number;
-  content: string;
+  publisherName: string,
+  publisherTime: string;
+  content: {
+    image: string,
+    video: string,
+    text: string
+  };
+  comment: [{
+    avatar_url?: string;
+    publisherName: string,
+    publisherTime: string;
+    content: {
+      image: string,
+      video: string,
+      text: string
+    };
+  }]
+  LikedIdList: [];
 }
