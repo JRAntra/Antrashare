@@ -135,3 +135,13 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
+
+::-webkit-scrollbar {
+  width: 0;
+  /* Remove scrollbar space */
+  background: transparent;
+  /* Optional: just make scrollbar invisible */
+}
+
+$primary-red: red;
+$primary-white: white;

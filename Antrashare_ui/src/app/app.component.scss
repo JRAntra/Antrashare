@@ -1,7 +1,4 @@
-@import "../../styles.scss";
-
-$primary-red: red;
-$primary-white: white;
+@import "../styles.scss";
 
 main {
   display: flex;
@@ -36,7 +33,7 @@ span {
 }
 
 .background-image {
-  background-image: url("../../public/netflix_background.jpg");
+  background-image: url("../public/netflix_background.jpg");
   background-size: cover;
   position: absolute;
   top: 0px;

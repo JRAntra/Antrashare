@@ -11,3 +11,14 @@ li {
   margin-bottom: 0px;
   padding: 0 0 0 0;
 }
+
+.commentsAndLikes {
+  display: grid;
+  grid-template-columns: 1fr 1fr 4fr 1fr 1fr;
+}
+
+.comments,
+.likes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
