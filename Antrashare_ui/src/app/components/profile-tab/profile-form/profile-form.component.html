@@ -1,47 +1,47 @@
 <div class="form">
-    <div>
-        <h4>Edit Profile</h4>
+  <div>
+    <h4>Edit Profile</h4>
+  </div>
+
+  <form>
+    <div class="profile-container">
+      <mat-form-field appearance="fill">
+        <mat-label>Username</mat-label>
+        <input matInput>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Email address</mat-label>
+        <input matInput>
+      </mat-form-field>
+    </div>
+    <div class="profile-container">
+      <mat-form-field appearance="fill">
+        <mat-label>First Name</mat-label>
+        <input matInput>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Last Name</mat-label>
+        <input matInput required>
+      </mat-form-field>
+    </div>
+    <div class="profile-container">
+      <mat-form-field class="contents" appearance="fill">
+        <mat-label>Address</mat-label>
+        <input matInput>
+      </mat-form-field>
+    </div>
+    <div class="profile-container">
+      <mat-form-field class="contents" appearance="fill">
+        <mat-label>About Me</mat-label>
+        <textarea matInput></textarea>
+      </mat-form-field>
     </div>
 
-    <form>
-        <div class="profile-container">
-            <mat-form-field appearance="fill">
-                <mat-label>Username</mat-label>
-                <input matInput>
-            </mat-form-field>
+    <div class="profile-container">
+      <button class="pull-right" mat-raised-button type="submit" color="primary">Update Profile</button>
+    </div>
 
-            <mat-form-field appearance="fill">
-                <mat-label>Email address</mat-label>
-                <input matInput>
-            </mat-form-field>
-        </div>
-        <div class="profile-container">
-            <mat-form-field appearance="fill">
-                <mat-label>First Name</mat-label>
-                <input matInput>
-            </mat-form-field>
-
-            <mat-form-field appearance="fill">
-                <mat-label>Last Name</mat-label>
-                <input matInput required>
-            </mat-form-field>
-        </div>
-        <div class="profile-container">
-            <mat-form-field class="contents" appearance="fill">
-                <mat-label>Address</mat-label>
-                <input matInput>
-            </mat-form-field>
-        </div>
-        <div class="profile-container">
-            <mat-form-field class="contents" appearance="fill">
-                <mat-label>About Me</mat-label>
-                <textarea matInput></textarea>
-            </mat-form-field>
-        </div>
-
-        <div class="profile-container">
-            <button class="pull-right" mat-raised-button type="submit" color="primary">Update Profile</button>
-        </div>
-        
-    </form>
+  </form>
 </div>
