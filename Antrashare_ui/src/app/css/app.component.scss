@@ -1,29 +1,29 @@
-mat-sidenav-container {
-    height: 100%;
-    width: 100%;
+.mat-sidenav-container {
+  height: 100%;
+  width: 100%;
 }
 
 mat-sidenav {
-    width: 220px;
+  width: 220px;
 
-    .branding {
-        padding: 12px 10px;
-        font-size: 20px;
-        font-weight: 500;
+  .branding {
+    padding: 12px 10px;
+    font-size: 20px;
+    font-weight: 500;
 
-        img {
-            height: 32px;
-            margin: 2px 10px 0 0;
-            vertical-align: middle;
-        }
-
-        span {
-            position: relative;
-            vertical-align: middle;
-        }
+    img {
+      height: 32px;
+      margin: 2px 10px 0 0;
+      vertical-align: middle;
     }
 
-    .mat-nav-list {
-        padding-top: 0;
+    span {
+      position: relative;
+      vertical-align: middle;
     }
+  }
+
+  .mat-nav-list {
+    padding-top: 0;
+  }
 }
