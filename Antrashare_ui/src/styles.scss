@@ -1,7 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
+@use '@angular/material' as mat;
 
 /* ====== CSS reset ====== */
 @import './app/css/reset';
+
+/* ====== Custom Theming for Angular Material ====== */
+@include mat.core();
+
+@import './app/css/themes/dark.theme';
+@import './app/css/themes/light.theme';
+
+// Apply the dark theme only when the `.dark-theme` CSS class is applied
+.dark-theme {
+  @include mat.all-component-themes($dark-theme);
+}
+
+// Apply the light theme only when the `.light-theme` CSS class is applied
+.light-theme {
+  @include mat.all-component-themes($light-theme);
+}
 
 /* ====== Global Angular Material typography styles ====== */
 html, body { height: 100%; }
