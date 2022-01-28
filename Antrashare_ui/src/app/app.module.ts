@@ -4,7 +4,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -17,15 +16,15 @@ import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
-import { LoginPageComponent } from './components/login-page/login-page.component';
-import { LoginFormComponent } from './components/login-page/login-form/login-form.component';
-
+import { AppComponent } from './app.component';
 import { AutoHideDirective } from './directives/auto-hide.directive';
-import { ErrorPageComponent } from './components/error-page/error-page.component';
-import { Error404Component } from './components/error-page/error404/error404.component';
 import { CommentComponent } from './components/news-feed-tab/story-list/comment-list/comment/comment.component';
 import { CommentInputComponent } from './components/news-feed-tab/story-list/comment-input/comment-input.component';
 import { CommentListComponent } from './components/news-feed-tab/story-list/comment-list/comment-list.component';
+import { ErrorPageComponent } from './components/error-page/error-page.component';
+import { Error404Component } from './components/error-page/error404/error404.component';
+import { LoginPageComponent } from './components/login-page/login-page.component';
+import { LoginFormComponent } from './components/login-page/login-form/login-form.component';
 import { NewsFeedTabComponent } from './components/news-feed-tab/news-feed-tab.component';
 import { SettingsTabComponent } from './components/settings-tab/settings-tab.component';
 import { StoryComponent } from './components/news-feed-tab/story-list/story/story.component';
@@ -36,15 +35,15 @@ import { ProfileTabComponent } from './components/profile-tab/profile-tab.compon
 @NgModule({
   declarations: [
     AppComponent,
-    LoginPageComponent,
-    LoginFormComponent,
     AutoHideDirective,
-    ErrorPageComponent,
-    Error404Component,
-    NewsFeedTabComponent,
     CommentComponent,
     CommentInputComponent,
     CommentListComponent,
+    ErrorPageComponent,
+    Error404Component,
+    LoginPageComponent,
+    LoginFormComponent,
+    NewsFeedTabComponent,
     SettingsTabComponent,
     StoryComponent,
     StoryListComponent,
