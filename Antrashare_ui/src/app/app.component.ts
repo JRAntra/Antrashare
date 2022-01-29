@@ -6,6 +6,7 @@ import { MatSidenav } from '@angular/material/sidenav';
 
 import { Observable } from 'rxjs';
 import { filter, map, shareReplay } from 'rxjs/operators';
+import { SettingsService } from './services/settings.service';
 
 @Component({
   selector: 'app-root',
@@ -19,6 +20,8 @@ export class AppComponent {
     { name: 'News Feed', path: 'newsfeed' },
     { name: 'Settings', path: 'settings' }
   ];
+
+  theme$: Observable<string> = this.settingsService.getTheme();
 
   @ViewChild('sidenav')
   sidenav!: MatSidenav;
@@ -36,7 +39,7 @@ export class AppComponent {
     shareReplay()
   );
 
-  constructor(private router: Router, private breakpointObserver: BreakpointObserver) { }
+  constructor(private router: Router, private breakpointObserver: BreakpointObserver, private settingsService: SettingsService) { }
 
   toggleSidenav() {
     this.sidenav.toggle();

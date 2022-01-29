@@ -1,29 +1,32 @@
 <!-- Creates a layout with a left-positioned sidenav and explicit content. -->
-<mat-sidenav-container>
+<div [class]="'mat-sidenav-container ' + (theme$ | async)">
+  <mat-sidenav-container>
     <mat-sidenav #sidenav *ngIf="(isOpen$ | async)" [opened]="(isHandset$ | async) == false"
-        [mode]="(isHandset$ | async) ? 'over' : 'side'">
-        <div class="branding">
-            <img src="https://material.angular.io/assets/img/homepage/angular-white-transparent.svg" alt="logo" />
-            <span>Team Best DEVs</span>
-        </div>
+      [mode]="(isHandset$ | async) ? 'over' : 'side'">
+      <div class="branding">
+        <img src="https://material.angular.io/assets/img/homepage/angular-white-transparent.svg" class="grayscale"
+          alt="logo" />
+        <span>Team Best DEVs</span>
+      </div>
 
-        <mat-nav-list>
-            <a mat-list-item *ngFor="let tab of tabs" [routerLink]="[tab.path]" routerLinkActive="active">
-                {{ tab.name }}
-            </a>
-        </mat-nav-list>
+      <mat-nav-list>
+        <a mat-list-item *ngFor="let tab of tabs" [routerLink]="[tab.path]" routerLinkActive="active">
+          {{ tab.name }}
+        </a>
+      </mat-nav-list>
 
-        <div autoHide>This is the index page</div>
+      <div autoHide>This is the index page</div>
     </mat-sidenav>
     <mat-sidenav-content>
-        <mat-toolbar color="primary" *ngIf="(isOpen$ | async)">
-            <button mat-icon-button (click)="toggleSidenav()">
-                <mat-icon>menu</mat-icon>
-            </button>
-            <span>Greetings</span>
-        </mat-toolbar>
+      <mat-toolbar color="primary" *ngIf="(isOpen$ | async)">
+        <button mat-icon-button (click)="toggleSidenav()">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <span>Greetings</span>
+      </mat-toolbar>
 
-        <!-- Shows our router-outlet. -->
-        <router-outlet></router-outlet>
+      <!-- Shows our router-outlet. -->
+      <router-outlet></router-outlet>
     </mat-sidenav-content>
-</mat-sidenav-container>
+  </mat-sidenav-container>
+</div>
