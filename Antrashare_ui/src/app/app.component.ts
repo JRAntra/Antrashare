@@ -56,6 +56,7 @@ export class AppComponent {
     this.dialog.open(TimeoutComponent, {
       width: '380px',
       height: '400px',
+      disableClose: true,
       data: {theme: this.theme$, }
     });
   }
