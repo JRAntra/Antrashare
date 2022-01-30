@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Injectable, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Injectable, NgZone, OnInit } from '@angular/core';
 import { fromEvent, merge, Observable } from 'rxjs';
 import { throttleTime } from 'rxjs/operators';
 
@@ -6,18 +6,26 @@ import { throttleTime } from 'rxjs/operators';
 export class IdleService implements OnInit {
   private status = {
     idleTime: 10,
-    timeoutTime: 10, 
+    timeoutTime: 10,
   };
-  
-  events$!: Observable<any>;
 
-  constructor(cd: ChangeDetectorRef) { }
+  private mergedEvents$!: Observable<any>;
+
+  constructor(private nz: NgZone, private cd: ChangeDetectorRef) { }
 
   ngOnInit(): void {
     // relates to idle events
     const eventStreams = IDLE_EVENTS.map((event) => fromEvent(event.target, event.eventName).pipe(throttleTime(1000)));
     // merges all the events into one observable object
-    this.events$ = merge(...eventStreams);
+    this.mergedEvents$ = merge(...eventStreams);
+  }
+
+  watch() {
+
+  }
+
+  stop() {
+
   }
 }
 
