@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { story } from '../components/news-feed/news-feed.component';
+import { story } from '../models/user.models';
 
 @Injectable({
   providedIn: 'root'

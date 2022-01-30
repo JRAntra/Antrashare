@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { story } from 'src/app/models/user.models';
 import { DataService } from 'src/app/services/data.service';
 
 @Component({
@@ -16,25 +17,5 @@ export class NewsFeedComponent implements OnInit {
   }
 }
 
-export interface story {
-  avatar_url?: string;
-  publisherName: string,
-  publisherTime: string;
-  content: {
-    image: string,
-    video: string,
-    text: string
-  };
-  comment: [{
-    avatar_url?: string;
-    publisherName: string,
-    publisherTime: string;
-    content: {
-      image: string,
-      video: string,
-      text: string
-    };
-  }]
-  LikedIdList: [];
-}
+
 
