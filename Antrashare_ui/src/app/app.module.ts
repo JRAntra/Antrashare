@@ -27,6 +27,7 @@ import { ErrorPageComponent } from './components/error-page/error-page.component
 import { Error404Component } from './components/error-page/error404/error404.component';
 import { LoginPageComponent } from './components/login-page/login-page.component';
 import { LoginFormComponent } from './components/login-page/login-form/login-form.component';
+import { LogoutWindowComponent } from './components/login-page/logout-window/logout-window.component';
 import { NewsFeedTabComponent } from './components/news-feed-tab/news-feed-tab.component';
 import { ProfileFormComponent } from './components/profile-tab/profile-form/profile-form.component';
 import { ProfileTabComponent } from './components/profile-tab/profile-tab.component';
@@ -46,6 +47,7 @@ import { TimeoutComponent } from './dialogs/timeout/timeout.dialog.component';
     Error404Component,
     LoginPageComponent,
     LoginFormComponent,
+    LogoutWindowComponent,
     NewsFeedTabComponent,
     ProfileFormComponent,
     ProfileTabComponent,
