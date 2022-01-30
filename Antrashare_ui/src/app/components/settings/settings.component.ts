@@ -8,20 +8,24 @@ import { AppService } from '../services/app.service';
 })
 export class SettingsComponent implements OnInit {
 
-  constructor(private _appService: AppService) { 
+  constructor(private _appService: AppService) {
     _appService.currentPageIsSignInPage = false;
     _appService.currentPage = 'settings';
   }
 
   ngOnInit(): void {
   }
+  clickedLogout() {
+    console.log(`clickedLogout()`);
+    this._appService.popLogoutDialog(); // pop logout dialog
+  }
+
   @HostListener('document:keydown', ['$event'])
   @HostListener('click', ['$event'])
   @HostListener('window:mousemove') refreshUserState() {
-    console.log(`action check with HostListener`);
+    console.log(`Event dtected, refresh idle time`);
     this._appService.refreshTimer();
     clearTimeout(this._appService.userActivity);
-    // Re-monitor
-    this._appService.registerCurrentTime();
+    this._appService.registerCurrentTime(); // Re-monitor
   }
 }

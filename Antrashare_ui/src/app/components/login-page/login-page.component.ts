@@ -23,11 +23,10 @@ export class LoginPageComponent implements OnInit {
   @HostListener('document:keydown', ['$event'])
   @HostListener('click', ['$event'])
   @HostListener('window:mousemove') refreshUserState() {
-    console.log(`action check with HostListener`);
+    console.log(`Event dtected, refresh idle time`);
     this._appService.refreshTimer();
     clearTimeout(this._appService.userActivity);
-    // Re-monitor
-    this._appService.registerCurrentTime();
+    this._appService.registerCurrentTime();// Re-monitor
   }
 }
 

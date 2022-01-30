@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { AppService } from '../services/app.service';
 
@@ -20,6 +19,7 @@ export class TimeoutDialogComponent implements OnInit {
   clickedCancel() {
     this.router.navigate(['loginPage']);
   }
+
   clickedConfirm() {
     clearTimeout(this._appService.timerId); // prevent jumping to home page
     this.router.navigate([this._appService.currentPage]);
