@@ -21,8 +21,11 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { MyProfileComponent } from './components/my-profile/my-profile.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { NewsListComponent } from './components/news-feed/news-list/news-list.component';
-import { NewsItemComponent } from './components/news-feed/news-list/news-item/news-item.component';
+import { StoryComponent } from './components/news-feed/story/story.component';
+import { StoryCardComponent } from './components/news-feed/story/story-card/story-card.component';
+import { CommentListComponent } from './components/news-feed/story/comment-list/comment-list.component';
+import { CommentInputComponent } from './components/news-feed/story/comment-input/comment-input.component';
+import { CommentComponent } from './components/news-feed/story/comment-list/comment/comment.component';
 
 @NgModule({
   declarations: [
@@ -34,8 +37,11 @@ import { NewsItemComponent } from './components/news-feed/news-list/news-item/ne
     PageNotFoundComponent,
     MyProfileComponent,
     SettingsComponent,
-    NewsListComponent,
-    NewsItemComponent,
+    StoryComponent,
+    StoryCardComponent,
+    CommentListComponent,
+    CommentInputComponent,
+    CommentComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,4 +58,4 @@ import { NewsItemComponent } from './components/news-feed/news-list/news-item/ne
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
