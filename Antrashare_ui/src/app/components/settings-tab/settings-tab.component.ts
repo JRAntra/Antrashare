@@ -19,9 +19,7 @@ export class SettingsTabComponent implements OnInit {
     this.settingsService.setTheme(theme);
   }
 
-  logOut() {
-    console.log("Logged out")
-    this.router.navigate(['login'])
+  onLogOut() {
+    this.router.navigate(['logout'])
   }
-
 }

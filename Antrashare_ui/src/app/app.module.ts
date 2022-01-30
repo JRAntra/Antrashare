@@ -31,6 +31,7 @@ import { StoryComponent } from './components/news-feed-tab/story-list/story/stor
 import { StoryListComponent } from './components/news-feed-tab/story-list/story-list.component';
 import { ProfileFormComponent } from './components/profile-tab/profile-form/profile-form.component';
 import { ProfileTabComponent } from './components/profile-tab/profile-tab.component';
+import { LogoutWindowComponent } from './components/login-page/logout-window/logout-window.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { ProfileTabComponent } from './components/profile-tab/profile-tab.compon
     StoryListComponent,
     ProfileFormComponent,
     ProfileTabComponent,
+    LogoutWindowComponent,
   ],
   imports: [
     BrowserModule,
