@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
+import { Observable} from 'rxjs';
+import { AppService } from '../services/app.service';
 
 @Component({
   selector: 'app-news-feed',
@@ -7,10 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewsFeedComponent implements OnInit {
 
-  constructor() {
+  displayTimer$: Observable<number> | undefined;
+  constructor(private _appService: AppService) {
+    _appService.currentPageIsSignInPage = false;
+    _appService.currentPage = 'newsFeed';
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
+
   }
 
   stories: Story[] = [
@@ -32,6 +38,15 @@ export class NewsFeedComponent implements OnInit {
     },
   ];
 
+  @HostListener('document:keydown', ['$event'])
+  @HostListener('click', ['$event'])
+  @HostListener('window:mousemove') refreshUserState() {
+    console.log(`action check with HostListener`);
+    this._appService.refreshTimer();
+    clearTimeout(this._appService.userActivity);
+    // Re-monitor
+    this._appService.registerCurrentTime();
+  }
 }
 export interface Story {
   subtitle: string;

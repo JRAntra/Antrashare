@@ -16,6 +16,8 @@
   "author": "JR Zhang, Daivd Dong",
   "license": "ISC",
   "dependencies": {
+    "@ng-idle/core": "^11.1.0",
+    "@ng-idle/keepalive": "^11.0.3",
     "concurrently": "^7.0.0"
   }
 }

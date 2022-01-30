@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { UserProfile } from 'src/app/interfaces/user.interface';
-import { MatIconRegistry } from '@angular/material/icon'; 
-import {DomSanitizer} from '@angular/platform-browser';
-
+import { MatIconRegistry } from '@angular/material/icon';
+import { DomSanitizer } from '@angular/platform-browser';
+import { AppService } from '../services/app.service';
 const THUMBUP_ICON =
   `
   <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px">
@@ -21,8 +21,8 @@ export class MyProfileComponent implements OnInit {
   userData: UserProfile = {
     id: '123',
     userEmail: 'Cat@gmail.com',
-    userRole: 'user', 
-    name: 'Cat', 
+    userRole: 'user',
+    name: 'Cat',
     username: 'TuxedoCat',
     gender: 'male',
     age: 20,
@@ -30,16 +30,26 @@ export class MyProfileComponent implements OnInit {
   }
   dataSource = Object.keys(this.userData).map((item, index) => {
     return {
-      [item] : Object.values(this.userData)[index]
+      [item]: Object.values(this.userData)[index]
     };
   });
   key = Object.keys(this.userData);
   value = Object.values(this.userData);
-  constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) { 
+  constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer, private _appService: AppService) {
+    _appService.currentPageIsSignInPage = false;
+    _appService.currentPage = 'myProfile';
     iconRegistry.addSvgIconLiteral('thumbs-up', sanitizer.bypassSecurityTrustHtml(THUMBUP_ICON));
   }
 
   ngOnInit(): void {
   }
-
+  @HostListener('document:keydown', ['$event'])
+  @HostListener('click', ['$event'])
+  @HostListener('window:mousemove') refreshUserState() {
+    console.log(`action check with HostListener`);
+    this._appService.refreshTimer();
+    clearTimeout(this._appService.userActivity);
+    // Re-monitor
+    this._appService.registerCurrentTime();
+  }
 }
