@@ -1,14 +1,14 @@
-<li class="newslistitem">
-  <img src={{newsfeedItem.avatar_url}} alt="Avatar Image" width="30px" width="30px" border-radius />
-  <p>{{ newsfeedItem.publisherName }}</p>
-  <p>{{ newsfeedItem.publisherTime }}</p>
-  <p>{{ newsfeedItem.content }}</p>
+<li class="story">
+  <img src={{storyItem.avatar_url}} alt="Avatar Image" width="30px" width="30px" border-radius />
+  <p>{{ storyItem.publisherName }}</p>
+  <p>{{ storyItem.publisherTime }}</p>
+  <p>{{ storyItem.content }}</p>
   <div class="commentsAndLikes">
     <div></div>
     <div class="comments">
       <section>comment_icon </section>
       <!-- Need to create a new component to display the comments -->
-      <section>newsfeed_comment</section>
+      <section>story_comment</section>
     </div>
     <div></div>
     <div class="likes">
