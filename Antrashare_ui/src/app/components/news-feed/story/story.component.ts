@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { story } from '../news-feed.component';
+import { story } from 'src/app/models/user.models';
 
 @Component({
   selector: 'app-story',
