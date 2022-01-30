@@ -1,3 +1,4 @@
+import { OverlayContainer } from '@angular/cdk/overlay';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
@@ -11,9 +12,19 @@ export class SettingsService {
 
   private theme$ = new BehaviorSubject(this.initState.theme);
 
-  constructor() { }
+  constructor(public overlayContainer: OverlayContainer) { this.setOverlayContainer(this.initState.theme) }
 
-  setTheme(theme: string) {
+  private setOverlayContainer(theme: string) {
+    const overlayContainerClassList = this.overlayContainer.getContainerElement().classList;
+    const needToRemoveClass = Array.from(overlayContainerClassList).filter((cl: string) => cl.includes('-theme'));
+    if (needToRemoveClass.length) {
+      overlayContainerClassList.remove(...needToRemoveClass);
+    }
+    overlayContainerClassList.add(theme);
+  }
+
+  setTheme(theme: string = this.initState.theme) {
+    this.setOverlayContainer(theme);
     this.theme$.next(theme);
   }
 
