@@ -24,6 +24,9 @@
       <div *ngIf="loginForm.controls['password'].errors['minlength']?.requiredLength > loginForm.controls['password'].errors['minlength']?.actualLength">
         Please enter more than 6 characters for password
       </div>
+      <div *ngIf="loginForm.controls['password'].errors['pattern']">
+        Password needs to include uppercase, lowercase, and special character
+      </div>
     </div>
 
     <mat-checkbox

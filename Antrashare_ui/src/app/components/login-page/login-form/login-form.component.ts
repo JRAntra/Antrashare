@@ -10,8 +10,8 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 })
 export class LoginFormComponent implements OnInit {
   loginForm = this.formBuilder.group({
-    username: ['', Validators.compose([Validators.required, Validators.maxLength(6)])],
-    password: ['', Validators.compose([Validators.required, Validators.minLength(6)])]
+    username: ['', Validators.compose([Validators.required, Validators.maxLength(5)])],
+    password: ['', Validators.compose([Validators.required, Validators.minLength(5), Validators.pattern(/[-+_!@#$%^&*,.?][A-Za-z]/)])]
   });
   loginData: string = '';
   rememberedUserIsChecked: boolean = false;
@@ -32,6 +32,7 @@ export class LoginFormComponent implements OnInit {
 
 
   signIn() {
+    console.log(this.loginForm.controls["password"].errors)
     if (!this.loginForm.controls['password'].errors) {
       // Logic for checking login input to go to news feed page or not
       let currentUsername = this.loginForm.get('username')?.value;
