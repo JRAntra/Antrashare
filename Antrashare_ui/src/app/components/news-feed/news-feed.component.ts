@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NewFeed } from '../../interfaces/newfeed.interface';
-
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { TimeoutDialogComponent } from '../timeout-dialog/timeout-dialog.component';
 @Component({
   selector: 'app-news-feed',
   templateUrl: './news-feed.component.html',
@@ -34,10 +35,14 @@ export class NewsFeedComponent implements OnInit {
     }
   ]
 
-  constructor() {
+  constructor(public dialog: MatDialog) {
+
   }
 
   ngOnInit(): void {
+    setTimeout(() => {
+      const dialogRef = this.dialog.open(TimeoutDialogComponent);
+    }, 10000);
   }
 
 }
