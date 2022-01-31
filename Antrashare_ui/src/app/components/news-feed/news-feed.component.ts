@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { AppService } from '../services/app.service';
 import { NewFeed } from '../../interfaces/newfeed.interface';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { TimeoutDialogComponent } from '../timeout-dialog/timeout-dialog.component';
+
 @Component({
   selector: 'app-news-feed',
   templateUrl: './news-feed.component.html',
@@ -14,7 +14,7 @@ export class NewsFeedComponent implements OnInit {
     {
       publisherName: "Cat",
       publishedTime: "1/24/2022",
-      content:  {
+      content: {
         text: "Good morning"
       },
       comment: []
@@ -22,12 +22,12 @@ export class NewsFeedComponent implements OnInit {
     {
       publisherName: "Dog",
       publishedTime: "1/23/2022",
-      content:  {
+      content: {
         text: "Good afternoon everyone"
       },
       comment: [
         {
-          publisherName: "Cat", 
+          publisherName: "Cat",
           publishedTime: "1/24/2022",
           content: {
             text: "How are you?"
@@ -55,8 +55,4 @@ export class NewsFeedComponent implements OnInit {
     clearTimeout(this._appService.userActivity);
     this._appService.registerCurrentTime(); // Re-monitor
   }
-}
-export interface Story {
-  subtitle: string;
-  text: string;
 }

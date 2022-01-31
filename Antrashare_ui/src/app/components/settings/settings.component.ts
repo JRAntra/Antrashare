@@ -1,6 +1,5 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { TimeoutDialogComponent } from '../timeout-dialog/timeout-dialog.component';
 import { AppService } from '../services/app.service';
 
 @Component({
