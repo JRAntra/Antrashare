@@ -28,7 +28,6 @@ import { NewsFeedComponent } from './components/news-feed/news-feed.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { SettingPanelComponent } from './components/settings/setting-panel/setting-panel.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
-import { Keepalive } from '@ng-idle/keepalive';
 import { LogoutConfirmationDialogComponent } from './components/logout-confirmation-dialog/logout-confirmation-dialog.component';
 
 @NgModule({
