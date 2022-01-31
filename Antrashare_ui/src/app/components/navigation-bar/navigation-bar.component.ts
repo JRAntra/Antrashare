@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppService } from '../services/app.service';
 
 @Component({
   selector: 'app-navigation-bar',
@@ -7,20 +8,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavigationBarComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _appService: AppService) {
+  }
 
   ngOnInit(): void {
   }
 
   myProfileIsClicked() {
     console.log('myProfileIsClicked()');
-
+    this._appService.refreshTimer();
   }
+
   newsFeedIsClicked() {
     console.log('newsFeedIsClicked()');
+    this._appService.refreshTimer();
   }
+
   settingsIsClicked() {
     console.log('settingsIsClicked()');
-
+    this._appService.refreshTimer();
   }
+  
 }

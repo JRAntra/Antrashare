@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
+import { AppService } from '../services/app.service';
 
 @Component({
   selector: 'app-login-page',
@@ -7,9 +8,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginPageComponent implements OnInit {
 
-  constructor() { }
-
-  ngOnInit(): void {
+  constructor(private _appService: AppService) {
+    console.log(`constructor`);
+    _appService.currentPageIsSignInPage = true;
+    _appService.currentPage = 'loginPage'
+    _appService.detectIdle();
   }
 
+  displayTimer$: any;
+
+  ngOnInit() {
+  }
+
+  @HostListener('document:keydown', ['$event'])
+  @HostListener('click', ['$event'])
+  @HostListener('window:mousemove') refreshUserState() {
+    console.log(`Event dtected, refresh idle time`);
+    this._appService.refreshTimer();
+    clearTimeout(this._appService.userActivity);
+    this._appService.registerCurrentTime();// Re-monitor
+  }
 }
+

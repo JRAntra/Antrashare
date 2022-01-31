@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AppService } from '../services/app.service';
 
 @Component({
   selector: 'app-timeout-dialog',
@@ -7,9 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TimeoutDialogComponent implements OnInit {
 
-  constructor() { }
 
   ngOnInit(): void {
+  }
+
+  constructor(private router: Router, private _appService: AppService) { }
+
+  // After the dialog come out, click “Cancel“ or not reacting in 10 seconds will navigate back to Login Page.
+  clickedCancel() {
+    this.router.navigate(['loginPage']);
+  }
+
+  clickedConfirm() {
+    clearTimeout(this._appService.timerId); // prevent jumping to home page
+    this.router.navigate([this._appService.currentPage]);
   }
 
 }
