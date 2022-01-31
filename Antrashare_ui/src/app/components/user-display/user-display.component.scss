@@ -6,11 +6,14 @@
 }
 
 .userDisplayContent {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-column-gap: 20px;
     margin-top: 30px;
     padding: 20px;
     background-color: theme.$primary-color;
     border-radius: 20px;
+}
+
+.infoBox {
+    display: grid;
+    grid-template-columns: 1fr 0.5fr;
+    grid-column-gap: 10px;
 }

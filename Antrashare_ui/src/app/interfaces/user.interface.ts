@@ -7,7 +7,8 @@ export interface UserProfile {
     username: string,
     gender?: string,
     age?: number,
-    phone?: string
+    phone?: string,
+    avatar?: ImageBitmap,
 }
 
 //user account

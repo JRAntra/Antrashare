@@ -19,12 +19,12 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 import { UserDisplayComponent } from './components/user-display/user-display.component';
 import { MyProfileComponent } from './components/my-profile/my-profile.component';
-import { ContentComponent } from './components/content/content.component';
+import { ContentComponent } from './components/news-feed/content/content.component';
 import { TimeoutElementDirective } from './directives/timeoutElement.directive';
 import { TimeoutDialogComponent } from './components/timeout-dialog/timeout-dialog.component';
 import { NavigationBarComponent } from './components/navigation-bar/navigation-bar.component';
 import { NewsFeedComponent } from './components/news-feed/news-feed.component';
-import { StoriesComponent } from './components/news-feed/stories/stories.component';
+
 import { SettingsComponent } from './components/settings/settings.component';
 import { SettingPanelComponent } from './components/settings/setting-panel/setting-panel.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
@@ -43,7 +43,6 @@ import { LogoutConfirmationDialogComponent } from './components/logout-confirmat
     TimeoutDialogComponent,
     NavigationBarComponent,
     NewsFeedComponent,
-    StoriesComponent,
     SettingsComponent,
     SettingPanelComponent,
     PageNotFoundComponent,
