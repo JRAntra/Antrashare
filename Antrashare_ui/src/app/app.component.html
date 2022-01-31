@@ -1,14 +1,18 @@
 <header>
-  <mat-toolbar color="primary" class="navbar">
-    <div><span routerLink="/" routerLinkActive="active">Main Page</span></div>
+  <mat-toolbar class="navbar">
+    <div class="menu-btn">
+      <mat-icon>view_headline</mat-icon>
+    </div>
     <div>
+      <span routerLink="/" routerLinkActive="active" class="navbar-logo">Blog Site</span>
+    </div>
+    <div class="navbar-links">
       <span routerLink="login">Sign In</span>
       <span routerLink="profile">My Profile</span>
       <span routerLink="newsfeed">News feed</span>
       <span routerLink="settings">Settings</span>
     </div>
   </mat-toolbar>
-  <!-- The routed views render in the <router-outlet>-->
 </header>
 
 <main>

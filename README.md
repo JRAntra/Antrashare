@@ -4,17 +4,19 @@ Release Branch of the group CallbackCats
 
 # Members
 
-- Chi (Feature_Branch/CallBackCats/Chi)
+- Chi
 - Kun Zhang
 - Fellipe
 
 # How to submit
 
 ## If you don't have the project you can skip this two lines below
+
 - [ ] Clone the project with url: https://github.com/JRAntra/Antrashare.git
 - [ ] Github link : https://github.com/JRAntra/Antrashare
 
 ## After you have the project:
+
 - [ ] Move to the release branch: git checkout Release_Branch/CallbackCats
 - [ ] Make sure you have the newest changes: git pull
 - [ ] install dependencies: npm run installAll
