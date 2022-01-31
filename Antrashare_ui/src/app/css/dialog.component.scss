@@ -1,0 +1,21 @@
+.dialog-actions {
+  margin-top: auto;
+
+  button + button {
+    margin-left: 24px;
+  }
+}
+
+.dialog-content {
+  height: calc(100% - 138px);
+  max-height: unset;
+}
+
+.mat-icon {
+  vertical-align: text-top;
+  margin-right: 12px;
+}
+
+.toolbar {
+  margin-bottom: 24px;
+}

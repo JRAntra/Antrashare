@@ -2,11 +2,13 @@ import { Component, ViewChild } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { MatDialog } from '@angular/material/dialog';
 import { MatSidenav } from '@angular/material/sidenav';
 
 import { Observable } from 'rxjs';
 import { filter, map, shareReplay } from 'rxjs/operators';
 import { SettingsService } from './services/settings.service';
+import { TimeoutComponent } from './dialogs/timeout/timeout.dialog.component';
 
 @Component({
   selector: 'app-root',
@@ -39,9 +41,23 @@ export class AppComponent {
     shareReplay()
   );
 
-  constructor(private router: Router, private breakpointObserver: BreakpointObserver, private settingsService: SettingsService) { }
+  constructor(
+    private router: Router, 
+    private breakpointObserver: BreakpointObserver, 
+    private settingsService: SettingsService,
+    private dialog: MatDialog,
+  ) { }
 
   toggleSidenav() {
     this.sidenav.toggle();
+  }
+
+  openTimeoutDialog() {
+    this.dialog.open(TimeoutComponent, {
+      width: '380px',
+      height: '400px',
+      disableClose: true,
+      data: {theme: this.theme$, }
+    });
   }
 }
