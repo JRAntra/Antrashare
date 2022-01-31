@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NewsFeedService } from 'src/app/Service/newsFeed.service';
 
 @Component({
   selector: 'app-news-feed',
@@ -7,9 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewsFeedComponent implements OnInit {
 
-  constructor() { }
+  public newsFeeddataSource : any
+  constructor(private newsFeedServer: NewsFeedService) { }
 
   ngOnInit(): void {
-  }
+    this.newsFeedServer.getAllNewsFeed().subscribe(
+      res=>{
+        this.newsFeeddataSource = res;
+        //console.log(this.newsFeeddataSource[0]?.publisherName)
+      }
+    )
+    this.onClickBtn()
 
+  }
+  onClickBtn(){
+    console.log(this.newsFeeddataSource[0]?.publisherName)
+  }
 }
