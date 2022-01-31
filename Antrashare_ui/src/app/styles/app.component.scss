@@ -1,14 +1,12 @@
+@use "../../scss/variables";
 @import "../../styles.scss";
-
-$primary-red: red;
-$primary-white: white;
 
 main {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 7em;
+  margin-top: 10em;
   opacity: 1;
 }
 
@@ -20,23 +18,70 @@ main {
   z-index: 2;
 }
 
+// Navbar
 .navbar {
   justify-content: space-between;
-  background-color: transparent;
-  color: $primary-white;
+  background-color: variables.$primary-black;
+  color: variables.$primary-white;
   overflow: hidden;
   position: fixed;
-  bottom: -10px;
+  top: 0px;
   width: 100%;
   cursor: pointer;
 }
 
 span {
-  padding-right: 1rem;
+  font-family: variables.$navbar-links-font-family;
+  font-family: variables.$navbar-links-font-family-1;
+  font-size: 16px;
+  display: none;
 }
 
+.navbar-logo {
+  display: inline-block;
+  font-size: 30px;
+  line-height: 80px;
+  padding: 0 20px;
+  font-weight: bold;
+}
+
+.menu-btn {
+  display: block;
+  font-size: 30px;
+  line-height: 80px;
+  margin-right: 40px;
+  cursor: pointer;
+  position: fixed;
+  right: 0;
+}
+
+@media screen and (min-width: 768px) {
+  span {
+    display: inline-block;
+    padding-right: 20px;
+    font-size: 22px;
+  }
+
+  .navbar-logo {
+    font-size: 35px;
+    padding: 0 100px;
+  }
+
+  .menu-btn {
+    display: none;
+  }
+
+  #click {
+    display: none;
+  }
+}
+
+// background
 .background-image {
-  background-image: url("../../public/netflix_background.jpg");
+  background-image: url("../../public/0.jpg");
+  background-repeat: repeat;
+  //background-attachment: fixed;
+  //background-position: center;
   background-size: cover;
   position: absolute;
   top: 0px;
@@ -47,7 +92,7 @@ span {
 }
 
 .black {
-  background-color: black;
+  background-color: variables.$primary-black;
   background-size: cover;
   position: absolute;
   top: 0px;
@@ -55,5 +100,5 @@ span {
   bottom: 0px;
   left: 0px;
   z-index: -1;
-  opacity: 0.6;
+  opacity: 0;
 }

@@ -1,31 +1,31 @@
 <div class="loginContainer">
   <mat-card class="loginCard">
-    <mat-toolbar class="loginBar">Sign In</mat-toolbar>
+    <mat-toolbar class="loginBar">Be a Member!</mat-toolbar>
     <form [formGroup]="form" (ngSubmit)="submitForm()" class="loginForm">
-      <mat-form-field appearance="fill" class="loginField">
+      <mat-form-field class="loginField">
         <mat-label class="loginLabel">Username</mat-label>
         <input
           [formControlName]="'username'"
           matInput
-          placeholder="Username"
           class="loginInput"
+          placeholder="Username"
         />
       </mat-form-field>
 
-      <mat-form-field appearance="fill" class="loginField">
-        <mat-label class="loginLabel">Password</mat-label>
+      <mat-form-field class="loginField">
+        <!--<mat-label class="loginLabel">Password</mat-label>-->
         <input
           [formControlName]="'password'"
           matInput
           type="password"
-          placeholder="Password"
           class="loginInput"
+          placeholder="Password"
         />
       </mat-form-field>
 
       <section>
-        <mat-checkbox class="example-margin">Remember Me!</mat-checkbox>
-        <a href="#" class="href1">Register</a>
+        <mat-checkbox>Remember Me!</mat-checkbox>
+        <a href="#" class="register-link">Register</a>
       </section>
 
       <button

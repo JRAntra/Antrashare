@@ -1,20 +1,25 @@
-// @use "app";
-$primary-red: red;
-$primary-white: white;
-
-.loginBar {
-  background-color: $primary-red;
-  color: $primary-white;
-  border-radius: 0.1rem;
-}
+@use "../../../../scss/variables";
+//primary-red: red;
+//$primary-white: white;
 
 .loginContainer {
+  width: 100%;
 }
 
 .loginCard {
   display: inline-block;
   padding: 0;
-  // background-color: rgba(0, 0, 0, .75);
+  width: 100%;
+
+  //background-color: rgba(0, 0, 0, 0.5);
+}
+
+.loginBar {
+  background-color: variables.$primary-black;
+  color: variables.$primary-white;
+  border-radius: 0.1rem;
+  padding: 1rem;
+  font-size: 24px;
 }
 
 .loginForm {
@@ -26,15 +31,33 @@ $primary-white: white;
 }
 
 .loginField {
+  color: variables.$primary-black;
+  padding: 1rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-content: center;
+  align-items: center;
 }
 
 .loginLabel {
+  color: variables.$primary-black;
 }
 
-.example-margin {
+.loginInput {
+  color: variables.$primary-black;
+}
+
+.remember-me {
   float: left;
 }
 
-.href1 {
+.register-link {
   float: right;
+  color: variables.$primary-red;
+}
+
+@media screen and (min-width: 480px) {
+  .loginContainer {
+    width: 440px;
+  }
 }
