@@ -20,6 +20,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatDialogModule } from '@angular/material/dialog';
 
 /* Components */
 
@@ -64,8 +65,9 @@ import { LogOutComponent } from './components/log-out/log-out.component';
     MatCheckboxModule,
     MatSidenavModule,
     MatIconModule,
+    MatDialogModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
