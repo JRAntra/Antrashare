@@ -1,23 +1,20 @@
 #settings {
-    background-image: url('../../../assets/images/US-en-20220117-popsignuptwoweeks-perspective_alpha_website_medium.jpg');
+    background-color: white;
     background-size: cover;
-    height: 100%;
-    width: auto;
-    top: 0;
-    left: 0;
-    margin-top: -1.8%;
 }
 
 #settingsMain {
-    display: grid;
-    grid-template-rows: 80% 20%;
     height: 80vh;
 }
 
 #settingsOptions {
-    width: 80%;
+    display: grid;
+    grid-template-rows: 10% 50% 40%;
+    width: 60%;
+    height: 80%;
     margin: 5% auto;
     background-color: rgba(0, 0, 0, 0.795);
+    border-radius: 4px;
 }
 
 #settingsOptions h1 {
