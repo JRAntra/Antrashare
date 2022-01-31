@@ -1,5 +1,5 @@
 #settings {
-    background-color: white;
+    background-color: #F5F5F5;
     background-size: cover;
 }
 
@@ -19,7 +19,7 @@
 
 #settingsOptions h1 {
     margin: 1.5%;
-    color: white;
+    color: #F5F5F5;
     font-weight: bold;
     font-size: 2rem;
 }
@@ -38,7 +38,7 @@
     height: 100%;
     border: 0;
     background-color: red;
-    color: white;
+    color: #F5F5F5;
     transition: 0.3s ease-in-out;
     font-size: 1.7rem;
     border-radius: 4px;
@@ -52,7 +52,7 @@
 
 #settingsLogout button {
     border: 0;
-    color: white;
+    color: #F5F5F5;
     background-color: red;
     height: 100%;
     width: 100%;
@@ -63,7 +63,7 @@
 
 #settingsLogout button:hover, #options button:hover {
     cursor: pointer;
-    background-color: white;
+    background-color: #F5F5F5;
     transition: 0.3s ease-in-out;
     color: red;
 }
