@@ -8,8 +8,8 @@
         <mat-hint class="errorMessage" *ngIf="loginForm.controls['username'].errors['required']">
           Please enter username
         </mat-hint>
-        <mat-hint class="errorMessage" *ngIf="loginForm.controls['username'].errors['maxlength']?.requiredLength < loginForm.controls['username'].errors['minlength']?.actualLength">
-          Please enter less than 5 characters
+        <mat-hint class="errorMessage" *ngIf="loginForm.controls['username'].errors['minlength']">
+          Please enter more than 5 characters
         </mat-hint>
       </div>
     </mat-form-field>
@@ -20,7 +20,7 @@
         <mat-hint class="errorMessage" *ngIf="loginForm.controls['password'].errors['required']">
           Please enter password
         </mat-hint>
-        <mat-hint class="errorMessage" *ngIf="loginForm.controls['password'].errors['minlength']?.requiredLength > loginForm.controls['password'].errors['minlength']?.actualLength">
+        <mat-hint class="errorMessage" *ngIf="loginForm.controls['password'].errors['minlength']">
           Please enter more than 5 characters
         </mat-hint>
         <mat-hint class="errorMessage" *ngIf="loginForm.controls['password'].errors['pattern']">

@@ -32,8 +32,7 @@ export class LoginFormComponent implements OnInit {
 
 
   signIn() {
-    console.log(this.loginForm.controls["password"].errors)
-    if (!this.loginForm.controls['password'].errors) {
+    if (!this.loginForm.controls['password'].errors && !this.loginForm.controls['username'].errors) {
       // Logic for checking login input to go to news feed page or not
       let currentUsername = this.loginForm.get('username')?.value;
       let currentPassword = this.loginForm.get('password')?.value;
@@ -43,7 +42,7 @@ export class LoginFormComponent implements OnInit {
       let tmpUserData = [
         { username: 'Josh', password: "123456" },
         { username: 'Kim', password: "696969" },
-        { username: 'Lily', password: "gh@ghGH"}
+        { username: 'LilyKim', password: "gh@ghGH"}
         // add more to test if you want
       ];
 
