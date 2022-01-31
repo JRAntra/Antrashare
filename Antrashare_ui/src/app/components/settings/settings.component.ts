@@ -1,4 +1,5 @@
 import { Component, HostListener, OnInit } from '@angular/core';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AppService } from '../services/app.service';
 
 @Component({
@@ -23,7 +24,6 @@ export class SettingsComponent implements OnInit {
   @HostListener('document:keydown', ['$event'])
   @HostListener('click', ['$event'])
   @HostListener('window:mousemove') refreshUserState() {
-    console.log(`Event detected, refresh idle time`);
     this._appService.refreshTimer();
     clearTimeout(this._appService.userActivity);
     this._appService.registerCurrentTime(); // Re-monitor

@@ -10,8 +10,8 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 })
 export class LoginFormComponent implements OnInit {
   loginForm = this.formBuilder.group({
-    userName: ['', Validators.required],
-    password: ['', Validators.required]
+    username: ['', Validators.compose([Validators.required, Validators.minLength(5)])],
+    password: ['', Validators.compose([Validators.required, Validators.minLength(5), Validators.pattern(/^(?=.*[A-Z])(?=.*[@#$%^&+*!=]).*$/)])]
   });
   loginData: string = '';
   rememberedUserIsChecked: boolean = false;
@@ -22,7 +22,7 @@ export class LoginFormComponent implements OnInit {
 
   ngOnInit(): void {
     let rememberedData = localStorage.getItem('login-data') ? JSON.parse(localStorage.getItem('login-data') || "") : "";
-    this.loginForm.controls["userName"].setValue(rememberedData.userName ? rememberedData.userName : "");
+    this.loginForm.controls["username"].setValue(rememberedData.username ? rememberedData.username : "");
     this.loginForm.controls["password"].setValue(rememberedData.password ? rememberedData.password : "");
   }
 
@@ -32,34 +32,37 @@ export class LoginFormComponent implements OnInit {
 
 
   signIn() {
+    if (!this.loginForm.controls['password'].errors && !this.loginForm.controls['username'].errors) {
+      // Logic for checking login input to go to news feed page or not
+      let currentUsername = this.loginForm.get('username')?.value;
+      let currentPassword = this.loginForm.get('password')?.value;
 
-    // Logic for checking login input to go to news feed page or not
-    let currentUserName = this.loginForm.get('userName')?.value;
-    let currentPassword = this.loginForm.get('password')?.value;
+      // Direct testing:
+      // Can only go to news feed if the user input match the tmpUserData array
+      let tmpUserData = [
+        { username: 'Josh', password: "123456" },
+        { username: 'Kim', password: "696969" },
+        { username: 'LilyKim', password: "gh@ghGH"}
+        // add more to test if you want
+      ];
 
-    // Direct testing:
-    // Can only go to news feed if the user input match the tmpUserData array
-    let tmpUserData = [
-      { userName: 'Josh', password: "123456" },
-      { userName: 'Kim', password: "696969" },
-      // add more to test if you want
-    ];
+      for (const element of tmpUserData) {
+        if (currentUsername === element.username &&
+          currentPassword === element.password) {
+          // Matched so co go to news feed page
+          console.log('Current login match so preceed to newsFeed page!');
+          this.router.navigate(['/newsFeed']);
+        }
+      }
 
-    for (const element of tmpUserData) {
-      if (currentUserName === element.userName &&
-        currentPassword === element.password) {
-        // Matched so co go to news feed page
-        console.log('Current login match so preceed to newsFeed page!');
-        this.router.navigate(['/newsFeed']);
+      // If remember me checkbox is checked
+      // Save input into local storage and check with database later
+      if (this.rememberedUserIsChecked === true) {
+        this.loginData = JSON.stringify(this.loginForm.value);
+        localStorage.setItem('login-data', this.loginData);
       }
     }
-
-    // If remember me checkbox is checked
-    // Save input into local storage and check with database later
-    if (this.rememberedUserIsChecked === true) {
-      this.loginData = JSON.stringify(this.loginForm.value);
-      localStorage.setItem('login-data', this.loginData);
-    }
+    
   }
 }
 
