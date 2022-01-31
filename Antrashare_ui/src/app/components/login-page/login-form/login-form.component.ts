@@ -11,7 +11,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 export class LoginFormComponent implements OnInit {
   loginForm = this.formBuilder.group({
     username: ['', Validators.compose([Validators.required, Validators.minLength(5)])],
-    password: ['', Validators.compose([Validators.required, Validators.minLength(5), Validators.pattern(/[A-Za-z][-+_!@#$%^&*,.?]/)])]
+    password: ['', Validators.compose([Validators.required, Validators.minLength(5), Validators.pattern(/^(?=.*[A-Z])(?=.*[@#$%^&+*!=]).*$/)])]
   });
   loginData: string = '';
   rememberedUserIsChecked: boolean = false;
