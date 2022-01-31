@@ -21,10 +21,10 @@
           Please enter password
         </mat-hint>
         <mat-hint class="errorMessage" *ngIf="loginForm.controls['password'].errors['minlength']?.requiredLength > loginForm.controls['password'].errors['minlength']?.actualLength">
-          Please enter more than 6 characters
+          Please enter more than 5 characters
         </mat-hint>
         <mat-hint class="errorMessage" *ngIf="loginForm.controls['password'].errors['pattern']">
-          Password needs to include uppercase, lowercase, and special character
+          Password needs to include uppercase and special character
         </mat-hint>
       </div>
     </mat-form-field>
