@@ -11,7 +11,8 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 const routes: Routes = [
   // List of objects of possible paths
   // Default path
-  { path: '', redirectTo: '/loginPage', pathMatch: "full" },
+  { path: '', redirectTo: '/loginPage', pathMatch: "full" }, // original
+  // { path: '', redirectTo: '/newsFeed', pathMatch: "full" }, // for testing timeout dialog
 
   // Other possible paths
   { path: 'loginPage', component: LoginPageComponent },
