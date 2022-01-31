@@ -24,6 +24,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { NavbarComponent } from './components/header/navbar/navbar.component';
 import { ErrorPageComponent } from './components/error-page/error-page.component';
 import { BottomBarComponent } from './components/bottom/bottom-bar/bottom-bar.component';
+import { LogoutWindowComponent } from './components/settings/logout-window/logout-window.component';
 
 
 @NgModule({
@@ -34,13 +35,14 @@ import { BottomBarComponent } from './components/bottom/bottom-bar/bottom-bar.co
     HideElementDirective,
     MyProfilePageComponent,
     NewsFeedComponent,
-    SettingsComponent, 
-    StoryComponent, 
-    TimeoutDialogComponent, 
-    HeaderComponent, 
+    SettingsComponent,
+    StoryComponent,
+    TimeoutDialogComponent,
+    HeaderComponent,
     NavbarComponent,
     ErrorPageComponent,
-    BottomBarComponent
+    BottomBarComponent,
+    LogoutWindowComponent
   ],
   imports: [
     BrowserModule,

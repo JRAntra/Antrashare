@@ -9,12 +9,13 @@
                 <button>Option</button>
                 <button>Option</button>
             </div>
-        </div>
-        <div id='settingsLogout'>
-            <button (click)='logOut()'>
-                Log Out
-            </button>
+            <div id='settingsLogout'>
+                <button (click)='showLogout(true)'>
+                    Log Out
+                </button>
+            </div>
         </div>
     </div>
+    <logout-window *ngIf='logout' [logout]='logout' (logoutEmitter)=showLogout($event)></logout-window>
     <app-bottom-bar></app-bottom-bar>
 </div>

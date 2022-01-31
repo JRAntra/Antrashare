@@ -7,13 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SettingsComponent implements OnInit {
 
+  logout = false;
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  logOut() {
-    console.log('Log Out Function Here')
+  showLogout(logout:boolean) {
+    this.logout = logout;
   }
 
 }
