@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'logout-window',
@@ -6,19 +6,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./logout-window.component.scss']
 })
 export class LogoutWindowComponent implements OnInit {
-
+  @Input() logout!: boolean;
+  @Output() logoutEmitter = new EventEmitter<boolean>();
 
   ngOnInit(): void {
   }
 
   close() {
-    //set logout to false
+    this.logout! = false;
+    this.logoutEmitter.emit(this.logout!)
   }
 
   confirm() {
-    //call close()
+    this.close();
     //reset user credentials
-    //redirect to login page
   }
 
 

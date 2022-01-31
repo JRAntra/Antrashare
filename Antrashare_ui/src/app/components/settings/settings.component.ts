@@ -14,8 +14,8 @@ export class SettingsComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  logOut() {
-    this.logout = true;
+  showLogout(logout:boolean) {
+    this.logout = logout;
   }
 
 }
