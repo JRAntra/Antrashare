@@ -15,8 +15,9 @@ import { TimeoutDialogComponent } from '../timeout-dialog/timeout-dialog.compone
 export class AppService {
 
   idleTime$ = timer(0, 1000);
+  idleTimeLimitInMS = 600000; // 10 mins is 600000ms
+  idleTimeLimitInSecond = this.idleTimeLimitInMS / 10000;
   currentPage: string | undefined;
-  idleTimeLimitInSecond = 3;
   currentPageIsSignInPage = false;
   val: number | undefined;
   reset$ = new Subject();
@@ -39,7 +40,7 @@ export class AppService {
     this.subscription?.subscribe(
       data => {
         // this.val = val; // optional
-        console.log(`idle time: ${data}s`);
+        console.log(`idle time: ${data}s abd idle time limit is ${this.idleTimeLimitInMS / 1000}s`);
 
         if (this.currentPageIsSignInPage === false &&
           data === this.idleTimeLimitInSecond
@@ -65,11 +66,11 @@ export class AppService {
   // Functions for host-listener
   detectIdle() {
     this.registerCurrentTime();
-    this.userInactive.subscribe(() => { console.log(`Hit idle time limit 3s`); });
+    this.userInactive.subscribe(() => { console.log(`Hit idle time limit ${this.idleTimeLimitInMS}s`); });
   }
 
   registerCurrentTime() {
-    this.userActivity = setTimeout(() => this.userInactive.next(undefined), 3000);
+    this.userActivity = setTimeout(() => this.userInactive.next(undefined), this.idleTimeLimitInMS);
   }
 
   timerId: any;
@@ -84,15 +85,15 @@ export class AppService {
       () => {
         this.dialog.closeAll();
         this.router.navigate(['loginPage']);
-      }, 3000 // debug use 3s
-      // , 10000 // requirement is 10s
+      }
+      // , 3000 // debug use 3s
+      , 10000 // requirement is 10s
     );
   }
 
   popLogoutDialog() {
     console.log(`Pop Logout Dialog()`);
-    // pop TimeoutDialog Component
-    this.dialog.open(LogoutConfirmationDialogComponent);
+    this.dialog.open(LogoutConfirmationDialogComponent); // pop TimeoutDialog Component
   }
 
 }
