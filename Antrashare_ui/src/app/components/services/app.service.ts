@@ -84,7 +84,7 @@ export class AppService {
       () => {
         this.dialog.closeAll();
         this.router.navigate(['loginPage']);
-      }, 3000 // debug use 3s
+      }, 100000 // debug use 3s
       // , 10000 // requirement is 10s
     );
   }

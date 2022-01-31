@@ -43,6 +43,7 @@ export class LoginFormComponent implements OnInit {
       let tmpUserData = [
         { username: 'Josh', password: "123456" },
         { username: 'Kim', password: "696969" },
+        { username: 'Lily', password: "gh@ghGH"}
         // add more to test if you want
       ];
 

@@ -6,10 +6,10 @@
       <input matInput type="text" formControlName="username" />
     </mat-form-field>
     <div *ngIf="loginForm.controls['username'].errors">
-      <div *ngIf="loginForm.controls['username'].errors['required']">
+      <div class="errorMessage" *ngIf="loginForm.controls['username'].errors['required']">
         Please enter username
       </div>
-      <div *ngIf="loginForm.controls['username'].errors['maxlength']?.requiredLength < loginForm.controls['username'].errors['minlength']?.actualLength">
+      <div class="errorMessage" *ngIf="loginForm.controls['username'].errors['maxlength']?.requiredLength < loginForm.controls['username'].errors['minlength']?.actualLength">
         Please enter less than 6 characters for username
       </div>
     </div>
@@ -18,13 +18,13 @@
       <input matInput type="text" formControlName="password" />
     </mat-form-field>
     <div *ngIf="loginForm.controls['password'].errors">
-      <div *ngIf="loginForm.controls['password'].errors['required']">
+      <div class="errorMessage" *ngIf="loginForm.controls['password'].errors['required']">
         Please enter password
       </div>
-      <div *ngIf="loginForm.controls['password'].errors['minlength']?.requiredLength > loginForm.controls['password'].errors['minlength']?.actualLength">
+      <div class="errorMessage" *ngIf="loginForm.controls['password'].errors['minlength']?.requiredLength > loginForm.controls['password'].errors['minlength']?.actualLength">
         Please enter more than 6 characters for password
       </div>
-      <div *ngIf="loginForm.controls['password'].errors['pattern']">
+      <div class="errorMessage" *ngIf="loginForm.controls['password'].errors['pattern']">
         Password needs to include uppercase, lowercase, and special character
       </div>
     </div>
