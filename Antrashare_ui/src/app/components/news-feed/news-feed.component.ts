@@ -13,7 +13,7 @@ export class NewsFeedComponent implements OnInit {
     {
       publisherName: "Cat",
       publishedTime: "1/24/2022",
-      content:  {
+      content: {
         text: "Good morning"
       },
       comment: []
@@ -21,12 +21,12 @@ export class NewsFeedComponent implements OnInit {
     {
       publisherName: "Dog",
       publishedTime: "1/23/2022",
-      content:  {
+      content: {
         text: "Good afternoon everyone"
       },
       comment: [
         {
-          publisherName: "Cat", 
+          publisherName: "Cat",
           publishedTime: "1/24/2022",
           content: {
             text: "How are you?"
@@ -46,7 +46,7 @@ export class NewsFeedComponent implements OnInit {
 
   }
 
-  stories: Story[] = [
+  dummyStories: Story[] = [
     {
       subtitle: 'subtitle_1: this is a plain subtilte....',
       text: `text_1: Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diem nonummy nibh euismod tincidunt ut lacreet dolore magna aliguam erat volutpat. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diem nonummy nibh euismod tincidunt ut lacreet dolore magna aliguam erat volutpat. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diem nonummy nibh euismod tincidunt ut lacreet dolore magna aliguam erat volutpat.`,
