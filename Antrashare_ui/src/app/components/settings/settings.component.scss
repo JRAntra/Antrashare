@@ -7,37 +7,42 @@
     height: 80vh;
 }
 
-#settingsOptions {
-    display: grid;
-    grid-template-rows: 10% 50% 40%;
-    width: 60%;
-    height: 80%;
-    margin: 5% auto;
-    background-color: rgba(0, 0, 0, 0.795);
-    border-radius: 4px;
-}
-
-#settingsOptions h1 {
-    margin: 1.5%;
-    color: #F5F5F5;
+h1 {
+    margin: 3%;
+    color: #0D0D0D;
     font-weight: bold;
+    margin-left: 7%;
     font-size: 2rem;
 }
 
+#settingsOptions {
+    display: grid;
+    grid-template-rows: 55% 45%;
+    width: 60%;
+    height: 80%;
+    margin: 5% auto;
+    border: solid 2px;
+    border-color: black;
+    border-radius: 20px;
+    border-radius: 4px;
+    background-color: #eeeeee;
+}
+
+
 #options {
     display: grid;
-    grid-template-columns: 20% 20% 20% 20% 20%;
+    grid-template-columns: 33% 34% 33%;
     text-align: center;
     height: 55%;
     margin-top: 3%;
 }
 
 #options button {
-    width: 80%;
+    width: 60%;
     margin: 0 auto;
     height: 100%;
     border: 0;
-    background-color: red;
+    background-color: #F23D3D;
     color: #F5F5F5;
     transition: 0.3s ease-in-out;
     font-size: 1.7rem;
@@ -45,7 +50,7 @@
 }
 
 #settingsLogout {
-    width: 30%;
+    width: 50%;
     height: 50%;
     margin: 5% auto;
 }
@@ -53,17 +58,17 @@
 #settingsLogout button {
     border: 0;
     color: #F5F5F5;
-    background-color: red;
+    background-color: #F23D3D;
     height: 100%;
     width: 100%;
     transition: 0.3s ease-in-out;
     border-radius: 4px;
-    font-size: 1.5rem;
+    font-size: 1.7rem;
 }
 
 #settingsLogout button:hover, #options button:hover {
     cursor: pointer;
     background-color: #F5F5F5;
     transition: 0.3s ease-in-out;
-    color: red;
+    color: #F23D3D;
 }
