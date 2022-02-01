@@ -4,14 +4,18 @@
 
 <div mat-dialog-content class="dialog-content">
   <h2>
-    <mat-icon>access_time</mat-icon>Still with us?
+    <mat-icon>access_time</mat-icon>
+    Still with us?
   </h2>
 
-  <p>The current session is about to expire in ** seconds <br />unless you confirm that you are still with us.</p>
+  <p>The current session is about to expire in <span class="time">{{ data.time }}</span> seconds
+    <br />
+    unless you confirm that you are still with us.
+  </p>
 </div>
 
 <div mat-dialog-actions class="dialog-actions pull-right">
   <button mat-button mat-dialog-close>Cancel</button>
 
-  <button mat-button color="primary" [mat-dialog-close]="data.animal" cdkFocusInitial>Confirm</button>
+  <button mat-button color="primary" (click)="confirm()" cdkFocusInitial>Confirm</button>
 </div>
