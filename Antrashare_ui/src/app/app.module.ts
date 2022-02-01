@@ -20,6 +20,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatDialogModule } from '@angular/material/dialog';
 
 /* Components */
 
@@ -32,6 +33,7 @@ import { StoryCardComponent } from './components/news-feed/story/story-card/stor
 import { CommentListComponent } from './components/news-feed/story/comment-list/comment-list.component';
 import { CommentInputComponent } from './components/news-feed/story/comment-input/comment-input.component';
 import { CommentComponent } from './components/news-feed/story/comment-list/comment/comment.component';
+import { LogOutComponent } from './components/log-out/log-out.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +50,7 @@ import { CommentComponent } from './components/news-feed/story/comment-list/comm
     CommentListComponent,
     CommentInputComponent,
     CommentComponent,
+    LogOutComponent,
   ],
   imports: [
     BrowserModule,
@@ -62,8 +65,9 @@ import { CommentComponent } from './components/news-feed/story/comment-list/comm
     MatCheckboxModule,
     MatSidenavModule,
     MatIconModule,
+    MatDialogModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

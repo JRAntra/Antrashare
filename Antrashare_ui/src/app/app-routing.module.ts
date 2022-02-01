@@ -6,12 +6,14 @@ import { MyProfileComponent } from './components/my-profile/my-profile.component
 import { NewsFeedComponent } from './components/news-feed/news-feed.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { SettingsComponent } from './components/settings/settings.component';
+import {LogOutComponent} from './components/log-out/log-out.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginPageComponent },
   { path: 'newsfeed', component: NewsFeedComponent },
   { path: 'profile', component: MyProfileComponent },
   { path: 'settings', component: SettingsComponent },
+  { path: 'log_out',component: LogOutComponent},
   { path: '', component: LoginPageComponent },
   { path: '**', component: PageNotFoundComponent },
 ];
