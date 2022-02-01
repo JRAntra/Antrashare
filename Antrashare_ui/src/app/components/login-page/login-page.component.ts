@@ -9,7 +9,6 @@ import { AppService } from '../services/app.service';
 export class LoginPageComponent implements OnInit {
 
   constructor(private _appService: AppService) {
-    console.log(`constructor`);
     _appService.currentPageIsSignInPage = true;
     _appService.currentPage = 'loginPage'
     _appService.detectIdle();

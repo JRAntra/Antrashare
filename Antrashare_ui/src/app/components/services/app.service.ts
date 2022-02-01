@@ -40,7 +40,6 @@ export class AppService {
     this.subscription?.subscribe(
       data => {
         // this.val = val; // optional
-        console.log(`idle time: ${data}s abd idle time limit is ${this.idleTimeLimitInMS / 1000}s`);
 
         if (this.currentPageIsSignInPage === false &&
           data === this.idleTimeLimitInSecond
