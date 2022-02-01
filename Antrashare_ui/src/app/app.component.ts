@@ -1,5 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { fromEventPattern } from 'rxjs';
+import { Component, OnInit, Inject, HostListener } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog'
 import { Router} from '@angular/router'
 import { TimeoutDialogComponent } from './components/timeout-dialog/timeout-dialog.component';
@@ -19,8 +18,9 @@ export class AppComponent implements OnInit {
   constructor(
     private dialog: MatDialog,
     private router: Router
-  ) {
 
+  ) {
+ 
   }
 
   ngOnInit(): void {
@@ -37,7 +37,6 @@ export class AppComponent implements OnInit {
       width: '50%',
       height: '50%'
     })
-    console.log(this.router.url)
   }
 
 }
