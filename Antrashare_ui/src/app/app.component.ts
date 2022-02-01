@@ -9,11 +9,13 @@ import { Observable } from 'rxjs';
 import { filter, map, shareReplay } from 'rxjs/operators';
 import { SettingsService } from './services/settings.service';
 import { TimeoutComponent } from './dialogs/timeout/timeout.dialog.component';
+import { IdleService } from './services/idle.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./css/app.component.scss']
+  styleUrls: ['./css/app.component.scss'],
+  providers: [IdleService],
 })
 export class AppComponent {
   title = 'Antrashare_ui';
@@ -46,10 +48,21 @@ export class AppComponent {
     private breakpointObserver: BreakpointObserver, 
     private settingsService: SettingsService,
     private dialog: MatDialog,
+    private idleService: IdleService
   ) { }
 
   toggleSidenav() {
     this.sidenav.toggle();
+  }
+
+  idle() {
+    this.idleService.onIdleStart.subscribe(value => {
+      console.log("app-----------", value);
+    });
+    this.idleService.onTimeoutWarning.subscribe(value => {
+      console.log("warn-----------", value);
+    })
+    this.idleService.watch();
   }
 
   openTimeoutDialog() {
