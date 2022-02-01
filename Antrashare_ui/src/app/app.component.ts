@@ -73,12 +73,12 @@ export class AppComponent {
         });
       });
     }
-    
+
     if (!this.warningTimeSubscription) {
       this.warningTimeSubscription = this.idleService.onTimeoutWarning.subscribe((value: any) => {
         if (this.warningDialogRef && this.warningDialogRef.componentInstance) {
           this.warningDialogRef.componentInstance.data = { time: value };
-          
+
           if (value <= 0) {
             this.warningDialogRef.close();
           }
@@ -86,7 +86,7 @@ export class AppComponent {
         }
       })
     }
-    
+
     this.idleService.watch();
   }
 
