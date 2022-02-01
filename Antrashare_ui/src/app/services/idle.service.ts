@@ -5,7 +5,7 @@ import { filter, skipWhile, switchMap, take, takeUntil, takeWhile, tap, throttle
 @Injectable()
 export class IdleService {
   private status: IdleStatus = {
-    idleTime: 10,
+    idleTime: 15,
     timeoutTime: 10,
     isTimeoutWarning: false,
     countdownIdleTime: null,
@@ -54,17 +54,8 @@ export class IdleService {
         return !this.status.isTimeoutWarning;
       })
     );
-    this.timeoutEvent$ = of(this.status.timeoutTime).pipe(
-      switchMap((value) => interval(1000).pipe(take(value))),
-      tap(value => {
-        this.status.countdownTimeoutTime = this.status.timeoutTime - value;
-        this.timeoutWarning$.next(this.status.countdownTimeoutTime);
-
-        if (this.status.countdownTimeoutTime <= 0) {
-          this.status.countdownTimeoutTime = null;
-          this.status.isTimeoutWarning = false;
-        }
-      })
+    this.timeoutEvent$ = interval(1000).pipe(
+      take(this.status.timeoutTime)
     );
   }
 
@@ -73,34 +64,46 @@ export class IdleService {
 
     this.status.countdownIdleTime = timeLeftForIdle;
     this.cd.detectChanges();
-    
-    const isTimeout = timeLeftForIdle <= 0;
 
-    if (isTimeout) {
+    if (timeLeftForIdle <= 0) {
       this.status.isTimeoutWarning = true;;
-      this.idleStart$.next(timeLeftForIdle);
+      this.idleStart$.next(this.status.timeoutTime);
+
       if (this.timeoutEventSubscription) {
         this.timeoutEventSubscription.unsubscribe();
       }
       this.timeoutEventSubscription = this.timeoutEvent$.subscribe((value) => {
-        console.log(`subscribed for timeout ${value + 1} sec`);
+        this.status.countdownTimeoutTime = this.status.timeoutTime - value;
+        this.timeoutWarning$.next(this.status.countdownTimeoutTime);
+
+        if (this.status.countdownTimeoutTime <= 0) {
+          this.status.countdownTimeoutTime = null;
+          this.status.isTimeoutWarning = false;
+        }
       });
     }
   }
 
   private runOutside() {
     this.nz.runOutsideAngular(() => {
-      this.eventSubscription = this.events$.subscribe(value => {
-        console.log(`subscribed for ${value + 1} sec`);
-      })
+      this.eventSubscription = this.events$.subscribe();
     });
   }
 
   watch() {
+    stop();
+
     this.runOutside();
   }
 
   stop() {
+    this.status.countdownTimeoutTime = null;
+    this.status.isTimeoutWarning = false;
+
+    if (this.timeoutEventSubscription) {
+      this.timeoutEventSubscription.unsubscribe();
+    }
+
     this.eventSubscription.unsubscribe();
   }
 }

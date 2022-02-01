@@ -16,4 +16,8 @@ export class TimeoutComponent implements OnInit {
   ngOnInit() {
   }
 
+  confirm() {
+    this.dialogRef.close(true);
+  }
+
 }
