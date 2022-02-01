@@ -1,33 +1,25 @@
-.timeoutDialog {
-    position: fixed;
-    display: none;
-    left: 0;
-    top: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: #333333ee;
-}
-
-.timeoutDialog--active {
-    display: block;
-}
 
 .timeoutDialogBody {
     background: #F5F5F5;
-    width: 80%;
-    margin-left: 10%;
-    height: 500px;
-    margin-top: 100px;
+    height: 100%;
 
 
 }
 
 .timeoutDialogMessage {
-    height: 90%;
+    height: 100%;
+    
 }
 .timeoutDialogBottom {
+    background: #F5F5F5;
     display: grid;
     grid-template-columns: 50% 50%;
     align-items: center;
     justify-items: center;
+}
+.timeoutDialogCancelButton {
+    width: 100%;
+}
+.timeoutDialogConfirmButton {
+    width: 100%;
 }
