@@ -20,11 +20,11 @@ export class AppComponent implements OnInit {
     private router: Router
 
   ) {
- 
+
   }
 
   ngOnInit(): void {
-    
+
     setInterval(() => {
       if (this.dialogRef?.getState() != 0 && this.router.url != '/' && this.router.url != '/login') {
         this.openDialog()
