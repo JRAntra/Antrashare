@@ -12,10 +12,12 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog'
 import { ReactiveFormsModule } from '@angular/forms';
+
+
 import { HideElementDirective } from './directives/hide-element/hide-element.directive';
 import { MyProfilePageComponent } from './components/my-profile-page/my-profile-page.component';
-
 import { SettingsComponent } from './components/settings/settings.component';
 import { NewsFeedComponent } from './components/news-feed/news-feed.component';
 import { StoryComponent } from './components/story/story.component';
@@ -48,6 +50,7 @@ import { LogoutWindowComponent } from './components/settings/logout-window/logou
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    MatDialogModule,
     MatFormFieldModule,
     MatInputModule,
     MatIconModule,

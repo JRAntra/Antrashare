@@ -1,11 +1,10 @@
-<div class="timeoutDialog timeoutDialog--active">
+
     <div class="timeoutDialogBody">
         <div class="timeoutDialogMessage">
             TimeOutWarningMessage
         </div>
         <div class="timeoutDialogBottom">
-            <div class="timeoutDialogCancelButton">Cancel</div>
-            <div class="timeoutDialogConfirmButton">Confirm</div>
+            <button mat-raised-button class="timeoutDialogCancelButton" (click) = "onCancel()">Cancel</button>
+            <button mat-raised-button class="timeoutDialogConfirmButton"(click) = "onConfirmed()">Confirm</button>
         </div>
     </div>
-</div>

@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog'
+import { Router} from '@angular/router'
 
 @Component({
   selector: 'app-timeout-dialog',
@@ -6,32 +8,27 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./timeout-dialog.component.scss']
 })
 export class TimeoutDialogComponent implements OnInit {
-  
-  constructor() { }
+  public message: any
+  constructor(
+    @Inject(MAT_DIALOG_DATA) data: any,
+    private router: Router,
+    private dialogRef: MatDialogRef<TimeoutDialogComponent>,
+  ) { 
+    this.message = data
+  }
 
   ngOnInit(): void {
+    console.log("timeout!")
+  }
+
+ 
+  onCancel(): void {
+    this.dialogRef.close('canceled')
+    this.router.navigate(['/login'])
+  }
+  onConfirmed(): void {
+    this.dialogRef.close('confirmed')
+  }
   
-  }
-
-  ngAfterViewInit(): void {
-    let cancelBtn = document.querySelector('.timeoutDialogCancelButton')
-    let confirmBtn = document.querySelector('.timeoutDialogConfirmButton')
-   
-    cancelBtn?.addEventListener('click', function() {
-      let dialog = document.querySelector('.timeoutDialog')
-      console.log(dialog?.classList)
-      if (dialog?.classList.contains('timeoutDialog--active')) {
-        dialog.classList.remove('timeoutDialog--active')
-      }
-    })
-
-    confirmBtn?.addEventListener('click', function() {
-      let dialog = document.querySelector('.timeoutDialog')
-      console.log(dialog?.classList)
-      if (dialog?.classList.contains('timeoutDialog--active')) {
-        dialog.classList.remove('timeoutDialog--active')
-      }
-    })
-  }
 
 }
