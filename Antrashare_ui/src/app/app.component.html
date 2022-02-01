@@ -4,19 +4,21 @@
       <mat-icon>view_headline</mat-icon>
     </div>
     <div>
-      <span routerLink="/" routerLinkActive="active" class="navbar-logo">Blog Site</span>
+      <span routerLink="/" routerLinkActive="active" class="navbar-logo"
+        >Blog Site</span
+      >
     </div>
     <div class="navbar-links">
       <span routerLink="login">Sign In</span>
       <span routerLink="profile">My Profile</span>
-      <span routerLink="newsfeed">News feed</span>
+      <span routerLink="newsfeed">News Feed</span>
       <span routerLink="settings">Settings</span>
     </div>
   </mat-toolbar>
 </header>
 
 <main>
-  <div class="container">
+  <div class="login-container">
     <router-outlet></router-outlet>
   </div>
   <!-- <p [TmpElement]="5000">Removed after 5 seconds</p> -->

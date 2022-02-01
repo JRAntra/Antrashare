@@ -3,19 +3,20 @@
 
 main {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 10em;
   opacity: 1;
+  position: relative;
 }
 
-.container {
+.login-container {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
   z-index: 2;
+  position: absolute;
+  top: 50%;
+  transform: translate(0%, 50%);
 }
 
 .navbar {

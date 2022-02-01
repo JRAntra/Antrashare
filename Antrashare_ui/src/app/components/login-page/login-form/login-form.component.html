@@ -1,15 +1,38 @@
 <div class="loginContainer">
   <mat-card class="loginCard">
-    <mat-toolbar class="loginBar">Be a Member!</mat-toolbar>
-    <form [formGroup]="form" (ngSubmit)="submitForm()" class="loginForm">
+    <mat-toolbar class="loginBar">Sign In</mat-toolbar>
+    <form [formGroup]="loginForm" (ngSubmit)="submitForm()" class="loginForm">
       <mat-form-field class="loginField">
         <mat-label class="loginLabel">Username</mat-label>
-        <input [formControlName]="'username'" matInput placeholder="Username" class="loginInput" />
+        <input
+          [formControlName]="'username'"
+          matInput
+          maxlength="5"
+          placeholder="Username"
+          class="loginInput"
+          id="username"
+        />
+        <mat-hint *ngIf="username?.errors?.['minlength']">
+          Username must be at least 5 characters long.
+        </mat-hint>
       </mat-form-field>
 
       <mat-form-field class="loginField">
         <mat-label class="loginLabel">Password</mat-label>
-        <input [formControlName]="'password'" matInput type="password" placeholder="Password" class="loginInput" />
+        <input
+          [formControlName]="'password'"
+          matInput
+          type="password"
+          placeholder="Password"
+          class="loginInput"
+        />
+        <mat-hint *ngIf="password?.errors?.['minlength']">
+          Password must be at least 5 characters long.
+        </mat-hint>
+        <mat-hint *ngIf="password?.errors?.['pattern']">
+          Password must include at least 1 uppercase; at least 1 special
+          character.
+        </mat-hint>
       </mat-form-field>
 
       <section>
@@ -17,7 +40,12 @@
         <a href="#" class="register-link">Register</a>
       </section>
 
-      <button mat-raised-button color="warn" type="submit" [disabled]="form.invalid">
+      <button
+        mat-raised-button
+        color="warn"
+        type="submit"
+        [disabled]="loginForm.invalid"
+      >
         Sign In
       </button>
     </form>

@@ -7,19 +7,36 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./login-form.component.scss'],
 })
 export class LoginFormComponent implements OnInit {
-  form: FormGroup;
+  public loginForm: FormGroup;
 
   constructor() {
-    this.form = new FormGroup({
-      username: new FormControl('', Validators.required),
-      password: new FormControl('', Validators.required),
+    this.loginForm = new FormGroup({
+      username: new FormControl('', [
+        Validators.required,
+        Validators.minLength(5),
+      ]),
+      password: new FormControl('', [
+        Validators.required,
+        Validators.minLength(5),
+        Validators.pattern(
+          /^(?=.{5,})(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).*$/
+        ),
+      ]),
     });
+  }
+
+  get username() {
+    return this.loginForm.get('username');
+  }
+
+  get password() {
+    return this.loginForm.get('password');
   }
 
   ngOnInit(): void {}
 
   submitForm() {
-    console.log('Valid?', this.form.valid); // true or false
-    console.log(this.form.value);
+    console.log('Valid?', this.loginForm.valid); // true or false
+    console.log(this.loginForm.value);
   }
 }
