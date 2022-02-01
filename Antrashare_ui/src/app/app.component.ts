@@ -5,7 +5,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatSidenav } from '@angular/material/sidenav';
 
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { filter, map, shareReplay, tap } from 'rxjs/operators';
 import { SettingsService } from './services/settings.service';
 import { TimeoutComponent } from './dialogs/timeout/timeout.dialog.component';
@@ -49,6 +49,8 @@ export class AppComponent {
   title = 'Antrashare_ui';
   theme$: Observable<string> = this.settingsService.getTheme();
 
+  private warningOutSubscription!: Subscription;
+  private warningTimeSubscription!: Subscription;
   private warning: any;
   private warningDialogRef!: MatDialogRef<TimeoutComponent>;
 
@@ -62,19 +64,29 @@ export class AppComponent {
   ) { }
 
   idle() {
-    this.idleService.onIdleStart.subscribe(value => {
-      this.warning = value;
-      // Use ngzone to fix the display abnormal dialog
-      this.nz.run(() => {
-        this.openTimeoutDialog();
+    if (!this.warningOutSubscription) {
+      this.warningOutSubscription = this.idleService.onIdleStart.subscribe(value => {
+        this.warning = value;
+        // Use ngzone to fix the display abnormal dialog
+        this.nz.run(() => {
+          this.openTimeoutDialog();
+        });
       });
-    });
-    this.idleService.onTimeoutWarning.subscribe(value => {
-      if (this.warningDialogRef && this.warningDialogRef.componentInstance) {
-        this.warningDialogRef.componentInstance.data = { time: value };
-        console.log(value);
-      }
-    })
+    }
+    
+    if (!this.warningTimeSubscription) {
+      this.warningTimeSubscription = this.idleService.onTimeoutWarning.subscribe((value: any) => {
+        if (this.warningDialogRef && this.warningDialogRef.componentInstance) {
+          this.warningDialogRef.componentInstance.data = { time: value };
+          
+          if (value <= 0) {
+            this.warningDialogRef.close();
+          }
+          console.log(value);
+        }
+      })
+    }
+    
     this.idleService.watch();
   }
 

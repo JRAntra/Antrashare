@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Injectable, NgZone } from '@angular/core';
-import { BehaviorSubject, fromEvent, interval, merge, Observable, of, ReplaySubject, Subscription } from 'rxjs';
+import { BehaviorSubject, fromEvent, interval, merge, Observable, of, ReplaySubject, Subject, Subscription } from 'rxjs';
 import { filter, skipWhile, switchMap, take, takeUntil, takeWhile, tap, throttleTime } from 'rxjs/operators';
 
 @Injectable()
@@ -10,7 +10,6 @@ export class IdleService {
     isTimeoutWarning: false,
     countdownIdleTime: null,
     countdownTimeoutTime: null,
-    lastPing: null,
   };
 
   private events$!: Observable<any>;
@@ -18,8 +17,8 @@ export class IdleService {
   private eventSubscription!: Subscription;
   private timeoutEventSubscription!: Subscription;
 
-  private idleStart$ = new ReplaySubject(1);
-  private timeoutWarning$ = new ReplaySubject(1);
+  private idleStart$ = new Subject();
+  private timeoutWarning$ = new Subject();
 
   constructor(private nz: NgZone, private cd: ChangeDetectorRef) {
     this.onInit();
@@ -73,7 +72,7 @@ export class IdleService {
         this.timeoutEventSubscription.unsubscribe();
       }
       this.timeoutEventSubscription = this.timeoutEvent$.subscribe((value) => {
-        this.status.countdownTimeoutTime = this.status.timeoutTime - value;
+        this.status.countdownTimeoutTime = this.status.timeoutTime - value - 1;
         this.timeoutWarning$.next(this.status.countdownTimeoutTime);
 
         if (this.status.countdownTimeoutTime <= 0) {
@@ -97,6 +96,8 @@ export class IdleService {
   }
 
   stop() {
+    this.idleStart$;
+    this.status.countdownIdleTime = null;
     this.status.countdownTimeoutTime = null;
     this.status.isTimeoutWarning = false;
 
@@ -126,5 +127,4 @@ export interface IdleStatus {
   isTimeoutWarning: boolean;
   countdownIdleTime: number | null;
   countdownTimeoutTime: number | null;
-  lastPing: Date | null;
 }
