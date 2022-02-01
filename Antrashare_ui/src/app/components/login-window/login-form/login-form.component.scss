@@ -1,6 +1,6 @@
 .error {
-    border: 1px solid red;
-    
+    border: 1px solid #A62626;
+
 }
 
 #loginInput {
@@ -27,7 +27,7 @@
 
 #loginInput input:focus {
     transition: 0.2s ease-in-out;
-    /*border: 0px;*/
+    // border: #A62626;
     background-color: rgb(65, 65, 65);
 }
 
