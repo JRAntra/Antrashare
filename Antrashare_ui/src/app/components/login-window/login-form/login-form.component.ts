@@ -37,20 +37,20 @@ export class LoginFormComponent implements OnInit {
         
     };
 
-    oneUppercase(control: AbstractControl): ValidationErrors | null {
+    oneUppercase(control: AbstractControl): ValidationErrors | null  {
         if (control.value !== control.value.toLowerCase()){
-            return { oneUppercase: true}
-        } else {
             return null
+        } else {
+            return { oneUppercase: false}
         }
     }
 
     oneSpecialChar(control: AbstractControl): ValidationErrors | null {
         const specialChars = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
         if (specialChars.test(control.value)){
-            return { oneSpecialChar: true}
-        } else {
             return null
+        } else {
+            return { oneSpecialChar: false}
         }
        
     }
