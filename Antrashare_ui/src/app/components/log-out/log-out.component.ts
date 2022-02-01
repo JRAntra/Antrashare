@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-log-out',
@@ -11,13 +11,13 @@ export class LogOutComponent implements OnInit {
 
   constructor(public dialog: MatDialog) {
 
-   }
-   openDialog():void{
+  }
+  openDialog(): void {
     const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
       width: '250px',
-     
+
     });
-   }
+  }
 
   ngOnInit(): void {
   }
@@ -33,13 +33,13 @@ export class DialogOverviewExampleDialog {
   constructor(
     public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
     private router: Router
-  ) {}
- 
+  ) { }
+
   onNoClick(): void {
     this.dialogRef.close();
   }
-  onYesClick():void{
+  onYesClick(): void {
     this.dialogRef.close();
-this.router.navigate(['/login']);
+    this.router.navigate(['/login']);
   }
 }

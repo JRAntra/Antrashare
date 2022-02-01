@@ -5,17 +5,14 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 10em;
   opacity: 1;
   position: relative;
 }
 
-.login-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.container {
   z-index: 2;
   position: absolute;
-  top: 50%;
   transform: translate(0%, 50%);
 }
 
