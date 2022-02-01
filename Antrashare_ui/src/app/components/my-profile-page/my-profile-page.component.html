@@ -1,1 +1,56 @@
-<p>my-profile-page works!</p>
+<div>
+    <h2>
+        Profile Details
+    </h2>
+    <div id="container-body">
+        <form id="editUserForm" [formGroup]="userInfoFormGroup">
+            <fieldset>
+                <legend>
+                    Personal Information
+                </legend>
+                <br>
+                <label for="firstname_id">
+                    Firstname<span>*</span>
+                </label>
+                <br>
+                <input formControlName="userFnameFormControl" type="text" id="firstname_id" name="firstname_name">
+                <br><br>
+                <label for="lastname_id">
+                    Last name<span>*</span>
+                </label>
+                <br>
+                <input formControlName="userLnameFormControl" type="text" id="lastname_id" name="lastname_name">
+                <br><br>
+                <label for="email_id">
+                    Email<span>*</span>
+                </label>
+                <br>
+                <input formControlName="userEmailFormControl" type="email" id="email_id" name="email_name">
+                <br><br>
+                <label for="birthday_id">
+                    Birthday
+                </label>
+                <br>
+                <input formControlName="userBDFormControl" type="date" id="birthday_id" name="birthday_name">
+                <br><br>
+            </fieldset>
+        </form>
+        <div id="imgProfile-container">
+            <img src="../../../assets/images/US-en-20220117-popsignuptwoweeks-perspective_alpha_website_medium.jpg"
+                id="imgProfile" alt="" />
+            <div id="img-button-container">
+                <input type="file" (change)="onFileChanged($event)" id="profpicfile_id" name="profpicfile_name" />
+                <button (click)="onTriggerInput()">
+                    Change Photo
+                </button>
+            </div>
+        </div>
+    </div>
+    <br>
+    <button *ngIf="!isEditInfo" mat-raised-button color="warn" type="submit" (click)='onEditInfo()'>
+        Edit
+    </button>
+    <button *ngIf="isEditInfo" [disabled]="!userInfoFormGroup.valid" mat-raised-button color="warn" type="submit" (click)='onSaveInfo()'>
+        Save
+    </button>
+</div>

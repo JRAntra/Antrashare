@@ -1,11 +1,7 @@
 #app {
-    background-image: url('../../../assets/images/US-en-20220117-popsignuptwoweeks-perspective_alpha_website_medium.jpg');
+    background-color: #F5F5F5;
     background-size: cover;
-    height: 100%;
-    width: 100%;
-    top: 0;
-    left: 0;
-    padding-top: 15%;
+    padding-top: 5%;
 }
 
 #login-modal {
@@ -15,7 +11,7 @@
     margin: 0 auto;
     padding: 2% 2% 10%;
     background-color: rgba(0, 0, 0, 0.795);
-    color: white;
+    color: #F5F5F5;
     border-radius: 4px;
 }
 
