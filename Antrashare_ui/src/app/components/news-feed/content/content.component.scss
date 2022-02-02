@@ -1,3 +1,5 @@
+@use "../../../../styles.scss" as theme;
+
 .contentPage {
     margin-left: 20%;
     margin-right: 20%; 
@@ -14,4 +16,11 @@
     margin-left: 10%;
     margin-right: 10%;
     padding: 10px;
+}
+
+.content {
+    margin: 50px;
+    background-color: theme.$secondary-color;
+    padding: 30px;
+
 }
