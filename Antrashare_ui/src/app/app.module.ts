@@ -36,6 +36,8 @@ import { SettingsTabComponent } from './components/settings-tab/settings-tab.com
 import { StoryComponent } from './components/news-feed-tab/story-list/story/story.component';
 import { StoryListComponent } from './components/news-feed-tab/story-list/story-list.component';
 import { TimeoutComponent } from './dialogs/timeout/timeout.dialog.component';
+import { EmptyComponent } from './components/layouts/empty/empty.component';
+import { HorizontalComponent } from './components/layouts/horizontal/horizontal.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +59,8 @@ import { TimeoutComponent } from './dialogs/timeout/timeout.dialog.component';
     StoryComponent,
     StoryListComponent,
     TimeoutComponent,
+    EmptyComponent,
+    HorizontalComponent,
   ],
   imports: [
     BrowserModule,
