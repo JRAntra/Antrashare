@@ -25,6 +25,7 @@ import { CommentInputComponent } from './components/news-feed-tab/story-list/com
 import { CommentListComponent } from './components/news-feed-tab/story-list/comment-list/comment-list.component';
 import { ErrorPageComponent } from './components/error-page/error-page.component';
 import { Error404Component } from './components/error-page/error404/error404.component';
+import { LayoutsComponent } from './components/layouts/layouts.component';
 import { LoginPageComponent } from './components/login-page/login-page.component';
 import { LoginFormComponent } from './components/login-page/login-form/login-form.component';
 import { LogoutWindowComponent } from './components/login-page/logout-window/logout-window.component';
@@ -45,6 +46,7 @@ import { TimeoutComponent } from './dialogs/timeout/timeout.dialog.component';
     CommentListComponent,
     ErrorPageComponent,
     Error404Component,
+    LayoutsComponent,
     LoginPageComponent,
     LoginFormComponent,
     LogoutWindowComponent,
