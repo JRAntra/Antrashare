@@ -1,8 +1,6 @@
-.error {
+input.ng-invalid.ng-dirty {
     border: 1px solid #A62626;
-
 }
-
 #loginInput {
     height: 40%;
     margin-top: 5%;
@@ -13,7 +11,7 @@
     margin-top: 2%;
     margin-bottom: 2%;
     width: 19rem;
-    /*border-radius: 4px;*/
+    border-radius: 4px;
     height: 2.7rem;
     /*border: 0px;*/
     color: #F5F5F5;
@@ -26,6 +24,7 @@
 }
 
 #loginInput input:focus {
+    outline: none;
     transition: 0.2s ease-in-out;
     // border: #A62626;
     background-color: rgb(65, 65, 65);
