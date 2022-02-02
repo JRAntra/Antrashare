@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { SettingsService } from 'src/app/services/settings.service';
 import { MatDialog } from '@angular/material/dialog';
-import { LogoutWindowComponent } from '../../dialogs/logout-window/logout-window.component';
+import { LogoutWindowComponent } from '../../dialogs/logout-window/logout-window.dialog.component';
 
 @Component({
   selector: 'app-settings-tab',
