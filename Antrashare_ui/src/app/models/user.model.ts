@@ -1,3 +1,14 @@
+export interface Role {
+  canAccess: boolean
+}
+
+export interface UserAccount {
+  id: string;
+  userEmail: string;
+  password: string;
+  userRole: string;
+}
+
 export interface UserProfile {
   id: string;
   userEmail: string;
