@@ -11,9 +11,8 @@ export class HideElementDirective implements OnInit {
   ) { }
 
   ngOnInit() {
-    let that = this
-    setTimeout(function(){
-      that.el.nativeElement.style['display'] = 'none'
+    setTimeout(() => {
+      this.el.nativeElement.style['display'] = 'none'
     }, 5000)
   }
 

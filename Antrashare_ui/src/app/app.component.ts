@@ -1,7 +1,9 @@
 import { Component, OnInit, Inject, HostListener } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog'
-import { Router} from '@angular/router'
+import { Router } from '@angular/router'
+import { environment } from 'src/environments/environment';
 import { TimeoutDialogComponent } from './components/timeout-dialog/timeout-dialog.component';
+import { IdleService } from './services/idle.service';
 
 @Component({
   selector: 'app-root',
@@ -10,33 +12,46 @@ import { TimeoutDialogComponent } from './components/timeout-dialog/timeout-dial
 })
 
 export class AppComponent implements OnInit {
-  //this is a test text
-  title = 'Antrashare_ui';
-  dialogRef?: MatDialogRef<TimeoutDialogComponent>
-  message: any
+  dialogRef?: MatDialogRef<TimeoutDialogComponent>;
 
   constructor(
-    private dialog: MatDialog,
-    private router: Router
-
+    private router: Router,
+    private idleService: IdleService,
+    private dialog: MatDialog
   ) {
 
   }
 
   ngOnInit(): void {
-
-    setInterval(() => {
-      if (this.dialogRef?.getState() != 0 && this.router.url != '/' && this.router.url != '/login') {
-        this.openDialog()
-      }
-    }, 5000)
+    // --- Yuxuan Wu ---
+    //     setInterval(() => {
+    //       if (this.dialogRef?.getState() != 0 && this.router.url != '/' && this.router.url != '/login') {
+    //         this.openDialog()
+    //       }
+    this.initialIdleSettings();
   }
 
+  public initialIdleSettings() {
+    const idleTimeoutTimes: number = environment.allPagesIdleTimeInMillSecond;
+    this.idleService.startWatching(idleTimeoutTimes).subscribe((isTimeOut: boolean) => {
+      if (isTimeOut) {
+        if (this.dialogRef?.getState() != 0 && this.router.url != '/' && this.router.url != '/login') {
+          this.openDialog();
+        }
+      }
+      else {
+        if (this.dialogRef?.getState() == 0) {
+          this.idleService.resetTimer();
+        }
+      }
+    });
+  }
+  
+// // --- Yuxuan Wu ---
   openDialog() {
     this.dialogRef = this.dialog.open(TimeoutDialogComponent, {
       width: '50%',
       height: '50%'
     })
   }
-
 }
