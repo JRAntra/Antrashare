@@ -19,7 +19,10 @@ export class LoginFormComponent implements OnInit {
       ]),
       password: new FormControl('', [
         Validators.required,
-        Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&.,])[A-Za-z\d$@$!%*?&].{8,}'),
+        Validators.minLength(5),
+        Validators.pattern(
+          '(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&.,])'
+        ),
       ]),
     });
   }
@@ -32,7 +35,7 @@ export class LoginFormComponent implements OnInit {
     return this.loginForm.get('password');
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {}
 
   submitForm() {
     console.log('Valid?', this.loginForm.valid); // true or false
@@ -43,9 +46,8 @@ export class LoginFormComponent implements OnInit {
     const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
       width: '250px',
       data: {
-        dataKey: user
-      }
-
+        dataKey: user,
+      },
     });
   }
 }
@@ -58,7 +60,7 @@ export class DialogOverviewExampleDialog implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
     @Inject(MAT_DIALOG_DATA) public username: any
-  ) { }
+  ) {}
 
   ngOnInit() {
     console.log(this.username.dataKey.value);
@@ -66,6 +68,5 @@ export class DialogOverviewExampleDialog implements OnInit {
   onNoClick(): void {
     this.dialogRef.close();
   }
-  onYesClick(): void {
-  }
+  onYesClick(): void {}
 }

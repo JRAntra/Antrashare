@@ -34,6 +34,7 @@ import { CommentListComponent } from './components/news-feed/story/comment-list/
 import { CommentInputComponent } from './components/news-feed/story/comment-input/comment-input.component';
 import { CommentComponent } from './components/news-feed/story/comment-list/comment/comment.component';
 import { LogOutComponent } from './components/log-out/log-out.component';
+import { TimeoutDialogComponent } from './components/timeout-dialog/timeout-dialog.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { LogOutComponent } from './components/log-out/log-out.component';
     CommentInputComponent,
     CommentComponent,
     LogOutComponent,
+    TimeoutDialogComponent,
   ],
   imports: [
     BrowserModule,
