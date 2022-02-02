@@ -19,17 +19,19 @@ export class TimeoutDialogComponent implements OnInit {
     this.setIdleTime();
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   cancel(): void {
-    clearTimeout(this.popUpTimeObserver);
     this.dialogRef.close();
     this.router.navigate(['/login']);
-    this.setIdleTime();
+    //this.setIdleTime();
   }
 
   confirm(): void {
     this.dialogRef.close();
+    clearTimeout(this.popUpTimeObserver);
+
+    // this.setIdleTime();
   }
 
   setIdleTime() {
@@ -37,6 +39,13 @@ export class TimeoutDialogComponent implements OnInit {
       () => this.popUpTimeObs.next(undefined),
       4000
     );
-    this.popUpTimeObs.subscribe(() => this.cancel());
+    this.popUpTimeObs.subscribe(() => {
+      this.confirm();
+      this.cancel();
+    });
+  }
+  ngOnDestroy(): void {
+    this.popUpTimeObs.unsubscribe();
+    this.dialogRef.close();
   }
 }

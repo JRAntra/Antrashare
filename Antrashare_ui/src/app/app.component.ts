@@ -10,11 +10,13 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   title = 'Antrashare_ui';
+  interval: any;
 
-  constructor(private dialog: MatDialog, private router: Router) {}
+  constructor(private dialog: MatDialog, private router: Router) { }
 
   ngOnInit(): void {
-    setInterval(() => {
+    this.openTimeoutDialog();
+    this.interval = setInterval(() => {
       if (
         this.router.url !== '/' &&
         this.router.url !== '/login' &&
@@ -30,5 +32,11 @@ export class AppComponent {
       height: '500px',
       width: '500px',
     });
+  }
+  ngOnDestroy() {
+    if (this.interval) {
+      clearInterval(this.interval);
+      this.dialog.closeAll();
+    }
   }
 }
