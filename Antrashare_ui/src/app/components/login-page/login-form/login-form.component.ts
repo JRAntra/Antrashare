@@ -40,9 +40,13 @@ export class LoginFormComponent implements OnInit {
       // Direct testing:
       // Can only go to news feed if the user input match the tmpUserData array
       let tmpUserData = [
+        // Users that will fail on validation
         { username: 'Josh', password: "123456" },
         { username: 'Kim', password: "696969" },
-        { username: 'LilyKim', password: "gh@ghGH"}
+
+        // Users that pass validators
+        { username: 'LilyKim', password: "gh@ghGH" }
+
         // add more to test if you want
       ];
 
@@ -62,7 +66,7 @@ export class LoginFormComponent implements OnInit {
         localStorage.setItem('login-data', this.loginData);
       }
     }
-    
+
   }
 }
 

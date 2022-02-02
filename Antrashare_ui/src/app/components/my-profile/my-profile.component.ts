@@ -2,7 +2,7 @@ import { Component, HostListener, OnInit } from '@angular/core';
 import { UserProfile } from 'src/app/interfaces/user.interface';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
-import { AppService } from '../services/app.service';
+import { idleTimeService } from '../services/idle-time';
 import { UserInfo } from '../../interfaces/user-display.interface';
 
 const THUMBUP_ICON =
@@ -44,9 +44,9 @@ export class MyProfileComponent implements OnInit {
 
   key = Object.keys(this.userData);
   value = Object.values(this.userData);
-  constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer, private _appService: AppService) {
-    _appService.currentPageIsSignInPage = false;
-    _appService.currentPage = 'myProfile';
+  constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer, private _idleTimeService: idleTimeService) {
+    _idleTimeService.currentPageIsSignInPage = false;
+    _idleTimeService.currentPageForRouting = 'myProfile';
     iconRegistry.addSvgIconLiteral('thumbs-up', sanitizer.bypassSecurityTrustHtml(THUMBUP_ICON));
   }
 
@@ -60,8 +60,8 @@ export class MyProfileComponent implements OnInit {
   @HostListener('document:keydown', ['$event'])
   @HostListener('click', ['$event'])
   @HostListener('window:mousemove') refreshUserState() {
-    this._appService.refreshTimer();
-    clearTimeout(this._appService.userActivity);
-    this._appService.registerCurrentTime(); // Re-monitor
+    this._idleTimeService.refreshTimer();
+    clearTimeout(this._idleTimeService.userActivity);
+    this._idleTimeService.registerCurrentTime(); // Re-monitor
   }
 }

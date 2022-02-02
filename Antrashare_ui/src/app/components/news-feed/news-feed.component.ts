@@ -1,8 +1,8 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { AppService } from '../services/app.service';
+import { idleTimeService } from '../services/idle-time';
 import { NewFeed } from '../../interfaces/newfeed.interface';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-news-feed',
@@ -37,21 +37,27 @@ export class NewsFeedComponent implements OnInit {
     }
   ]
 
-  displayTimer$: Observable<number> | undefined;
-  constructor(private _appService: AppService) {
-    _appService.currentPageIsSignInPage = false;
-    _appService.currentPage = 'newsFeed';
+  constructor(private _idleTimeService: idleTimeService, private _httpClient: HttpClient) {
+    _idleTimeService.currentPageIsSignInPage = false;
+    _idleTimeService.currentPageForRouting = 'newsFeed';
   }
 
   ngOnInit() {
+    this._httpClient.get("http://localhost:4231/api/news").subscribe(
+      (data) => {
+        console.log(`Connected to mongoDB server`);
+        
+        console.log(`data from mongoDB server: `, data);
+      }
+    )
 
   }
 
   @HostListener('document:keydown', ['$event'])
   @HostListener('click', ['$event'])
   @HostListener('window:mousemove') refreshUserState() {
-    this._appService.refreshTimer();
-    clearTimeout(this._appService.userActivity);
-    this._appService.registerCurrentTime(); // Re-monitor
+    this._idleTimeService.refreshTimer();
+    clearTimeout(this._idleTimeService.userActivity);
+    this._idleTimeService.registerCurrentTime(); // Re-monitor
   }
 }

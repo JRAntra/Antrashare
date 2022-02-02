@@ -1,6 +1,6 @@
 import { Component, OnInit, } from '@angular/core';
 import { Router } from '@angular/router';
-import { AppService } from '../services/app.service';
+import { idleTimeService } from '../services/idle-time';
 
 @Component({
   selector: 'app-logout-confirmation-dialog',
@@ -9,7 +9,7 @@ import { AppService } from '../services/app.service';
 })
 export class LogoutConfirmationDialogComponent implements OnInit {
 
-  constructor(private router: Router, private _appService: AppService) { }
+  constructor(private router: Router, private _idleTimeService: idleTimeService) { }
 
   ngOnInit(): void {
 
@@ -21,11 +21,11 @@ export class LogoutConfirmationDialogComponent implements OnInit {
   clickedYes() {
     this.router.navigate(['loginPage']);
   }
-  
+
   // Click “No“ will stay in the page
   clickedNo() {
-    clearTimeout(this._appService.timerId); // prevent jumping to home page
-    this.router.navigate([this._appService.currentPage]);
+    clearTimeout(this._idleTimeService.timerId); // prevent jumping to home page
+    this.router.navigate([this._idleTimeService.currentPageForRouting]);
   }
 
 }
