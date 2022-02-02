@@ -1,10 +1,20 @@
-
-    <div class="timeoutDialogBody">
-        <div class="timeoutDialogMessage">
-            TimeOutWarningMessage
-        </div>
-        <div class="timeoutDialogBottom">
-            <button mat-raised-button class="timeoutDialogCancelButton" (click) = "onCancel()">Cancel</button>
-            <button mat-raised-button class="timeoutDialogConfirmButton"(click) = "onConfirmed()">Confirm</button>
-        </div>
+YuXuan Wu
+<div class="timeoutDialogBody">
+    <div class="timeoutDialogMessage">
+        TimeOutWarningMessage
     </div>
+    <div class="timeoutDialogBottom">
+        <button mat-raised-button class="timeoutDialogCancelButton" (click)="onCancel()">Cancel</button>
+        <button mat-raised-button class="timeoutDialogConfirmButton" (click)="onConfirmed()">Confirm</button>
+    </div>
+</div>
+
+<!-- modified by Huazhen Xu -->
+<!-- <div class="timeoutDialogBody">
+    <h2 mat-dialog-title>Timeout warning message</h2>
+    <div mat-dialog-content>Do you want to stay?</div>
+    <div mat-dialog-actions class="timeoutDialogBottom">
+        <button mat-raised-button class="timeoutDialogCancelButton" (click)="onCancel()">Cancel</button>
+        <button mat-raised-button class="timeoutDialogConfirmButton" (click)="onConfirmed()">Confirm</button>
+    </div>
+</div> -->

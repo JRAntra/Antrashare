@@ -3,7 +3,11 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  // testing: set 5s, requirement need to set 10min(10*60*100)
+  allPagesIdleTimeInMillSecond: 5000,
+  // testing: set 2s, requirement need to set 10s(1000)
+  dialogIdleTimeInMillSecond: 2000,
 };
 
 /*
