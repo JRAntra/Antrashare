@@ -17,16 +17,22 @@ export class LoginFormComponent implements OnInit {
     
     //by YuxuanWu, form group
     public userFormGroup = new FormGroup({
-        usernameFormControl: new FormControl('', [
-            Validators.required,
-            Validators.minLength(5)
-        ]),
-        passwordFormControl: new FormControl('',  [
-            Validators.required,
-            Validators.minLength(5),
-            this.oneUppercase,
-            this.oneSpecialChar
-        ])
+        usernameFormControl: new FormControl('', {
+            validators: [
+                Validators.required,
+                Validators.minLength(5)
+            ],
+            updateOn: 'change'
+        }),
+        passwordFormControl: new FormControl('',  {
+            validators: [
+                Validators.required,
+                Validators.minLength(5),
+                this.oneUppercase,
+                this.oneSpecialChar
+            ],
+            updateOn: 'change'
+        })
     })
 
 

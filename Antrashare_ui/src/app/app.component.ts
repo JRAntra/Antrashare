@@ -29,7 +29,7 @@ export class AppComponent implements OnInit {
       if (this.dialogRef?.getState() != 0 && this.router.url != '/' && this.router.url != '/login') {
         this.openDialog()
       }
-    }, 5000)
+    }, 2000)
   }
 
   openDialog() {

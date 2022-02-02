@@ -6,8 +6,8 @@
     <div id='loginInput'>
         <!-- by YuxuanWu form group-->
         <form [formGroup] = "userFormGroup">
-            <input type='text' [ngClass]="{'error': userFormGroup.get('usernameFormControl')?.errors}"formControlName="usernameFormControl" placeholder='Email or phone number'/><br/>
-            <input type='password' [ngClass]="{'error': userFormGroup.get('passwordFormControl')?.errors}" formControlName="passwordFormControl" placeholder = 'Password'/><br/>
+            <input type='text' formControlName="usernameFormControl" placeholder='Email or phone number'/><br/>
+            <input type='password' formControlName="passwordFormControl" placeholder = 'Password'/><br/>
         </form>
         <!-- by YuxuanWu form control
             <input type='text' [formControl]="username" placeholder='Email or phone number'/><br/>
