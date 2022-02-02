@@ -1,4 +1,4 @@
-import { Component, OnInit , Input } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { NewFeed } from '../../../interfaces/newfeed.interface';
 import { UserInfoNewFeed } from '../../../interfaces/user-display.interface';
 
@@ -14,14 +14,14 @@ export class ContentComponent implements OnInit {
   };
 
   @Input() currentStory!: NewFeed;
-  
-  constructor() { 
+
+  constructor() {
   }
 
   ngOnInit(): void {
     this.userInfo = {
-      publisherName: this.currentStory.publisherName,
-      publishedTime: this.currentStory.publishedTime
+      publisherName: this.currentStory.publisherName!,
+      publishedTime: this.currentStory.publishedTime!,
     }
   }
 }

@@ -10,14 +10,16 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./news-feed.component.scss']
 })
 export class NewsFeedComponent implements OnInit {
-  public stories: NewFeed[] = [
+  public storiesNotFromServer: NewFeed[] = [
     {
       publisherName: "Cat",
       publishedTime: "1/24/2022",
       content: {
         text: "Good morning"
       },
-      comment: []
+      comment: [],
+      _id: "id_for_cat_001",
+
     },
     {
       publisherName: "Dog",
@@ -33,21 +35,29 @@ export class NewsFeedComponent implements OnInit {
             text: "How are you?"
           }
         }
-      ]
+      ],
+      _id: "id_for_dog_001",
     }
   ]
+
+  public storiesFromServer: NewFeed[] = [];
 
   constructor(private _idleTimeService: idleTimeService, private _httpClient: HttpClient) {
     _idleTimeService.currentPageIsSignInPage = false;
     _idleTimeService.currentPageForRouting = 'newsFeed';
   }
 
+  dataFromMongoDB: any;
   ngOnInit() {
     this._httpClient.get("http://localhost:4231/api/news").subscribe(
       (data) => {
         console.log(`Connected to mongoDB server`);
-        
-        console.log(`data from mongoDB server: `, data);
+
+        // Save the data locally to create dynamically with ngFor
+        this.dataFromMongoDB = data;
+        this.storiesFromServer = this.dataFromMongoDB;
+        console.log(`Data from server: `, this.storiesFromServer);
+
       }
     )
 
