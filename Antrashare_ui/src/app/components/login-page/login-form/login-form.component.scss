@@ -3,6 +3,13 @@
     display:flex;
     justify-content: space-between;
 }
+.container{
+    border: 1px solid black;
+    padding: 50px 0px;
+    width:30%;
+    min-width:400px;
+    margin:auto
+}
 .loginForm{
     display:flex;
     flex-direction: column;

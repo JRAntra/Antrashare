@@ -1,3 +1,14 @@
-<!-- <button mat-raised-button color="primary">Primary</button>
-<button pButton pRipple type="button" icon="pi pi-bookmark" class="p-button-rounded p-button-secondary"></button> -->
-<app-login-page></app-login-page>
+<div class="container">
+  <nav class="navBar" *ngIf="has_userId">
+      <img src='../assets/AntraShare_logo_no_text.PNG' width='50px' height='50px'>
+      <a class='hyperlinkTxt_white' [routerLink]="['/login']" (click)='onLogout()'>Log Out</a>
+  </nav>
+
+  <router-outlet></router-outlet>
+
+  <footer class="footerBar" *ngIf="has_userId">
+      <div class='footer_btn' [routerLink]="['/userProfile']">My Profile</div>
+      <div class='footer_btn' [routerLink]="['/newsFeed']">News Feed</div>
+      <div class='footer_btn' [routerLink]="['/settings']">Settings</div>
+  </footer>
+</div>

@@ -1,39 +1,42 @@
-<div>
-  <ng-container *ngFor="let item of backendData; let i = index">
-    <form [formGroup]="userFormGroup" class="loginForm">
-      <mat-form-field class="formField" appearance="outline">
-        <mat-label>User Name</mat-label>
+<div class='container'>
+  
+  <form [formGroup]="userFormGroup" class="loginForm">
+    <img src='./../../../../assets/AntraShare_Logo.PNG' width='200px' height='200px'>
+    <br>
+    <mat-form-field class="formField" appearance="outline">
+      <mat-label>User Name</mat-label>
 
-        <input
-          class="inputField"
-          matInput
-          formControlName="userNameFormControl"
-          placeholder="User Name"
-        />
-      </mat-form-field>
-      <mat-form-field class="formField" appearance="outline">
-        <mat-label>Password</mat-label>
-        <input
-          class="inputField"
-          matInput
-          formControlName="passwordFormControl"
-          placeholder="Password"
-        />
-      </mat-form-field>
+      <input
+        class="inputField"
+        matInput
+        formControlName="userNameFormControl"
+        placeholder="User Name"
+      />
+    </mat-form-field>
+    <mat-form-field class="formField" appearance="outline">
+      <mat-label>Password</mat-label>
+      <input
+        class="inputField"
+        matInput
+        formControlName="passwordFormControl"
+        placeholder="Password"
+      />
+    </mat-form-field>
 
-      <button
-        mat-raised-button
-        color="primary"
-        class="submitButton"
-        (click)="checkInfo(i)"
-      >
-        Login
-      </button>
-      <br />
-      <div class="agreement">
-        <mat-checkbox color="primary">Agreement</mat-checkbox>
-        <a href="">Need Help?</a>
-      </div>
-    </form>
-  </ng-container>
+    <button
+      mat-raised-button
+      color="primary"
+      class="submitButton"
+      (click)="onLogin()"
+    >
+      Login
+    </button>
+    <br />
+    <a href="">No Accounts? Register Now!</a>
+    <br />
+    <div class="agreement">
+      <mat-checkbox color="primary">Agreement</mat-checkbox>
+      <a href="">Need Help?</a>
+    </div>
+  </form>
 </div>

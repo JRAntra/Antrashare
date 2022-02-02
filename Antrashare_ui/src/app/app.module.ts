@@ -19,6 +19,9 @@ import { NewsFeedComponent } from './components/news-feed/news-feed.component';
 import { LoginFormComponent } from './components/login-page/login-form/login-form.component';
 import { LoginPageComponent } from './components/login-page/login-page.component';
 import { TimeoutComponent } from './dialogs/timeout/timeout.component';
+import { NewsPostComponent } from './components/news-feed/newsPost/newsPost.component';
+import { NewsStoryComponent } from './components/news-feed/newsStory/newsStory.component';
+import { SingleNewsStoryComponent } from './components/news-feed/newsStory/singleNewsStory/singleNewsStory.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +30,9 @@ import { TimeoutComponent } from './dialogs/timeout/timeout.component';
     LoginPageComponent,
     NewsFeedComponent,
     TimeoutComponent,
+    NewsPostComponent,
+    NewsStoryComponent,
+    SingleNewsStoryComponent,
   ],
   imports: [
     AppRoutingModule,

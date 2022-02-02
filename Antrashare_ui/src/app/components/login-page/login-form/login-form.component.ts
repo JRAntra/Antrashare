@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { AuthenticateService } from 'src/app/Service/authenticate.service';
 import {
   AbstractControl,
   FormControl,
@@ -10,6 +11,7 @@ import {
 } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { TimeoutComponent } from 'src/app/dialogs/timeout/timeout.component';
+import { Router } from '@angular/router';
 export interface UserInfo {
   username: string;
   password: string;
@@ -21,18 +23,9 @@ export interface UserInfo {
   styleUrls: ['./login-form.component.scss'],
 })
 export class LoginFormComponent implements OnInit {
-  constructor(private dialog: MatDialog, private fb: FormBuilder) {}
-  // public userNameFormControl = new FormControl('');
-  // public passwordFormControl = new FormControl('');
 
-  public backendData = [1, 2, 3, 4, 5];
-
-  public userFormBuilderGroup = this.fb.group({
-    usernameFormControl: [''],
-    passwod: [''],
-  });
-
-  public userFromArray = this.fb.array([this.userFormBuilderGroup]);
+  constructor(private auth: AuthenticateService,
+    private router : Router){}
 
   public userFormGroup = new FormGroup({
     userNameFormControl: new FormControl('', [
@@ -47,38 +40,18 @@ export class LoginFormComponent implements OnInit {
     password: '12345',
   };
 
-  ngOnInit(): void {
-    // this.userNameFormControl.setValue(this.userInfoToken.username);
-    // this.passwordFormControl.setValue(this.userInfoToken.password);
-    // this.userFormGroup.controls['userNameFormControl'].setValue(this.userInfoToken.username);
-    // this.userNamevalue = this.userInfoToken.username
-    // this.userFormGroup.patchValue({
-    //   userNameFormControl: this.userInfoToken.username,
-    //   passwordFormControl: this.userInfoToken.password,
-    // });
-    // console.log(this.userNamevalue);
-    // backendData.forEach(item=> this.userFromArray.push(this.fb.group({
-    //   name: item.name
-    // })))
+  @Output() userLogin = new EventEmitter()
+
+  ngOnInit(): void {}
+
+  onLogin() {
+    localStorage.setItem('username','JR')
+    this.router.navigate(['newsFeed']);
+    this.auth.changeLoginStatus();
+
   }
 
-  checkInfo(index: number) {
-    console.log(index);
-    // this.submitUserInfo();
-    // console.log(this.userInfoToken);
-
-    // const timeoutDialogRef = this.dialog.open(TimeoutComponent, {
-    //   width: '50%',
-    //   height: '50%',
-    //   data: { name: this.userNamevalue },
-    // });
-    // timeoutDialogRef.afterClosed().subscribe((res) => console.log(res));
-  }
-
-  submitUserInfo() {
-    // this.userInfoToken.username = this.userNameFormControl.value ? this.userNameFormControl.value : undefined;
-    // this.userInfoToken.password = this.passwordFormControl.value ? this.passwordFormControl.value : undefined;
-  }
+  submitUserInfo() {}
 
   set userNamevalue(val) {
     this.userFormGroup?.get('userNameFormControl')?.setValue(val);
