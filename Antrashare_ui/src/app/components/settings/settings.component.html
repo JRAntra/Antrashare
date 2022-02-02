@@ -1,13 +1,11 @@
 <div id='settings'>
     <div id='settingsMain'>
+        <h1>Settings</h1>
         <div id='settingsOptions'>
-            <h1>Settings</h1>
             <div id='options'>
-                <button>Option</button>
-                <button>Option</button>
-                <button>Option</button>
-                <button>Option</button>
-                <button>Option</button>
+                <button routerLink="../myProfile">Edit Your Profile</button>
+                <button>Change Text Size (coming soon)</button>
+                <button>Light/Dark Mode (coming soon)</button>
             </div>
             <div id='settingsLogout'>
                 <button (click)='showLogout(true)'>
@@ -17,5 +15,5 @@
         </div>
     </div>
     <logout-window *ngIf='logout' [logout]='logout' (logoutEmitter)=showLogout($event)></logout-window>
-    <app-bottom-bar></app-bottom-bar>
+    <!-- <app-bottom-bar></app-bottom-bar> -->
 </div>
