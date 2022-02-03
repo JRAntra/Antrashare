@@ -7,6 +7,8 @@ import { NewsService } from 'src/app/services/news/news.service';
   styleUrls: ['./news-feed.component.scss']
 })
 export class NewsFeedComponent implements OnInit {
+
+  userScrolling: boolean = false;
   /*
   story0: Story = {
     id: 0,
@@ -31,16 +33,16 @@ export class NewsFeedComponent implements OnInit {
     publishedTime: '1/3/2022',
     content: "fasfasfa"
   }*/
-  //storyList: Story[] = [this.story0, this.story1, this.story2]
+
+
+  storyList: any;
 
   constructor(private newsService: NewsService) { }
 
   ngOnInit(): void {
-    this.newsService.getNews().subscribe(console.log)
+    this.newsService.getNews().subscribe(storyList => this.storyList = storyList);
+    console.log(this.storyList);
   }
-
-  
-
 }
 
 
