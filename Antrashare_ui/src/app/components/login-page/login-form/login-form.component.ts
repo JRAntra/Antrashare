@@ -19,7 +19,7 @@ export class LoginFormComponent implements OnInit {
       password: new FormControl('', [
         Validators.required,
         Validators.pattern(
-          /^(?=.{5,})(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*+=]).*$/
+          /^(?=.{5,})(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*+=.,]).*$/
         ),
       ]),
     });
@@ -33,7 +33,7 @@ export class LoginFormComponent implements OnInit {
     return this.loginForm.get('password');
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   submitForm() {
     console.log('Valid?', this.loginForm.valid); // true or false
