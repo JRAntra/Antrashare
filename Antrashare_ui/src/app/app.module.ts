@@ -17,10 +17,11 @@ import { BottomBarComponent } from './components/bottom/bottom-bar/bottom-bar.co
 import { ErrorPageComponent } from './components/error-page/error-page.component';
 import { HeaderComponent } from './components/header/header.component';
 import { HideElementDirective } from 'src/app/directives/hide-element/hide-element.directive';
+import { LogoutDialogComponent } from './components/logout-dialog/logout-dialog.component';
 import { LoginWindowComponent } from './components/login-window/login-window.component';
 import { LoginFormComponent } from './components/login-window/login-form/login-form.component';
-import { LogoutWindowComponent } from './components/settings/logout-window/logout-window.component';
 import { MyProfilePageComponent } from './components/my-profile-page/my-profile-page.component';
+import { PostFieldComponent } from './components/news-feed/post-field/post-field.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { NavbarComponent } from './components/header/navbar/navbar.component';
 import { NewsService } from 'src/app/services/news/news.service';
@@ -28,12 +29,6 @@ import { NewsFeedComponent } from './components/news-feed/news-feed.component';
 import { StoryComponent } from './components/story/story.component';
 import { TimeoutDialogComponent } from 'src/app/components/timeout-dialog/timeout-dialog.component';
 
-import { HeaderComponent } from './components/header/header.component';
-import { NavbarComponent } from './components/header/navbar/navbar.component';
-import { ErrorPageComponent } from './components/error-page/error-page.component';
-import { BottomBarComponent } from './components/bottom/bottom-bar/bottom-bar.component';
-import { LogoutDialogComponent } from './components/logout-dialog/logout-dialog.component';
-import { PostFieldComponent } from './components/news-feed/post-field/post-field.component';
 
 
 
