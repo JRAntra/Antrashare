@@ -1,13 +1,35 @@
-<form>
+<form [formGroup]="postForm" (ngSubmit)="post()">
   <mat-card class='container'>
     <mat-card-title>Create Post</mat-card-title>
 
     <mat-card-content class="post-content">
 
+      <!-- text -->
       <mat-form-field class="full-width" appearance="outline">
         <mat-label>What's on your mind?</mat-label>
-        <textarea matInput></textarea>
+        <textarea matInput formControlName="text"></textarea>
       </mat-form-field>
+
+      <!-- image -->
+      <ng-container>
+        <mat-form-field class="full-width" appearance="outline">
+          <img matPrefix src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Angular_full_color_logo.svg/512px-Angular_full_color_logo.svg.png">
+          <mat-label>Paste image URL</mat-label>
+          <input matInput formControlName="image">
+          <mat-icon matSuffix>delete</mat-icon>
+        </mat-form-field>
+      </ng-container>
+      
+      <!-- video -->
+      <ng-container>
+        <mat-form-field class="full-width" appearance="outline">
+          <img matPrefix src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Angular_full_color_logo.svg/512px-Angular_full_color_logo.svg.png">
+          <mat-label>Paste video URL</mat-label>
+          <input matInput formControlName="video">
+          <mat-icon matSuffix>delete</mat-icon>
+        </mat-form-field>
+        
+      </ng-container>
       
     </mat-card-content>
 

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-story-form',
@@ -7,9 +8,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StoryFormComponent implements OnInit {
 
-  constructor() { }
+  postForm!: FormGroup;
+
+  constructor(
+    private fb: FormBuilder
+  ) {
+    this.postForm = this.fb.group({
+      text: '',
+      image: this.fb.array([]),
+      video: this.fb.array([])
+    });
+  }
 
   ngOnInit(): void {
+    
+  }
+
+  public post(): void {
+    console.log(this.postForm.value);
   }
 
 }
