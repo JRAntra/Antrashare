@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { story } from 'src/app/models/user.models';
@@ -7,9 +8,17 @@ import { story } from 'src/app/models/user.models';
 })
 export class DataService {
 
-  constructor() { }
+  private newsUrl = 'http://localhost:4231/api/news';
+
+  constructor(private http: HttpClient) { }
   getNewsFeed(): Observable<story[]> {
     const news = of(newsfeed);
+
+    this.http.get(this.newsUrl).subscribe(
+      (data) =>
+        console.log(data)
+    );
+
     return news;
   }
 
