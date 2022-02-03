@@ -29,6 +29,7 @@ import { ErrorPageComponent } from './components/error-page/error-page.component
 import { BottomBarComponent } from './components/bottom/bottom-bar/bottom-bar.component';
 import { LogoutDialogComponent } from './components/logout-dialog/logout-dialog.component';
 import { PostFieldComponent } from './components/news-feed/post-field/post-field.component';
+import { StoryCommentsComponent } from './components/news-feed/story-comments/story-comments.component';
 
 
 @NgModule({
@@ -47,7 +48,8 @@ import { PostFieldComponent } from './components/news-feed/post-field/post-field
     ErrorPageComponent,
     BottomBarComponent,
     LogoutDialogComponent,
-    PostFieldComponent
+    PostFieldComponent,
+    StoryCommentsComponent
   ],
   imports: [
     BrowserModule,
