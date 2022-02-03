@@ -12,7 +12,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
-import { MatDialogModule } from '@angular/material/dialog'
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatCardModule } from '@angular/material/card';
 import { ReactiveFormsModule } from '@angular/forms';
 
 
@@ -27,6 +28,7 @@ import { NavbarComponent } from './components/header/navbar/navbar.component';
 import { ErrorPageComponent } from './components/error-page/error-page.component';
 import { BottomBarComponent } from './components/bottom/bottom-bar/bottom-bar.component';
 import { LogoutDialogComponent } from './components/logout-dialog/logout-dialog.component';
+import { PostFieldComponent } from './components/news-feed/post-field/post-field.component';
 
 
 @NgModule({
@@ -44,7 +46,8 @@ import { LogoutDialogComponent } from './components/logout-dialog/logout-dialog.
     NavbarComponent,
     ErrorPageComponent,
     BottomBarComponent,
-    LogoutDialogComponent
+    LogoutDialogComponent,
+    PostFieldComponent
   ],
   imports: [
     BrowserModule,
@@ -56,6 +59,7 @@ import { LogoutDialogComponent } from './components/logout-dialog/logout-dialog.
     MatIconModule,
     MatMenuModule,
     MatButtonModule,
+    MatCardModule,
     ReactiveFormsModule
   ],
   providers: [],
