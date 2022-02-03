@@ -17,7 +17,6 @@ export class NewsService {
   
   getNews(): Observable<any> {
     return this.http.get("http://localhost:4231/api/news")
-
   }
   
 }
