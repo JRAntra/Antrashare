@@ -1,10 +1,25 @@
+@import '../../../styles.scss';
+
 .story {
-    border: gray solid;
+    // border: gray solid;
     margin-bottom: 10%;
+    background-color: $white2;
 }
 .storyHeader {
-    display: flex;
-    margin-left: 5%;
+    display: grid;
+    grid-template-columns: 10% 20% 70%;
+    padding: 2% 5%;
+    color: $black;
+}
+
+h2 {
+    font-size: 1.5rem;
+}
+
+#publicationInfo {
+    display: grid;
+    grid-template-rows: 80% 20%;
+    height: 100%;
 }
 
 .storyContent {
@@ -15,16 +30,16 @@
 
 .storyBottomBar {
     display: grid;
-    grid-template-columns: 33.33% 33.33% 33.33%;
+    grid-template-columns: 33% 34% 33%;
     align-items: center;
     justify-items: center;
     margin-left: 5%;
     margin-right: 5%;
     border: solid gray;
-    
+
 }
 
 .storyBottomBarButton {
-    background-color: #A62626;
-    color: white;
+    background-color: $red;
+    color: $white;
 }
