@@ -8,49 +8,6 @@ import { i18nMetaToJSDoc } from '@angular/compiler/src/render3/view/i18n/meta';
   providedIn: 'root'
 })
 export class NewsService {
-  news1: News = {
-    avatar: undefined,
-    publisherName: 'string', 
-    publishedTime: 'string',
-    content: {
-        image: 'string',
-        video: 'string',
-        text: 'string'
-    },
-    comment: [{
-        avatar: undefined,
-        publisherName: 'string', 
-        publishedTime: 'string',
-        content: {
-            image: 'string',
-            video: 'string',
-            text: 'string'
-        }
-    }],
-    likedList: []
-  }
-  news2: News = {
-    avatar: undefined,
-    publisherName: 'string', 
-    publishedTime: 'string',
-    content: {
-        image: 'string',
-        video: 'string',
-        text: 'string'
-    },
-    comment: [{
-        avatar: undefined,
-        publisherName: 'string', 
-        publishedTime: 'string',
-        content: {
-            image: 'string',
-            video: 'string',
-            text: 'string'
-        }
-    }],
-    likedList: []
-  }
-
   news$?: Observable<News>
 
   constructor(private http: HttpClient) {
@@ -58,10 +15,9 @@ export class NewsService {
   }
 
   
-  getNews(): Observable<News[]> {
-    //return this.http.get()
-   
-    return of ([this.news1, this.news2])
+  getNews(): Observable<any> {
+    return this.http.get("http://localhost:4231/api/news")
+
   }
   
 }
