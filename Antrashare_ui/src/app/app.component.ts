@@ -20,25 +20,25 @@ import { IdleService } from './services/idle.service';
 export class AppComponent {
 
   @HostBinding('class')
-  activeThemeCssClass!: string;
+  activeThemeCssClass: string = 'dark-theme';
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
     map(result => result.matches),
     shareReplay()
   );
 
-  isOpen$: Observable<boolean> = this.router.events.pipe(
-    filter((event) => event instanceof NavigationEnd),
-    map((rount: any) => {
-      return rount.url != '/login' && rount.url != '/';
-    }),
-    tap((value) => {
-      if (value) {
-        this.idle();
-      }
-    }),
-    shareReplay()
-  );
+  // isOpen$: Observable<boolean> = this.router.events.pipe(
+  //   filter((event) => event instanceof NavigationEnd),
+  //   map((rount: any) => {
+  //     return rount.url != '/login' && rount.url != '/';
+  //   }),
+  //   tap((value) => {
+  //     if (value) {
+  //       this.idle();
+  //     }
+  //   }),
+  //   shareReplay()
+  // );
 
   @ViewChild('sidenav')
   sidenav!: MatSidenav;
@@ -95,7 +95,6 @@ export class AppComponent {
 
   // show or hide the left side menu
   toggleSidenav() {
-    this.activeThemeCssClass = 'light-theme';
     console.log(this.activeThemeCssClass);
     this.sidenav.toggle();
   }
