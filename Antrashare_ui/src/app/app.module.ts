@@ -16,9 +16,9 @@ import { BottomBarComponent } from './components/bottom/bottom-bar/bottom-bar.co
 import { ErrorPageComponent } from './components/error-page/error-page.component';
 import { HeaderComponent } from './components/header/header.component';
 import { HideElementDirective } from 'src/app/directives/hide-element/hide-element.directive';
+import { LogoutDialogComponent } from './components/logout-dialog/logout-dialog.component';
 import { LoginWindowComponent } from './components/login-window/login-window.component';
 import { LoginFormComponent } from './components/login-window/login-form/login-form.component';
-import { LogoutWindowComponent } from './components/settings/logout-window/logout-window.component';
 import { MyProfilePageComponent } from './components/my-profile-page/my-profile-page.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { NavbarComponent } from './components/header/navbar/navbar.component';
