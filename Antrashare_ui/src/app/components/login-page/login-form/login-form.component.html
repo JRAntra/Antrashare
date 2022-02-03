@@ -27,7 +27,7 @@
         />
         <mat-hint *ngIf="password?.errors?.['pattern']">
           Password must include at least 5 characters in length and 1 lowercase
-          letter, 1 uppercase letter, 1 number, and 1 special character.
+          letter, 1 uppercase letter and 1 special character.
         </mat-hint>
       </mat-form-field>
 
@@ -41,7 +41,6 @@
         color="warn"
         type="submit"
         [disabled]="loginForm.invalid"
-        (click)="openDialog()"
       >
         Sign In
       </button>

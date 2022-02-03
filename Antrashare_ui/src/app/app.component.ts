@@ -12,10 +12,9 @@ export class AppComponent {
   title = 'Antrashare_ui';
   interval: any;
 
-  constructor(private dialog: MatDialog, private router: Router) { }
+  constructor(private dialog: MatDialog, private router: Router) {}
 
   ngOnInit(): void {
-    this.openTimeoutDialog();
     this.interval = setInterval(() => {
       if (
         this.router.url !== '/' &&
