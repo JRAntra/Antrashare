@@ -1,4 +1,4 @@
-import { Component, NgZone, ViewChild } from '@angular/core';
+import { Component, HostBinding, NgZone, ViewChild } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
@@ -18,6 +18,9 @@ import { IdleService } from './services/idle.service';
   providers: [IdleService],
 })
 export class AppComponent {
+
+  @HostBinding('class')
+  activeThemeCssClass!: string;
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
     map(result => result.matches),
@@ -39,12 +42,6 @@ export class AppComponent {
 
   @ViewChild('sidenav')
   sidenav!: MatSidenav;
-
-  tabs = [
-    { name: 'My Profile', path: 'profile' },
-    { name: 'News Feed', path: 'newsfeed' },
-    { name: 'Settings', path: 'settings' }
-  ];
 
   title = 'Antrashare_ui';
   theme$: Observable<string> = this.settingsService.getTheme();
@@ -98,6 +95,8 @@ export class AppComponent {
 
   // show or hide the left side menu
   toggleSidenav() {
+    this.activeThemeCssClass = 'light-theme';
+    console.log(this.activeThemeCssClass);
     this.sidenav.toggle();
   }
 

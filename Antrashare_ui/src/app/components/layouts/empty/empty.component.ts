@@ -5,7 +5,7 @@ import { Subject } from 'rxjs';
   selector: 'layout-empty',
   templateUrl: './empty.component.html'
 })
-export class EmptyComponent implements OnInit, OnDestroy {
+export class EmptyLayoutComponent implements OnInit, OnDestroy {
   private unsubscribeAll!: Subject<any>;
 
   constructor() { }

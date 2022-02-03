@@ -1,4 +1,4 @@
-<!-- Creates a layout with a left-positioned sidenav and explicit content. -->
+<!-- Creates a layout with a left-positioned sidenav and explicit content.
 <div [class]="'mat-sidenav-container ' + (theme$ | async)">
   <mat-sidenav-container>
     <mat-sidenav #sidenav *ngIf="(isOpen$ | async)" [opened]="(isHandset$ | async) == false"
@@ -26,7 +26,10 @@
       </mat-toolbar>
 
       <!-- Shows our router-outlet. -->
-      <router-outlet></router-outlet>
+      <!-- <router-outlet></router-outlet>
     </mat-sidenav-content>
   </mat-sidenav-container>
-</div>
+</div> --> -->
+
+<!-- Shows our router-outlet. -->
+<router-outlet></router-outlet>

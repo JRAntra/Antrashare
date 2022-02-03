@@ -3,22 +3,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { OverlayContainer } from '@angular/cdk/overlay';
+
 // Router
 import { AppRoutingModule } from './app-routing.module';
-
-// Angular Material Modules
-import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
-import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatDialogModule } from '@angular/material/dialog';
-import { MatExpansionModule } from '@angular/material/expansion';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatIconModule } from '@angular/material/icon';
-import { MatInputModule } from '@angular/material/input';
-import { MatListModule } from '@angular/material/list';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { OverlayContainer } from '@angular/cdk/overlay';
 
 // Components
 import { AppComponent } from './app.component';
@@ -70,18 +58,6 @@ import { TimeoutComponent } from './dialogs/timeout/timeout.dialog.component';
     // Layouts module
     LayoutsModule,
 
-    // Angular Material Modules
-    MatButtonModule,
-    MatCardModule,
-    MatCheckboxModule,
-    MatDialogModule,
-    MatExpansionModule,
-    MatFormFieldModule,
-    MatIconModule,
-    MatInputModule,
-    MatListModule,
-    MatSidenavModule,
-    MatToolbarModule,
   ],
   providers: [OverlayContainer],
   bootstrap: [AppComponent]
