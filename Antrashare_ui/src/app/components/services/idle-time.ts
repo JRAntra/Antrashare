@@ -21,7 +21,6 @@ export class idleTimeService {
   currentPageIsSignInPage = false;
   val: number | undefined;
   reset$ = new Subject();
-  displayTimer$: Observable<number> | undefined;
   subscription: Observable<number> | undefined;
 
   // Variables for Host-listener
@@ -33,21 +32,22 @@ export class idleTimeService {
     this.idleTimeTracker();
   }
 
+
   idleTimeTracker() {
     this.initializeIdleTimeTracker();
-    this.subscription?.subscribe(
-      data => {
-        // console.log(`Current idle time ${data}s`); //deubg
-        // this.val = val; // optional
+    // this.subscription?.subscribe(
+    //   data => {
+    //     console.log(`Current idle time ${data}s`); //deubg
+    //     // this.val = val; // optional
 
-        if (this.currentPageIsSignInPage === false &&
-          data === this.idleTimeLimitInSecond
-        ) {
-          console.log(`Hit idle time limit and not on home page.`);
-          this.popDialog();
-        }
-      }
-    );
+    //     if (this.currentPageIsSignInPage === false &&
+    //       data === this.idleTimeLimitInSecond
+    //     ) {
+    //       console.log(`Hit idle time limit and not on home page.`);
+    //       this.popDialog();
+    //     }
+    //   }
+    // );
   }
 
   initializeIdleTimeTracker(): void {

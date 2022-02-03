@@ -1,8 +1,8 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 import { idleTimeService } from '../services/idle-time';
 import { NewFeed } from '../../interfaces/newfeed.interface';
 import { HttpClient } from '@angular/common/http';
+import { NewsFeedService } from '../services/news-feed.service';
 
 @Component({
   selector: 'app-news-feed',
@@ -27,42 +27,51 @@ export class NewsFeedComponent implements OnInit {
       content: {
         text: "Good afternoon everyone"
       },
-      comment: [
-        {
-          publisherName: "Cat",
-          publishedTime: "1/24/2022",
-          content: {
-            text: "How are you?"
-          }
-        }
-      ],
+      comment: [],
       _id: "id_for_dog_001",
     }
   ]
 
   public storiesFromServer: NewFeed[] = [];
 
-  constructor(private _idleTimeService: idleTimeService, private _httpClient: HttpClient) {
+  constructor(private _idleTimeService: idleTimeService, private _httpClient: HttpClient, private _newsFeedService: NewsFeedService) {
     _idleTimeService.currentPageIsSignInPage = false;
     _idleTimeService.currentPageForRouting = 'newsFeed';
   }
 
   dataFromMongoDB: any;
   ngOnInit() {
-    this._httpClient.get("http://localhost:4231/api/news").subscribe(
-      (data) => {
-        console.log(`Connected to mongoDB server`);
 
-        // Save the data locally to create dynamically with ngFor
-        this.dataFromMongoDB = data;
-        this.storiesFromServer = this.dataFromMongoDB;
-        console.log(`Data from server: `, this.storiesFromServer);
+    this._newsFeedService.getRequest("http://localhost:4231/api/news")
+      .subscribe(
+        (data) => {
+          console.log(`Connected to mongoDB server`);
 
-      }
-    )
+          // Save the data locally to create dynamically with ngFor
+          this.dataFromMongoDB = data;
+          this.storiesFromServer = this.dataFromMongoDB;
 
+          // Formate publishedTime for readability
+          this.storiesFromServer.forEach(element => element.publishedTime = this.formatTime(element.publishedTime))
+
+          console.log(`Data from server: `, this.storiesFromServer) // debug
+        }
+      )
   }
 
+
+
+  formatTime(publishedTime: string) {
+    let year = publishedTime.slice(0, 4);
+    let month = publishedTime.slice(5, 7);
+    let day = publishedTime.slice(8, 10);
+    let time = publishedTime.slice(11, 16);
+    let finalTime = time + ' ' + month + ' ' + day + ' ' + year;
+
+    // console.log(finalTime); // debug
+    return finalTime;
+
+  }
   @HostListener('document:keydown', ['$event'])
   @HostListener('click', ['$event'])
   @HostListener('window:mousemove') refreshUserState() {
