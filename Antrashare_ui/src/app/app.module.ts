@@ -28,6 +28,8 @@ import { StoryComponent } from './components/news-feed-tab/story-list/story/stor
 import { StoryListComponent } from './components/news-feed-tab/story-list/story-list.component';
 import { TimeoutComponent } from './dialogs/timeout/timeout.dialog.component';
 
+import { SharedModule } from './shared/shared.module';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -58,6 +60,8 @@ import { TimeoutComponent } from './dialogs/timeout/timeout.dialog.component';
     // Layouts module
     LayoutsModule,
 
+    // Shared module
+    SharedModule,
   ],
   providers: [OverlayContainer],
   bootstrap: [AppComponent]
