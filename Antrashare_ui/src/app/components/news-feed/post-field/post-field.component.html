@@ -3,6 +3,9 @@
             <mat-form-field class="example-full-width" appearance="outline">
                 <mat-label>New Post</mat-label>
                 <textarea formControlName="postTextFormControl" matInput placeholder="What's on your mind?"></textarea>
+                <!-- <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                    Please enter a valid email address
+                </mat-error> -->
             </mat-form-field>
         </form>
     <mat-card-actions>

@@ -9,10 +9,14 @@ import { Story } from '../news-feed/news-feed.component';
 export class StoryComponent implements OnInit {
   @Input() story!:Story
   @Output() storyEmiter = new EventEmitter()
+  public isCommentOpened = false;
 
   constructor() { }
 
   ngOnInit(): void {
   }
-
+  
+  onTriggerComment() {
+    this.isCommentOpened = !this.isCommentOpened;
+  }
 }
