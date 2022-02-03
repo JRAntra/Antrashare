@@ -47,10 +47,10 @@
         </div>
     </div>
     <br>
-    <button *ngIf="!isEditInfo" mat-raised-button color="warn" type="submit" (click)='onEditInfo()'>
+    <button *ngIf="!isEditInfo" mat-raised-button type="submit" (click)='onEditInfo()'>
         Edit
     </button>
-    <button *ngIf="isEditInfo" [disabled]="!userInfoFormGroup.valid" mat-raised-button color="warn" type="submit" (click)='onSaveInfo()'>
+    <button *ngIf="isEditInfo" [disabled]="!userInfoFormGroup.valid" mat-raised-button type="submit" (click)='onSaveInfo()'>
         Save
     </button>
 </div>

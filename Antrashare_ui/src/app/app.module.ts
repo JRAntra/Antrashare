@@ -16,12 +16,12 @@ import { MatDialogModule } from '@angular/material/dialog'
 import { ReactiveFormsModule } from '@angular/forms';
 
 
-import { HideElementDirective } from './directives/hide-element/hide-element.directive';
+import { HideElementDirective } from 'src/app/directives/hide-element/hide-element.directive';
 import { MyProfilePageComponent } from './components/my-profile-page/my-profile-page.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { NewsFeedComponent } from './components/news-feed/news-feed.component';
 import { StoryComponent } from './components/story/story.component';
-import { TimeoutDialogComponent } from './components/timeout-dialog/timeout-dialog.component';
+import { TimeoutDialogComponent } from 'src/app/components/timeout-dialog/timeout-dialog.component';
 import { HeaderComponent } from './components/header/header.component';
 import { NavbarComponent } from './components/header/navbar/navbar.component';
 import { ErrorPageComponent } from './components/error-page/error-page.component';
