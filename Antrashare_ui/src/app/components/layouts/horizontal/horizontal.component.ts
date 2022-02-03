@@ -17,7 +17,7 @@ export class HorizontalLayoutComponent implements OnInit, OnDestroy {
     shareReplay()
   );
 
-  private tabs = TABS;
+  tabs = TABS;
 
   constructor(private breakpointObserver: BreakpointObserver) { }
 
