@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { story } from 'src/app/models/user.models';
-import { DataService } from 'src/app/services/data.service';
+import { DataService } from 'src/app/services/newsfeed/data.service';
 
 @Component({
   selector: 'app-news-feed',

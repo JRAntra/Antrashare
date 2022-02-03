@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Subject } from 'rxjs';
-import { TimeoutdialogService } from 'src/app/services/timeoutdialog.service';
+import { TimeoutdialogService } from 'src/app/services/timeoutdialog/timeoutdialog.service';
 
 @Component({
   selector: 'app-timeout-dialog',
