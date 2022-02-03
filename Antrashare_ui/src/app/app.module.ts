@@ -21,7 +21,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatDialogModule } from '@angular/material/dialog';
-
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 /* Components */
 
 import { NewsFeedComponent } from './components/news-feed/news-feed.component';
@@ -68,6 +68,7 @@ import { TimeoutDialogComponent } from './components/timeout-dialog/timeout-dial
     MatSidenavModule,
     MatIconModule,
     MatDialogModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
