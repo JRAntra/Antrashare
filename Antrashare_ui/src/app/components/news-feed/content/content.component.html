@@ -8,10 +8,21 @@
       {{ userInfoFromServer.content.text }}
     </p>
     <div>
-      <img src="{{ userInfoFromServer.content.image }}" alt="img not found" />
-      <video width="320" height="240" controls>
-        <source src="{{ userInfoFromServer.content.video }}" />
-      </video>
+      <img
+        #image
+        [src]="userInfoFromServer.content.image"
+        (error)="image.hidden = true"
+        [hidden]="image.hidden"
+      />
+
+      <div *ngIf="isVideo === true">
+        <video width="320" height="240" controls>
+          <source
+            src="{{ userInfoFromServer.content.video }}"
+            type="video/mp4"
+          />
+        </video>
+      </div>
     </div>
   </div>
 
@@ -26,10 +37,19 @@
           <p>
             {{ comment.content.text }}
           </p>
-          <img src="{{ comment.content.image }}" alt="Image not found." />
-          <video width="320" height="240" controls>
-            <source src="{{ comment.content.video }}" />
-          </video>
+          <img
+            #image
+            [src]="comment.content.image"
+            (error)="image.hidden = true"
+            [hidden]="image.hidden"
+          />
+
+          <div *ngIf="isVideo === true">
+            <video width="320" height="240" controls>
+              <source src="{{ comment.content.video }}" type="video/mp4" />
+            </video>
+          </div>
+
           <div class="publishing-details">
             By {{ comment.publisherName }} at {{ comment.publishedTime }}
           </div>
@@ -45,9 +65,9 @@
   </div>
   <!-- frontend pagination is for comment -->
   <mat-paginator
-    [length]="10"
-    [pageSize]="11"
-    [pageSizeOptions]="[1, 5, 10]"
+    [length]="commentList.length"
+    [pageSize]="commentList.length"
+    [pageSizeOptions]="[1, commentList.length]"
     aria-label="Select page"
   >
   </mat-paginator>

@@ -17,14 +17,19 @@ export class ContentComponent implements OnInit {
     _id: '',
   };
 
+  // Direct testing for img and video tag
   imgUrl = "https://www.gannett-cdn.com/media/2021/06/03/USATODAY/usatsports/imageForEntry18-8on.jpg?width=2560";
+  badImgUrl = "https://www.gannpg?width";
+  videoUrl = "https://media.geeksforgeeks.org/wp-content/uploads/20200513195558/Placement100-_-GeeksforGeeks-1.mp4"
+
 
   @Input() currentStory!: NewFeed;
   commentList: any[] = [];
 
+  // listSize = 3;
   constructor() {
   }
-
+  isVideo: boolean = false;
   ngOnInit(): void {
 
     this.userInfoFromServer = {
@@ -39,5 +44,12 @@ export class ContentComponent implements OnInit {
     // Save comment list locally for comment section's *ngFor
     this.commentList = this.currentStory.comment!;
 
+  }
+
+
+  hideImgTag() {
+    console.log(`ERROR!`);
+
+    return true;
   }
 }
