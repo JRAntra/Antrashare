@@ -13,9 +13,21 @@
     <mat-icon aria-hidden="false" aria-label="comment">home</mat-icon>
     <div>
       <label>Comment</label>
-      <p>
-        {{ currentStory.comment | json }}
-      </p>
+      <div *ngFor="let comment of commentList">
+        <!-- content is an object so more work -->
+        <div *ngFor="let content of contentList">
+          {{ content.image }}
+          {{ content.text }}
+          {{ content.video }}
+          {{ content._id }}
+        </div>
+        <div>
+          {{ comment.content }}
+          {{ comment.publishedTime }}
+          {{ comment.publisherName }}
+          {{ comment._id }}
+        </div>
+      </div>
     </div>
     <div>
       <label>LikedId List</label>

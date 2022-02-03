@@ -17,42 +17,17 @@ export class ContentComponent implements OnInit {
     _id: '',
   };
 
-  commentList: any;
-  singleComment: any;
-
-  public commentFromServer: NewFeed = {
-    content: {},
-    publishedTime: '',
-    publisherName: '',
-    _id: '',
-  };
-
-  // content: Content;
-  // publishedTime: string = '';
-  // publisherName: string = '';
-  // _id: string = '';
-
   @Input() currentStory!: NewFeed;
+  commentList: any[] = [];
+  contentList: any[] = [];
 
   constructor() {
   }
 
   ngOnInit(): void {
 
-    // console.log(`Comment from server: `, this?.currentStory?.comment[0])
-    // console.log(this?.currentStory.comment);
-    // this.currentStory.comment?.forEach(item => {
-    //   console.log(item);
-    // })
-
-    // console.log(`Comment: `, this.currentStory.comment!);
-    // console.log(`Comment: `, this.currentStory.comment![0]);
-
     this.userInfoFromServer = {
       content: this.currentStory.content!,
-      // comment: this?.currentStory?.comment?.forEach(item => {
-      //   console.log(item);
-      // }),
       comment: this.currentStory.comment!,
       publisherName: this.currentStory.publisherName!,
       publishedTime: this.currentStory.publishedTime!,
@@ -60,12 +35,14 @@ export class ContentComponent implements OnInit {
       _id: this.currentStory._id!,
     }
 
-
+    // Save comment list locally for outer *ngFor
     this.commentList = this.currentStory.comment!;
-    this.singleComment = this.commentList[0];
-    console.log(`final comment: `, this.commentList);
-    console.log(`single comment: `, this.singleComment);
-    console.log(`final comment: `, this.currentStory.comment);
+
+    // Save content list locally for inner *ngFor
+    this.commentList.forEach((item) => {
+      this.contentList.push(item.content)
+      console.log(item.content);
+    })
 
   }
 }
