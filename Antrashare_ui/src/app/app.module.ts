@@ -8,7 +8,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
-import { MatDialogModule } from '@angular/material/dialog'
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatCardModule } from '@angular/material/card';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
@@ -20,12 +21,14 @@ import { LogoutDialogComponent } from './components/logout-dialog/logout-dialog.
 import { LoginWindowComponent } from './components/login-window/login-window.component';
 import { LoginFormComponent } from './components/login-window/login-form/login-form.component';
 import { MyProfilePageComponent } from './components/my-profile-page/my-profile-page.component';
+import { PostFieldComponent } from './components/news-feed/post-field/post-field.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { NavbarComponent } from './components/header/navbar/navbar.component';
 import { NewsService } from 'src/app/services/news/news.service';
 import { NewsFeedComponent } from './components/news-feed/news-feed.component';
 import { StoryComponent } from './components/story/story.component';
 import { TimeoutDialogComponent } from 'src/app/components/timeout-dialog/timeout-dialog.component';
+
 
 
 
@@ -44,7 +47,8 @@ import { TimeoutDialogComponent } from 'src/app/components/timeout-dialog/timeou
     NavbarComponent,
     ErrorPageComponent,
     BottomBarComponent,
-    LogoutDialogComponent
+    LogoutDialogComponent,
+    PostFieldComponent
   ],
   imports: [
     BrowserModule,
@@ -57,6 +61,7 @@ import { TimeoutDialogComponent } from 'src/app/components/timeout-dialog/timeou
     MatIconModule,
     MatMenuModule,
     MatButtonModule,
+    MatCardModule,
     ReactiveFormsModule
   ],
   providers: [NewsService],
