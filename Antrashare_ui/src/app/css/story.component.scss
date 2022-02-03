@@ -14,6 +14,10 @@
     gap: 20px;
 }
 
+.card-header-image {
+    background-size: cover;
+}
+
 .cardFoot {
     display: flex;
     gap: 5px;
@@ -26,4 +30,13 @@
 .cmtField {
     width: 100%;
     padding-bottom: 0.75em;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.post-content {
+    margin-top: 24px;
+    margin-bottom: 0px;
 }
