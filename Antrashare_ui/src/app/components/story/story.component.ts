@@ -8,11 +8,15 @@ import { News } from 'src/app/models/newsfeed.models';
 export class StoryComponent implements OnInit {
   @Input() story!:News
   @Output() storyEmiter = new EventEmitter()
+  public isCommentOpened = false;
 
   constructor() { }
 
   ngOnInit(): void {
     console.log(this.story.content.text);
   }
-
+  
+  onTriggerComment() {
+    this.isCommentOpened = !this.isCommentOpened;
+  }
 }
