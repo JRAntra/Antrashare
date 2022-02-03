@@ -24,7 +24,6 @@ export class NewsFeedService {
   }
 
   postNewsFeed(body: any) {
-    console.log('here')
     this._httpClient.post('http://localhost:4231/api/news', body).subscribe(value => console.log(value));
   };
 }
