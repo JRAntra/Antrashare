@@ -17,9 +17,10 @@ export class ContentComponent implements OnInit {
     _id: '',
   };
 
+  imgUrl = "https://www.gannett-cdn.com/media/2021/06/03/USATODAY/usatsports/imageForEntry18-8on.jpg?width=2560";
+
   @Input() currentStory!: NewFeed;
   commentList: any[] = [];
-  contentList: any[] = [];
 
   constructor() {
   }
@@ -35,14 +36,8 @@ export class ContentComponent implements OnInit {
       _id: this.currentStory._id!,
     }
 
-    // Save comment list locally for outer *ngFor
+    // Save comment list locally for comment section's *ngFor
     this.commentList = this.currentStory.comment!;
-
-    // Save content list locally for inner *ngFor
-    this.commentList.forEach((item) => {
-      this.contentList.push(item.content)
-      console.log(item.content);
-    })
 
   }
 }

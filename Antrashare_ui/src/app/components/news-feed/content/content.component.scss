@@ -3,15 +3,19 @@
 .contentPage {
   margin-left: 20%;
   margin-right: 20%;
+  // border: thick double lightpink;
 }
 
 .avatarDisplay {
+  display: flex;
   margin-left: 10%;
   margin-right: 10%;
 }
 
-.postLikeNumber {
+.content-follow-up {
   display: flex;
+  justify-content: space-between;
+  border: thick double lightblue;
   // display: grid;
   // grid-template-columns: 1fr 1fr 1fr 1fr;
   // margin-left: 10%;
@@ -19,8 +23,21 @@
   // padding: 10px;
 }
 
+.like-id-list {
+  display: flex;
+  // margin: 20px;
+}
+
 .content {
-  margin: 50px;
   background-color: theme.$secondary-color;
   padding: 30px;
+}
+
+.story-comment {
+  border: thick double lightpink;
+  //   max-width: 350px;
+}
+
+.story-content {
+  border: thick double #32a1ce;
 }
