@@ -1,17 +1,12 @@
+/* Directive */
+import { TmpElementDirective } from './directive/tmp_element/tmp-element.directive';
+
+/* Modules */
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
-
-import { AppComponent } from './app.component';
-
-import { TmpElementDirective } from './directive/tmp_element/tmp-element.directive';
-
-import { LoginPageComponent } from './components/login-page/login-page.component';
-import { LoginFormComponent } from './components/login-page/login-form/login-form.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-/* Angular */
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
@@ -23,7 +18,9 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatDialogModule } from '@angular/material/dialog';
 
 /* Components */
-
+import { AppComponent } from './app.component';
+import { LoginPageComponent } from './components/login-page/login-page.component';
+import { LoginFormComponent } from './components/login-page/login-form/login-form.component';
 import { NewsFeedComponent } from './components/news-feed/news-feed.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { MyProfileComponent } from './components/my-profile/my-profile.component';
@@ -33,7 +30,6 @@ import { StoryCardComponent } from './components/news-feed/story/story-card/stor
 import { CommentListComponent } from './components/news-feed/story/comment-list/comment-list.component';
 import { CommentInputComponent } from './components/news-feed/story/comment-input/comment-input.component';
 import { CommentComponent } from './components/news-feed/story/comment-list/comment/comment.component';
-import { LogOutComponent } from './components/log-out/log-out.component';
 import { TimeoutDialogComponent } from './components/timeout-dialog/timeout-dialog.component';
 
 @NgModule({
@@ -51,7 +47,6 @@ import { TimeoutDialogComponent } from './components/timeout-dialog/timeout-dial
     CommentListComponent,
     CommentInputComponent,
     CommentComponent,
-    LogOutComponent,
     TimeoutDialogComponent,
   ],
   imports: [

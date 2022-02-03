@@ -16,11 +16,7 @@ export class AppComponent {
 
   ngOnInit(): void {
     this.interval = setInterval(() => {
-      if (
-        this.router.url !== '/' &&
-        this.router.url !== '/login' &&
-        this.router.url !== '/settings'
-      ) {
+      if (this.router.url !== '/' && this.router.url !== '/login') {
         this.openTimeoutDialog();
       }
     }, 10000);
