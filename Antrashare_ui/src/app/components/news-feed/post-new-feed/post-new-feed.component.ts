@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { FormBuilder, Validators } from '@angular/forms';
+import { NewsFeedService } from '../../services/news-feed.service';
 
 @Component({
   selector: 'app-post-new-feed',
@@ -13,16 +14,26 @@ export class PostNewFeedComponent implements OnInit {
     textContent: ['']
   });
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, private _newsFeedService: NewsFeedService) { }
 
   ngOnInit(): void {
   }
 
   processFile(imageInput: any) {
-    console.log(imageInput)
+    console.log(imageInput.target.value);
   }
 
-  postNewfeed() {
-
+  addToNewfeed() {
+    console.log(this.postNewfeedForm.get('textContent')?.value)
+    let currentBody = {
+      publisherName: 'Cat',
+      publishedTime: new Date(),
+      content: {
+          image: 'string',
+          video: 'string',
+          text: this.postNewfeedForm.get('textContent')?.value,
+      }
+    }
+    //this._newsFeedService.postNewsFeed(currentBody);
   }
 }

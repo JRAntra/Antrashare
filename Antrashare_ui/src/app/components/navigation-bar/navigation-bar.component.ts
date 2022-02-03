@@ -15,17 +15,14 @@ export class NavigationBarComponent implements OnInit {
   }
 
   myProfileIsClicked() {
-    console.log('myProfileIsClicked()');
     this._appService.refreshTimer();
   }
 
   newsFeedIsClicked() {
-    console.log('newsFeedIsClicked()');
     this._appService.refreshTimer();
   }
 
   settingsIsClicked() {
-    console.log('settingsIsClicked()');
     this._appService.refreshTimer();
   }
   
