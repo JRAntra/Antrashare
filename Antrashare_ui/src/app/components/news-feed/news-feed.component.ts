@@ -1,8 +1,8 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { AppService } from '../services/app.service';
+import { idleTimeService } from '../services/idle-time';
 import { NewFeed } from '../../interfaces/newfeed.interface';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { HttpClient } from '@angular/common/http';
+import { NewsFeedService } from '../services/news-feed.service';
 
 @Component({
   selector: 'app-news-feed',
@@ -10,14 +10,16 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
   styleUrls: ['./news-feed.component.scss']
 })
 export class NewsFeedComponent implements OnInit {
-  public stories: NewFeed[] = [
+  public storiesNotFromServer: NewFeed[] = [
     {
       publisherName: "Cat",
       publishedTime: "1/24/2022",
       content: {
         text: "Good morning"
       },
-      comment: []
+      comment: [],
+      _id: "id_for_cat_001",
+
     },
     {
       publisherName: "Dog",
@@ -25,33 +27,56 @@ export class NewsFeedComponent implements OnInit {
       content: {
         text: "Good afternoon everyone"
       },
-      comment: [
-        {
-          publisherName: "Cat",
-          publishedTime: "1/24/2022",
-          content: {
-            text: "How are you?"
-          }
-        }
-      ]
+      comment: [],
+      _id: "id_for_dog_001",
     }
   ]
 
-  displayTimer$: Observable<number> | undefined;
-  constructor(private _appService: AppService) {
-    _appService.currentPageIsSignInPage = false;
-    _appService.currentPage = 'newsFeed';
+  public storiesFromServer: NewFeed[] = [];
+
+  constructor(private _idleTimeService: idleTimeService, private _httpClient: HttpClient, private _newsFeedService: NewsFeedService) {
+    _idleTimeService.currentPageIsSignInPage = false;
+    _idleTimeService.currentPageForRouting = 'newsFeed';
   }
 
+  dataFromMongoDB: any;
   ngOnInit() {
 
+    this._newsFeedService.getRequest("http://localhost:4231/api/news")
+      .subscribe(
+        (data) => {
+          console.log(`Connected to mongoDB server`);
+
+          // Save the data locally to create dynamically with ngFor
+          this.dataFromMongoDB = data;
+          this.storiesFromServer = this.dataFromMongoDB;
+
+          // Formate publishedTime for readability
+          this.storiesFromServer.forEach(element => element.publishedTime = this.formatTime(element.publishedTime))
+
+          console.log(`Data from server: `, this.storiesFromServer) // debug
+        }
+      )
   }
 
+
+
+  formatTime(publishedTime: string) {
+    let year = publishedTime.slice(0, 4);
+    let month = publishedTime.slice(5, 7);
+    let day = publishedTime.slice(8, 10);
+    let time = publishedTime.slice(11, 16);
+    let finalTime = time + ' ' + month + ' ' + day + ' ' + year;
+
+    // console.log(finalTime); // debug
+    return finalTime;
+
+  }
   @HostListener('document:keydown', ['$event'])
   @HostListener('click', ['$event'])
   @HostListener('window:mousemove') refreshUserState() {
-    this._appService.refreshTimer();
-    clearTimeout(this._appService.userActivity);
-    this._appService.registerCurrentTime(); // Re-monitor
+    this._idleTimeService.refreshTimer();
+    clearTimeout(this._idleTimeService.userActivity);
+    this._idleTimeService.registerCurrentTime(); // Re-monitor
   }
 }

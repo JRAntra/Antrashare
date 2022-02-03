@@ -1,6 +1,5 @@
-import { Component, OnInit , Input } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { NewFeed } from '../../../interfaces/newfeed.interface';
-import { UserInfoNewFeed } from '../../../interfaces/user-display.interface';
 
 @Component({
   selector: 'app-content',
@@ -8,20 +7,42 @@ import { UserInfoNewFeed } from '../../../interfaces/user-display.interface';
   styleUrls: ['./content.component.scss']
 })
 export class ContentComponent implements OnInit {
-  public userInfo: UserInfoNewFeed = {
-    publisherName: "",
-    publishedTime: ""
+
+  public userInfoFromServer: NewFeed = {
+    content: {},
+    comment: [],
+    likedIdList: [],
+    publishedTime: '',
+    publisherName: '',
+    _id: '',
   };
 
   @Input() currentStory!: NewFeed;
-  
-  constructor() { 
+  commentList: any[] = [];
+  contentList: any[] = [];
+
+  constructor() {
   }
 
   ngOnInit(): void {
-    this.userInfo = {
-      publisherName: this.currentStory.publisherName,
-      publishedTime: this.currentStory.publishedTime
+
+    this.userInfoFromServer = {
+      content: this.currentStory.content!,
+      comment: this.currentStory.comment!,
+      publisherName: this.currentStory.publisherName!,
+      publishedTime: this.currentStory.publishedTime!,
+      likedIdList: this.currentStory.likedIdList!,
+      _id: this.currentStory._id!,
     }
+
+    // Save comment list locally for outer *ngFor
+    this.commentList = this.currentStory.comment!;
+
+    // Save content list locally for inner *ngFor
+    this.commentList.forEach((item) => {
+      this.contentList.push(item.content)
+      console.log(item.content);
+    })
+
   }
 }

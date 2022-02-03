@@ -1,26 +1,26 @@
 @use "../../../../styles.scss" as theme;
 
 .contentPage {
-    margin-left: 20%;
-    margin-right: 20%; 
+  margin-left: 20%;
+  margin-right: 20%;
 }
 
 .avatarDisplay {
-    margin-left: 10%;
-    margin-right: 10%;
+  margin-left: 10%;
+  margin-right: 10%;
 }
 
 .postLikeNumber {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    margin-left: 10%;
-    margin-right: 10%;
-    padding: 10px;
+  display: flex;
+  // display: grid;
+  // grid-template-columns: 1fr 1fr 1fr 1fr;
+  // margin-left: 10%;
+  // margin-right: 10%;
+  // padding: 10px;
 }
 
 .content {
-    margin: 50px;
-    background-color: theme.$secondary-color;
-    padding: 30px;
-
+  margin: 50px;
+  background-color: theme.$secondary-color;
+  padding: 30px;
 }

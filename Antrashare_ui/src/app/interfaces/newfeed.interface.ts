@@ -1,25 +1,36 @@
 //newfeed
 export interface NewFeed {
     avatar?: ImageBitmap;
-    publisherName: string, 
+    // comment?: Story[],
+    content: Content;
+    comment?: [],
+    likedIdList?: [],
     publishedTime: string,
-    content: {
-        image?: string;
-        video?: string;
-        text?: string;
-    },
-    comment?: Story[],
-    likedList?: []
+    publisherName: string,
+    __v?: number;
+    _id: string,
 }
 
 //story item
 export interface Story {
     avatar?: ImageBitmap;
-    publisherName: string, 
+    publisherName: string,
     publishedTime: string,
-    content: {
-        image?: string;
-        video?: string;
-        text?: string;
-    }
+    content: Content;
+    _id?: string,
+}
+
+export interface Comment {
+    content: Content;
+    publishedTime: string,
+    publisherName: string,
+    _id: string,
+}
+
+
+export interface Content {
+    image?: string;
+    video?: string;
+    text?: string;
+    _id?: string;
 }
