@@ -12,22 +12,20 @@ import { TimeoutDialogComponent } from '../timeout-dialog/timeout-dialog.compone
 })
 
 
-export class AppService {
+export class idleTimeService {
 
-  idleTime$ = timer(0, 1000);
   idleTimeLimitInMS = 600000; // 10 mins is 600000ms
   idleTimeLimitInSecond = this.idleTimeLimitInMS / 10000;
-  currentPage: string | undefined;
+  dialogLimitTime = 10000; // 10 seconds
+  currentPageForRouting: string | undefined;
   currentPageIsSignInPage = false;
   val: number | undefined;
   reset$ = new Subject();
-  displayTimer$: Observable<number> | undefined;
   subscription: Observable<number> | undefined;
 
   // Variables for Host-listener
   userActivity: any;
   userInactive: Subject<any> = new Subject();
-
 
   constructor(private dialog: MatDialog, private router: Router) {
     // Check idle time on all pages
@@ -37,18 +35,19 @@ export class AppService {
 
   idleTimeTracker() {
     this.initializeIdleTimeTracker();
-    this.subscription?.subscribe(
-      data => {
-        // this.val = val; // optional
+    // this.subscription?.subscribe(
+    //   data => {
+    //     console.log(`Current idle time ${data}s`); //deubg
+    //     // this.val = val; // optional
 
-        if (this.currentPageIsSignInPage === false &&
-          data === this.idleTimeLimitInSecond
-        ) {
-          console.log(`Hit idle time limit and not on home page.`);
-          this.popDialog();
-        }
-      }
-    );
+    //     if (this.currentPageIsSignInPage === false &&
+    //       data === this.idleTimeLimitInSecond
+    //     ) {
+    //       console.log(`Hit idle time limit and not on home page.`);
+    //       this.popDialog();
+    //     }
+    //   }
+    // );
   }
 
   initializeIdleTimeTracker(): void {
@@ -65,7 +64,7 @@ export class AppService {
   // Functions for host-listener
   detectIdle() {
     this.registerCurrentTime();
-    this.userInactive.subscribe(() => { console.log(`Hit idle time limit ${this.idleTimeLimitInMS}s`); });
+    this.userInactive.subscribe(() => { console.log(`Hit idle time limit ${this.idleTimeLimitInSecond}s`); });
   }
 
   registerCurrentTime() {
@@ -82,11 +81,12 @@ export class AppService {
     // Not reacting in 10 seconds will navigate back to Login Page.
     this.timerId = setTimeout(
       () => {
+        console.log(`Hit idle time limit ${this.dialogLimitTime}s`);
         this.dialog.closeAll();
         this.router.navigate(['loginPage']);
       }
       // , 3000 // debug use 3s
-      , 10000 // requirement is 10s
+      , this.dialogLimitTime // requirement is 10s
     );
   }
 

@@ -1,5 +1,5 @@
 import { Component, OnInit, HostListener } from '@angular/core';
-import { AppService } from '../services/app.service';
+import { idleTimeService } from '../services/idle-time';
 
 @Component({
   selector: 'app-login-page',
@@ -8,10 +8,27 @@ import { AppService } from '../services/app.service';
 })
 export class LoginPageComponent implements OnInit {
 
-  constructor(private _appService: AppService) {
-    _appService.currentPageIsSignInPage = true;
-    _appService.currentPage = 'loginPage'
-    _appService.detectIdle();
+  constructor(private _idleTimeService: idleTimeService) {
+
+    this._idleTimeService.subscription
+      ?.subscribe(
+        data => {
+          console.log(`Current idle time ${data}s`); //deubg
+          // this.val = val; // optional
+
+          // if (this.currentPageIsSignInPage === false &&
+          //   data === this.idleTimeLimitInSecond
+          // ) {
+          //   console.log(`Hit idle time limit and not on home page.`);
+          //   this.popDialog();
+          // }
+        }
+      );
+
+
+    _idleTimeService.currentPageIsSignInPage = true;
+    _idleTimeService.currentPageForRouting = 'loginPage'
+    _idleTimeService.detectIdle();
   }
 
   displayTimer$: any;
@@ -22,9 +39,11 @@ export class LoginPageComponent implements OnInit {
   @HostListener('document:keydown', ['$event'])
   @HostListener('click', ['$event'])
   @HostListener('window:mousemove') refreshUserState() {
-    this._appService.refreshTimer();
-    clearTimeout(this._appService.userActivity);
-    this._appService.registerCurrentTime();// Re-monitor
+    console.log(`Event detected, refreshTimer`);
+    
+    this._idleTimeService.refreshTimer();
+    clearTimeout(this._idleTimeService.userActivity);
+    this._idleTimeService.registerCurrentTime();// Re-monitor
   }
 }
 

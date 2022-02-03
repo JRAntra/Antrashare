@@ -1,6 +1,6 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { AppService } from '../services/app.service';
+import { idleTimeService } from '../services/idle-time';
 
 @Component({
   selector: 'app-settings',
@@ -9,23 +9,23 @@ import { AppService } from '../services/app.service';
 })
 export class SettingsComponent implements OnInit {
 
-  constructor(private _appService: AppService) {
-    _appService.currentPageIsSignInPage = false;
-    _appService.currentPage = 'settings';
+  constructor(private _idleTimeService: idleTimeService) {
+    _idleTimeService.currentPageIsSignInPage = false;
+    _idleTimeService.currentPageForRouting = 'settings';
   }
 
   ngOnInit(): void {
   }
   clickedLogout() {
     console.log(`clickedLogout()`);
-    this._appService.popLogoutDialog(); // pop logout dialog
+    this._idleTimeService.popLogoutDialog(); // pop logout dialog
   }
 
   @HostListener('document:keydown', ['$event'])
   @HostListener('click', ['$event'])
   @HostListener('window:mousemove') refreshUserState() {
-    this._appService.refreshTimer();
-    clearTimeout(this._appService.userActivity);
-    this._appService.registerCurrentTime(); // Re-monitor
+    this._idleTimeService.refreshTimer();
+    clearTimeout(this._idleTimeService.userActivity);
+    this._idleTimeService.registerCurrentTime(); // Re-monitor
   }
 }

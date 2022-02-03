@@ -1,8 +1,14 @@
 <div id="stories">
-    <app-post-new-feed></app-post-new-feed>
-    <app-content 
-        *ngFor="let story of stories" 
-        [currentStory]="story"
-    ></app-content>
+  <!-- 
+    <app-content
+    *ngFor="let story of storiesNotFromServer"
+    [currentStory]="story"
+  ></app-content> 
+-->
+
+  <app-content
+    *ngFor="let story of storiesFromServer"
+    [currentStory]="story"
+  ></app-content>
 </div>
 <app-navigation-bar></app-navigation-bar>
