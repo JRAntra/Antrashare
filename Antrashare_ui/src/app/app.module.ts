@@ -16,6 +16,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatDialogModule } from '@angular/material/dialog';
+import { HttpClientModule } from '@angular/common/http';
+
 
 /* Components */
 import { AppComponent } from './app.component';
@@ -63,8 +65,9 @@ import { TimeoutDialogComponent } from './components/timeout-dialog/timeout-dial
     MatSidenavModule,
     MatIconModule,
     MatDialogModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
