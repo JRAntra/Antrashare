@@ -33,7 +33,7 @@ import { ProfileFormComponent } from './components/profile-tab/profile-form/prof
 import { ProfileTabComponent } from './components/profile-tab/profile-tab.component';
 import { SettingsTabComponent } from './components/settings-tab/settings-tab.component';
 import { StoryComponent } from './components/news-feed-tab/story-list/story/story.component';
-import { StoryFormComponent } from './components/news-feed-tab/story-list/story-form/story-form.component';
+import { StoryFormComponent } from './components/news-feed-tab/story-form/story-form.component';
 import { StoryListComponent } from './components/news-feed-tab/story-list/story-list.component';
 import { TimeoutComponent } from './dialogs/timeout/timeout.dialog.component';
 
