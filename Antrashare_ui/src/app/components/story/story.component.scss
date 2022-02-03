@@ -1,9 +1,10 @@
 @import '../../../styles.scss';
 
 .story {
-    // border: gray solid;
+    border: $red solid 1px;
     margin-bottom: 10%;
     background-color: $white2;
+    border-radius: 4px;
 }
 .storyHeader {
     display: grid;
@@ -18,28 +19,38 @@ h2 {
 
 #publicationInfo {
     display: grid;
-    grid-template-rows: 80% 20%;
+    grid-template-rows: 90% 10%;
     height: 100%;
 }
 
 .storyContent {
     height: 30rem;
-    margin: 5%;
-    border: gray solid;
+    margin: 2% 5%;
+    border-radius: 4px;
+    background-color: $white;
+    padding: 2%;
+    overflow: auto;
 }
 
 .storyBottomBar {
     display: grid;
     grid-template-columns: 33% 34% 33%;
-    align-items: center;
-    justify-items: center;
-    margin-left: 5%;
-    margin-right: 5%;
-    border: solid gray;
-
+    text-align: center;
+    margin: 2% 5%;
+    height: 100%;
 }
 
 .storyBottomBarButton {
     background-color: $red;
     color: $white;
+    transition: 0.3s ease-in-out;
+    // margin-bottom: 5%;
+}
+
+.storyBottomBarButton:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+    background-color: $white;
+    color: $red;
+    transition: 0.3s ease-in-out;
 }
