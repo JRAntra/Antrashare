@@ -26,7 +26,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { NavbarComponent } from './components/header/navbar/navbar.component';
 import { ErrorPageComponent } from './components/error-page/error-page.component';
 import { BottomBarComponent } from './components/bottom/bottom-bar/bottom-bar.component';
-import { LogoutWindowComponent } from './components/settings/logout-window/logout-window.component';
+import { LogoutDialogComponent } from './components/logout-dialog/logout-dialog.component';
 
 
 @NgModule({
@@ -44,7 +44,7 @@ import { LogoutWindowComponent } from './components/settings/logout-window/logou
     NavbarComponent,
     ErrorPageComponent,
     BottomBarComponent,
-    LogoutWindowComponent
+    LogoutDialogComponent
   ],
   imports: [
     BrowserModule,

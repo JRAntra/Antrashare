@@ -2,8 +2,8 @@
   <div id='logout-window'>
     <h1>Are you sure you want to log out?</h1>
     <div id='logout-buttons'>
-      <button (click)='confirm()' routerLink="../">Confirm</button>
-      <button (click)='close()'>Cancel</button>
+      <button mat-raised-button (click)='onConfirm()'>Confirm</button>
+      <button mat-raised-button (click)='onCancel()'>Cancel</button>
     </div>
   </div>
 </div>
