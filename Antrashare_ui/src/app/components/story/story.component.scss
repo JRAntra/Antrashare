@@ -1,30 +1,56 @@
+@import '../../../styles.scss';
+
 .story {
-    border: gray solid;
+    border: $red solid 1px;
     margin-bottom: 10%;
+    background-color: $white2;
+    border-radius: 4px;
 }
 .storyHeader {
-    display: flex;
-    margin-left: 5%;
+    display: grid;
+    grid-template-columns: 10% 20% 70%;
+    padding: 2% 5%;
+    color: $black;
+}
+
+h2 {
+    font-size: 1.5rem;
+}
+
+#publicationInfo {
+    display: grid;
+    grid-template-rows: 90% 10%;
+    height: 100%;
 }
 
 .storyContent {
     height: 30rem;
-    margin: 5%;
-    border: gray solid;
+    margin: 2% 5%;
+    border-radius: 4px;
+    background-color: $white;
+    padding: 2%;
+    overflow: auto;
 }
 
 .storyBottomBar {
     display: grid;
-    grid-template-columns: 33.33% 33.33% 33.33%;
-    align-items: center;
-    justify-items: center;
-    margin-left: 5%;
-    margin-right: 5%;
-    border: solid gray;
-    
+    grid-template-columns: 33% 34% 33%;
+    text-align: center;
+    margin: 2% 5%;
+    height: 100%;
 }
 
 .storyBottomBarButton {
-    background-color: #A62626;
-    color: white;
+    background-color: $red;
+    color: $white;
+    transition: 0.3s ease-in-out;
+    // margin-bottom: 5%;
+}
+
+.storyBottomBarButton:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+    background-color: $white;
+    color: $red;
+    transition: 0.3s ease-in-out;
 }

@@ -3,15 +3,17 @@
         <div>
             Avatar
         </div>
-        <div>       
-            User Name    
-        </div>
-        <div>
-            Published Time
+        <div id='publicationInfo'>
+            <h2>
+                {{story.publisherName}}
+            </h2>
+            <h3>
+                Posted on: {{story.publishedTime}}
+            </h3>
         </div>
     </div>
     <div class="storyContent">
-        {{storyItem.content}}
+        {{story.content}}
     </div>
     <div class="storyBottomBar">
         <div class="storyBottomBarItem">
