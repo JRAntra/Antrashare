@@ -1,5 +1,7 @@
+@import '../../../styles.scss';
+
 #settings {
-    background-color: #F5F5F5;
+    background-color: $white;
     background-size: cover;
 }
 
@@ -9,7 +11,7 @@
 
 h1 {
     margin: 3%;
-    color: #0D0D0D;
+    color: $black;
     font-weight: bold;
     margin-left: 7%;
     font-size: 2rem;
@@ -22,10 +24,10 @@ h1 {
     height: 80%;
     margin: 5% auto;
     border: solid 2px;
-    border-color: black;
+    border-color: $black;
     border-radius: 20px;
     border-radius: 4px;
-    background-color: #eeeeee;
+    background-color: $white2;
 }
 
 
@@ -42,8 +44,8 @@ h1 {
     margin: 0 auto;
     height: 100%;
     border: 0;
-    background-color: #A62626;
-    color: #F5F5F5;
+    background-color: $red;
+    color: $white;
     transition: 0.3s ease-in-out;
     font-size: 1.7rem;
     border-radius: 4px;
@@ -57,8 +59,8 @@ h1 {
 
 #settingsLogout button {
     border: 0;
-    color: #F5F5F5;
-    background-color: #A62626;
+    color: $white;
+    background-color: $red;
     height: 100%;
     width: 100%;
     transition: 0.3s ease-in-out;
@@ -68,7 +70,7 @@ h1 {
 
 #settingsLogout button:hover, #options button:hover {
     cursor: pointer;
-    background-color: #F5F5F5;
+    background-color: $white;
     transition: 0.3s ease-in-out;
-    color: #A62626;
+    color: $red;
 }

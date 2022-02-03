@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject, HostListener } from '@angular/core';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog'
+import { Router } from '@angular/router'
+import { LogoutDialogComponent } from '../logout-dialog/logout-dialog.component';
+import { environment } from 'src/environments/environment';
+import { IdleService } from '../../services/idle.service';
 
 @Component({
   selector: 'app-settings',
@@ -6,16 +11,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./settings.component.scss']
 })
 export class SettingsComponent implements OnInit {
+  dialogRef?: MatDialogRef<LogoutDialogComponent>;
 
-  logout = false;
-
-  constructor() { }
+  constructor(
+    private dialog: MatDialog
+  ) { }
 
   ngOnInit(): void {
   }
 
-  showLogout(logout:boolean) {
-    this.logout = logout;
+  openLogoutDialog() {
+    this.dialogRef = this.dialog.open(LogoutDialogComponent)
   }
-
 }
