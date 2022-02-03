@@ -28,6 +28,7 @@ import { NewsService } from 'src/app/services/news/news.service';
 import { NewsFeedComponent } from './components/news-feed/news-feed.component';
 import { StoryComponent } from './components/story/story.component';
 import { TimeoutDialogComponent } from 'src/app/components/timeout-dialog/timeout-dialog.component';
+import { StoryCommentsComponent } from './components/news-feed/story-comments/story-comments.component';
 
 
 
@@ -48,7 +49,8 @@ import { TimeoutDialogComponent } from 'src/app/components/timeout-dialog/timeou
     ErrorPageComponent,
     BottomBarComponent,
     LogoutDialogComponent,
-    PostFieldComponent
+    PostFieldComponent,
+    StoryCommentsComponent
   ],
   imports: [
     BrowserModule,

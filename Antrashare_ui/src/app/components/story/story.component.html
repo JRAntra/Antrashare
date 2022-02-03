@@ -17,11 +17,14 @@
     </div>
     <div class="storyBottomBar">
         <div class="storyBottomBarItem">
-            <button mat-raised-button class="storyBottomBarButton">Comment Icon</button>
+            <button mat-raised-button class="storyBottomBarButton" (click)="onTriggerComment()">Comment</button>
         </div>
-        <div class="storyBottomBarItem">Pagination</div>
+        <div class="storyBottomBarItem">
+            <button mat-raised-button class="storyBottomBarButton">Pagination</button>
+        </div>
         <div class="storyBottomBarItem">
             <button mat-raised-button class="storyBottomBarButton">Like Icon</button>
         </div>
     </div>
 </div>
+<app-story-comments *ngIf="isCommentOpened"></app-story-comments>
