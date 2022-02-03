@@ -15,7 +15,9 @@ export class NewsFeedTemplateComponent implements OnInit {
   }
 
   newsFeedForm = new FormGroup({
-    Content: new FormControl('', Validators.required),
+    text: new FormControl('', Validators.required),
+    image_url: new FormControl(''),
+    video_url: new FormControl(''),
   });
 
   newsPostSubmit() {
@@ -28,5 +30,6 @@ export class NewsFeedTemplateComponent implements OnInit {
         video: this.newsFeedForm?.value['video_url']
       }
     }
+    console.log(newStory);
   }
 }
