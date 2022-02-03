@@ -9,9 +9,10 @@ import { NewsFeedService } from '../../services/news-feed.service';
   styleUrls: ['./post-new-feed.component.scss']
 })
 export class PostNewFeedComponent implements OnInit {
-  postImage = '';
   postNewfeedForm = this.formBuilder.group({
-    textContent: ['']
+    textContent: [''],
+    imageContent: [''],
+    videoContent: ['']
   });
 
   constructor(private formBuilder: FormBuilder, private _newsFeedService: NewsFeedService) { }
@@ -24,16 +25,21 @@ export class PostNewFeedComponent implements OnInit {
   }
 
   addToNewfeed() {
-    console.log(this.postNewfeedForm.get('textContent')?.value)
     let currentBody = {
       publisherName: 'Cat',
       publishedTime: new Date(),
       content: {
-          image: 'string',
-          video: 'string',
+          image: this.postNewfeedForm.get('imageContent')?.value,
+          video: this.postNewfeedForm.get('videoContent')?.value,
           text: this.postNewfeedForm.get('textContent')?.value,
       }
     }
-    //this._newsFeedService.postNewsFeed(currentBody);
+    this._newsFeedService.postNewsFeed(currentBody);
+  }
+
+  resetForm() {
+    this.postNewfeedForm.controls["textContent"].setValue("");
+    this.postNewfeedForm.controls["imageContent"].setValue("");
+    this.postNewfeedForm.controls["videoContent"].setValue("");
   }
 }
