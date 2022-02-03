@@ -30,7 +30,6 @@ export class LoginFormComponent implements OnInit {
     this.rememberedUserIsChecked = !this.rememberedUserIsChecked;
   }
 
-
   signIn() {
     if (!this.loginForm.controls['password'].errors && !this.loginForm.controls['username'].errors) {
       // Logic for checking login input to go to news feed page or not
@@ -64,9 +63,4 @@ export class LoginFormComponent implements OnInit {
     }
     
   }
-}
-
-interface RememeberedUser {
-  userName: string,
-  password: string
 }
