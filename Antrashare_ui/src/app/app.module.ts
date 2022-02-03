@@ -28,6 +28,7 @@ import { StoryComponent } from './components/story/story.component';
 import { TimeoutDialogComponent } from 'src/app/components/timeout-dialog/timeout-dialog.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,7 +44,7 @@ import { TimeoutDialogComponent } from 'src/app/components/timeout-dialog/timeou
     NavbarComponent,
     ErrorPageComponent,
     BottomBarComponent,
-    LogoutWindowComponent
+    LogoutDialogComponent
   ],
   imports: [
     BrowserModule,
