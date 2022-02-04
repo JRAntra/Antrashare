@@ -35,7 +35,6 @@ import { TimeoutDialogComponent } from './components/timeout-dialog/timeout-dial
 import { NewsFeedButtonComponent } from './components/news-feed/news-feed-button/news-feed-button.component';
 import { NewsFeedTemplateComponent } from './components/news-feed/news-feed-button/news-feed-template/news-feed-template.component';
 import { HeaderComponent } from './components/header/header.component';
-import { LogOutDialogComponent } from './components/logout-dialog/logout-dialog.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +42,6 @@ import { LogOutDialogComponent } from './components/logout-dialog/logout-dialog.
     TmpElementDirective,
     LoginPageComponent,
     LoginFormComponent,
-    LogOutDialogComponent,
     NewsFeedComponent,
     PageNotFoundComponent,
     MyProfileComponent,
