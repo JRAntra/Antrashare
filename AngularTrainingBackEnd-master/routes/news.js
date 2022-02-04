@@ -11,10 +11,10 @@ router.get('/', async (req, res) => {
     res.send(news);
 });
 
-// router.get('/:id', async (req, res) => {
-//     const news = await News.findOne({id: req.params.id});
-//     res.send(news);
-// });
+router.get('/:id', async (req, res) => {
+    const news = await News.findOne({id: req.params.id});
+    res.send(news);
+});
 
 router.post('/', async (req, res) => {
     const { error } = validate(req.body);
@@ -28,20 +28,20 @@ router.post('/', async (req, res) => {
     res.send(news);
 });
 
-// router.post('/:id', async (req, res) => {
-//     const { error } = validate(req.body);
-//     if (error) return res.status(400).send(error.details[0].message);
+router.post('/:id', async (req, res) => {
+    const { error } = validate(req.body);
+    if (error) return res.status(400).send(error.details[0].message);
 
-//     const newsitem = await News.findOne({id: req.params.id});
-//     questions.questions.push(req.body);
-//     (await questions).save();
+    const newsitem = await News.findOne({id: req.params.id});
+    questions.questions.push(req.body);
+    (await questions).save();
 
-//     res.send(questions);
-// })
+    res.send(questions);
+})
 
-// router.put('/:id', async (req, res) => {
-
-// });
+//router.put('/:id', async (req, res) => {
+//
+//});
 
 // router.delete('/:id', async (req, res) => {
 
