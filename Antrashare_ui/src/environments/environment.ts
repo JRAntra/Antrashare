@@ -5,9 +5,9 @@
 export const environment = {
   production: false,
   // testing: set 5s, requirement need to set 10min(10*60*100)
-  allPagesIdleTimeInMillSecond: 50000,
+  allPagesIdleTimeInMillSecond: 500000,
   // testing: set 2s, requirement need to set 10s(1000)
-  dialogIdleTimeInMillSecond: 20000,
+  dialogIdleTimeInMillSecond: 200000,
 };
 
 /*
