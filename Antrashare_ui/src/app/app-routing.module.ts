@@ -11,6 +11,7 @@ import { SettingsTabComponent } from './components/settings-tab/settings-tab.com
 import { Layout } from './models/layouts.model';
 
 const routes: Routes = [
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   // router for guests
   {
     path: '',
@@ -19,18 +20,21 @@ const routes: Routes = [
       layout: Layout.Empty
     },
     children: [
-      {path: 'login', component: LoginPageComponent},
+      { path: 'login', component: LoginPageComponent },
     ]
-  }
-  // { path: '', redirectTo: 'login', pathMatch: 'full' },
-  // { path: 'login', component: LoginPageComponent },
+  },
+  // router for authenticated users
+  {
+    path: '',
+    component: LayoutsComponent,
+    children: [
+      { path: 'newsfeed', component: NewsFeedTabComponent },
+      { path: 'profile', component: ProfileTabComponent },
+      { path: 'settings', component: SettingsTabComponent },
 
-  // { path: 'profile', component: ProfileTabComponent },
-  // { path: 'newsfeed', component: NewsFeedTabComponent },
-  // { path: 'settings', component: SettingsTabComponent },
-  // { path: 'logout', component: LogoutWindowComponent},
-
-  // { path: '**', component: ErrorPageComponent }
+      { path: '**', component: ErrorPageComponent }
+    ]
+  },
 ];
 
 const routerConfig: ExtraOptions = {

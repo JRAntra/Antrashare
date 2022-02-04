@@ -19,7 +19,16 @@ export class LayoutsComponent implements OnInit, OnDestroy {
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router
-  ) { }
+  ) { 
+    // substrib router events
+    this.router.events.pipe(
+      filter((event) => event instanceof NavigationEnd),
+      takeUntil(this.unsubscribeAll),
+      shareReplay()
+    ).subscribe(() => {
+      this.updateLayout();
+    }) 
+  }
 
   ngOnDestroy(): void {
     // unsubscrib for all subscriptions
@@ -28,43 +37,18 @@ export class LayoutsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    console.log(0);
-    // substrib router events
-    // this.router.events.pipe(
-    //   filter(event => event instanceof NavigationEnd),
-    //   tap(() => console.log(1)),
-    //   // takeUntil(this.unsubscribeAll)
-    // ).subscribe(() => this.updateLayout);
-
-    console.log(this.router);
-    this.router.events.subscribe((event) => console.log(event));
-    // this.router.events.pipe(
-    //   filter((event) => {
-    //     console.log('a', event);
-    //     console.log(event instanceof NavigationEnd);
-    //     return event instanceof NavigationEnd;
-    //   }),
-    //   // map((rount: any) => {console.log(rount)}),
-    //   // tap((value) => {
-    //   //   console.log(value)
-    //   // }),
-    //   // shareReplay()
-    // ).subscribe();
   }
 
   private updateLayout(): void {
-    console.log(1);
     let route = this.activatedRoute;
 
     route.pathFromRoot.forEach((path) => {
       if (path.routeConfig && path.routeConfig.data && path.routeConfig.data['layout']) {
         this.layout = path.routeConfig.data['layout'];
       } else {
-        this.layout = Layout.Empty;
+        this.layout = Layout.Horizontal;
       }
     });
-
-    console.log(this.layout);
   }
 
 }
