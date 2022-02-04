@@ -16,7 +16,7 @@ export class NewsFeedService {
     return this.http.post(this.path, entity);
   }
 
-  postContent(data: Story) {
+  createContent(data: Story) {
     const entity: News = {
       publisherName: 'Team Best Devs',
       content: data,

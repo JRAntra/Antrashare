@@ -67,11 +67,11 @@ export class StoryFormComponent implements OnInit {
     console.log(this.postForm.value);
     const data: Story = {
       text: this.postForm.get('text')?.value,
-      image: 'image',
-      video: 'video'
+      image: this.images.value.map((value: { url: any; }) => value.url).join(';') || 'image',
+      video: this.videos.value.map((value: { url: any; }) => value.url).join(';') || 'video'
     }
 
-    this.newsFeedService.postContent(data).subscribe((news) => {
+    this.newsFeedService.createContent(data).subscribe((news) => {
       console.log(news);
     });
   }
