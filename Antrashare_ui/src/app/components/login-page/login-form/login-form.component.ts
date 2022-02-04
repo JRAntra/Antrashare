@@ -3,6 +3,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 
+import { AuthService } from '../../../auth/auth.service';
+
 @Component({
   selector: 'app-login-form',
   templateUrl: './login-form.component.html',
@@ -10,8 +12,13 @@ import { Router } from '@angular/router';
 })
 export class LoginFormComponent implements OnInit {
   public loginForm: FormGroup;
+  private formSubmitAttempt: boolean = false;
 
-  constructor(public dialog: MatDialog, private router: Router) {
+  constructor(
+    public dialog: MatDialog,
+    private router: Router,
+    private authService: AuthService
+  ) {
     this.loginForm = new FormGroup({
       username: new FormControl('', [
         Validators.required,
@@ -37,8 +44,15 @@ export class LoginFormComponent implements OnInit {
   ngOnInit(): void {}
 
   submitForm() {
-    console.log('Valid?', this.loginForm.valid); // true or false
-    console.log(this.loginForm.value);
-    this.router.navigate(['/newsfeed']);
+    if (this.loginForm.valid) {
+      console.log('Valid?', this.loginForm.valid); // true or false
+      console.log(this.loginForm.value);
+      this.authService.login(this.loginForm.value);
+    }
+    this.formSubmitAttempt = true;
   }
+
+  // ngOnDestroy(): void {
+  //   this.authService.unsubcribe()
+  // }
 }
