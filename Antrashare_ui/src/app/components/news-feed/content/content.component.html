@@ -1,45 +1,74 @@
 <div class="contentPage">
   <div class="avatarDisplay">
-    <app-user-display [userInNewFeed]="userInfoFromServer"></app-user-display>
+    <mat-icon aria-hidden="false" aria-label="person">person</mat-icon>
+    <app-user-display [userInNewFeed]="userInfoFromServer"> </app-user-display>
   </div>
   <div class="content">
-    <p>{{ currentStory.content.text }}</p>
+    <p>
+      {{ userInfoFromServer.content.text }}
+    </p>
     <div>
-      {{ currentStory.content.image }}
-      {{ currentStory.content.video }}
+      <img
+        #image
+        [src]="userInfoFromServer.content.image"
+        (error)="image.hidden = true"
+        [hidden]="image.hidden"
+      />
+
+      <div *ngIf="isVideo === true">
+        <video width="320" height="240" controls>
+          <source
+            src="{{ userInfoFromServer.content.video }}"
+            type="video/mp4"
+          />
+        </video>
+      </div>
     </div>
   </div>
-  <div class="postLikeNumber">
-    <mat-icon aria-hidden="false" aria-label="comment">home</mat-icon>
+
+  <div class="content-follow-up">
     <div>
-      <label>Comment</label>
-      <div *ngFor="let comment of commentList">
-        <!-- content is an object so more work -->
-        <div *ngFor="let content of contentList">
-          {{ content.image }}
-          {{ content.text }}
-          {{ content.video }}
-          {{ content._id }}
-        </div>
+      <div>
+        <mat-icon aria-hidden="false" aria-label="comment">comment</mat-icon>
+        <label>{{ this.commentList.length }} Comment(s)</label>
+      </div>
+      <div *ngFor="let comment of commentList" class="story-comment">
         <div>
-          {{ comment.content }}
-          {{ comment.publishedTime }}
-          {{ comment.publisherName }}
-          {{ comment._id }}
+          <p>
+            {{ comment.content.text }}
+          </p>
+          <img
+            #image
+            [src]="comment.content.image"
+            (error)="image.hidden = true"
+            [hidden]="image.hidden"
+          />
+
+          <div *ngIf="isVideo === true">
+            <video width="320" height="240" controls>
+              <source src="{{ comment.content.video }}" type="video/mp4" />
+            </video>
+          </div>
+
+          <div class="publishing-details">
+            By {{ comment.publisherName }} at {{ comment.publishedTime }}
+          </div>
         </div>
       </div>
     </div>
-    <div>
-      <label>LikedId List</label>
-      <div *ngFor="let likeItem of currentStory.likedIdList">
-        {{ likeItem }}
-      </div>
+    <div class="like-id-list">
+      <mat-icon aria-hidden="false" aria-label="favorite">favorite</mat-icon>
+      <label>
+        {{ currentStory.likedIdList?.length }}
+      </label>
     </div>
   </div>
   <!-- frontend pagination is for comment -->
-  <!-- <mat-paginator [length]="10"
-              [pageSize]="11"
-              [pageSizeOptions]="[1, 5, 10]"
-              aria-label="Select page">
-    </mat-paginator> -->
+  <mat-paginator
+    [length]="commentList.length"
+    [pageSize]="commentList.length"
+    [pageSizeOptions]="[1, commentList.length]"
+    aria-label="Select page"
+  >
+  </mat-paginator>
 </div>
