@@ -1,8 +1,9 @@
-import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, HostBinding, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { filter, map, shareReplay, tap, takeUntil } from 'rxjs/operators';
 import { Layout } from 'src/app/models/layouts.model';
+import { SettingsService } from 'src/app/services/settings.service';
 
 @Component({
   selector: 'app-layouts',
@@ -14,12 +15,16 @@ export class LayoutsComponent implements OnInit, OnDestroy {
   // declare an unsubscribeAll for all subscriptions
   private unsubscribeAll: Subject<any> = new Subject<any>();
 
+  @HostBinding('class')
+  activeThemeCssClass!: string;
+
   readonly Layout = Layout;
   layout!: Layout;
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private settingsService: SettingsService
   ) {
     // substrib router events
     this.router.events.pipe(
@@ -29,6 +34,14 @@ export class LayoutsComponent implements OnInit, OnDestroy {
     ).subscribe(() => {
       this.updateLayout();
     })
+
+    // subscribe theme event
+    this.settingsService.getTheme().pipe(
+      takeUntil(this.unsubscribeAll),
+      shareReplay()
+    ).subscribe((value) => {
+      this.activeThemeCssClass = value;
+    });
   }
 
   ngOnDestroy(): void {
