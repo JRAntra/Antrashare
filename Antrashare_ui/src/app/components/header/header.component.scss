@@ -1,0 +1,58 @@
+@use "../../../scss/variables";
+
+.navbar {
+  justify-content: space-between;
+  background-color: variables.$primary-black;
+  color: variables.$primary-white;
+  overflow: hidden;
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  cursor: pointer;
+}
+
+span {
+  font-family: variables.$navbar-links-font-family;
+  font-family: variables.$navbar-links-font-family-1;
+  font-size: 16px;
+  display: none;
+}
+
+.navbar-logo {
+  display: inline-block;
+  font-size: 30px;
+  line-height: 80px;
+  padding: 0 20px;
+  font-weight: bold;
+}
+
+.menu-btn {
+  display: block;
+  font-size: 30px;
+  line-height: 80px;
+  margin-right: 40px;
+  cursor: pointer;
+  position: fixed;
+  right: 0;
+}
+
+@media screen and (min-width: 768px) {
+  span {
+    display: inline-block;
+    padding-right: 20px;
+    font-size: 22px;
+  }
+
+  .navbar-logo {
+    font-size: 35px;
+    padding: 0 100px;
+  }
+
+  .menu-btn {
+    display: none;
+  }
+
+  #click {
+    display: none;
+  }
+}
