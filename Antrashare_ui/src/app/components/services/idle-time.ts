@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { MatDialog, } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { fromEvent, merge } from 'rxjs';
 import { Observable, timer } from 'rxjs';
 import { Subject } from 'rxjs';
 import { startWith, switchMap } from 'rxjs/operators';
@@ -93,6 +94,26 @@ export class idleTimeService {
   popLogoutDialog() {
     console.log(`Pop Logout Dialog()`);
     this.dialog.open(LogoutConfirmationDialogComponent); // pop TimeoutDialog Component
+  }
+
+  eventRefreshesIdleTime() {
+    // First, create a separate observable for each event:
+    const scrollEvents$ = fromEvent(window, 'scroll');
+    const clickEvents$ = fromEvent(window, 'click');
+    const mouseMoveEvents$ = fromEvent(window, 'mousemove');
+
+    // Then, merge all observables into one single stream:
+    const allEvents$ = merge(
+      scrollEvents$,
+      clickEvents$,
+      mouseMoveEvents$,
+    );
+
+    // const source = fromEvent(window, 'mousemove');
+    allEvents$.subscribe((data) => {
+      console.log(`Event detected.`)
+      this.refreshTimer();
+    });
   }
 
 }
