@@ -34,6 +34,7 @@ import { CommentComponent } from './components/news-feed/story/comment-list/comm
 import { TimeoutDialogComponent } from './components/timeout-dialog/timeout-dialog.component';
 import { NewsFeedButtonComponent } from './components/news-feed/news-feed-button/news-feed-button.component';
 import { NewsFeedTemplateComponent } from './components/news-feed/news-feed-button/news-feed-template/news-feed-template.component';
+import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { NewsFeedTemplateComponent } from './components/news-feed/news-feed-butt
     TimeoutDialogComponent,
     NewsFeedButtonComponent,
     NewsFeedTemplateComponent,
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,

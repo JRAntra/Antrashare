@@ -1,22 +1,4 @@
-<header>
-  <mat-toolbar class="navbar">
-    <div class="menu-btn">
-      <mat-icon>view_headline</mat-icon>
-    </div>
-    <div>
-      <span routerLink="/" routerLinkActive="active" class="navbar-logo"
-        >Blog Site</span
-      >
-    </div>
-    <div class="navbar-links">
-      <span routerLink="login">Sign In</span>
-      <span routerLink="profile">My Profile</span>
-      <span routerLink="newsfeed">News Feed</span>
-      <span routerLink="settings">Settings</span>
-    </div>
-  </mat-toolbar>
-</header>
-
+<app-header></app-header>
 <main>
   <div class="container">
     <router-outlet></router-outlet>
