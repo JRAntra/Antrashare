@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import { DataService } from 'src/app/services/newsfeed/data.service';
 
 @Component({
