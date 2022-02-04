@@ -29,12 +29,23 @@ export class PostNewFeedComponent implements OnInit {
       publisherName: 'Cat',
       publishedTime: new Date(),
       content: {
-          image: this.postNewfeedForm.get('imageContent')?.value,
-          video: this.postNewfeedForm.get('videoContent')?.value,
-          text: this.postNewfeedForm.get('textContent')?.value,
+        image: this.postNewfeedForm.get('imageContent')?.value,
+        video: this.postNewfeedForm.get('videoContent')?.value,
+        text: this.postNewfeedForm.get('textContent')?.value,
       }
     }
     this._newsFeedService.postNewsFeed(currentBody);
+
+
+    // testing value in server
+    this._newsFeedService.getRequest(this._newsFeedService.url).subscribe(
+      (data) => {
+        console.log(data);
+
+      }
+
+    )
+
   }
 
   resetForm() {

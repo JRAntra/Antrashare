@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { MatDialog, } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { fromEvent, merge } from 'rxjs';
 import { Observable, timer } from 'rxjs';
 import { Subject } from 'rxjs';
 import { startWith, switchMap } from 'rxjs/operators';
@@ -14,66 +15,72 @@ import { TimeoutDialogComponent } from '../timeout-dialog/timeout-dialog.compone
 
 export class idleTimeService {
 
-  idleTimeLimitInMS = 600000; // 10 mins is 600000ms
-  idleTimeLimitInSecond = this.idleTimeLimitInMS / 10000;
-  dialogLimitTime = 10000; // 10 seconds
   currentPageForRouting: string | undefined;
   currentPageIsSignInPage = false;
-  val: number | undefined;
-  reset$ = new Subject();
+
+  // Requirement for idle is 10 mins === 600000ms
+  idleTimeLimitInMS = 600000;
+  testingTimeInMS = 30000; // 3 seconds
+  idleTimeLimitInSecond = this.idleTimeLimitInMS / 10000;
+  dialogLimitTimeInMS = 10000; // 10 seconds
+  idleTimer$ = new Subject();
   subscription: Observable<number> | undefined;
 
-  // Variables for Host-listener
-  userActivity: any;
-  userInactive: Subject<any> = new Subject();
-
   constructor(private dialog: MatDialog, private router: Router) {
-    // Check idle time on all pages
-    this.idleTimeTracker();
-  }
-
-
-  idleTimeTracker() {
     this.initializeIdleTimeTracker();
-    // this.subscription?.subscribe(
-    //   data => {
-    //     console.log(`Current idle time ${data}s`); //deubg
-    //     // this.val = val; // optional
-
-    //     if (this.currentPageIsSignInPage === false &&
-    //       data === this.idleTimeLimitInSecond
-    //     ) {
-    //       console.log(`Hit idle time limit and not on home page.`);
-    //       this.popDialog();
-    //     }
-    //   }
-    // );
   }
 
   initializeIdleTimeTracker(): void {
-    this.subscription = this.reset$.pipe(
+    this.subscription = this.idleTimer$.pipe(
       startWith(void 0),
       switchMap(() => timer(1000, 1000))
     );
   }
 
+  countIdleTime() {
+    return this.subscription?.subscribe(
+      data => {
+        // console.log(`Current idle time ${data}s`); // debug
+
+        // Pop timeout dialog if too long
+        if (this.currentPageIsSignInPage === false &&
+          data === this.idleTimeLimitInSecond
+        ) {
+          console.log(`Hit idle time limit and not on home page.`);
+          this.popTimeOutDialog();
+        }
+      }
+    );
+  }
+
   refreshTimer(): void {
-    this.reset$.next(void 0);
+    this.idleTimer$.next(void 0);
   }
 
-  // Functions for host-listener
-  detectIdle() {
-    this.registerCurrentTime();
-    this.userInactive.subscribe(() => { console.log(`Hit idle time limit ${this.idleTimeLimitInSecond}s`); });
-  }
 
-  registerCurrentTime() {
-    this.userActivity = setTimeout(() => this.userInactive.next(undefined), this.idleTimeLimitInMS);
+  eventRefreshesIdleTime() {
+    // First, create a separate observable for each event:
+    const scrollEvents$ = fromEvent(window, 'scroll');
+    const clickEvents$ = fromEvent(window, 'click');
+    const mouseMoveEvents$ = fromEvent(window, 'mousemove');
+
+    // Then, merge all observables into one single stream:
+    const allEvents$ = merge(
+      scrollEvents$,
+      clickEvents$,
+      mouseMoveEvents$,
+    );
+
+    allEvents$.subscribe((data) => {
+      console.log(`Event detected.`) // deubg
+      this.refreshTimer();
+    });
   }
 
   timerId: any;
-  popDialog() {
-    console.log(`Pop Dialog`);
+  popTimeOutDialog() {
+    console.log(`Pop TimeOut Dialog`);
+    this.refreshTimer();
 
     // pop TimeoutDialog Component
     this.dialog.open(TimeoutDialogComponent);
@@ -81,18 +88,21 @@ export class idleTimeService {
     // Not reacting in 10 seconds will navigate back to Login Page.
     this.timerId = setTimeout(
       () => {
-        console.log(`Hit idle time limit ${this.dialogLimitTime}s`);
+        console.log(`Hit idle time limit ${this.dialogLimitTimeInMS / 1000}s`);
         this.dialog.closeAll();
         this.router.navigate(['loginPage']);
       }
       // , 3000 // debug use 3s
-      , this.dialogLimitTime // requirement is 10s
+      , this.dialogLimitTimeInMS // requirement is 10s
     );
   }
 
   popLogoutDialog() {
     console.log(`Pop Logout Dialog()`);
-    this.dialog.open(LogoutConfirmationDialogComponent); // pop TimeoutDialog Component
+    this.refreshTimer();
+
+    // pop logout tDialog Component
+    this.dialog.open(LogoutConfirmationDialogComponent);
   }
 
 }

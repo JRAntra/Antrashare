@@ -1,8 +1,9 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { idleTimeService } from '../services/idle-time';
 import { NewFeed } from '../../interfaces/newfeed.interface';
 import { HttpClient } from '@angular/common/http';
 import { NewsFeedService } from '../services/news-feed.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-news-feed',
@@ -40,7 +41,12 @@ export class NewsFeedComponent implements OnInit {
   }
 
   dataFromMongoDB: any;
+  markToUnsubscribe: Subscription | undefined;
+
   ngOnInit() {
+    // Check idle time
+    this.markToUnsubscribe = this._idleTimeService.countIdleTime();
+    this._idleTimeService.eventRefreshesIdleTime();
 
     this._newsFeedService.getRequest("http://localhost:4231/api/news")
       .subscribe(
@@ -57,7 +63,9 @@ export class NewsFeedComponent implements OnInit {
       )
   }
 
-
+  ngOnDestroy() {
+    this.markToUnsubscribe?.unsubscribe();
+  }
 
   formatTime(publishedTime: string) {
     let year = publishedTime.slice(0, 4);
@@ -68,13 +76,5 @@ export class NewsFeedComponent implements OnInit {
 
     // console.log(finalTime); // debug
     return finalTime;
-
-  }
-  @HostListener('document:keydown', ['$event'])
-  @HostListener('click', ['$event'])
-  @HostListener('window:mousemove') refreshUserState() {
-    this._idleTimeService.refreshTimer();
-    clearTimeout(this._idleTimeService.userActivity);
-    this._idleTimeService.registerCurrentTime(); // Re-monitor
   }
 }

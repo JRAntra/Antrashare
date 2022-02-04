@@ -1,9 +1,10 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { UserProfile } from 'src/app/interfaces/user.interface';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { idleTimeService } from '../services/idle-time';
 import { UserInfo } from '../../interfaces/user-display.interface';
+import { Subscription } from 'rxjs';
 
 const THUMBUP_ICON =
   `
@@ -50,18 +51,20 @@ export class MyProfileComponent implements OnInit {
     iconRegistry.addSvgIconLiteral('thumbs-up', sanitizer.bypassSecurityTrustHtml(THUMBUP_ICON));
   }
 
+  markToUnsubscribe: Subscription | undefined;
+
   ngOnInit(): void {
+    // Check idle time
+    this.markToUnsubscribe = this._idleTimeService.countIdleTime();
+    this._idleTimeService.eventRefreshesIdleTime();
+
     this.userInfo = {
       username: this.userData.username,
       userEmail: this.userData.userEmail,
     }
   }
-  
-  @HostListener('document:keydown', ['$event'])
-  @HostListener('click', ['$event'])
-  @HostListener('window:mousemove') refreshUserState() {
-    this._idleTimeService.refreshTimer();
-    clearTimeout(this._idleTimeService.userActivity);
-    this._idleTimeService.registerCurrentTime(); // Re-monitor
+
+  ngOnDestroy() {
+    this.markToUnsubscribe?.unsubscribe();
   }
 }
