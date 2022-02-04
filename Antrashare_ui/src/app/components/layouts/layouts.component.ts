@@ -20,7 +20,7 @@ export class LayoutsComponent implements OnInit, OnDestroy {
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router
-  ) { 
+  ) {
     // substrib router events
     this.router.events.pipe(
       filter((event) => event instanceof NavigationEnd),
@@ -28,7 +28,7 @@ export class LayoutsComponent implements OnInit, OnDestroy {
       shareReplay()
     ).subscribe(() => {
       this.updateLayout();
-    }) 
+    })
   }
 
   ngOnDestroy(): void {
