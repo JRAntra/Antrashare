@@ -25,6 +25,7 @@ import { CommentInputComponent } from './components/news-feed-tab/story-list/com
 import { CommentListComponent } from './components/news-feed-tab/story-list/comment-list/comment-list.component';
 import { ErrorPageComponent } from './components/error-page/error-page.component';
 import { Error404Component } from './components/error-page/error404/error404.component';
+import { HttpClientModule } from '@angular/common/http';
 import { LoginPageComponent } from './components/login-page/login-page.component';
 import { LoginFormComponent } from './components/login-page/login-form/login-form.component';
 import { LogoutWindowComponent } from './dialogs/logout-window/logout-window.dialog.component';
@@ -59,11 +60,12 @@ import { TimeoutComponent } from './dialogs/timeout/timeout.dialog.component';
     TimeoutComponent,
   ],
   imports: [
+    AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
-    ReactiveFormsModule,
     FormsModule,
-    AppRoutingModule,
+    HttpClientModule,
+    ReactiveFormsModule,
     MatButtonModule,
     MatCardModule,
     MatCheckboxModule,
