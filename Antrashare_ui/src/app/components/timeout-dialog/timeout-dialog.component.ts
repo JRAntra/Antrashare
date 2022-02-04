@@ -17,14 +17,12 @@ export class TimeoutDialogComponent implements OnInit {
     private router: Router,
     private dialogRef: MatDialogRef<TimeoutDialogComponent>,
     private timeoutDialog: TimeoutdialogService
-  ) {
-  }
+  ) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   cancel(): void {
-    this.timeoutDialog.resetTimer();
+    //this.timeoutDialog.resetTimer();
     this.dialogRef.close();
     this.router.navigate(['/login']);
   }
