@@ -9,12 +9,12 @@ import { NewsService } from 'src/app/services/news/news.service';
 })
 export class NewsFeedComponent implements OnInit {
   storyList: any;
-  
+
   constructor(private newsService: NewsService) { }
 
   ngOnInit(): void {
     this.newsService.getNews().subscribe(storyList => this.storyList = storyList);
-    console.log(this.storyList);
+    //console.log(this.storyList);
   }
 }
 

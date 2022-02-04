@@ -20,6 +20,7 @@ export class StoryComponent implements OnInit {
 
   ngOnInit(): void {
     console.log(this.story.content.text);
+   
   }
   
   onTriggerCommentDialog() {
