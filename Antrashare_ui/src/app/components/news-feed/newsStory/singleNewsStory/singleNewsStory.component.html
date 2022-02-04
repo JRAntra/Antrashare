@@ -1,11 +1,11 @@
 <div class="single_story_container">
   <div class='single_story_grid'>
     <div class='single_story_avatar_grid'>Avatar Here</div>
-    <div class='single_story_username_grid'>Username</div>
-    <div class='single_story_publish_time_grid'>Publish Time</div>
-    <div class='single_story_content_grid'>content</div>
-    <div class='single_story_comment_grid'>comment</div>
-    <div class='single_story_like_grid'>like</div>
+    <div class='single_story_username_grid'>{{newsStory.publisherName}}</div>
+    <div class='single_story_publish_time_grid'>{{newsStory.publishedTime | date: 'short'}}</div>
+    <div class='single_story_content_grid'>{{newsStory.content.text}}</div>
+    <div class='single_story_comment_grid'>{{newsStory.comment.length}}</div>
+    <div class='single_story_like_grid'>{{newsStory.likedIdList.length}}</div>
 
   </div>
 </div>
