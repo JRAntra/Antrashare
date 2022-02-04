@@ -43,10 +43,10 @@ export class NewsFeedComponent implements OnInit {
 }
 
 
-export interface Story {
-  id: number;
-  cover: string;
-  publisherName: string;
-  publishedTime: string;
-  content: string;
-}
+// export interface Story {
+//   id: string;
+//   cover: string;
+//   publisherName: string;
+//   publishedTime: string;
+//   content: string;
+// }

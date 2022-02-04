@@ -14,8 +14,8 @@
     </div>
     <div class="storyContent">
         {{story.content.text}} <br/>
-        {{story.content.image}} <br/>
-        {{story.content.video}} <br/>
+        <img *ngIf='hasImage' [src]='safeImage'><br/>
+        <iframe *ngIf="hasVideo" [src]='safeVideo' frameborder="0" allowfullscreen></iframe>
     </div>
     <div class="storyBottomBar">
         <div class="storyBottomBarItem">
