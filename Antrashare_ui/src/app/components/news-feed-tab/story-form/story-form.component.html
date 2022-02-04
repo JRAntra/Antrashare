@@ -1,0 +1,54 @@
+<form [formGroup]="postForm">
+  <mat-card class='container'>
+    <mat-card-title>Create Post</mat-card-title>
+
+    <mat-card-content class="post-content">
+
+      <!-- text -->
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label>What's on your mind?</mat-label>
+        <textarea matInput formControlName="text"></textarea>
+      </mat-form-field>
+
+      <!-- image -->
+      <div formArrayName="images" *ngFor="let image of images.controls; let i = index">
+
+        <div [formGroupName]="i">
+          <mat-form-field class="full-width" appearance="outline">
+            <img matPrefix [src]="image.get('url')?.value" *ngIf="image.get('url')?.value">
+            <mat-label>Paste image URL</mat-label>
+            <input matInput formControlName="url">
+            <mat-icon matSuffix (click)="removeImage(i)">delete</mat-icon>
+          </mat-form-field>
+        </div>
+        
+      </div>
+      
+      <!-- video -->
+      <div formArrayName="videos" *ngFor="let video of videos.controls; let i = index">
+        <div [formGroupName]="i">
+
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Paste video URL</mat-label>
+            <input matInput formControlName="videos" formControlName="url">
+            <mat-icon matSuffix (click)="removeVideo(i)">delete</mat-icon>
+          </mat-form-field>
+
+        </div>
+      </div>
+      
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button mat-button mat-icon-button aria-label="add image" (click)="addImage()">
+        <mat-icon>image</mat-icon>
+      </button>
+
+      <button mat-button mat-icon-button aria-label="add video" (click)="addVideo()">
+        <mat-icon>movie</mat-icon>
+      </button>
+
+      <button mat-raised-button color="primary" (click)="post()">Post</button>
+    </mat-card-actions>
+  </mat-card>
+</form>

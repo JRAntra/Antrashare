@@ -19,12 +19,13 @@ import { Error404Component } from './components/error-page/error404/error404.com
 import { LayoutsModule } from './components/layouts/layouts.module';
 import { LoginPageComponent } from './components/login-page/login-page.component';
 import { LoginFormComponent } from './components/login-page/login-form/login-form.component';
-import { LogoutWindowComponent } from './components/login-page/logout-window/logout-window.component';
+import { LogoutWindowComponent } from './dialogs/logout-window/logout-window.dialog.component';
 import { NewsFeedTabComponent } from './components/news-feed-tab/news-feed-tab.component';
 import { ProfileFormComponent } from './components/profile-tab/profile-form/profile-form.component';
 import { ProfileTabComponent } from './components/profile-tab/profile-tab.component';
 import { SettingsTabComponent } from './components/settings-tab/settings-tab.component';
 import { StoryComponent } from './components/news-feed-tab/story-list/story/story.component';
+import { StoryFormComponent } from './components/news-feed-tab/story-form/story-form.component';
 import { StoryListComponent } from './components/news-feed-tab/story-list/story-list.component';
 import { TimeoutComponent } from './dialogs/timeout/timeout.dialog.component';
 
@@ -47,6 +48,7 @@ import { SharedModule } from './shared/shared.module';
     ProfileTabComponent,
     SettingsTabComponent,
     StoryComponent,
+    StoryFormComponent,
     StoryListComponent,
     TimeoutComponent,
   ],
