@@ -1,0 +1,13 @@
+<form [formGroup]="newsFeedForm">
+
+  <label for="text">Content: </label>
+  <textarea id="text" type="text" formControlName="text" placeholder="Anything goes ..."></textarea>
+
+  <label for="image">Submit an image url: </label>
+  <input id="image" type="text" formControlName="image" placeholder="Image Url">
+
+  <label for="video">Submit a video url: </label>
+  <input id="video" type="text" formControlName="video" placeholder="Video Url">
+
+  <button (click)="newsPostSubmit()">Post a new story</button>
+</form>

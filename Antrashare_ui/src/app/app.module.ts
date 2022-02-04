@@ -33,8 +33,10 @@ import { CommentInputComponent } from './components/news-feed/story/comment-inpu
 import { CommentComponent } from './components/news-feed/story/comment-list/comment/comment.component';
 import { TimeoutDialogComponent } from './components/timeout-dialog/timeout-dialog.component';
 import { NewsFeedButtonComponent } from './components/news-feed/news-feed-button/news-feed-button.component';
-import { NewsFeedTemplateComponent } from './components/news-feed/news-feed-button/news-feed-template/news-feed-template.component';
+import { NewsFeedTemplateComponent } from './components/news-feed/news-feed-template/news-feed-template.component';
 import { HeaderComponent } from './components/header/header.component';
+import { LogOutDialogComponent } from './components/logout-dialog/logout-dialog.component';
+
 
 @NgModule({
   declarations: [
@@ -55,6 +57,7 @@ import { HeaderComponent } from './components/header/header.component';
     NewsFeedButtonComponent,
     NewsFeedTemplateComponent,
     HeaderComponent,
+    LogOutDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -75,4 +78,4 @@ import { HeaderComponent } from './components/header/header.component';
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
