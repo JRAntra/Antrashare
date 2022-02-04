@@ -5,3 +5,9 @@
   overflow: scroll;
   overflow-x: hidden;
 }
+
+.centered {
+  display: flex;
+  align-self: center;
+  align-content: center;
+}

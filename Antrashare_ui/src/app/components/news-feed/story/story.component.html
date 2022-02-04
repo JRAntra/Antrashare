@@ -1,4 +1,4 @@
-<li class="story">
+<!-- <li class="story">
   <img src={{storyItem.image}} alt="Avatar Image" width="30px" width="30px" border-radius />
   <p>{{ storyItem.publisherName }}</p>
   <p>{{ storyItem.publishedTime | date: 'short'}}</p>
@@ -9,16 +9,35 @@
     <div></div>
     <div class="comments">
       <section>comment_icon </section>
-      <!-- Need to create a new component to display the comments -->
       <section>story_comment</section>
     </div>
     <div></div>
     <div class="likes">
       <section>likes_icon </section>
-      <!-- Need to calculate the likes based on the story -->
+
       <section>like_number</section>
     </div>
     <div></div>
   </div>
 
+</li> -->
+
+<li class="story">
+  <mat-card class="example-card">
+    <mat-card-header>
+      <img mat-card-avatar src="{{storyItem.image}}" />
+      <mat-card-title>{{storyItem.publisherName}}</mat-card-title>
+      <mat-card-subtitle>{{storyItem.publishedTime | date:'short'}}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image src={{storyItem.content.image}} alt="Photo of a Shiba Inu">
+    <mat-card-content>
+      <p>
+        storyItem.content.text
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button>LIKE</button>
+      <button mat-button>Comment</button>
+    </mat-card-actions>
+  </mat-card>
 </li>
