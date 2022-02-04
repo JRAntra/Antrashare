@@ -26,7 +26,7 @@ export class LayoutsComponent implements OnInit, OnDestroy {
     private router: Router,
     private settingsService: SettingsService
   ) {
-    // substrib router events
+    // subscribe router events
     this.router.events.pipe(
       filter((event) => event instanceof NavigationEnd),
       takeUntil(this.unsubscribeAll),
