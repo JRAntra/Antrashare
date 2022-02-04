@@ -1,15 +1,15 @@
 export interface story {
-  avatar_url?: string;
+  image?: string;
   publisherName: string;
-  publisherTime: string;
+  publishedTime: string;
   content: {
     image: string;
     video: string;
     text: string;
   };
-  comment: [
+  comment?: [
     {
-      avatar_url?: string;
+      image: string;
       publisherName: string;
       publisherTime: string;
       content: {
@@ -19,7 +19,7 @@ export interface story {
       };
     }
   ];
-  LikedIdList: [];
+  likedIdList?: [];
 }
 
 export interface UserProfile {

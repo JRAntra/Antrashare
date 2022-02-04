@@ -145,3 +145,12 @@ table {
 
 $primary-red: red;
 $primary-white: white;
+
+html {
+  background-image: url("./public/0.jpg");
+  background-repeat: repeat;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+}

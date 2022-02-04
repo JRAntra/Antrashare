@@ -17,19 +17,13 @@ export class NewsFeedComponent implements OnInit {
   constructor(
     private dataService: DataService,
     private _httpClient: HttpClient
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     //this.dataService.getNewsFeed().subscribe((data) => (this.storyList = data));
-
     this.dataService.getNewsFeed().subscribe((data) => {
-      this.dataFromServer = data;
-
-      console.log(this.dataFromServer);
-
-      this.storyList = this.dataFromServer;
-
-      console.log(this.storyList);
+      this.storyList = data;
+      console.log(data);
     });
   }
 }

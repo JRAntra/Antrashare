@@ -1,8 +1,10 @@
 <li class="story">
-  <img src={{storyItem.avatar_url}} alt="Avatar Image" width="30px" width="30px" border-radius />
+  <img src={{storyItem.image}} alt="Avatar Image" width="30px" width="30px" border-radius />
   <p>{{ storyItem.publisherName }}</p>
-  <p>{{ storyItem.publisherTime }}</p>
-  <p>{{ storyItem.content }}</p>
+  <p>{{ storyItem.publishedTime | date: 'short'}}</p>
+  <p>{{ storyItem.content.text }}</p>
+  <p>{{ storyItem.content.image }}</p>
+  <p>{{ storyItem.content.video }}</p>
   <div class="commentsAndLikes">
     <div></div>
     <div class="comments">

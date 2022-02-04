@@ -75,25 +75,25 @@ main {
 
 // background
 
-.background-image {
-  background-image: url("../public/0.jpg");
-  background-repeat: repeat;
-  position: absolute;
-  top: 0px;
-  right: 0px;
-  bottom: 0px;
-  left: 0px;
-  z-index: -2;
-}
+// .background-image {
+//   background-image: url("../public/0.jpg");
+//   background-repeat: repeat;
+//   position: absolute;
+//   top: 0px;
+//   right: 0px;
+//   bottom: 0px;
+//   left: 0px;
+//   z-index: -2;
+// }
 
-.black {
-  background-color: variables.$primary-black;
-  background-size: cover;
-  position: absolute;
-  top: 0px;
-  right: 0px;
-  bottom: 0px;
-  left: 0px;
-  z-index: -1;
-  opacity: 0;
-}
+// .black {
+//   background-color: variables.$primary-black;
+//   background-size: cover;
+//   position: absolute;
+//   top: 0px;
+//   right: 0px;
+//   bottom: 0px;
+//   left: 0px;
+//   z-index: -1;
+//   opacity: 0;
+// }
