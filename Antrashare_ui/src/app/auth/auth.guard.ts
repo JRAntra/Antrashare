@@ -22,12 +22,11 @@ import { AuthService } from './auth.service';
 export class AuthGuard implements CanActivate {
   constructor(private authService: AuthService, private router: Router) {}
 
-  canActivate(
-    //route: ActivatedRouteSnapshot,
-    //state: RouterStateSnapshot,
-    next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
-  ): Observable<boolean> {
+  canActivate(): //route: ActivatedRouteSnapshot,
+  //state: RouterStateSnapshot,
+  //next: ActivatedRouteSnapshot,
+  //state: RouterStateSnapshot
+  Observable<boolean> {
     return this.authService.isLoggedIn.pipe(
       take(1),
       map((isLoggedIn: boolean) => {
