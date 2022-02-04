@@ -10,7 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 // Components
 import { AppComponent } from './app.component';
-import { AutoHideDirective } from './directives/auto-hide.directive';
+// import { AutoHideDirective } from './directives/auto-hide.directive';
 import { CommentComponent } from './components/news-feed-tab/story-list/comment-list/comment/comment.component';
 import { CommentInputComponent } from './components/news-feed-tab/story-list/comment-input/comment-input.component';
 import { CommentListComponent } from './components/news-feed-tab/story-list/comment-list/comment-list.component';
@@ -33,7 +33,7 @@ import { SharedModule } from './shared/shared.module';
 @NgModule({
   declarations: [
     AppComponent,
-    AutoHideDirective,
+    // AutoHideDirective,
     CommentComponent,
     CommentInputComponent,
     CommentListComponent,

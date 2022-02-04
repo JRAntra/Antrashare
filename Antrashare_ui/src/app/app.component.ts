@@ -58,12 +58,7 @@ export class AppComponent {
     private dialog: MatDialog,
     private idleService: IdleService,
     private nz: NgZone
-  ) { 
-  //   this.router.events.pipe(
-  //   filter((event) => event instanceof NavigationEnd),
-  //   shareReplay()
-  // ).subscribe((value) => console.log(value)) 
-}
+  ) { }
 
   idle() {
     this.idleService.onIdleStart.subscribe(value => {

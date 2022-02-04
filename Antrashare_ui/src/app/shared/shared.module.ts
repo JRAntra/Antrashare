@@ -2,6 +2,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+// Directive
+import { AutoHideDirective } from '../directives/auto-hide.directive';
+
 // Angular Material Modules
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -31,6 +34,10 @@ const matModules = [
 ]
 
 @NgModule({
+  declarations: [
+     // Directive
+     AutoHideDirective,
+  ],
   imports: [
     CommonModule,
     FormsModule,
@@ -43,6 +50,9 @@ const matModules = [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+
+    // Directive
+    AutoHideDirective,
 
     // Angular Material Modules
     ...matModules,
