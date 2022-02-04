@@ -14,15 +14,5 @@ export class NewsFeedComponent implements OnInit {
 
   ngOnInit(): void {
     this.newsService.getNews().subscribe(storyList => this.storyList = storyList);
-    //console.log(this.storyList);
   }
-}
-
-
-export interface Story {
-  id: number;
-  cover: string;
-  publisherName: string;
-  publishedTime: string;
-  content: string;
 }
