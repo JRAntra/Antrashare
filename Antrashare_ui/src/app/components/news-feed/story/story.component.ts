@@ -1,7 +1,7 @@
-import { TOUCH_BUFFER_MS } from '@angular/cdk/a11y/input-modality/input-modality-detector';
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { CommentDialogComponent } from '../comment-dialog/comment-dialog.component';
 import { DomSanitizer } from '@angular/platform-browser';
-
 import { News } from 'src/app/models/newsfeed.models';
 
 @Component({
@@ -12,6 +12,7 @@ import { News } from 'src/app/models/newsfeed.models';
 export class StoryComponent implements OnInit {
   @Input() story!:News
   @Output() storyEmiter = new EventEmitter()
+  dialogRef?: MatDialogRef<CommentDialogComponent>;
 
   public isCommentOpened = false;
   public hasVideo = false;
@@ -23,7 +24,7 @@ export class StoryComponent implements OnInit {
   safeVideo: any;
   safeImage: any;
 
-  constructor(private _sanitizer: DomSanitizer) { }
+  constructor(private _sanitizer: DomSanitizer, private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.videoLink = this.story.content.video ? this.story.content.video : '';
@@ -43,9 +44,10 @@ export class StoryComponent implements OnInit {
 
     this.safeVideo = this._sanitizer.bypassSecurityTrustResourceUrl(this.videoLink);
     this.safeImage = this._sanitizer.bypassSecurityTrustResourceUrl(this.imageLink);
+    console.log(this.story._id);
   }
 
-  onTriggerComment() {
-    this.isCommentOpened = !this.isCommentOpened;
+  onTriggerCommentDialog() {
+    this.dialog.open(CommentDialogComponent, {data:{story:this.story}});
   }
 }
