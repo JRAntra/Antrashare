@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Subject } from 'rxjs';
+import { TimeoutdialogService } from 'src/app/services/timeoutdialog/timeoutdialog.service';
 
 @Component({
   selector: 'app-timeout-dialog',
@@ -14,38 +15,22 @@ export class TimeoutDialogComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private dialogRef: MatDialogRef<TimeoutDialogComponent>
+    private dialogRef: MatDialogRef<TimeoutDialogComponent>,
+    private timeoutDialog: TimeoutdialogService
   ) {
-    this.setIdleTime();
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+  }
 
   cancel(): void {
+    this.timeoutDialog.resetTimer();
     this.dialogRef.close();
     this.router.navigate(['/login']);
-    //this.setIdleTime();
   }
 
   confirm(): void {
     this.dialogRef.close();
-    clearTimeout(this.popUpTimeObserver);
-
-    // this.setIdleTime();
-  }
-
-  setIdleTime() {
-    this.popUpTimeObserver = setTimeout(
-      () => this.popUpTimeObs.next(undefined),
-      4000
-    );
-    this.popUpTimeObs.subscribe(() => {
-      this.confirm();
-      this.cancel();
-    });
-  }
-  ngOnDestroy(): void {
-    this.popUpTimeObs.unsubscribe();
-    this.dialogRef.close();
+    this.timeoutDialog.resetTimer();
   }
 }

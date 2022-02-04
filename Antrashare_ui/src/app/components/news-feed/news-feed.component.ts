@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { story } from 'src/app/models/user.models';
 import { HttpClient } from '@angular/common/http';
 
-import { NewsFeedService } from 'src/app/services/news-feed.service';
-import { DataService } from 'src/app/services/data.service';
+// import { NewsFeedService } from 'src/app/services/news-feed.service';
+import { DataService } from 'src/app/services/newsfeed/data.service';
 
 @Component({
   selector: 'app-news-feed',
@@ -16,23 +16,20 @@ export class NewsFeedComponent implements OnInit {
 
   constructor(
     private dataService: DataService,
-    private _httpClient: HttpClient,
-    private newsFeedService: NewsFeedService
+    private _httpClient: HttpClient
   ) {}
 
   ngOnInit(): void {
     //this.dataService.getNewsFeed().subscribe((data) => (this.storyList = data));
 
-    this.newsFeedService
-      .getRequest('http://localhost:4231/api/news')
-      .subscribe((data) => {
-        this.dataFromServer = data;
+    this.dataService.getNewsFeed().subscribe((data) => {
+      this.dataFromServer = data;
 
-        console.log(this.dataFromServer);
+      console.log(this.dataFromServer);
 
-        this.storyList = this.dataFromServer;
+      this.storyList = this.dataFromServer;
 
-        console.log(this.storyList);
-      });
+      console.log(this.storyList);
+    });
   }
 }
