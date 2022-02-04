@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { NewsStory } from '../models/newsStory.model';
+import { NewsStory } from '../models/newsFeed.framework.model';
 import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'

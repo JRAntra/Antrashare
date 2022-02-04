@@ -1,6 +1,6 @@
 import { Component, OnInit, Output } from '@angular/core';
 import { NewsFeedService } from 'src/app/Service/newsFeed.service';
-import { NewsStory } from 'src/app/models/newsStory.model';
+import { NewsStory } from 'src/app/models/newsFeed.framework.model';
 
 @Component({
   selector: 'app-newsStory',

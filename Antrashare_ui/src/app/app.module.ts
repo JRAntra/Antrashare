@@ -12,6 +12,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
 
 //Components
 import { AppComponent } from './app.component';
@@ -22,7 +23,7 @@ import { TimeoutComponent } from './dialogs/timeout/timeout.component';
 import { NewsPostComponent } from './components/news-feed/newsPost/newsPost.component';
 import { NewsStoryComponent } from './components/news-feed/newsStory/newsStory.component';
 import { SingleNewsStoryComponent } from './components/news-feed/newsStory/singleNewsStory/singleNewsStory.component';
-
+import { CommentListComponent } from './dialogs/commentList/commentList.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,6 +31,7 @@ import { SingleNewsStoryComponent } from './components/news-feed/newsStory/singl
     LoginPageComponent,
     NewsFeedComponent,
     TimeoutComponent,
+    CommentListComponent,
     NewsPostComponent,
     NewsStoryComponent,
     SingleNewsStoryComponent,
@@ -45,10 +47,10 @@ import { SingleNewsStoryComponent } from './components/news-feed/newsStory/singl
     ReactiveFormsModule,
     HttpClientModule,
     MatDialogModule,
-    
+    MatIconModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [TimeoutComponent],
+  entryComponents: [TimeoutComponent,CommentListComponent],
 })
 export class AppModule {}

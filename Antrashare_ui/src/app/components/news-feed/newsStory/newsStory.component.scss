@@ -13,3 +13,6 @@
         flex-direction: column;
     }
 }
+.newsStoryList :nth-child(2n){
+    background-color: lightcyan;
+}
