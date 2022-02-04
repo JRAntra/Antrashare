@@ -25,14 +25,17 @@
       </div>
       
       <!-- video -->
-      <ng-container>
-        <mat-form-field class="full-width" appearance="outline">
-          <mat-label>Paste video URL</mat-label>
-          <input matInput formControlName="videos">
-          <mat-icon matSuffix>delete</mat-icon>
-        </mat-form-field>
-        
-      </ng-container>
+      <div formArrayName="videos" *ngFor="let video of videos.controls; let i = index">
+        <div [formGroupName]="i">
+
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Paste video URL</mat-label>
+            <input matInput formControlName="videos" formControlName="url">
+            <mat-icon matSuffix (click)="removeVideo(i)">delete</mat-icon>
+          </mat-form-field>
+
+        </div>
+      </div>
       
     </mat-card-content>
 
@@ -41,7 +44,7 @@
         <mat-icon>image</mat-icon>
       </button>
 
-      <button mat-button mat-icon-button aria-label="add video">
+      <button mat-button mat-icon-button aria-label="add video" (click)="addVideo()">
         <mat-icon>movie</mat-icon>
       </button>
 

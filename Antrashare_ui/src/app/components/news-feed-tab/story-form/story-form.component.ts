@@ -34,16 +34,30 @@ export class StoryFormComponent implements OnInit {
     })
   }
 
-  public addImage() {
+  public addImage(): void {
     this.images.push(this.newImage());
-
-    for (let controls of this.images.controls) {
-      console.log(controls.value.url,'tttt');
-    }
   }
 
-  public removeImage(index: number) {
+  public removeImage(index: number): void {
     this.images.removeAt(index);
+  }
+
+  get videos(): FormArray {
+    return this.postForm.get('videos') as FormArray;
+  }
+
+  private newVideo(): FormGroup {
+    return this.fb.group({
+      url: ''
+    });
+  }
+
+  public addVideo(): void {
+    this.videos.push(this.newVideo());
+  }
+
+  public removeVideo(index: number): void {
+    this.videos.removeAt(index);
   }
 
   public post(): void {
