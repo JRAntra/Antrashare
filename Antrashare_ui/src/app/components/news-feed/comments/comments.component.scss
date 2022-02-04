@@ -1,0 +1,23 @@
+@use "../../../../styles.scss" as theme;
+
+.paginatorBox {
+    background-color: theme.$secondary-color;
+    color: theme.$font_color;
+}
+
+.story-comment {
+    background-color: theme.$secondary-color;
+    padding: 20px;
+}
+
+.labelDisplay {
+    margin-left: 10px;
+}
+
+.commentLikeBox {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 10px;
+    margin-top: 10px;
+    color: theme.$font-color;
+  }

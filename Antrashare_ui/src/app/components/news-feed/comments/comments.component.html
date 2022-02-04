@@ -1,0 +1,46 @@
+<div class="story-comment">
+    <div>
+        <p>
+            {{ commentData[pageNumber.pageIndex]?.content?.text }}
+        </p>
+        <img
+            #image
+            [src]="commentData[pageNumber.pageIndex]?.content?.image"
+            (error)="image.hidden = true"
+            [hidden]="image.hidden"
+        />
+        <div *ngIf="isVideo === true">
+            <video width="320" height="240" controls>
+                <source src="{{ commentData[pageNumber.pageIndex]?.content?.video }}" type="video/mp4" />
+            </video>
+        </div>
+        <div 
+            class="publishing-details" 
+        >
+            By {{ commentData[pageNumber.pageIndex]?.publisherName }} at {{ commentData[pageNumber.pageIndex]?.publishedTime | date:'short'}}
+        </div>
+        <!-- <div class="commentLikeBox">
+            <div>
+                <mat-icon aria-hidden="false" aria-label="comment" class="labelDisplay">comment</mat-icon>
+                <label class="labelDisplay">
+                  {{ commentData[pageNumber.pageIndex]?.comment?.length }} Comment(s)
+                </label>
+            </div>
+            <div class="like-id-list">
+                <mat-icon aria-hidden="false" aria-label="favorite" class="labelDisplay">favorite</mat-icon>
+                <label class="labelDisplay">
+                  {{ currentStory.likedIdList?.length }}
+                </label>
+            </div>
+        </div> -->
+        <mat-paginator
+            [length]="commentData.length"
+            [pageSize]="1"
+            [pageSizeOptions]="[1, commentData.length]"
+            (page)="pageNumber = $event"
+            aria-label="Select page"
+            class="paginatorBox"
+        >
+        </mat-paginator>
+    </div>
+</div>

@@ -1,0 +1,19 @@
+@use "../../../../styles.scss" as theme;
+
+.addCommentBox {
+    display: flex;
+    padding: 5px;
+    background-color: theme.$tertiary-color;
+}
+
+.formBox {
+    margin-left: 30px;
+    width: 80%;
+}
+
+.addButton {
+    padding: 5px;
+    margin: 10px;
+    background-color: theme.$primary_color;
+    color: theme.$font-color;
+}

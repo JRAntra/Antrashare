@@ -26,4 +26,8 @@ export class NewsFeedService {
   postNewsFeed(body: any) {
     this._httpClient.post('http://localhost:4231/api/news', body).subscribe(value => console.log(value));
   };
+
+  addCommentNewsFeed(body: any) {
+    this._httpClient.post('http://localhost:4231/api/news', body).subscribe(value => console.log(value));
+  };
 }

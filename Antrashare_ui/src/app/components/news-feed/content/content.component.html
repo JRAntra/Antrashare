@@ -40,36 +40,8 @@
           </label>
         </div>
       </div>
-      <div class="story-comment">
-        <div>
-          <p>
-            {{ commentList[pageNumber.pageIndex]?.content?.text }}
-          </p>
-          <img
-            #image
-            [src]="commentList[pageNumber.pageIndex]?.content?.image"
-            (error)="image.hidden = true"
-            [hidden]="image.hidden"
-          />
-          <div *ngIf="isVideo === true">
-            <video width="320" height="240" controls>
-              <source src="{{ commentList[pageNumber.pageIndex]?.content?.video }}" type="video/mp4" />
-            </video>
-          </div>
-          <div class="publishing-details">
-            By {{ commentList[pageNumber.pageIndex]?.publisherName }} at {{ commentList[pageNumber.pageIndex]?.publishedTime | date:'short'}}
-          </div>
-          <mat-paginator
-            [length]="commentList.length"
-            [pageSize]="1"
-            [pageSizeOptions]="[1, commentList.length]"
-            (page)="pageNumber = $event"
-            aria-label="Select page"
-            class="paginatorBox"
-          >
-          </mat-paginator>
-        </div>
-      </div>
+      <app-add-comment [serverData] = "currentStory"></app-add-comment>
+      <app-comments *ngIf="commentList.length != 0" [commentData]="commentList"></app-comments>
     </div>
   </mat-card>
 </div>

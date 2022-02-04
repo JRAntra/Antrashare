@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { NewFeed } from '../../../interfaces/newfeed.interface';
-import {PageEvent} from '@angular/material/paginator';
 
 @Component({
   selector: 'app-content',
@@ -25,11 +24,6 @@ export class ContentComponent implements OnInit {
 
   @Input() currentStory!: NewFeed;
   commentList: any[] = [];
-  pageNumber: PageEvent = {
-    length: this.commentList.length,
-    pageIndex: 1,
-    pageSize: 1
-  };
   
   // listSize = 3;
   constructor() {
