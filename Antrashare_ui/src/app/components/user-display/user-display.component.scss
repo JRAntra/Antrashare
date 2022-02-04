@@ -1,19 +1,19 @@
 @use "../../../styles.scss" as theme;
 
 .userDisplay {
-    display: flex;
-    margin: 20px;
+  //   display: flex;
+  //   margin: 20px;
 }
 
 .userDisplayContent {
-    margin-top: 30px;
-    padding: 20px;
-    background-color: theme.$primary-color;
-    border-radius: 20px;
+  padding: 20px;
+  background-color: theme.$primary-color;
+  border-radius: 20px;
 }
 
 .infoBox {
-    display: grid;
-    grid-template-columns: 1fr 0.5fr;
-    grid-column-gap: 10px;
+  //   display: grid;
+  //   width: 80%;
+  //   grid-template-columns: 1fr 0.5fr;
+  //   grid-column-gap: 10px;
 }

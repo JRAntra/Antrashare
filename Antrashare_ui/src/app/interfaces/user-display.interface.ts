@@ -1,6 +1,6 @@
 export interface UserInfoNewFeed {
     publisherName: string,
-    publishedTime: string
+    publishedTime: string,
 }
 
 export interface UserInfo {
