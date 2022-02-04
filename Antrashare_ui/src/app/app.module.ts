@@ -17,6 +17,7 @@ import { CommentInputComponent } from './components/news-feed-tab/story-list/com
 import { CommentListComponent } from './components/news-feed-tab/story-list/comment-list/comment-list.component';
 import { ErrorPageComponent } from './components/error-page/error-page.component';
 import { Error404Component } from './components/error-page/error404/error404.component';
+import { HttpClientModule } from '@angular/common/http';
 import { LayoutsModule } from './components/layouts/layouts.module';
 import { LoginPageComponent } from './components/login-page/login-page.component';
 import { LoginFormComponent } from './components/login-page/login-form/login-form.component';
@@ -59,7 +60,7 @@ import { SharedModule } from './shared/shared.module';
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-    
+
     AppRoutingModule,
 
     // Layouts module
