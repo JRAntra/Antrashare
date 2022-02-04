@@ -1,0 +1,42 @@
+<mat-card class="story">
+    <mat-card-title class="storyHeader">
+        <div id="avatar-card">
+            <mat-icon id="avatar">person</mat-icon>
+        </div>
+        <div id='publicationInfo'>
+            <mat-card-title>
+                {{story.publisherName}}
+            </mat-card-title>
+            <mat-card-subtitle>
+                Posted on: {{story.publishedTime}}
+            </mat-card-subtitle>
+        </div>
+    </mat-card-title>
+    <mat-card class="storyContent">
+        {{story.content.text}}
+        <div class="storyMedia">
+            <ng-template [ngIf]='hasImage'>
+                <img [src]="safeImage">
+            </ng-template>
+            <ng-template [ngIf]='hasVideo'>
+                <iframe [src]='safeVideo' allowfullscreen></iframe>
+            </ng-template>
+        </div>
+    </mat-card>
+    <mat-card class="storyBottomBar">
+        <div class="storyBottomBarItem">
+            <button mat-raised-button class="storyBottomBarButton" (click)="onTriggerComment()">
+                <mat-icon>comment</mat-icon>
+            </button>
+        </div>
+        <div class="storyBottomBarItem">
+            Pagination
+        </div>
+        <div class="storyBottomBarItem">
+            <button mat-raised-button class="storyBottomBarButton">
+                <mat-icon>thumb_up</mat-icon>
+            </button>
+        </div>
+    </mat-card>
+</mat-card>
+<app-story-comments *ngIf="isCommentOpened"></app-story-comments>

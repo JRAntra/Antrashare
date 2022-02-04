@@ -26,7 +26,7 @@ import { SettingsComponent } from './components/settings/settings.component';
 import { NavbarComponent } from './components/header/navbar/navbar.component';
 import { NewsService } from 'src/app/services/news/news.service';
 import { NewsFeedComponent } from './components/news-feed/news-feed.component';
-import { StoryComponent } from './components/story/story.component';
+import { StoryComponent } from './components/news-feed/story/story.component';
 import { TimeoutDialogComponent } from 'src/app/components/timeout-dialog/timeout-dialog.component';
 import { StoryCommentsComponent } from './components/news-feed/story-comments/story-comments.component';
 
