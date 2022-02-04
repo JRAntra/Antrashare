@@ -28,7 +28,6 @@ import { NewsService } from 'src/app/services/news/news.service';
 import { NewsFeedComponent } from './components/news-feed/news-feed.component';
 import { StoryComponent } from './components/news-feed/story/story.component';
 import { TimeoutDialogComponent } from 'src/app/components/timeout-dialog/timeout-dialog.component';
-import { StoryCommentsComponent } from './components/news-feed/story-comments/story-comments.component';
 import { CommentDialogComponent } from './components/news-feed/comment-dialog/comment-dialog.component';
 import { CommentInputFieldComponent } from './components/news-feed/comment-dialog/comment-input-field/comment-input-field.component';
 
@@ -52,7 +51,6 @@ import { CommentInputFieldComponent } from './components/news-feed/comment-dialo
     BottomBarComponent,
     LogoutDialogComponent,
     PostFieldComponent,
-    StoryCommentsComponent,
     CommentDialogComponent,
     CommentInputFieldComponent
   ],
