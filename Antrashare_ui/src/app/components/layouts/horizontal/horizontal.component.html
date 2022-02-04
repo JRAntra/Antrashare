@@ -1,0 +1,28 @@
+<mat-sidenav-container>
+  <mat-sidenav #sidenav [opened]="(isHandset$ | async) == false" [mode]="(isHandset$ | async) ? 'over' : 'side'">
+    <div class="branding">
+      <img src="https://material.angular.io/assets/img/homepage/angular-white-transparent.svg" class="grayscale"
+        alt="logo" />
+      <span>Team Best DEVs</span>
+    </div>
+
+    <mat-nav-list>
+      <a mat-list-item *ngFor="let tab of tabs" [routerLink]="[tab.path]" routerLinkActive="active">
+        {{ tab.name }}
+      </a>
+    </mat-nav-list>
+
+    <div autoHide>This is the index page</div>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span>Greetings</span>
+    </mat-toolbar>
+
+    <!-- Shows our router-outlet. -->
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
