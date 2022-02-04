@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { Story } from 'src/app/models/newsfeed.model';
+import { NewsFeedService } from 'src/app/services/news-feed.service';
 
 @Component({
   selector: 'app-story-form',
@@ -11,7 +13,8 @@ export class StoryFormComponent implements OnInit {
   postForm!: FormGroup;
 
   constructor(
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private newsFeedService: NewsFeedService
   ) {
     this.postForm = this.fb.group({
       text: '',
@@ -62,6 +65,15 @@ export class StoryFormComponent implements OnInit {
 
   public post(): void {
     console.log(this.postForm.value);
+    const data: Story = {
+      text: this.postForm.get('text')?.value,
+      image: this.images.value.join(';'),
+      video: this.videos.value.join(';')
+    }
+
+    this.newsFeedService.postContent(data).subscribe((news) => {
+      console.log(news);
+    });
   }
 
 }
