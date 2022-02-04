@@ -3,6 +3,7 @@
 .contentPage {
   margin-left: 20%;
   margin-right: 20%;
+  margin-top: 50px;
   // border: thick double lightpink;
 }
 
@@ -10,12 +11,12 @@
   display: flex;
   margin-left: 10%;
   margin-right: 10%;
+  margin-bottom: 40px;
 }
 
 .content-follow-up {
-  display: flex;
-  justify-content: space-between;
-  border: thick double lightblue;
+  display: block;
+  border: 2px solid lightblue;
   // display: grid;
   // grid-template-columns: 1fr 1fr 1fr 1fr;
   // margin-left: 10%;
@@ -34,10 +35,24 @@
 }
 
 .story-comment {
-  border: thick double lightpink;
-  //   max-width: 350px;
+  background-color: theme.$secondary-color;
+  padding: 20px;
 }
 
-.story-content {
-  border: thick double #32a1ce;
+.commentLikeBox {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 10px;
+  background-color: theme.$primary-color;
+  color: theme.$font-color;
 }
+
+.labelDisplay {
+  margin-left: 10px;
+}
+
+.paginatorBox {
+  background-color: theme.$secondary-color;
+  color: theme.$font_color;
+}
+

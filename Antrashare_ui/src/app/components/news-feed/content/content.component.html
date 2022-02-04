@@ -1,74 +1,75 @@
 <div class="contentPage">
   <div class="avatarDisplay">
-    <mat-icon aria-hidden="false" aria-label="person">person</mat-icon>
     <app-user-display [userInNewFeed]="userInfoFromServer"> </app-user-display>
   </div>
-  <div class="content">
-    <p>
-      {{ userInfoFromServer.content.text }}
-    </p>
-    <div>
-      <img
-        #image
-        [src]="userInfoFromServer.content.image"
-        (error)="image.hidden = true"
-        [hidden]="image.hidden"
-      />
-
-      <div *ngIf="isVideo === true">
-        <video width="320" height="240" controls>
-          <source
-            src="{{ userInfoFromServer.content.video }}"
-            type="video/mp4"
-          />
-        </video>
-      </div>
-    </div>
-  </div>
-
-  <div class="content-follow-up">
-    <div>
+  <mat-card>
+    <div class="content">
+      <p>
+        {{ userInfoFromServer.content.text }}
+      </p>
       <div>
-        <mat-icon aria-hidden="false" aria-label="comment">comment</mat-icon>
-        <label>{{ this.commentList.length }} Comment(s)</label>
-      </div>
-      <div *ngFor="let comment of commentList" class="story-comment">
-        <div>
-          <p>
-            {{ comment.content.text }}
-          </p>
-          <img
-            #image
-            [src]="comment.content.image"
-            (error)="image.hidden = true"
-            [hidden]="image.hidden"
-          />
-
-          <div *ngIf="isVideo === true">
-            <video width="320" height="240" controls>
-              <source src="{{ comment.content.video }}" type="video/mp4" />
-            </video>
-          </div>
-
-          <div class="publishing-details">
-            By {{ comment.publisherName }} at {{ comment.publishedTime }}
-          </div>
+        <img
+          #image
+          [src]="userInfoFromServer.content.image"
+          (error)="image.hidden = true"
+          [hidden]="image.hidden"
+        />
+  
+        <div *ngIf="isVideo === true">
+          <video width="320" height="240" controls>
+            <source
+              src="{{ userInfoFromServer.content.video }}"
+              type="video/mp4"
+            />
+          </video>
         </div>
       </div>
     </div>
-    <div class="like-id-list">
-      <mat-icon aria-hidden="false" aria-label="favorite">favorite</mat-icon>
-      <label>
-        {{ currentStory.likedIdList?.length }}
-      </label>
+    <div class="content-follow-up">
+      <div class="commentLikeBox">
+        <div>
+          <mat-icon aria-hidden="false" aria-label="comment" class="labelDisplay">comment</mat-icon>
+          <label class="labelDisplay">
+            {{ commentList.length }} Comment(s)
+          </label>
+        </div>
+        <div class="like-id-list">
+          <mat-icon aria-hidden="false" aria-label="favorite" class="labelDisplay">favorite</mat-icon>
+          <label class="labelDisplay">
+            {{ currentStory.likedIdList?.length }}
+          </label>
+        </div>
+      </div>
+      <div class="story-comment">
+        <div>
+          <p>
+            {{ commentList[pageNumber.pageIndex]?.content?.text }}
+          </p>
+          <img
+            #image
+            [src]="commentList[pageNumber.pageIndex]?.content?.image"
+            (error)="image.hidden = true"
+            [hidden]="image.hidden"
+          />
+          <div *ngIf="isVideo === true">
+            <video width="320" height="240" controls>
+              <source src="{{ commentList[pageNumber.pageIndex]?.content?.video }}" type="video/mp4" />
+            </video>
+          </div>
+          <div class="publishing-details">
+            By {{ commentList[pageNumber.pageIndex]?.publisherName }} at {{ commentList[pageNumber.pageIndex]?.publishedTime | date:'short'}}
+          </div>
+          <mat-paginator
+            [length]="commentList.length"
+            [pageSize]="1"
+            [pageSizeOptions]="[1, commentList.length]"
+            (page)="pageNumber = $event"
+            aria-label="Select page"
+            class="paginatorBox"
+          >
+          </mat-paginator>
+        </div>
+      </div>
     </div>
-  </div>
-  <!-- frontend pagination is for comment -->
-  <mat-paginator
-    [length]="commentList.length"
-    [pageSize]="commentList.length"
-    [pageSizeOptions]="[1, commentList.length]"
-    aria-label="Select page"
-  >
-  </mat-paginator>
+  </mat-card>
 </div>
