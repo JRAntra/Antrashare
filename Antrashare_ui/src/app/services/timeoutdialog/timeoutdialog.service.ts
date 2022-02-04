@@ -35,10 +35,12 @@ export class TimeoutdialogService {
 
     this.timeOutMilliSeconds = timeOutSeconds * 1000;
 
+    // if detect any dom event, reset timer
     this.idleSubscription = this.idle.subscribe((res) => {
       this.resetTimer();
     });
 
+    // turn expired to true after certain amount of time has elapsed
     this.startTimer();
 
     return this.expired;

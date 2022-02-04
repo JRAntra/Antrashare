@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Subject } from 'rxjs';
 import { TimeoutdialogService } from 'src/app/services/timeoutdialog/timeoutdialog.service';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'app-timeout-dialog',
@@ -16,7 +17,8 @@ export class TimeoutDialogComponent implements OnInit {
   constructor(
     private router: Router,
     private dialogRef: MatDialogRef<TimeoutDialogComponent>,
-    private timeoutDialog: TimeoutdialogService
+    private timeoutDialog: TimeoutdialogService,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {}
@@ -25,6 +27,7 @@ export class TimeoutDialogComponent implements OnInit {
     //this.timeoutDialog.resetTimer();
     this.dialogRef.close();
     this.router.navigate(['/login']);
+    this.authService.logout();
   }
 
   confirm(): void {
