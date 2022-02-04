@@ -11,7 +11,7 @@ export class LoginFormComponent implements OnInit {
   hide = true;
   userLoginForm = new FormGroup({
     email: new FormControl('', [
-      Validators.required, 
+      Validators.required,
       Validators.minLength(5),
     ]),
     password: new FormControl('', [
@@ -22,9 +22,9 @@ export class LoginFormComponent implements OnInit {
     ]),
   });
 
-  constructor(private router: Router) {}
+  constructor(private router: Router) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   onSubmit() {
     //placeholder
@@ -46,14 +46,14 @@ export class LoginFormComponent implements OnInit {
     if (this.userLoginForm.get('password')?.hasError('required')) {
       return 'You must enter a value';
     }
-    if(this.userLoginForm.get('password')?.hasError('specialChar')){
+    if (this.userLoginForm.get('password')?.hasError('specialChar')) {
       return 'Require at least one special character';
     }
 
-    if(this.userLoginForm.get('password')?.hasError('capLetter')){
+    if (this.userLoginForm.get('password')?.hasError('capLetter')) {
       return 'Require at least one capital letter';
     }
-    
+
 
     return this.userLoginForm.get('password')?.hasError('minlength')
       ? 'Require at least 5 characters'
@@ -61,20 +61,20 @@ export class LoginFormComponent implements OnInit {
   }
 
   specialCharValidator(control: FormControl): ValidationErrors | null {
-      const nameRegexp: RegExp = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
-      console.log(nameRegexp.test(control.value));
-      if(control.value && nameRegexp.test(control.value)){
-        return null;
-      }
-      return {specialChar: { value: control.value }};
-  }
-
-  capLetterValidator(control: FormControl): ValidationErrors | null{
-    let hasCap = /[A-Z]/.test(control.value);
-    if(hasCap){
+    const nameRegexp: RegExp = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
+    console.log(nameRegexp.test(control.value));
+    if (control.value && nameRegexp.test(control.value)) {
       return null;
     }
-    return {capLetter: {value: control.value}};
+    return { specialChar: { value: control.value } };
+  }
+
+  capLetterValidator(control: FormControl): ValidationErrors | null {
+    let hasCap = /[A-Z]/.test(control.value);
+    if (hasCap) {
+      return null;
+    }
+    return { capLetter: { value: control.value } };
   }
 
 }

@@ -10,14 +10,22 @@
 @import "./app/css/themes/dark.theme";
 @import "./app/css/themes/light.theme";
 
+:root {
+  --login-bg-image: url(./assets/images/themes/default-background.jpg);
+}
+
 // Apply the dark theme only when the `.dark-theme` CSS class is applied
 .dark-theme {
   @include mat.all-component-themes($dark-theme);
+
+  --login-bg-image: url(./assets/images/themes/dark-background.jpg);
 }
 
 // Apply the light theme only when the `.light-theme` CSS class is applied
 .light-theme {
   @include mat.all-component-themes($light-theme);
+
+  --login-bg-image: url(./assets/images/themes/light-background.jpg);
 
   .grayscale {
     filter: invert(1);

@@ -2,30 +2,23 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
-import { AppRoutingModule } from './app-routing.module';
-
-import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
-import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatDialogModule } from '@angular/material/dialog';
-import { MatExpansionModule } from '@angular/material/expansion';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatIconModule } from '@angular/material/icon';
-import { MatInputModule } from '@angular/material/input';
-import { MatListModule } from '@angular/material/list';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatToolbarModule } from '@angular/material/toolbar';
 import { OverlayContainer } from '@angular/cdk/overlay';
 
+// Router
+import { AppRoutingModule } from './app-routing.module';
+
+// Components
 import { AppComponent } from './app.component';
-import { AutoHideDirective } from './directives/auto-hide.directive';
+// import { AutoHideDirective } from './directives/auto-hide.directive';
 import { CommentComponent } from './components/news-feed-tab/story-list/comment-list/comment/comment.component';
 import { CommentInputComponent } from './components/news-feed-tab/story-list/comment-input/comment-input.component';
 import { CommentListComponent } from './components/news-feed-tab/story-list/comment-list/comment-list.component';
 import { ErrorPageComponent } from './components/error-page/error-page.component';
 import { Error404Component } from './components/error-page/error404/error404.component';
 import { HttpClientModule } from '@angular/common/http';
+import { LayoutsModule } from './components/layouts/layouts.module';
 import { LoginPageComponent } from './components/login-page/login-page.component';
 import { LoginFormComponent } from './components/login-page/login-form/login-form.component';
 import { LogoutWindowComponent } from './dialogs/logout-window/logout-window.dialog.component';
@@ -38,10 +31,12 @@ import { StoryFormComponent } from './components/news-feed-tab/story-form/story-
 import { StoryListComponent } from './components/news-feed-tab/story-list/story-list.component';
 import { TimeoutComponent } from './dialogs/timeout/timeout.dialog.component';
 
+import { SharedModule } from './shared/shared.module';
+
 @NgModule({
   declarations: [
     AppComponent,
-    AutoHideDirective,
+    // AutoHideDirective,
     CommentComponent,
     CommentInputComponent,
     CommentListComponent,
@@ -60,23 +55,19 @@ import { TimeoutComponent } from './dialogs/timeout/timeout.dialog.component';
     TimeoutComponent,
   ],
   imports: [
-    AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
+    ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule,
-    MatButtonModule,
-    MatCardModule,
-    MatCheckboxModule,
-    MatDialogModule,
-    MatExpansionModule,
-    MatFormFieldModule,
-    MatIconModule,
-    MatInputModule,
-    MatListModule,
-    MatSidenavModule,
-    MatToolbarModule,
+
+    AppRoutingModule,
+
+    // Layouts module
+    LayoutsModule,
+
+    // Shared module
+    SharedModule,
   ],
   providers: [OverlayContainer],
   bootstrap: [AppComponent]
