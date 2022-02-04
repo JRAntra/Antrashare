@@ -5,7 +5,7 @@ import { filter, skipWhile, switchMap, take, takeUntil, takeWhile, tap, throttle
 @Injectable()
 export class IdleService {
   private status: IdleStatus = {
-    idleTime: 15,
+    idleTime: 10 * 60,
     timeoutTime: 10,
     isTimeoutWarning: false,
     countdownIdleTime: null,
