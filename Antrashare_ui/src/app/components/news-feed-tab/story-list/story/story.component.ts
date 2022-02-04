@@ -12,7 +12,7 @@ import { NewsFeedTabComponent } from '../../news-feed-tab.component';
 export class StoryComponent implements OnInit {
 
   @Input() news!: News;
-  Story!: Story;
+  News!: News;
 
   userInput!: String;
   cmtForm = new FormControl('');
@@ -28,7 +28,7 @@ export class StoryComponent implements OnInit {
   ngOnInit(): void {
     this.getAllNews();
     //Line below logs api data to the console
-    console.log(this.Story)
+    console.log(this.News)
   }
 
   getAllNews() {
