@@ -1,4 +1,4 @@
-<form [formGroup]="postForm" (ngSubmit)="post()">
+<form [formGroup]="postForm">
   <mat-card class='container'>
     <mat-card-title>Create Post</mat-card-title>
 
@@ -11,21 +11,24 @@
       </mat-form-field>
 
       <!-- image -->
-      <ng-container>
-        <mat-form-field class="full-width" appearance="outline">
-          <img matPrefix src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Angular_full_color_logo.svg/512px-Angular_full_color_logo.svg.png">
-          <mat-label>Paste image URL</mat-label>
-          <input matInput formControlName="image">
-          <mat-icon matSuffix>delete</mat-icon>
-        </mat-form-field>
-      </ng-container>
+      <div formArrayName="images" *ngFor="let image of images.controls; let i = index">
+
+        <div [formGroupName]="i">
+          <mat-form-field class="full-width" appearance="outline">
+            <img matPrefix [src]="image.get('url')?.value" *ngIf="image.get('url')?.value">
+            <mat-label>Paste image URL</mat-label>
+            <input matInput formControlName="url">
+            <mat-icon matSuffix (click)="removeImage(i)">delete</mat-icon>
+          </mat-form-field>
+        </div>
+        
+      </div>
       
       <!-- video -->
       <ng-container>
         <mat-form-field class="full-width" appearance="outline">
-          <img matPrefix src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Angular_full_color_logo.svg/512px-Angular_full_color_logo.svg.png">
           <mat-label>Paste video URL</mat-label>
-          <input matInput formControlName="video">
+          <input matInput formControlName="videos">
           <mat-icon matSuffix>delete</mat-icon>
         </mat-form-field>
         
@@ -34,7 +37,7 @@
     </mat-card-content>
 
     <mat-card-actions>
-      <button mat-button mat-icon-button aria-label="add image">
+      <button mat-button mat-icon-button aria-label="add image" (click)="addImage()">
         <mat-icon>image</mat-icon>
       </button>
 
@@ -42,7 +45,7 @@
         <mat-icon>movie</mat-icon>
       </button>
 
-      <button mat-raised-button color="primary">Post</button>
+      <button mat-raised-button color="primary" (click)="post()">Post</button>
     </mat-card-actions>
   </mat-card>
 </form>

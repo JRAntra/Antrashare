@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-story-form',
@@ -15,13 +15,35 @@ export class StoryFormComponent implements OnInit {
   ) {
     this.postForm = this.fb.group({
       text: '',
-      image: this.fb.array([]),
-      video: this.fb.array([])
+      images: this.fb.array([]),
+      videos: this.fb.array([])
     });
   }
 
   ngOnInit(): void {
     
+  }
+
+  get images(): FormArray {
+    return this.postForm.get('images') as FormArray;
+  }
+
+  private newImage(): FormGroup {
+    return this.fb.group({
+      url: ''
+    })
+  }
+
+  public addImage() {
+    this.images.push(this.newImage());
+
+    for (let controls of this.images.controls) {
+      console.log(controls.value.url,'tttt');
+    }
+  }
+
+  public removeImage(index: number) {
+    this.images.removeAt(index);
   }
 
   public post(): void {
