@@ -15,15 +15,12 @@ export class NavigationBarComponent implements OnInit {
   }
 
   myProfileIsClicked() {
-    this._idleTimeService.refreshTimer();
   }
 
   newsFeedIsClicked() {
-    this._idleTimeService.refreshTimer();
   }
 
   settingsIsClicked() {
-    this._idleTimeService.refreshTimer();
   }
-  
+
 }
