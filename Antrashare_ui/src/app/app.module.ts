@@ -16,6 +16,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatCardModule } from '@angular/material/card';
 
 import { UserDisplayComponent } from './components/user-display/user-display.component';
 import { MyProfileComponent } from './components/my-profile/my-profile.component';
@@ -29,6 +30,7 @@ import { SettingsComponent } from './components/settings/settings.component';
 import { SettingPanelComponent } from './components/settings/setting-panel/setting-panel.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { LogoutConfirmationDialogComponent } from './components/logout-confirmation-dialog/logout-confirmation-dialog.component';
+import { PostNewFeedComponent } from './components/news-feed/post-new-feed/post-new-feed.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +47,8 @@ import { LogoutConfirmationDialogComponent } from './components/logout-confirmat
     SettingsComponent,
     SettingPanelComponent,
     PageNotFoundComponent,
-    LogoutConfirmationDialogComponent
+    LogoutConfirmationDialogComponent,
+    PostNewFeedComponent
   ],
   imports: [
     BrowserModule,
@@ -57,6 +60,7 @@ import { LogoutConfirmationDialogComponent } from './components/logout-confirmat
     MatIconModule,
     MatDialogModule,
     MatPaginatorModule,
+    MatCardModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
     MatButtonToggleModule,

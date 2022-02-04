@@ -45,8 +45,6 @@ export class NewsFeedComponent implements OnInit {
     this._newsFeedService.getRequest("http://localhost:4231/api/news")
       .subscribe(
         (data) => {
-          console.log(`Connected to mongoDB server`);
-
           // Save the data locally to create dynamically with ngFor
           this.dataFromMongoDB = data;
           this.storiesFromServer = this.dataFromMongoDB;

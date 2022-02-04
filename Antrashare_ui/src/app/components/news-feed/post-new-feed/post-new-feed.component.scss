@@ -1,0 +1,33 @@
+@use "../../../../styles.scss" as theme;
+
+.newPostBox {
+    margin-left: 20%;
+    margin-right: 20%; 
+    background-color: theme.$secondary_color;
+    color: theme.$font-color;
+}
+
+.contentBox {
+    display: flex;
+    flex-direction: column;
+}
+
+.formBox {
+    margin-left: 40px;
+    margin-right: 40px;
+    color: theme.$font-color;
+}
+
+.postButton {
+    margin-left: 40px;
+    background-color: theme.$primary_color;
+    color: theme.$font-color;
+}
+
+.buttonBox {
+    margin-left: 40px;
+}
+
+.textareaBox {
+    height: 100px;
+}

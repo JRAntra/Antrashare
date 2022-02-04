@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { NewFeed } from '../../../interfaces/newfeed.interface';
+import {PageEvent} from '@angular/material/paginator';
 
 @Component({
   selector: 'app-content',
@@ -22,10 +23,14 @@ export class ContentComponent implements OnInit {
   badImgUrl = "https://www.gannpg?width";
   videoUrl = "https://media.geeksforgeeks.org/wp-content/uploads/20200513195558/Placement100-_-GeeksforGeeks-1.mp4"
 
-
   @Input() currentStory!: NewFeed;
   commentList: any[] = [];
-
+  pageNumber: PageEvent = {
+    length: this.commentList.length,
+    pageIndex: 1,
+    pageSize: 1
+  };
+  
   // listSize = 3;
   constructor() {
   }
@@ -43,13 +48,10 @@ export class ContentComponent implements OnInit {
 
     // Save comment list locally for comment section's *ngFor
     this.commentList = this.currentStory.comment!;
-
   }
-
 
   hideImgTag() {
     console.log(`ERROR!`);
-
     return true;
   }
 }

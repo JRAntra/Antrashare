@@ -1,0 +1,41 @@
+<mat-card class="newPostBox">
+    <mat-card-title>Create New Post</mat-card-title>
+    <mat-card-content>
+      <form class="contentBox"  [formGroup]="postNewfeedForm">
+        <mat-form-field class="formBox">
+          <mat-label>Text Content</mat-label>
+          <textarea 
+            matInput 
+            formControlName="textContent"
+            class="textareaBox"
+          ></textarea>
+        </mat-form-field>
+        <mat-form-field class="formBox">
+          <mat-label>Image</mat-label>
+          <input matInput type="text" formControlName="imageContent"/>
+        </mat-form-field>
+        <mat-form-field class="formBox">
+          <mat-label>Video</mat-label>
+          <input matInput type="text" formControlName="videoContent"/>
+        </mat-form-field>
+      </form>
+    </mat-card-content>
+    <mat-card-actions class="buttonBox">
+      <button
+        mat-raised-button
+        type="button"
+        (click)="addToNewfeed()"
+        class="postButton"
+      >
+        Post
+      </button>
+      <button
+        mat-raised-button
+        type="button"
+        (click)="resetForm()"
+        class="postButton"
+      >
+        Reset
+      </button>
+    </mat-card-actions>
+</mat-card>
