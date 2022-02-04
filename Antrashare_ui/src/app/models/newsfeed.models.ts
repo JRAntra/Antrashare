@@ -1,7 +1,8 @@
 //newsfeed
 export interface News {
+    _id: string,
     avatar?: ImageBitmap,
-    publisherName: string, 
+    publisherName: string,
     publishedTime: string,
     content: {
         image?: string,
@@ -10,7 +11,7 @@ export interface News {
     },
     comment?: [{
         avatar?: ImageBitmap,
-        publisherName: string, 
+        publisherName: string,
         publishedTime: string,
         content: {
             image?: string,
