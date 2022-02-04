@@ -8,7 +8,7 @@ import { i18nMetaToJSDoc } from '@angular/compiler/src/render3/view/i18n/meta';
   providedIn: 'root'
 })
 export class NewsService {
-  news$?: Observable<News>
+  baseurl = "http://localhost:4231/api/news"
 
   constructor(private http: HttpClient) {
 
@@ -16,7 +16,21 @@ export class NewsService {
 
   
   getNews(): Observable<any> {
-    return this.http.get("http://localhost:4231/api/news")
+    return this.http.get(this.baseurl)
   }
+
+  getNewsById(id: string): Observable<any> {
+    return this.http.get(this.baseurl + "/:" + id)
+  }
+
+  postNews(body: any): Observable<any> {
+    return this.http.post<any>(this.baseurl, body)
+  }
+
+  postCommentById(body: any, id: string): Observable<any> {
+    return this.http.post<any>(this.baseurl + "/:" + id, body)
+  }
+
+  
   
 }
