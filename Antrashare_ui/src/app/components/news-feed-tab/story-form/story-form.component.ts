@@ -67,8 +67,8 @@ export class StoryFormComponent implements OnInit {
     console.log(this.postForm.value);
     const data: Story = {
       text: this.postForm.get('text')?.value,
-      image: this.images.value.join(';'),
-      video: this.videos.value.join(';')
+      image: 'image',
+      video: 'video'
     }
 
     this.newsFeedService.postContent(data).subscribe((news) => {

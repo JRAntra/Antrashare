@@ -20,22 +20,10 @@ export class NewsFeedService {
     const entity: News = {
       publisherName: 'Team Best Devs',
       content: data,
-      comment: [
-        {
-          publisherName: '',
-          content: {
-            text: '',
-            image: '',
-            video: ''
-          },
-          publishedTime: ''
-        }
-      ],
+      comment: [],
       likedIdList: [],
-      publishedTime: new Date().toUTCString()
+      publishedTime: new Date().toLocaleDateString()
     }
-
-    console.log(entity);
 
     return this.post(entity);
   }
