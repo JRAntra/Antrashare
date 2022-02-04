@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { idleTimeService } from '../services/idle-time';
 import { NewFeed } from '../../interfaces/newfeed.interface';
 import { HttpClient } from '@angular/common/http';
