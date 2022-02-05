@@ -21,6 +21,17 @@ export class PostFieldComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  validateVideoUrl(videoLink: any) {
+    var videoRegex = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=|\?v=)([^#\&\?]*).*/;
+    var isValidVideo = videoLink.match(videoRegex);
+    if (isValidVideo && isValidVideo[2].length == 11) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+
   onSubmitPost() {
     this.newsFeed = {
       // avatar?: ImageBitmap,
