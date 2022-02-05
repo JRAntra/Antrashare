@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
-import { SettingsService } from 'src/app/services/settings.service';
+import { ThemesService } from 'src/app/services/themes.service';
 import { MatDialog } from '@angular/material/dialog';
 import { LogoutWindowComponent } from '../../dialogs/logout-window/logout-window.dialog.component';
 import { ThemeType } from 'src/app/models/theme.model';
@@ -13,13 +13,13 @@ import { ThemeType } from 'src/app/models/theme.model';
 export class SettingsTabComponent implements OnInit {
   readonly ThemeType = ThemeType;
 
-  constructor(private router: Router, private settingsService: SettingsService, public logOutDialog: MatDialog) { }
+  constructor(private router: Router, private settingsService: ThemesService, public logOutDialog: MatDialog) { }
 
   ngOnInit(): void {
   }
 
   changeTheme(theme: ThemeType) {
-    this.settingsService.setTheme(theme);
+    this.settingsService.setActiveTheme(theme);
   }
 
   onLogOut() {

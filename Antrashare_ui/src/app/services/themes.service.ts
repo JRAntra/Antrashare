@@ -7,26 +7,26 @@ import { ThemeType } from '../models/theme.model';
 @Injectable({
   providedIn: 'root'
 })
-export class SettingsService {
-  private theme$ = new BehaviorSubject(APP_CONFIG.defaultTheme);
+export class ThemesService {
+  private activeTheme$ = new BehaviorSubject(APP_CONFIG.defaultTheme);
 
   constructor(public overlayContainer: OverlayContainer) { this.setOverlayContainer(APP_CONFIG.defaultTheme) }
 
   private setOverlayContainer(theme: string): void {
     const overlayContainerClassList = this.overlayContainer.getContainerElement().classList;
-    const needToRemoveClass = Array.from(overlayContainerClassList).filter((cl: string) => cl.includes('-theme'));
+    const needToRemoveClass = Array.from(overlayContainerClassList).filter((containerClass: string) => containerClass.includes('-theme'));
     if (needToRemoveClass.length) {
       overlayContainerClassList.remove(...needToRemoveClass);
     }
     overlayContainerClassList.add(theme);
   }
 
-  setTheme(theme: ThemeType = APP_CONFIG.defaultTheme): void {
+  setActiveTheme(theme: ThemeType = APP_CONFIG.defaultTheme): void {
     this.setOverlayContainer(theme);
-    this.theme$.next(theme);
+    this.activeTheme$.next(theme);
   }
 
-  getTheme(): Observable<ThemeType> {
-    return this.theme$.asObservable();
+  getActiveTheme(): Observable<ThemeType> {
+    return this.activeTheme$.asObservable();
   }
 }
