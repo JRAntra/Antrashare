@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
-import { Story } from 'src/app/models/newsfeed.model';
+import { News, Story } from 'src/app/models/newsfeed.model';
 import { NewsFeedService } from 'src/app/services/news-feed.service';
 
 @Component({
@@ -71,9 +71,30 @@ export class StoryFormComponent implements OnInit {
       video: this.videos.value.map((value: { url: any; }) => value.url).join(';') || 'video'
     }
 
-    this.newsFeedService.createContent(data).subscribe((news) => {
-      console.log(news);
+    // this.newsFeedService.delete(data.text).subscribe(news => {
+    //   console.log(news);
+    // });
+
+    this.newsFeedService.createContent(data).subscribe((news: News) => {
+      const entity: News = news;
+      
+      entity.comment.push({
+        publisherName: 'cc',
+        publishedTime: new Date().toLocaleDateString(),
+        content: {
+          text: 'sss',
+          image: 'si',
+          video: 'sv'
+        }
+      });
+      
+      console.log(entity);
+
+      this.newsFeedService.put(entity).subscribe((news: News[]) => {
+        console.log(news);
+      })
     });
+
   }
 
 }

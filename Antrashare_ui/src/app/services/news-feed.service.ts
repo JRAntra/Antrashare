@@ -13,12 +13,31 @@ export class NewsFeedService {
 
   constructor(private http: HttpClient) { }
 
+  /**
+   * post data for creating a news feed
+   *
+   * @param entity
+   */
   post(entity: News): Observable<News> {
     return this.http.post<News>(this.path, entity, SERVER_CONFIG.httpOptions);
   }
 
+  /**
+   * put data for updating a news feed by id
+   *
+   * @param entity
+   */
+  put(entity: News): Observable<News[]> {
+    const id = entity._id?.toString();
+    delete entity.content._id;
+    delete entity._id;
+    delete entity.__v;
+
+    return this.http.put<News[]>([this.path, id].join('/'), entity, SERVER_CONFIG.httpOptions);
+  }
+
   delete(id: string): Observable<News[]> {
-    return this.http.delete<News[]>([this.path, id.toString()].join('/'), SERVER_CONFIG.httpOptions);
+    return this.http.delete<News[]>([this.path, id].join('/'), SERVER_CONFIG.httpOptions);
   }
 
   createContent(data: Story): Observable<News> {
