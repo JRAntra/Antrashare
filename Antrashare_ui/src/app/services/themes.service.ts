@@ -4,7 +4,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { APP_CONFIG } from '../core/config/app.config';
 import { ThemeType } from '../models/theme.model';
 
-const KEY: string = APP_CONFIG.localStorage.prefix + APP_CONFIG.localStorage.theme;
+const KEY: string = `${APP_CONFIG.localStorage.prefix}${APP_CONFIG.localStorage.theme}`;
 
 @Injectable({
   providedIn: 'root'
