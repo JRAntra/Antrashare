@@ -8,8 +8,15 @@
     Still with us?
   </h2>
 
-  <p>The current session is about to expire in <span class="time">{{ data.time }}</span> seconds
-    <br />
+  <p>
+    The current session is about to expire in
+  </p>
+
+  <p class="warning-item">
+    <span class="warning-time">{{ data.time }}</span> seconds
+  </p>
+
+  <p>
     unless you confirm that you are still with us.
   </p>
 </div>
@@ -17,5 +24,5 @@
 <div mat-dialog-actions class="dialog-actions pull-right">
   <button mat-button mat-dialog-close>Cancel</button>
 
-  <button mat-button color="primary" (click)="confirm()" cdkFocusInitial>Confirm</button>
+  <button mat-raised-button color="primary" (click)="confirm()" cdkFocusInitial>Confirm</button>
 </div>
