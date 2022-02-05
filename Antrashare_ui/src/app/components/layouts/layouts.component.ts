@@ -1,7 +1,7 @@
 import { Component, HostBinding, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { Observable, Subject } from 'rxjs';
-import { filter, map, shareReplay, tap, takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+import { filter, shareReplay, takeUntil } from 'rxjs/operators';
 import { Layout } from 'src/app/models/layouts.model';
 import { ThemesService } from 'src/app/services/themes.service';
 
