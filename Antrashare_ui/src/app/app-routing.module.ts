@@ -12,8 +12,8 @@ import { ErrorPageComponent } from './components/error-page/error-page.component
 
 const routes: Routes = [
   //by YuxuanWu router
-  {path:'', component:NewsFeedComponent},
-  // {path:'',component:LoginWindowComponent},
+  // {path:'', component:NewsFeedComponent}, //FOR NEWS FEED TESTING
+  {path:'',component:LoginWindowComponent},
   {path:'login',component:LoginWindowComponent},
   {path:'myProfile',component:MyProfilePageComponent},
   {path:'newsFeed',component:NewsFeedComponent},
