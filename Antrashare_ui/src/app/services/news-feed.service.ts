@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { SERVER_CONFIG } from '../core/config/server.config';
 import { News, Story } from '../models/newsfeed.model';
 
@@ -12,11 +13,15 @@ export class NewsFeedService {
 
   constructor(private http: HttpClient) { }
 
-  post(entity: News) {
-    return this.http.post(this.path, entity);
+  post(entity: News): Observable<News> {
+    return this.http.post<News>(this.path, entity, SERVER_CONFIG.httpOptions);
   }
 
-  createContent(data: Story) {
+  delete(id: string): Observable<News[]> {
+    return this.http.delete<News[]>([this.path, id.toString()].join('/'), SERVER_CONFIG.httpOptions);
+  }
+
+  createContent(data: Story): Observable<News> {
     const entity: News = {
       publisherName: 'Team Best Devs',
       content: data,
