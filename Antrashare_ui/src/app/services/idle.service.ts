@@ -1,12 +1,14 @@
 import { ChangeDetectorRef, Injectable, NgZone } from '@angular/core';
 import { BehaviorSubject, fromEvent, interval, merge, Observable, of, ReplaySubject, Subject, Subscription } from 'rxjs';
 import { filter, skipWhile, switchMap, take, takeUntil, takeWhile, tap, throttleTime } from 'rxjs/operators';
+import { APP_CONFIG } from '../core/config/app.config';
+
+const KEY = `${APP_CONFIG.localStorage.prefix}${APP_CONFIG.localStorage.idle}`;
 
 @Injectable()
 export class IdleService {
   private status: IdleStatus = {
-    idleTime: 10 * 60,
-    timeoutTime: 10,
+    ...this.defaultIdleStatus,
     isTimeoutWarning: false,
     countdownIdleTime: null,
     countdownTimeoutTime: null,
@@ -20,8 +22,18 @@ export class IdleService {
   private idleStart$ = new Subject();
   private timeoutWarning$ = new Subject();
 
+  /**
+   * Constructor
+   */
   constructor(private nz: NgZone, private cd: ChangeDetectorRef) {
     this.onInit();
+  }
+
+  get defaultIdleStatus() {
+    const status = JSON.parse(localStorage.getItem(KEY) || JSON.stringify(APP_CONFIG.defaultIdleStatus));
+    localStorage.setItem(KEY, JSON.stringify(status));
+
+    return status;
   }
 
   get onIdleStart() {
@@ -58,7 +70,7 @@ export class IdleService {
     );
   }
 
-  countDownIdleTime(val: number) {
+  private countDownIdleTime(val: number) {
     const timeLeftForIdle = this.status.idleTime - val;
 
     this.status.countdownIdleTime = timeLeftForIdle;
@@ -89,12 +101,20 @@ export class IdleService {
     });
   }
 
+  /**
+   * Watch idle events
+   *
+   */
   watch() {
     stop();
 
     this.runOutside();
   }
 
+  /**
+   * Stop watching idle events
+   *
+   */
   stop() {
     this.idleStart$;
     this.status.countdownIdleTime = null;
