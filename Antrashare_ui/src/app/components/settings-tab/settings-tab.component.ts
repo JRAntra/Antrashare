@@ -3,6 +3,7 @@ import { Router } from "@angular/router";
 import { SettingsService } from 'src/app/services/settings.service';
 import { MatDialog } from '@angular/material/dialog';
 import { LogoutWindowComponent } from '../../dialogs/logout-window/logout-window.dialog.component';
+import { ThemeType } from 'src/app/models/theme.model';
 
 @Component({
   selector: 'app-settings-tab',
@@ -10,14 +11,14 @@ import { LogoutWindowComponent } from '../../dialogs/logout-window/logout-window
   styleUrls: ['../../css/settings-tab.component.scss']
 })
 export class SettingsTabComponent implements OnInit {
+  readonly ThemeType = ThemeType;
 
   constructor(private router: Router, private settingsService: SettingsService, public logOutDialog: MatDialog) { }
 
   ngOnInit(): void {
   }
 
-  // only for test theme
-  changeTheme(theme: string) {
+  changeTheme(theme: ThemeType) {
     this.settingsService.setTheme(theme);
   }
 

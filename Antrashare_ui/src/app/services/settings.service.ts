@@ -1,20 +1,18 @@
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { APP_CONFIG } from '../core/config/app.config';
+import { ThemeType } from '../models/theme.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SettingsService {
-  private initState = {
-    theme: THEMES.dark
-  }
+  private theme$ = new BehaviorSubject(APP_CONFIG.defaultTheme);
 
-  private theme$ = new BehaviorSubject(this.initState.theme);
+  constructor(public overlayContainer: OverlayContainer) { this.setOverlayContainer(APP_CONFIG.defaultTheme) }
 
-  constructor(public overlayContainer: OverlayContainer) { this.setOverlayContainer(this.initState.theme) }
-
-  private setOverlayContainer(theme: string) {
+  private setOverlayContainer(theme: string): void {
     const overlayContainerClassList = this.overlayContainer.getContainerElement().classList;
     const needToRemoveClass = Array.from(overlayContainerClassList).filter((cl: string) => cl.includes('-theme'));
     if (needToRemoveClass.length) {
@@ -23,14 +21,12 @@ export class SettingsService {
     overlayContainerClassList.add(theme);
   }
 
-  setTheme(theme: string = this.initState.theme) {
+  setTheme(theme: ThemeType = APP_CONFIG.defaultTheme): void {
     this.setOverlayContainer(theme);
     this.theme$.next(theme);
   }
 
-  getTheme() {
+  getTheme(): Observable<ThemeType> {
     return this.theme$.asObservable();
   }
 }
-
-export const THEMES = { dark: 'dark-theme' }
