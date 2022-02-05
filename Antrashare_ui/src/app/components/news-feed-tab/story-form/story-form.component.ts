@@ -71,28 +71,12 @@ export class StoryFormComponent implements OnInit {
       video: this.videos.value.map((value: { url: any; }) => value.url).join(';') || 'video'
     }
 
-    // this.newsFeedService.delete(data.text).subscribe(news => {
-    //   console.log(news);
-    // });
+    // this.newsFeedService.delete(data.text).subscribe();
 
     this.newsFeedService.createContent(data).subscribe((news: News) => {
-      const entity: News = news;
-      
-      entity.comment.push({
-        publisherName: 'cc',
-        publishedTime: new Date().toLocaleDateString(),
-        content: {
-          text: 'sss',
-          image: 'si',
-          video: 'sv'
-        }
-      });
-      
-      console.log(entity);
-
-      this.newsFeedService.put(entity).subscribe((news: News[]) => {
-        console.log(news);
-      })
+      this.images.clear();
+      this.videos.clear();
+      this.postForm.reset();
     });
 
   }
