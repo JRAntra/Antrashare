@@ -4,6 +4,9 @@
 
 > `nvm` is a popular way to run Node.js. It allows you to easily switch the Node.js version, and install new versions to try and easily rollback if something breaks, for example.
 
+> Another difference is that Node.js uses the `CommonJS` module system, while in the browser we are starting to see the `ES` Modules standard being implemented.
+> In practice, this means that for the time being you use `require()` in Node.js and `import` in the browser.
+
 ### Need to install
 -------------------
 ```bash
