@@ -75,7 +75,14 @@ export class NewsFeedService {
    * @param comment
    */
   patch(id: string, comment: Comment) {
-    return this.http.patch<Comment>([this.path, 'addComment', id].join('/'), comment, SERVER_CONFIG.httpOptions);
+    return this.http.patch<Comment>([this.path, 'addComment', id].join('/'), comment, SERVER_CONFIG.httpOptions).pipe(tap((story: any) => {
+      this.storyList.filter((post: News) => {
+        return post._id == story._id;
+      }).forEach((post: News) => {
+        post.comment = story.comment;
+      });
+      this.stories$.next(this.storyList);
+    }));
   }
 
   /**
