@@ -2,8 +2,8 @@
 
 @include mat.core();
 
-@import "./app/css/themes/dark.theme";
-@import "./app/css/themes/light.theme";
+@import "./themes/dark.theme";
+@import "./themes/light.theme";
 
 // Apply the theme to other components
 @mixin component-styles-theme($theme) {
