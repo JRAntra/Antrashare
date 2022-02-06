@@ -68,6 +68,12 @@ export class NewsFeedService {
     return this.http.delete<News>([this.path, 'deletePost', id].join('/'), SERVER_CONFIG.httpOptions);
   }
 
+  /**
+   * patch data for adding a new comment
+   *
+   * @param id
+   * @param comment
+   */
   patch(id: string, comment: Comment) {
     return this.http.patch<Comment>([this.path, 'addComment', id].join('/'), comment, SERVER_CONFIG.httpOptions);
   }
@@ -87,6 +93,12 @@ export class NewsFeedService {
     return this.post(entity);
   }
 
+  /**
+   * add Comment for a existing news feed
+   *
+   * @param id
+   * @param comment
+   */
   addComment(id: string, comment: Comment) {
     return this.patch(id, comment);
   }
