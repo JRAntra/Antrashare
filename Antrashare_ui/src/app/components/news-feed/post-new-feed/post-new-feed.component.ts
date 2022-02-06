@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { FormBuilder, Validators } from '@angular/forms';
 import { NewsFeedService } from '../../services/news-feed.service';
@@ -9,6 +9,8 @@ import { NewsFeedService } from '../../services/news-feed.service';
   styleUrls: ['./post-new-feed.component.scss']
 })
 export class PostNewFeedComponent implements OnInit {
+  @Output() refreshPage = new EventEmitter<boolean>();
+
   postNewfeedForm = this.formBuilder.group({
     textContent: [''],
     imageContent: [''],
@@ -34,18 +36,9 @@ export class PostNewFeedComponent implements OnInit {
         text: this.postNewfeedForm.get('textContent')?.value,
       }
     }
-    this._newsFeedService.postNewsFeed(currentBody);
-
-
-    // testing value in server
-    this._newsFeedService.getRequest(this._newsFeedService.url).subscribe(
-      (data) => {
-        console.log(data);
-
-      }
-
-    )
-
+    this._newsFeedService.postNewsFeed(currentBody).subscribe((data) => {
+      this.refreshPage.emit(true);
+    });
   }
 
   resetForm() {

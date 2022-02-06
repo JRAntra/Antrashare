@@ -1,6 +1,12 @@
 <div class="contentPage">
   <div class="avatarDisplay">
     <app-user-display [userInNewFeed]="userInfoFromServer"> </app-user-display>
+    <mat-icon 
+      aria-hidden="false" 
+      aria-label="delete" 
+      class="labelDisplay"
+      (click)="deletePost()"
+    >delete</mat-icon>
   </div>
   <mat-card>
     <div class="content">
@@ -40,8 +46,14 @@
           </label>
         </div>
       </div>
-      <app-add-comment [serverData] = "currentStory"></app-add-comment>
-      <app-comments *ngIf="commentList.length != 0" [commentData]="commentList"></app-comments>
+      <app-add-comment 
+        (isChanged) = "refreshNewFeed($event)"
+        [serverData] = "currentStory"
+      ></app-add-comment>
+      <app-comments 
+        *ngIf="commentList.length != 0" 
+        [commentData]="commentList"
+      ></app-comments>
     </div>
   </mat-card>
 </div>

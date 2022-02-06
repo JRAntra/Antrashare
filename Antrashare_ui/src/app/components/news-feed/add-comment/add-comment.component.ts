@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { FormBuilder, Validators } from '@angular/forms';
 import { NewsFeedService } from '../../services/news-feed.service';
@@ -10,6 +10,7 @@ import { NewsFeedService } from '../../services/news-feed.service';
 })
 export class AddCommentComponent implements OnInit {
   @Input() serverData!: any;
+  @Output() isChanged = new EventEmitter<boolean>();
 
   addCommentForm = this.formBuilder.group({
     textContent: [''],
@@ -22,35 +23,18 @@ export class AddCommentComponent implements OnInit {
   }
 
   addComment() {
-    let currentCommentList = [
-      ...this.serverData.comment,
-      {
-        publisherName: 'Dog',
-        publishedTime: new Date(),
-        content: {
-          text: this.addCommentForm.get('textContent')?.value,
-        } 
-      }
-    ];
     let currentBody = {
-      publisherName: this.serverData.publisherName,
-      publishedTime: this.serverData.publishedTime,
+      publisherName: 'Dog',
+      publishedTime: new Date(),
       content: {
-        image: this.serverData.content.image,
-        video: this.serverData.content.video,
-        text: this.serverData.content.text,
-      },
-      comment: [
-        ...this.serverData.comment,
-        {
-          publisherName: 'Dog',
-          publishedTime: new Date(),
-          content: {
-            text: this.addCommentForm.get('textContent')?.value
-          } 
-        }
-      ]
-    }
-    this._newsFeedService.postNewsFeed(currentBody);
+        text: this.addCommentForm.get('textContent')?.value,
+        image: 'image',
+        video: 'video'
+      }
+    };
+    this._newsFeedService.addCommentNewsFeed(this.serverData._id, currentBody).subscribe((data) => {
+      this.isChanged.emit(true);
+    });
+
   }
 }
