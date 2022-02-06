@@ -21,6 +21,19 @@ $ npm install mongoose --save
 ```bash
 $ npm install config --save 
 ```
+> *Configurations are stored in configuration files within your application, and can be overridden and extended by environment variables, command line parameters, or external sources.*
+
+```bash
+$ npm install joi --save
+```
+> @hapi/joi package has been <span style="color:red">deprecated</span>.
+
+> *joi: The most powerful schema description language and data validator for JavaScript.*
+
+```bash
+$ npm install cors --save
+```
+> *CORS is a node.js package for providing a Connect/Express middleware that can be used to enable CORS with various options.*
 
 ### Restart the application automatically
 Install the nodemon module globally to system path

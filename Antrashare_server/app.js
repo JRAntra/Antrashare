@@ -3,6 +3,8 @@ const app = express();
 
 require('./startup/db')();
 require('./startup/config')();
+require('./startup/validation')();
+require('./startup/routes')(app);
 
 const hostname = 'localhost';
 const port = process.env.PORT || 4231;
