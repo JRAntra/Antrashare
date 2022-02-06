@@ -8,17 +8,6 @@
 > Another difference is that Node.js uses the `CommonJS` module system, while in the browser we are starting to see the `ES` Modules standard being implemented.
 > In practice, this means that for the time being you use `require()` in Node.js and `import` in the browser.
 
-### Restart the application automatically
-Install the nodemon module globally to system path
-
-```bash
-$ npm install -g nodemon
-```
-Run the application using nodemon followed by application file name.
-```bash
-$ nodemon app.js
-```
-
 ### Need to install
 -------------------
 ```bash
@@ -31,6 +20,17 @@ $ npm install mongoose --save
 
 ```bash
 $ npm install config --save 
+```
+
+### Restart the application automatically
+Install the nodemon module globally to system path
+
+```bash
+$ npm install -g nodemon
+```
+Run the application using nodemon followed by application file name.
+```bash
+$ nodemon app.js
 ```
 
 ## Mongoose 6
