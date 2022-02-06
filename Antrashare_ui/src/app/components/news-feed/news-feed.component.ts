@@ -44,15 +44,17 @@ export class NewsFeedComponent implements OnInit {
   }
 
   refreshNewFeed(event: boolean) {
-    event && this._newsFeedService.getRequest()
-    .subscribe(
-      (data) => {
-        // Save the data locally to create dynamically with ngFor
-        this.dataFromMongoDB = data;
-        this.storiesFromServer = this.dataFromMongoDB;
-
-        console.log(`Data from server: `, this.storiesFromServer) // debug
-      }
-    )
+    if (event) {
+      this._newsFeedService.getRequest()
+      .subscribe(
+        (data) => {
+          // Save the data locally to create dynamically with ngFor
+          this.dataFromMongoDB = data;
+          this.storiesFromServer = this.dataFromMongoDB;
+  
+          console.log(`Data from server: `, this.storiesFromServer) // debug
+        }
+      )
+    }
   }
 }

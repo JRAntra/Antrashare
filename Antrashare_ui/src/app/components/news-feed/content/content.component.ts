@@ -56,8 +56,9 @@ export class ContentComponent implements OnInit {
   }
 
   deletePost() {
-    this._newsFeedService.deletePostNewsFeed(this.currentStory._id).subscribe((data) => {
-      this.addedNewComment.emit(true);
+    this._newsFeedService.deletePostNewsFeed(this.currentStory._id).subscribe(() => {
+      this.refreshNewFeed(true);
     });
+    
   }
 }
