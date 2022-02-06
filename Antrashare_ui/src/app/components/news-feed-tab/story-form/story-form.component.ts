@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
-import { Story } from 'src/app/models/newsfeed.model';
+import { News, Story } from 'src/app/models/newsfeed.model';
 import { NewsFeedService } from 'src/app/services/news-feed.service';
 
 @Component({
@@ -67,13 +67,18 @@ export class StoryFormComponent implements OnInit {
     console.log(this.postForm.value);
     const data: Story = {
       text: this.postForm.get('text')?.value,
-      image: 'image',
-      video: 'video'
+      image: this.images.value.map((value: { url: any; }) => value.url).join(';') || 'image',
+      video: this.videos.value.map((value: { url: any; }) => value.url).join(';') || 'video'
     }
 
-    this.newsFeedService.postContent(data).subscribe((news) => {
-      console.log(news);
+    // this.newsFeedService.delete(data.text).subscribe();
+
+    this.newsFeedService.createContent(data).subscribe((news: News) => {
+      this.images.clear();
+      this.videos.clear();
+      this.postForm.reset();
     });
+
   }
 
 }

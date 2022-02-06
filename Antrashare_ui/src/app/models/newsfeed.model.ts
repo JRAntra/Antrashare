@@ -5,6 +5,8 @@ export interface Comment {
 }
 
 export interface News {
+    __v?: string;
+    _id?: string;
     publisherName: string;
     content: Story;
     comment: Comment[];
@@ -13,6 +15,7 @@ export interface News {
 }
 
 export interface Story {
+    _id?: string;
     image: string;
     text: string;
     video: string;
