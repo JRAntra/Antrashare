@@ -3,6 +3,7 @@ import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { filter, shareReplay, takeUntil } from 'rxjs/operators';
 import { Layout } from 'src/app/models/layouts.model';
+import { ThemeType } from 'src/app/models/theme.model';
 import { ThemesService } from 'src/app/services/themes.service';
 
 @Component({
@@ -39,7 +40,7 @@ export class LayoutsComponent implements OnInit, OnDestroy {
     this.themesService.getActiveTheme().pipe(
       takeUntil(this.unsubscribeAll),
       shareReplay()
-    ).subscribe((value) => {
+    ).subscribe((value: ThemeType) => {
       this.activeThemeCssClass = value;
     });
   }
