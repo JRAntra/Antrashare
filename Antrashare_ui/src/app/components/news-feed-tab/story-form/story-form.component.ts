@@ -83,8 +83,6 @@ export class StoryFormComponent implements OnInit {
       this.images.clear();
       this.videos.clear();
       this.postForm.reset();
-
-      console.log(news);
     });
 
   }
