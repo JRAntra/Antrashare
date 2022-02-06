@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
-import { News, Story } from 'src/app/models/newsfeed.model';
+import { Comment, Story } from 'src/app/models/newsfeed.model';
 import { NewsFeedService } from 'src/app/services/news-feed.service';
 
 @Component({
@@ -73,11 +73,19 @@ export class StoryFormComponent implements OnInit {
 
     // this.newsFeedService.delete(data.text).subscribe();
 
-    this.newsFeedService.createContent(data).subscribe((news: News) => {
-      this.images.clear();
-      this.videos.clear();
-      this.postForm.reset();
-    });
+    const comment: Comment = {
+      publisherName: 'Team Best Devs',
+      content: data
+    };
+    this.newsFeedService.addComment('61ff4e58c2d8c83d637d3e4b', comment).subscribe(console.log);
+
+    // this.newsFeedService.createContent(data).subscribe((news: News) => {
+    //   this.images.clear();
+    //   this.videos.clear();
+    //   this.postForm.reset();
+
+    //   console.log(news);
+    // });
 
   }
 

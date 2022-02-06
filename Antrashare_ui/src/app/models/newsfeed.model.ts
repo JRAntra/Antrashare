@@ -1,7 +1,7 @@
 export interface Comment {
     publisherName: string;
     content: Story;
-    publishedTime: string;
+    publishedTime?: string;
 }
 
 export interface News {
@@ -10,8 +10,8 @@ export interface News {
     publisherName: string;
     content: Story;
     comment: Comment[];
-    likedIdList: string[];
-    publishedTime: string;
+    likedIdList?: string[];
+    publishedTime?: string;
 }
 
 export interface Story {
