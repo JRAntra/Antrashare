@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Comment, Story } from 'src/app/models/newsfeed.model';
 
 @Component({
   selector: 'app-comment',
@@ -7,11 +8,13 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class CommentComponent implements OnInit {
 
-  @Input() cmt! : String;
+  @Input() cmt! : Comment;
+  cmtContent! : Story;
 
   constructor() { }
 
   ngOnInit(): void {
+    this.cmtContent = this.cmt.content;
   }
 
 }
