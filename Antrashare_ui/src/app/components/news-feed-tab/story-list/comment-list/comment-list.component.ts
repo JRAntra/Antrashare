@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges, Output, EventEmitter } from '@angular/core';
+import { Story, Comment } from 'src/app/models/newsfeed.model';
 
 @Component({
   selector: 'app-comment-list',
@@ -8,7 +9,8 @@ import { Component, OnInit, Input, OnChanges, SimpleChanges, Output, EventEmitte
 export class CommentListComponent implements OnInit, OnChanges {
 
   @Input() userInput!: String;
-  @Output() cmtNumChange = new EventEmitter<number>();
+  @Input() userComment! : Comment[];
+  // @Output() cmtNumChange = new EventEmitter<number>();
 
   cmtList: String[] = [];
   
@@ -19,11 +21,8 @@ export class CommentListComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (this.userInput !== undefined) {
-      // console.log(changes['userInput'].currentValue);
       this.cmtList.push(this.userInput);
     }
-    // console.log("onChange" + this.cmtList + this.cmtList.length);
-    this.cmtNumChange.emit(this.cmtList.length);
   }
 
 

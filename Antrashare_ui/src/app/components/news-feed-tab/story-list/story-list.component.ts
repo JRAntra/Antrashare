@@ -8,13 +8,22 @@ import { NewsService } from 'src/app/services/news.service';
   styleUrls: ['../../../css/story-list.component.scss']
 })
 export class StoryListComponent implements OnInit {
-  totalStory: Number[] = [1, 2, 3, 4];
+
   totalNews: News[] = []
 
   constructor(private NewsData: NewsService) { }
 
   ngOnInit(): void {
-    this.NewsData.getNews();
+    this.getAllNews();
   }
+
+  
+  getAllNews() {
+    this.NewsData.getNews()
+      .subscribe((data: any) => {
+        this.totalNews = data;
+        // console.log(this.totalNews);
+      });
+}
 
 }

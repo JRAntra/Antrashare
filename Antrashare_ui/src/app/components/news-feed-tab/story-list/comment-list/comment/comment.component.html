@@ -1,2 +1,12 @@
 <!-- <p>comment works!</p> -->
-<mat-card>{{cmt}}</mat-card>
+<div class = "container">
+    <div class = "header">
+        <button mat-icon-button>
+            <mat-icon>person_outline</mat-icon>
+        </button>
+        {{cmt.publisherName}}
+    </div>
+    <div class = "text">
+        {{cmtContent.text}}
+    </div>
+</div>

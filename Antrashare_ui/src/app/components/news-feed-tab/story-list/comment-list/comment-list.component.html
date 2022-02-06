@@ -1,4 +1,6 @@
-<app-comment
-    *ngFor = "let cmt of cmtList"
-    [cmt] = "cmt"
-></app-comment>
+<mat-card>
+    <app-comment
+        *ngFor = "let cmt of userComment"
+        [cmt] = "cmt"
+    ></app-comment>
+</mat-card>
