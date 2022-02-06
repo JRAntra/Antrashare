@@ -1,36 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
-@use "@angular/material" as mat;
+
+/* ====== Global variables ====== */
+:root {
+  --login-bg-image: url(./assets/images/themes/default-background.jpg);
+}
 
 /* ====== CSS reset ====== */
 @import "./app/css/reset";
 
 /* ====== Custom Theming for Angular Material ====== */
-@include mat.core();
-
-@import "./app/css/themes/dark.theme";
-@import "./app/css/themes/light.theme";
-
-:root {
-  --login-bg-image: url(./assets/images/themes/default-background.jpg);
-}
-
-// Apply the dark theme only when the `.dark-theme` CSS class is applied
-.dark-theme {
-  @include mat.all-component-themes($dark-theme);
-
-  --login-bg-image: url(./assets/images/themes/dark-background.jpg);
-}
-
-// Apply the light theme only when the `.light-theme` CSS class is applied
-.light-theme {
-  @include mat.all-component-themes($light-theme);
-
-  --login-bg-image: url(./assets/images/themes/light-background.jpg);
-
-  .grayscale {
-    filter: invert(1);
-  }
-}
+@import "./app/css/theme";
 
 /* ====== Global Angular Material typography styles ====== */
 html,
@@ -41,5 +20,3 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
-
-/* ====== Global variables ====== */

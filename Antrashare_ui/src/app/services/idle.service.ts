@@ -1,12 +1,16 @@
 import { ChangeDetectorRef, Injectable, NgZone } from '@angular/core';
 import { BehaviorSubject, fromEvent, interval, merge, Observable, of, ReplaySubject, Subject, Subscription } from 'rxjs';
 import { filter, skipWhile, switchMap, take, takeUntil, takeWhile, tap, throttleTime } from 'rxjs/operators';
+import { APP_CONFIG } from '../core/config/app.config';
+
+const KEY = `${APP_CONFIG.localStorage.prefix}${APP_CONFIG.localStorage.idle}`;
 
 @Injectable()
 export class IdleService {
+  // declare idle status
   private status: IdleStatus = {
-    idleTime: 10 * 60,
-    timeoutTime: 10,
+    ...this.defaultIdleStatus,
+
     isTimeoutWarning: false,
     countdownIdleTime: null,
     countdownTimeoutTime: null,
@@ -20,19 +24,24 @@ export class IdleService {
   private idleStart$ = new Subject();
   private timeoutWarning$ = new Subject();
 
-  constructor(private nz: NgZone, private cd: ChangeDetectorRef) {
-    this.onInit();
+  /**
+   * Constructor
+   */
+  constructor(
+    private nz: NgZone,
+    private cd: ChangeDetectorRef
+  ) {
+    this.onInitIdleEvents();
   }
 
-  get onIdleStart() {
-    return this.idleStart$.asObservable();
+  private get defaultIdleStatus() {
+    const status = JSON.parse(localStorage.getItem(KEY) || JSON.stringify(APP_CONFIG.defaultIdleStatus));
+    localStorage.setItem(KEY, JSON.stringify(status));
+
+    return status;
   }
 
-  get onTimeoutWarning() {
-    return this.timeoutWarning$.asObservable();
-  }
-
-  private onInit(): void {
+  private onInitIdleEvents(): void {
     // relates to idle events
     const eventStreams = IDLE_EVENTS.map((event) => fromEvent(event.target, event.eventName));
     // merges all the events into one observable object
@@ -58,7 +67,7 @@ export class IdleService {
     );
   }
 
-  countDownIdleTime(val: number) {
+  private countDownIdleTime(val: number) {
     const timeLeftForIdle = this.status.idleTime - val;
 
     this.status.countdownIdleTime = timeLeftForIdle;
@@ -83,18 +92,26 @@ export class IdleService {
     }
   }
 
-  private runOutside() {
-    this.nz.runOutsideAngular(() => {
+  private running() {
+    this.nz.run(() => {
       this.eventSubscription = this.events$.subscribe();
     });
   }
 
+  /**
+   * Watch idle events
+   *
+   */
   watch() {
     stop();
 
-    this.runOutside();
+    this.running();
   }
 
+  /**
+   * Stop watching idle events
+   *
+   */
   stop() {
     this.idleStart$;
     this.status.countdownIdleTime = null;
@@ -107,6 +124,15 @@ export class IdleService {
 
     this.eventSubscription.unsubscribe();
   }
+
+  get onIdleStart() {
+    return this.idleStart$.asObservable();
+  }
+
+  get onTimeoutWarning() {
+    return this.timeoutWarning$.asObservable();
+  }
+
 }
 
 export const IDLE_EVENTS = [

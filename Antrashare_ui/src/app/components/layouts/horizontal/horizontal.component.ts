@@ -32,7 +32,6 @@ export class HorizontalLayoutComponent implements OnInit, OnDestroy {
     private breakpointObserver: BreakpointObserver,
     private idleService: IdleService,
     private dialog: MatDialog,
-    private nz: NgZone,
     private router: Router,
   ) { }
 
@@ -43,25 +42,25 @@ export class HorizontalLayoutComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    // this.idleService.stop();
-    this.idle();
+    this.watchIdle();
   }
 
-  idle() {
+  private watchIdle(): void {
     this.idleService.onIdleStart.pipe(
       takeUntil(this.unsubscribeAll)
     ).subscribe((value: any) => {
-      // Use ngzone to fix the display abnormal dialog
-      this.nz.run(() => {
-        this.openTimeoutDialog(value);
-      });
+      this.openTimeoutDialog(value);
     });
 
     this.idleService.onTimeoutWarning.pipe(
       takeUntil(this.unsubscribeAll)
-    ).subscribe(value => {
+    ).subscribe((value: any) => {
       if (this.warningDialogRef && this.warningDialogRef.componentInstance) {
         this.warningDialogRef.componentInstance.data = { time: value };
+
+        if (value <= 0) {
+          this.warningDialogRef.close();
+        }
         console.log(value);
       }
     })
@@ -69,15 +68,17 @@ export class HorizontalLayoutComponent implements OnInit, OnDestroy {
     this.idleService.watch();
   }
 
-  openTimeoutDialog(warningTime: number) {
+  private openTimeoutDialog(warningTime: number): void {
     this.warningDialogRef = this.dialog.open(TimeoutComponent, {
       width: '320px',
-      height: '400px',
+      height: '330px',
       disableClose: true,
       data: { time: warningTime }
     });
 
-    this.warningDialogRef.afterClosed().subscribe(result => {
+    this.warningDialogRef.afterClosed().pipe(
+      takeUntil(this.unsubscribeAll)
+    ).subscribe(result => {
       if (result) {
         this.idleService.watch();
       } else {

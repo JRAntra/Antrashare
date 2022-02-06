@@ -1,9 +1,9 @@
 import { Component, HostBinding, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { Observable, Subject } from 'rxjs';
-import { filter, map, shareReplay, tap, takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+import { filter, shareReplay, takeUntil } from 'rxjs/operators';
 import { Layout } from 'src/app/models/layouts.model';
-import { SettingsService } from 'src/app/services/settings.service';
+import { ThemesService } from 'src/app/services/themes.service';
 
 @Component({
   selector: 'app-layouts',
@@ -24,7 +24,7 @@ export class LayoutsComponent implements OnInit, OnDestroy {
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private settingsService: SettingsService
+    private themesService: ThemesService
   ) {
     // subscribe router events
     this.router.events.pipe(
@@ -36,7 +36,7 @@ export class LayoutsComponent implements OnInit, OnDestroy {
     })
 
     // subscribe theme event
-    this.settingsService.getTheme().pipe(
+    this.themesService.getActiveTheme().pipe(
       takeUntil(this.unsubscribeAll),
       shareReplay()
     ).subscribe((value) => {

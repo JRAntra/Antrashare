@@ -1,0 +1,51 @@
+@use "@angular/material" as mat;
+
+@include mat.core();
+
+@import "./app/css/themes/dark.theme";
+@import "./app/css/themes/light.theme";
+
+// Apply the theme to other components
+@mixin component-styles-theme($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $foreground: map-get($theme, foreground);
+
+  a {
+    color: mat.get-color-from-palette($foreground, text);
+
+    &:hover {
+      color: mat.get-color-from-palette($accent);
+    }
+  }
+
+  .mat-nav-list {
+    a.active {
+      background-color: mat.get-color-from-palette($primary, 0.15) !important;
+  
+      &:hover {
+        background-color: mat.get-color-from-palette($primary, 0.3)!important;
+      }
+    }
+  }
+}
+
+// Apply the dark theme only when the `.dark-theme` CSS class is applied
+.dark-theme {
+  @include mat.all-component-themes($dark-theme);
+  @include component-styles-theme($dark-theme);
+
+  --login-bg-image: url(../../assets/images/themes/dark-background.jpg);
+}
+
+// Apply the light theme only when the `.light-theme` CSS class is applied
+.light-theme {
+  @include mat.all-component-themes($light-theme);
+  @include component-styles-theme($light-theme);
+
+  --login-bg-image: url(../../assets/images/themes/light-background.jpg);
+
+  .grayscale {
+    filter: invert(1);
+  }
+}
