@@ -17,7 +17,6 @@ export class NewsStoryComponent implements OnInit {
 
   public getAllNewsStories() {
     this.newsFeedService.getAllNewsFeed().subscribe((res) => {
-      console.log(res);
       this.newsList = res;
     });
   }

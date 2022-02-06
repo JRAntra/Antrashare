@@ -1,35 +1,28 @@
 export interface NewsStory {
+  _id?:string;
   publisherName: string;
-  publishedTime: string;
+  publishedTime?: number;
   content: {
-    image: string;
-    video: string;
-    text: string;
+    image?: string;
+    video?: string;
+    text?: string;
   };
-  comment: [
+  comment?: NewsFeedComment[];
+  likedIdList?: [
     {
-      publisherName: string;
-      publishedTime: string;
-      content: {
-        image: string;
-        video: string;
-        text: string;
-      };
-    }
-  ];
-  likedIdList: [
-    {
-      type: string;
+      userId?: string;
     }
   ];
 }
 
 export interface NewsFeedComment {
+  _id?:string;
   publisherName: string;
-  publishedTime: string;
+  publishedTime?: number;
   content: {
-    image: string;
-    video: string;
-    text: string;
+    image?: string;
+    video?: string;
+    text?: string;
   };
 }
+

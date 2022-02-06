@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { NewsFeedService } from 'src/app/Service/newsFeed.service';
 @Component({
   selector: 'app-newsPost',
   templateUrl: './newsPost.component.html',
@@ -11,9 +12,13 @@ export class NewsPostComponent implements OnInit {
     newStoryContentFormControl: new FormControl(''),
     
   });
-  constructor() { }
+  constructor(private newsFeedService: NewsFeedService) { }
 
   ngOnInit() {
+  }
+
+  onPostNewStory(){
+  this.newsFeedService.deletePost();
   }
 
 }
