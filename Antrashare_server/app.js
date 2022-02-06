@@ -2,8 +2,9 @@ const express = require("express");
 const app = express();
 
 require('./startup/db')();
+require('./startup/config')();
 
-const hostname = '127.0.0.1';
+const hostname = 'localhost';
 const port = process.env.PORT || 4231;
 
 const server = app.listen(port, hostname, () => {
