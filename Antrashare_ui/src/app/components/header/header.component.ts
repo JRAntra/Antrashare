@@ -9,6 +9,7 @@ import { AuthService } from '../../auth/auth.service';
 })
 export class HeaderComponent implements OnInit {
   isLoggedIn$!: Observable<boolean>;
+  username!: string;
 
   constructor(private authService: AuthService) {}
 

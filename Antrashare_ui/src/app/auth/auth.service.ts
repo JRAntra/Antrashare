@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 
-import { User } from './user';
+import { UserProfile } from '../models/user.models';
 
 @Injectable({
   providedIn: 'root',
@@ -11,6 +11,7 @@ export class AuthService {
   private loggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
     false
   );
+  username!: string;
 
   get isLoggedIn() {
     return this.loggedIn.asObservable();
@@ -18,10 +19,12 @@ export class AuthService {
 
   constructor(private router: Router) {}
 
-  login(user: User) {
-    if (user.userName !== '' && user.password !== '') {
+  login(user: UserProfile) {
+    if (user.username !== '' && user.password !== '') {
       this.loggedIn.next(true);
       this.router.navigate(['/newsfeed']);
+      this.username = user.username;
+      console.log(this.username);
     }
   }
 

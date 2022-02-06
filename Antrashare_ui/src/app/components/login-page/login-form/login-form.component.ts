@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { Router } from '@angular/router';
 
 import { AuthService } from '../../../auth/auth.service';
 
@@ -14,11 +13,7 @@ export class LoginFormComponent implements OnInit {
   public loginForm: FormGroup;
   private formSubmitAttempt: boolean = false;
 
-  constructor(
-    public dialog: MatDialog,
-    private router: Router,
-    private authService: AuthService
-  ) {
+  constructor(public dialog: MatDialog, private authService: AuthService) {
     this.loginForm = new FormGroup({
       username: new FormControl('', [
         Validators.required,
@@ -41,7 +36,7 @@ export class LoginFormComponent implements OnInit {
     return this.loginForm.get('password');
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {}
 
   submitForm() {
     if (this.loginForm.valid) {

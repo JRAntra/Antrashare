@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  idleTimeInSeconds: 10,
+  idleTimeInSeconds: 600,
 };
 
 /*
