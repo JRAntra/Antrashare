@@ -15,7 +15,7 @@ export class SettingsTabComponent implements OnInit {
 
   constructor(
     private router: Router, 
-    private settingsService: ThemesService, 
+    private themesService: ThemesService, 
     public logOutDialog: MatDialog
   ) { }
 
@@ -28,7 +28,7 @@ export class SettingsTabComponent implements OnInit {
    * @param theme
    */
   changeActiveTheme(theme: ThemeType) {
-    this.settingsService.setActiveTheme(theme);
+    this.themesService.setActiveTheme(theme);
   }
 
   onLogOut() {
