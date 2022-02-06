@@ -13,7 +13,7 @@
 ```bash
 $ npm install express --save
 ```
-
+> *Express is a framework that uses the http module under the hood, app.listen() returns an instance of http. You would use https.createServer if you needed to serve your app using HTTPS, as app.listen only uses the http module.*
 ```bash
 $ npm install mongoose --save
 ```
