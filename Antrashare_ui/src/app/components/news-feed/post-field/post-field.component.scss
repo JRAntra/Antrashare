@@ -46,13 +46,13 @@
     width: 80%; 
 }
 
-#submit:enabled {
+#submit {
     background-color: $red;
     color: $white;
     transition: 0.3s ease-in-out;
 }
 
-#submit:hover:enabled {
+#submit:hover {
     cursor: pointer;
     background-color: $white;
     color: $red;

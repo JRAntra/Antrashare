@@ -45,16 +45,10 @@ table {
   border-spacing: 0;
 }
 // ------ CSS RESET END -------
-
 $red: #A62626;
 $white: #F5F5F5;
 $white2: #eeeeee;
 $black: #0d0d0d;
-
-.default_button { 
-    background-color: #A62626;
-    color: #F5F5F5;
-}
 
 html, body { height: 100%; background-color: $white;}
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

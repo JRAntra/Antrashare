@@ -15,6 +15,7 @@
                     <mat-icon>image</mat-icon>
                     Post with Image
                 </mat-label>
+                <!-- <input matInput formControlName="image" matInput placeholder="Image Url"> -->
                 <input matInput formControlName="imageFormControl" matInput placeholder="Image Url">
             </mat-form-field>
             <mat-form-field id='video' class="example-full-width" appearance="outline">
@@ -22,16 +23,17 @@
                     <mat-icon>movie</mat-icon>
                     Post with Video
                 </mat-label>
+                <!-- <input matInput formControlName="video" matInput placeholder="Video Url"> -->
                 <input matInput formControlName="videoFormControl" matInput placeholder="Video Url">
             </mat-form-field>
         </div>
-        <mat-card id='mediaPreview' *ngIf='safeVideo || safeImage'>
-            <img *ngIf='hasImage' [src]='safeImage' (error)='hasImage = false'>
-            <div *ngIf='!hasImage'></div>
-            <iframe *ngIf='hasVideo' [src]='safeVideo'></iframe>
-        </mat-card>
-        <mat-card-actions>
-            <button class="default_button" [disabled]='!newPostFormGroup.valid' id="submit" type='submit' mat-button (click)="onSubmitPost()">POST</button>
-        </mat-card-actions>
     </form>
+    <mat-card id='mediaPreview' *ngIf='safeVideo || safeImage'>
+        <img *ngIf='hasImage' [src]='safeImage' (error)='hasImage = false'>
+        <div *ngIf='!hasImage'></div>
+        <iframe *ngIf='hasVideo' [src]='safeVideo'></iframe>
+    </mat-card>
+    <mat-card-actions>
+        <button id='submit' mat-button (click)="onSubmitPost()">POST</button>
+    </mat-card-actions>
 </mat-card>
