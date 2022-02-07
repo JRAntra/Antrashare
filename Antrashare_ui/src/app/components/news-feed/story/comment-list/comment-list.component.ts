@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { NewsFeedComment } from 'src/app/models/comments.models';
 
 @Component({
   selector: 'app-comment-list',
@@ -6,8 +8,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./comment-list.component.scss']
 })
 export class CommentListComponent implements OnInit {
-
-  constructor() { }
+  constructor(@Inject(MAT_DIALOG_DATA) public commentsList: NewsFeedComment[]) { }
 
   ngOnInit(): void {
   }
