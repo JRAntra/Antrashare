@@ -13,14 +13,13 @@ export class NewsService {
   constructor(private http: HttpClient) {
 
   }
-
   
   getNews(): Observable<any> {
     return this.http.get(this.baseurl)
   }
 
   getNewsById(id: string): Observable<any> {
-    return this.http.get(this.baseurl + "/:" + id)
+    return this.http.get(this.baseurl + "/" + id)
   }
 
   postNews(body: any): Observable<any> {
@@ -28,7 +27,7 @@ export class NewsService {
   }
 
   postCommentById(body: any, id: string): Observable<any> {
-    return this.http.post<any>(this.baseurl + "/:" + id, body)
+    return this.http.patch<any>(this.baseurl + "/addComment/" + id, body)
   }
 
   

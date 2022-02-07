@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators, ValidationErrors, AbstractControl } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
+import { NewsService } from 'src/app/services/news/news.service';
+
 
 @Component({
   selector: 'app-post-field',
@@ -52,7 +54,10 @@ export class PostFieldComponent implements OnInit {
   //   });
   // }
 
-  constructor(private _sanitizer: DomSanitizer) { 
+  constructor(
+    private _sanitizer: DomSanitizer,
+    private newsService: NewsService
+    ) { 
   }
 
   ngOnInit(): void {
@@ -112,7 +117,8 @@ export class PostFieldComponent implements OnInit {
         // }],
         // likedList: []
       }
-    console.log(this.newsFeed);
+    //console.log(this.newsFeed);
+    this.newsService.postNews(this.newsFeed).subscribe(console.log);
   }
   
   //Video Form Validator
