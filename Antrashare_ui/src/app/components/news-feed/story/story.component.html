@@ -12,16 +12,14 @@
             </mat-card-subtitle>
         </div>
     </mat-card-title>
-    <mat-card class="storyContent">
-        {{story.content.text}}
-        <div class="storyMedia">
-            <ng-template [ngIf]='hasImage'>
-                <img [src]="safeImage">
-            </ng-template>
-            <ng-template [ngIf]='hasVideo'>
-                <iframe [src]='safeVideo' allowfullscreen></iframe>
-            </ng-template>
-        </div>
+    <mat-card class="storyContent" [ngStyle]="textboxSize">
+        <mat-card class="storyText">
+            {{story.content.text}}
+        </mat-card>
+        <mat-card class="storyMedia" *ngIf='hasImage || hasVideo'>
+            <img class='story-image' *ngIf='hasImage' [src]="safeImage" (error)='hasImage = false'> <!-- 'validation' of image is handled here through conditional rendering -->
+            <iframe class='story-video' *ngIf='hasVideo' [src]='safeVideo' allowfullscreen></iframe>
+        </mat-card>
     </mat-card>
     <mat-card class="storyBottomBar">
         <div class="storyBottomBarItem">

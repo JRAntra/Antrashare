@@ -1,0 +1,60 @@
+@import '../../../../styles.scss';
+
+#postForm {
+    width: 90%;
+    margin: 0 auto;
+    background-color: $white2;
+    margin-top: 5%;
+}
+
+.newPostInput {
+    display: grid;
+    grid-template-rows: 50% 50%;
+    margin: 0 auto;
+    justify-content: center;
+}
+
+#text {
+    display: block;
+    margin: 0 auto;
+    width: 85%;
+    margin-top: 2%;
+}
+
+#newPostMedia {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    width: 90%;
+    margin: 0 auto;
+}
+
+#image, #video {
+    margin: 0 auto;
+    width: 80%;
+}
+
+#mediaPreview {
+    width: 80%;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    margin: 0 auto;
+    background-color: $white;
+}
+
+#mediaPreview > * {
+    margin: 0 auto;
+    width: 80%; 
+}
+
+#submit {
+    background-color: $red;
+    color: $white;
+    transition: 0.3s ease-in-out;
+}
+
+#submit:hover {
+    cursor: pointer;
+    background-color: $white;
+    color: $red;
+    transition: 0.3s ease-in-out;
+}
