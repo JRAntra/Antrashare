@@ -13,12 +13,9 @@ export class NewsFeedComponent implements OnInit, OnDestroy {
   storyList: story[] = [];
   dataFromServer: any;
 
-  constructor(
-    private dataService: DataService
-  ) { }
-
+  constructor(private dataService: DataService) {}
+  
   ngOnInit(): void {
-    //this.dataService.getNewsFeed().subscribe((data) => (this.storyList = data));
     this.dataFromServer = this.dataService.getNewsFeed();
     this.dataFromServer.subscribe((data: any) => {
       this.storyList = data;
