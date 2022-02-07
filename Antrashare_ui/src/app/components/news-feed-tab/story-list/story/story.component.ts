@@ -1,6 +1,6 @@
 import { Component, OnInit, AfterViewInit, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { News, Story,Comment } from 'src/app/models/newsfeed.model';
+import { News, Story, Comment } from 'src/app/models/newsfeed.model';
 import { NewsService } from 'src/app/services/news.service';
 import { NewsFeedService } from 'src/app/services/news-feed.service';
 import { NewsFeedTabComponent } from '../../news-feed-tab.component';
@@ -14,7 +14,7 @@ export class StoryComponent implements OnInit {
 
   @Input() news!: News;
   Content!: Story;
-  Comment! : Comment[];
+  Comment!: Comment[];
   // News!: News;
 
   userInput!: string;
@@ -53,10 +53,12 @@ export class StoryComponent implements OnInit {
       video: ''
     }
     const newComment: Comment = {
-      content : newCommentContent,
+      content: newCommentContent,
       publisherName: "Team Best Devs",
     }
-    this.newsFeedService.addComment(this.news._id!, newComment);
+    this.newsFeedService.addComment(this.news._id!, newComment).subscribe((story => {
+      this.Comment = story.comment;
+    }));
   }
 
 }
