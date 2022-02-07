@@ -9,21 +9,15 @@ import { DataService } from 'src/app/services/newsfeed/data.service';
   templateUrl: './news-feed.component.html',
   styleUrls: ['./news-feed.component.scss'],
 })
-export class NewsFeedComponent implements OnInit, OnDestroy {
+export class NewsFeedComponent implements OnInit {
   storyList: story[] = [];
-  dataFromServer: any;
 
-  constructor(private dataService: DataService) {}
-  
+  constructor(private dataService: DataService) { }
+
   ngOnInit(): void {
-    this.dataFromServer = this.dataService.getNewsFeed();
-    this.dataFromServer.subscribe((data: any) => {
+    this.dataService.getNewsFeed().subscribe((data: any) => {
       this.storyList = data;
-      console.log(data);
+      // console.log(data);
     });
-  }
-
-  ngOnDestroy(): void {
-    this.dataFromServer.unsubscribe();
   }
 }

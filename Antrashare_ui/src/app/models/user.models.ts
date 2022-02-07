@@ -1,25 +1,19 @@
+import { NewsFeedComment } from "./comments.models";
+
 export interface story {
+  _id?: string;
   image?: string;
   publisherName: string;
   publishedTime: string;
   content: {
-    image: string;
-    video: string;
-    text: string;
+    image?: string;
+    video?: string;
+    text?: string;
   };
-  comment?: [
-    {
-      image: string;
-      publisherName: string;
-      publisherTime: string;
-      content: {
-        image: string;
-        video: string;
-        text: string;
-      };
-    }
-  ];
-  likedIdList?: [];
+  comment?: NewsFeedComment[];
+  likedIdList?: [{
+    userId?: string;
+  }];
 }
 
 export interface UserProfile {
