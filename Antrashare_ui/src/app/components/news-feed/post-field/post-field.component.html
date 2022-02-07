@@ -1,26 +1,39 @@
-<mat-card>
+<mat-card id='postForm'>
     <mat-card-title>Create New Post</mat-card-title>
-
     <form class="newpost-input" [formGroup]="newPostFormGroup">
-        <mat-form-field class="example-full-width" appearance="outline">
+        <mat-form-field id='text' class="example-full-width" appearance="outline">
             <mat-label>New Post</mat-label>
-            <textarea formControlName="text" matInput placeholder="What's on your mind?"></textarea>
+            <!-- <textarea formControlName="text" matInput placeholder="What's on your mind?"></textarea> -->
+            <textarea formControlName="textFormControl" matInput placeholder="What's on your mind?"></textarea>
             <!-- <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
                     Please enter a valid email address
                 </mat-error> -->
         </mat-form-field>
-        <mat-icon>image</mat-icon>
-        <mat-form-field class="example-full-width" appearance="outline">
-            <mat-label>Post with Image</mat-label>
-            <input matInput formControlName="image" matInput placeholder="Image Url">
-        </mat-form-field>
-        <mat-icon>movie</mat-icon>
-        <mat-form-field class="example-full-width" appearance="outline">
-            <mat-label>Post with Video</mat-label>
-            <input matInput formControlName="video" matInput placeholder="Video Url">
-        </mat-form-field>
+        <div id='newPostMedia'>
+            <mat-form-field id='image' class="example-full-width" appearance="outline">
+                <mat-label>
+                    <mat-icon>image</mat-icon>
+                    Post with Image
+                </mat-label>
+                <!-- <input matInput formControlName="image" matInput placeholder="Image Url"> -->
+                <input matInput formControlName="imageFormControl" matInput placeholder="Image Url">
+            </mat-form-field>
+            <mat-form-field id='video' class="example-full-width" appearance="outline">
+                <mat-label>
+                    <mat-icon>movie</mat-icon>
+                    Post with Video
+                </mat-label>
+                <!-- <input matInput formControlName="video" matInput placeholder="Video Url"> -->
+                <input matInput formControlName="videoFormControl" matInput placeholder="Video Url">
+            </mat-form-field>
+        </div>
     </form>
+    <mat-card id='mediaPreview' *ngIf='safeVideo || safeImage'>
+        <img *ngIf='hasImage' [src]='safeImage' (error)='hasImage = false'>
+        <div *ngIf='!hasImage'></div>
+        <iframe *ngIf='hasVideo' [src]='safeVideo'></iframe>
+    </mat-card>
     <mat-card-actions>
-        <button mat-button (click)="onSubmitPost()">POST</button>
+        <button id='submit' mat-button (click)="onSubmitPost()">POST</button>
     </mat-card-actions>
 </mat-card>

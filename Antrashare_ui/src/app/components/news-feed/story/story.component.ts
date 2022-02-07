@@ -14,15 +14,18 @@ export class StoryComponent implements OnInit {
   @Output() storyEmiter = new EventEmitter()
   dialogRef?: MatDialogRef<CommentDialogComponent>;
 
+  //for conditional rendering
   public isCommentOpened = false;
   public hasVideo = false;
   public hasImage = false;
-  public noVideo = true;
-  public noImage = true;
+  //unsanitized links from db
   videoLink: any;
   imageLink: any;
+  //sanitized links for insertion into html (if any links are provided)
   safeVideo: any;
   safeImage: any;
+  //conditional textbox size based on presence of media
+  textboxSize: any;
 
   constructor(private _sanitizer: DomSanitizer, private dialog: MatDialog) { }
 
@@ -30,23 +33,48 @@ export class StoryComponent implements OnInit {
     this.videoLink = this.story.content.video ? this.story.content.video : '';
     this.imageLink = this.story.content.image ? this.story.content.image : '';
 
-    if (this.videoLink !== '') {
-      this.hasVideo = true;
-    } else {
-      this.hasVideo = false;
-    }
-
+    //video link validation
+    this.validateVideoUrl();
+    //image presence validation. Error (i.e. bad link) is handled in HTML.
     if (this.imageLink !== '') {
       this.hasImage = true;
     } else {
       this.hasImage = false;
     }
 
+    //link sanitizers
     this.safeVideo = this._sanitizer.bypassSecurityTrustResourceUrl(this.videoLink);
     this.safeImage = this._sanitizer.bypassSecurityTrustResourceUrl(this.imageLink);
-    console.log(this.story._id);
   }
 
+  //Makes text fill up box if no media is present.
+  resizeTextbox() {
+    if (!this.videoLink && !this.imageLink) {
+      this.textboxSize = {
+        'grid-template-rows': '100% auto'
+      };
+    } else {
+      this.textboxSize = {
+        'grid-template-rows': '55% auto'
+      };
+    }
+  }
+
+  //video link validator. Must be a youtube link.
+  validateVideoUrl() {
+    if (this.videoLink !== undefined || this.videoLink !== '') {
+        var videoRegex = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=|\?v=)([^#\&\?]*).*/;
+        var isValidVideo = this.videoLink.match(videoRegex);
+        if (isValidVideo && isValidVideo[2].length == 11) {
+          this.hasVideo = true;
+        }
+        else {
+          this.hasVideo = false;
+        }
+    }
+  }
+
+  //opens comment dialog
   onTriggerCommentDialog() {
     this.dialog.open(CommentDialogComponent, {data:{story:this.story}});
   }

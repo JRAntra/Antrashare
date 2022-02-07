@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators, ValidationErrors, AbstractControl } from '@angular/forms';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-post-field',
@@ -7,34 +8,124 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
   styleUrls: ['./post-field.component.scss']
 })
 export class PostFieldComponent implements OnInit {
-  newPostFormGroup: FormGroup;
+  // newPostFormGroup: FormGroup;
   newsFeed: object = [];
+  hasVideo: boolean = false;
+  hasImage: boolean = false;
+  //unsanitized links from form
+  videoLink: any;
+  imageLink: any;
+  //sanitized links for insertion into html (if any links are provided)
+  safeVideo: any;
+  safeImage: any;
+  //regex
+  videoRegex = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=|\?v=)([^#\&\?]*).*/;
+  //id for youtube link
+  videoMatch: any;
 
-  constructor(private fb: FormBuilder) {
-    this.newPostFormGroup = this.fb.group({
-      text: '',
-      image: '',
-      video: ''
-    });
+
+  public newPostFormGroup = new FormGroup({
+    textFormControl: new FormControl('', {
+        validators: [
+          Validators.required,
+          Validators.maxLength(5000)
+        ],
+        updateOn: 'change'
+    }),
+    imageFormControl: new FormControl('',  {
+      validators: [ ],
+      updateOn: 'change'
+    }),
+    videoFormControl: new FormControl('',  {
+        validators: [
+          this.validVideoUrl,
+        ],
+        updateOn: 'change'
+    })
+  })
+
+  // constructor(private fb: FormBuilder) {
+  //   this.newPostFormGroup = this.fb.group({
+  //     text: '',
+  //     image: '',
+  //     video: ''
+  //   });
+  // }
+
+  constructor(private _sanitizer: DomSanitizer) { 
   }
 
   ngOnInit(): void {
+    this.newPostFormGroup.get('imageFormControl')?.valueChanges.subscribe(image => {
+      if (image !== undefined) {
+        this.imageLink = image;
+        this.safeImage = this._sanitizer.bypassSecurityTrustResourceUrl(this.imageLink);
+        this.hasImage = true;
+      } else {
+        this.safeImage = undefined;
+        this.hasImage = false;
+      }
+    });
+    this.newPostFormGroup.get('videoFormControl')?.valueChanges.subscribe(video => {
+      if (video !== undefined && this.videoTest(video)) {
+        this.videoLink = '//www.youtube.com/embed/' + this.videoMatch[2];
+        this.safeVideo = this._sanitizer.bypassSecurityTrustResourceUrl(this.videoLink);
+        this.hasVideo = true;
+      } else {
+        this.safeVideo = undefined;
+        this.hasVideo = false;
+      }
+    });
+  }
+  
+  //video
+  videoTest(video: any) {
+    this.videoMatch = video.match(this.videoRegex);
+    if (this.videoMatch && this.videoMatch[2].length === 11) {
+      return true;
+    }
+    else {
+      return false;
+    }
   }
 
+  
+  
   onSubmitPost() {
+    var image = this.newPostFormGroup.get('imageFormControl')?.value;
+    var video = this.newPostFormGroup.get('videoFormControl')?.value;
+    var text = this.newPostFormGroup.get('textFormControl')?.value;
+    
     this.newsFeed = {
       // avatar?: ImageBitmap,
       // publisherName: string,
       // publishedTime: string,
       content: {
-        image: this.newPostFormGroup.get('image')?.value,
-        video: this.newPostFormGroup.get('video')?.value,
-        text: this.newPostFormGroup.get('text')?.value,
+        // image: this.newPostFormGroup.get('image')?.value,
+        // video: this.newPostFormGroup.get('video')?.value,
+        // text: this.newPostFormGroup.get('text')?.value,
+        image: image,
+        video: video,
+        text: text
       },
       // comment: [{
-      // }],
-      // likedList: []
-    }
+        // }],
+        // likedList: []
+      }
     console.log(this.newsFeed);
   }
+  
+  //Video Form Validator
+  validVideoUrl(control: AbstractControl): ValidationErrors | null  {
+    var videoRegex = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=|\?v=)([^#\&\?]*).*/;
+
+    var videoMatch = control.value.match(videoRegex);
+    if (videoMatch && videoMatch[2].length === 11) {
+      return null;
+    }
+    else {
+      return {validVideoUrl: false};
+    }
+  }
 }
+  
