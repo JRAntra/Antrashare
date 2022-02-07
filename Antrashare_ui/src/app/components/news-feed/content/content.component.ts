@@ -12,7 +12,7 @@ export class ContentComponent implements OnInit {
   public userInfoFromServer: NewFeed = {
     content: {},
     comment: [],
-    likedIdList: [],
+    likedIdList: [{}],
     publishedTime: '',
     publisherName: '',
     _id: '',
