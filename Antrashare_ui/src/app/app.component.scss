@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @use "../scss/variables";
 @import "../styles.scss";
 
@@ -97,3 +98,44 @@ main {
 //   z-index: -1;
 //   opacity: 0;
 // }
+=======
+// @import "../styles.scss"
+@use "../styles.scss" as theme;
+
+.navBar {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  background-color: theme.$primary-color;
+  height: 50px;
+}
+.footerBar {
+  position: fixed;
+  bottom: 0;
+  background-color: theme.$primary-color;
+  height: 50px;
+  display: block;
+  width: 100%;
+  display:flex;
+  justify-content: space-around;
+}
+.hyperlinkTxt_white {
+  color: white;
+  font-size:25px;
+  margin-top:12.5px;
+  margin-right:15px;
+}
+.footer_btn{
+    color: white;
+    width:33.3vw;
+    font-size:25px;
+    margin-top:12.5px;
+    text-align: center;
+}
+.text_Logo{
+  font-weight:900;
+  color:white;
+}
+>>>>>>> 7855a5d0dc9e35bc5043b23a28228f53f0e4f1a5

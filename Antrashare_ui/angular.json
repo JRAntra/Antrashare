@@ -1,5 +1,8 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "cli": {
+    "analytics": false
+  },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
@@ -31,9 +34,14 @@
               "src/assets"
             ],
             "styles": [
+<<<<<<< HEAD
               "src/theme.scss",
               "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
               "src/styles.scss"
+=======
+              "src/styles.scss",
+              "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css"
+>>>>>>> 7855a5d0dc9e35bc5043b23a28228f53f0e4f1a5
             ],
             "scripts": []
           },
@@ -101,7 +109,10 @@
               "src/assets"
             ],
             "styles": [
+<<<<<<< HEAD
               "src/theme.scss",
+=======
+>>>>>>> 7855a5d0dc9e35bc5043b23a28228f53f0e4f1a5
               "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
               "src/styles.scss"
             ],

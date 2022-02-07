@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @use "../../../../scss/variables";
 // $primary-red: red;
 // $primary-white: white;
@@ -60,4 +61,30 @@
   .loginContainer {
     width: 440px;
   }
+=======
+.agreement{
+    width:25em;
+    display:flex;
+    justify-content: space-between;
+}
+.container{
+    border: 1px solid black;
+    padding: 50px 0px;
+    width:30%;
+    min-width:400px;
+    margin:auto
+}
+.loginForm{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.submitButton{
+    display:block;
+    width:25em;
+}
+.formField{
+    width:25em
+>>>>>>> 7855a5d0dc9e35bc5043b23a28228f53f0e4f1a5
 }

@@ -11,16 +11,29 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "~13.1.0",
+<<<<<<< HEAD
     "@angular/cdk": "^13.1.3",
+=======
+    "@angular/cdk": "~13.1.2",
+>>>>>>> 7855a5d0dc9e35bc5043b23a28228f53f0e4f1a5
     "@angular/common": "~13.1.0",
     "@angular/compiler": "~13.1.0",
     "@angular/core": "~13.1.0",
     "@angular/forms": "~13.1.0",
+<<<<<<< HEAD
     "@angular/material": "^13.1.3",
     "@angular/platform-browser": "~13.1.0",
     "@angular/platform-browser-dynamic": "~13.1.0",
     "@angular/router": "~13.1.0",
     "antrashare": "file:..",
+=======
+    "@angular/material": "~13.1.2",
+    "@angular/platform-browser": "~13.1.0",
+    "@angular/platform-browser-dynamic": "~13.1.0",
+    "@angular/router": "~13.1.0",
+    "primeicons": "^5.0.0",
+    "primeng": "^13.1.0",
+>>>>>>> 7855a5d0dc9e35bc5043b23a28228f53f0e4f1a5
     "rxjs": "~7.4.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"

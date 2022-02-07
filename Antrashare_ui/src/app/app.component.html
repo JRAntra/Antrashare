@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <app-header></app-header>
 <main>
   <div class="container">
@@ -6,3 +7,20 @@
 </main>
 
 <!-- <div class="background-image"></div> -->
+=======
+<div class="container">
+  <nav class="navBar" *ngIf="has_userId">
+      <!-- <img src='../assets/AntraShare_logo_no_text.PNG' width='50px' height='50px'> -->
+      <div class='text_logo'>AntraShare</div>
+      <a class='hyperlinkTxt_white' [routerLink]="['/login']" (click)='onLogout()'>Log Out</a>
+  </nav>
+
+  <router-outlet></router-outlet>
+
+  <footer class="footerBar" *ngIf="has_userId">
+      <div class='footer_btn' [routerLink]="['/userProfile']">My Profile</div>
+      <div class='footer_btn' [routerLink]="['/newsFeed']">News Feed</div>
+      <div class='footer_btn' [routerLink]="['/settings']">Settings</div>
+  </footer>
+</div>
+>>>>>>> 7855a5d0dc9e35bc5043b23a28228f53f0e4f1a5

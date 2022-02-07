@@ -1,0 +1,20 @@
+<div>
+  <ng-container *ngFor="let comment of commentList">
+    <div class="single_story_container">
+      <div class="single_story_grid">
+        <div class="single_story_avatar_grid">Avatar Here</div>
+        <div class="single_story_username_grid">
+          {{ comment.publisherName }}
+        </div>
+        <div class="single_story_publish_time_grid">
+          {{ comment.publishedTime | date: "short" }}
+        </div>
+        <div class="single_story_content_grid">{{ comment.content.text }}</div>
+        <div class="single_story_comment_grid">
+          <mat-icon>comment</mat-icon>
+        </div>
+        <div class="single_story_like_grid"><mat-icon>thumb_up</mat-icon></div>
+      </div>
+    </div>
+  </ng-container>
+</div>
