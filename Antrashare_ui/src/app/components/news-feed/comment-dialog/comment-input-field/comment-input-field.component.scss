@@ -22,3 +22,15 @@ button:hover {
   background-color: $white;
   transition: 0.3s ease-in-out;
 }
+
+#newCommentMedia {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    width: 90%;
+    margin: 0 auto;
+}
+
+#image, #video {
+    margin: 0 auto;
+    width: 80%;
+}
