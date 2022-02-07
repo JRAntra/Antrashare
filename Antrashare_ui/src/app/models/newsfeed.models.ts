@@ -1,23 +1,28 @@
 //newsfeed
 export interface News {
-    _id: string,
-    avatar?: ImageBitmap,
+    _id?: string,
     publisherName: string,
-    publishedTime: string,
+    publishedTime?: number,
     content: {
         image?: string,
         video?: string,
         text?: string,
     },
-    comment?: [{
-        avatar?: ImageBitmap,
-        publisherName: string,
-        publishedTime: string,
-        content: {
-            image?: string,
-            video?: string,
-            text?: string
+    comment?: NewsComment[];
+    likedIdList?: [
+        {
+            userId?: string;
         }
-    }],
-    likedList?: []
+    ]
+}
+
+export interface NewsComment {
+    _id?: string,
+    publisherName: string,
+    publishedTime?: number,
+    content: {
+        image?: string,
+        video?: string,
+        text?: string
+    }
 }

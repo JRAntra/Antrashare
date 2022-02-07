@@ -1,6 +1,7 @@
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
+import { DatePipe } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -68,7 +69,7 @@ import { CommentInputFieldComponent } from './components/news-feed/comment-dialo
     MatCardModule,
     ReactiveFormsModule
   ],
-  providers: [NewsService],
+  providers: [NewsService, DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

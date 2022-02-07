@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators, ValidationErrors, AbstractControl } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
+import { NewsService } from 'src/app/services/news/news.service';
+import { DatePipe } from '@angular/common';
+
 
 @Component({
   selector: 'app-post-field',
@@ -52,7 +55,11 @@ export class PostFieldComponent implements OnInit {
   //   });
   // }
 
-  constructor(private _sanitizer: DomSanitizer) { 
+  constructor(
+    private _sanitizer: DomSanitizer,
+    private newsService: NewsService,
+    public datePipe: DatePipe
+    ) {
   }
 
   ngOnInit(): void {
@@ -77,7 +84,7 @@ export class PostFieldComponent implements OnInit {
       }
     });
   }
-  
+
   //video
   videoTest(video: any) {
     this.videoMatch = video.match(this.videoRegex);
@@ -89,32 +96,33 @@ export class PostFieldComponent implements OnInit {
     }
   }
 
-  
-  
+
+
   onSubmitPost() {
     var image = this.newPostFormGroup.get('imageFormControl')?.value;
     var video = this.newPostFormGroup.get('videoFormControl')?.value;
     var text = this.newPostFormGroup.get('textFormControl')?.value;
-    
+
     this.newsFeed = {
       // avatar?: ImageBitmap,
-      // publisherName: string,
-      // publishedTime: string,
+      publisherName: 'test name', //For test post
+      publishedTime: this.datePipe.transform((new Date), 'MM/dd/yyyy h:mm:ss'), //^^
       content: {
         // image: this.newPostFormGroup.get('image')?.value,
         // video: this.newPostFormGroup.get('video')?.value,
         // text: this.newPostFormGroup.get('text')?.value,
-        image: image,
-        video: video,
+        image: image ? image : '',
+        video: video ? video : '',
         text: text
       },
       // comment: [{
         // }],
         // likedList: []
       }
-    console.log(this.newsFeed);
+    //console.log(this.newsFeed);
+    this.newsService.postNews(this.newsFeed);
   }
-  
+
   //Video Form Validator
   validVideoUrl(control: AbstractControl): ValidationErrors | null  {
     var videoRegex = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=|\?v=)([^#\&\?]*).*/;
@@ -128,4 +136,3 @@ export class PostFieldComponent implements OnInit {
     }
   }
 }
-  

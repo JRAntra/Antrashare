@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { NewsService } from 'src/app/services/news/news.service';
 
 @Component({
@@ -7,7 +8,6 @@ import { NewsService } from 'src/app/services/news/news.service';
   styleUrls: ['./news-feed.component.scss']
 })
 export class NewsFeedComponent implements OnInit {
-
   storyList: any;
 
   constructor(private newsService: NewsService) { }

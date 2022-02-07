@@ -28,6 +28,7 @@ router.post('/', async (req, res) => {
     res.send(news);
 });
 
+/*
 router.post('/:id', async (req, res) => {
     const { error } = validate(req.body);
     if (error) return res.status(400).send(error.details[0].message);
@@ -37,7 +38,40 @@ router.post('/:id', async (req, res) => {
     (await questions).save();
 
     res.send(questions);
-})
+})*/
+
+router.patch("/addComment/:id", async (req, res) => {
+    const news = await News.find({ _id: req.params.id });
+    if (!news.length) {
+        return res.status(404).send("Story not found.");
+    }
+  
+    const query = { _id: req.params.id };
+    const update = {
+      $push: {
+        comment: {
+          publisherName: req.body.publisherName,
+          publishedTime: req.body.publishedTime,
+          content: {
+            image: req.body.content.image,
+            video: req.body.content.video,
+            text: req.body.content.text,
+          },
+        },
+      },
+    };
+    const options = { upsert: false };
+    News.updateOne(query, update, options)
+      .then((result) => {
+        const { matchedCount, modifiedCount } = result;
+        if (matchedCount && modifiedCount) {
+          console.log(`Successfully added a new comment.`);
+        }
+      })
+      .catch((err) => console.error(`Failed to add comment: ${err}`));
+  
+    res.send(await News.find(query));
+});
 
 //router.put('/:id', async (req, res) => {
 //
