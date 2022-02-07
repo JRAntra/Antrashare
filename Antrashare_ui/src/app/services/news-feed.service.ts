@@ -12,13 +12,13 @@ export class NewsFeedService {
 
   private path: string = [SERVER_CONFIG.baseUrl, 'news'].join('/');
 
-  private storyList: News[] = [];
+  private storyList!: News[];
   private stories$ = new Subject();
 
   constructor(private http: HttpClient) { }
 
-  getList() {
-    return this.stories$.asObservable();
+  getList(): Observable<News[]> {
+    return this.stories$.asObservable() as Observable<News[]>;
   }
 
   /**
