@@ -1,7 +1,8 @@
 import { Component, OnInit, AfterViewInit, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { News, Story,Comment } from 'src/app/models/newsfeed.model';
+import { News, Story, Comment } from 'src/app/models/newsfeed.model';
 import { NewsService } from 'src/app/services/news.service';
+import { NewsFeedService } from 'src/app/services/news-feed.service';
 import { NewsFeedTabComponent } from '../../news-feed-tab.component';
 
 @Component({
@@ -13,16 +14,16 @@ export class StoryComponent implements OnInit {
 
   @Input() news!: News;
   Content!: Story;
-  Comment! : Comment[];
+  Comment!: Comment[];
   // News!: News;
 
-  userInput!: String;
+  userInput!: string;
   cmtForm = new FormControl('');
   cmtStatus: boolean = false;
   cmtCount: number = 0;
   likes: number = 0;
 
-  constructor(private newsService: NewsService) { }
+  constructor(private newsService: NewsService, private newsFeedService: NewsFeedService) { }
 
   newsData: News[] = [];
 
@@ -42,8 +43,22 @@ export class StoryComponent implements OnInit {
     this.likes++;
   }
 
-  onEnter() {
+  onConfirm() {
     this.userInput = this.cmtForm.value;
+    // console.log(this.userInput);
+    // console.log(this.news._id);
+    const newCommentContent: Story = {
+      text: this.userInput,
+      image: '',
+      video: ''
+    }
+    const newComment: Comment = {
+      content: newCommentContent,
+      publisherName: "Team Best Devs",
+    }
+    this.newsFeedService.addComment(this.news._id!, newComment).subscribe((story => {
+      this.Comment = story.comment;
+    }));
   }
 
 }

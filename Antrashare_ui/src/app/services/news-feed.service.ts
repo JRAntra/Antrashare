@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { SERVER_CONFIG } from '../core/config/server.config';
 import { Comment, News, Story } from '../models/newsfeed.model';
 
@@ -12,13 +12,13 @@ export class NewsFeedService {
 
   private path: string = [SERVER_CONFIG.baseUrl, 'news'].join('/');
 
-  private storyList: News[] = [];
+  private storyList!: News[];
   private stories$ = new Subject();
 
   constructor(private http: HttpClient) { }
 
-  getList() {
-    return this.stories$.asObservable();
+  getList(): Observable<News[]> {
+    return this.stories$.asObservable() as Observable<News[]>;
   }
 
   /**
@@ -75,14 +75,19 @@ export class NewsFeedService {
    * @param comment
    */
   patch(id: string, comment: Comment) {
-    return this.http.patch<Comment>([this.path, 'addComment', id].join('/'), comment, SERVER_CONFIG.httpOptions).pipe(tap((story: any) => {
-      this.storyList.filter((post: News) => {
-        return post._id == story[0]._id;
-      }).forEach((post: News) => {
-        post.comment = story[0].comment;
-      });
-      this.stories$.next(this.storyList);
-    }));
+    return this.http.patch<Comment>([this.path, 'addComment', id].join('/'), comment, SERVER_CONFIG.httpOptions).pipe(
+      map(((list: any) => {
+        return list[0];
+      })),
+      tap((story: any) => {
+        this.storyList.filter((post: News) => {
+          return post._id == story._id;
+        }).forEach((post: News) => {
+          post.comment = story.comment;
+        });
+        this.stories$.next(this.storyList);
+      })
+    );
   }
 
   /**
@@ -107,6 +112,7 @@ export class NewsFeedService {
    * @param comment
    */
   addComment(id: string, comment: Comment) {
+    
     return this.patch(id, comment);
   }
 }

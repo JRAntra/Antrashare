@@ -1,6 +1,3 @@
 <app-story-form></app-story-form>
 
-<app-story
-    *ngFor  = "let news of totalNews"
-    [news] = "news"
-></app-story>
+<app-story *ngFor="let news of totalNews$ | async" [news]="news"></app-story>
