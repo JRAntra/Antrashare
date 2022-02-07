@@ -27,11 +27,8 @@ export class CommentListComponent implements OnInit {
     console.log(this.data);
   }
   onClickPostingComment(): void{
-    this.matDialog.open(CommentListComponent,{
-      width:'650px',
-      height:'650px',
-      
-      })
+   
+    
     }
 
   }

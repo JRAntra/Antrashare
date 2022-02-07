@@ -27,12 +27,12 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { MyProfileComponent } from './components/my-profile/my-profile.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { StoryComponent } from './components/news-feed/story/story.component';
-import { StoryCardComponent } from './components/news-feed/story/story-card/story-card.component';
+
 import { CommentListComponent } from './components/news-feed/story/comment-list/comment-list.component';
 
 
 import { TimeoutDialogComponent } from './components/timeout-dialog/timeout-dialog.component';
-import { NewsFeedButtonComponent } from './components/news-feed/news-feed-button/news-feed-button.component';
+
 import { NewsFeedTemplateComponent } from './components/news-feed/news-feed-template/news-feed-template.component';
 import { HeaderComponent } from './components/header/header.component';
 import { LogOutDialogComponent } from './components/logout-dialog/logout-dialog.component';
@@ -49,10 +49,9 @@ import { CommentPostComponent } from './components/news-feed/story/comment-list/
     MyProfileComponent,
     SettingsComponent,
     StoryComponent,
-    StoryCardComponent,
     CommentListComponent,
     TimeoutDialogComponent,
-    NewsFeedButtonComponent,
+    
     NewsFeedTemplateComponent,
     HeaderComponent,
     LogOutDialogComponent,
