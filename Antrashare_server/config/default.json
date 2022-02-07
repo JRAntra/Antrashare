@@ -1,4 +1,4 @@
 {
   "jwtPrivateKey": "angularSecurity_jwt",
-  "db": "mongodb+srv://AntraShare:antrashare2022@antrashare.z1kmw.mongodb.net/AntraShare?retryWrites=true&w=majority"
+  "db": "mongodb+srv://AntraShare:antrashare2022@antrashare.gjggd.mongodb.net/AntraShare?retryWrites=true&w=majority"
 }
