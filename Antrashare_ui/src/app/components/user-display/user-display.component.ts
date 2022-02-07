@@ -1,7 +1,8 @@
-import { Component, OnInit, Input} from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { NewFeed } from '../../interfaces/newfeed.interface';
 import { UserInfo, UserInfoNewFeed } from '../../interfaces/user-display.interface';
+
 
 @Component({
   selector: 'app-user-display',
@@ -10,7 +11,8 @@ import { UserInfo, UserInfoNewFeed } from '../../interfaces/user-display.interfa
 })
 export class UserDisplayComponent implements OnInit {
   public correctPath: string;
-  @Input() userInNewFeed!: UserInfoNewFeed;
+  
+  @Input() userInNewFeed!: NewFeed;
   @Input() userInProfile!: UserInfo;
 
   constructor(private router: Router) {

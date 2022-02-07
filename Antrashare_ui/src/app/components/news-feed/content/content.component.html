@@ -1,6 +1,6 @@
 <div class="contentPage">
   <div class="avatarDisplay">
-    <!-- <app-user-display [userInNewFeed]="userInfoFromServer"> </app-user-display> -->
+    <app-user-display [userInNewFeed]="userInfoFromServer"> </app-user-display>
   </div>
   <mat-card>
     <div class="content">
@@ -14,7 +14,7 @@
           (error)="image.hidden = true"
           [hidden]="image.hidden"
         />
-  
+
         <div *ngIf="isVideo === true">
           <video width="320" height="240" controls>
             <source
@@ -28,13 +28,23 @@
     <div class="content-follow-up">
       <div class="commentLikeBox">
         <div>
-          <mat-icon aria-hidden="false" aria-label="comment" class="labelDisplay">comment</mat-icon>
+          <mat-icon
+            aria-hidden="false"
+            aria-label="comment"
+            class="labelDisplay"
+            >comment</mat-icon
+          >
           <label class="labelDisplay">
             {{ commentList.length }} Comment(s)
           </label>
         </div>
         <div class="like-id-list">
-          <mat-icon aria-hidden="false" aria-label="favorite" class="labelDisplay">favorite</mat-icon>
+          <mat-icon
+            aria-hidden="false"
+            aria-label="favorite"
+            class="labelDisplay"
+            >favorite</mat-icon
+          >
           <label class="labelDisplay">
             {{ currentStory.likedIdList?.length }}
           </label>
@@ -53,11 +63,17 @@
           />
           <div *ngIf="isVideo === true">
             <video width="320" height="240" controls>
-              <source src="{{ commentList[pageNumber.pageIndex]?.content?.video }}" type="video/mp4" />
+              <source
+                src="{{ commentList[pageNumber.pageIndex]?.content?.video }}"
+                type="video/mp4"
+              />
             </video>
           </div>
           <div class="publishing-details">
-            By {{ commentList[pageNumber.pageIndex]?.publisherName }} at {{ commentList[pageNumber.pageIndex]?.publishedTime | date:'short'}}
+            By {{ commentList[pageNumber.pageIndex]?.publisherName }} at
+            {{
+              commentList[pageNumber.pageIndex]?.publishedTime | date: "short"
+            }}
           </div>
           <mat-paginator
             [length]="commentList.length"
