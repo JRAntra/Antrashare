@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 /* Directive */
 import { TmpElementDirective } from './directive/tmp_element/tmp-element.directive';
 
@@ -38,38 +37,10 @@ import { NewsFeedTemplateComponent } from './components/news-feed/news-feed-temp
 import { HeaderComponent } from './components/header/header.component';
 import { LogOutDialogComponent } from './components/logout-dialog/logout-dialog.component';
 import { CommentPostComponent } from './components/news-feed/story/comment-list/comment-post/comment-post.component';
-=======
-//Angular Modules
-import { NgModule } from '@angular/core';
-import { AppRoutingModule } from './app-routing.module';
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
->>>>>>> 7855a5d0dc9e35bc5043b23a28228f53f0e4f1a5
 
-//Angular Material Modules
-import { MatButtonModule } from '@angular/material/button';
-import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatDialogModule } from '@angular/material/dialog';
-import { MatIconModule } from '@angular/material/icon';
-
-//Components
-import { AppComponent } from './app.component';
-import { NewsFeedComponent } from './components/news-feed/news-feed.component';
-import { LoginFormComponent } from './components/login-page/login-form/login-form.component';
-import { LoginPageComponent } from './components/login-page/login-page.component';
-import { TimeoutComponent } from './dialogs/timeout/timeout.component';
-import { NewsPostComponent } from './components/news-feed/newsPost/newsPost.component';
-import { NewsStoryComponent } from './components/news-feed/newsStory/newsStory.component';
-import { SingleNewsStoryComponent } from './components/news-feed/newsStory/singleNewsStory/singleNewsStory.component';
-import { CommentListComponent } from './dialogs/commentList/commentList.component';
 @NgModule({
   declarations: [
     AppComponent,
-<<<<<<< HEAD
     TmpElementDirective,
     LoginPageComponent,
     LoginFormComponent,
@@ -86,21 +57,10 @@ import { CommentListComponent } from './dialogs/commentList/commentList.componen
     HeaderComponent,
     LogOutDialogComponent,
     CommentPostComponent,
-=======
-    LoginFormComponent,
-    LoginPageComponent,
-    NewsFeedComponent,
-    TimeoutComponent,
-    CommentListComponent,
-    NewsPostComponent,
-    NewsStoryComponent,
-    SingleNewsStoryComponent,
->>>>>>> 7855a5d0dc9e35bc5043b23a28228f53f0e4f1a5
   ],
   imports: [
     AppRoutingModule,
     BrowserModule,
-<<<<<<< HEAD
     AppRoutingModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
@@ -117,20 +77,5 @@ import { CommentListComponent } from './dialogs/commentList/commentList.componen
   ],
   providers: [],
   bootstrap: [AppComponent],
-=======
-    BrowserAnimationsModule,
-    MatButtonModule,
-    MatCheckboxModule,
-    MatInputModule,
-    MatFormFieldModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    MatDialogModule,
-    MatIconModule,
-  ],
-  providers: [],
-  bootstrap: [AppComponent],
-  entryComponents: [TimeoutComponent,CommentListComponent],
->>>>>>> 7855a5d0dc9e35bc5043b23a28228f53f0e4f1a5
 })
 export class AppModule {}
