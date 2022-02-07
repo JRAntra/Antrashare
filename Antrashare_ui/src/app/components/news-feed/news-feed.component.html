@@ -1,11 +1,11 @@
 <div id="stories">
   <app-post-new-feed
-    (refreshPage) = "refreshNewFeed($event)"
+    (refreshPage) = "refreshNewsStory($event)"
   ></app-post-new-feed>
   <app-content
     *ngFor="let story of storiesFromServer"
     [currentStory]="story"
-    (addedNewComment) = "refreshNewFeed($event)"
+    (addedNewComment) = "refreshNewsStory($event)"
   ></app-content>
 </div>
 <app-navigation-bar></app-navigation-bar>

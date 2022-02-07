@@ -8,10 +8,10 @@ import { NewsFeedService } from '../../services/news-feed.service';
   templateUrl: './post-new-feed.component.html',
   styleUrls: ['./post-new-feed.component.scss']
 })
-export class PostNewFeedComponent implements OnInit {
+export class PostNewsStoryComponent implements OnInit {
   @Output() refreshPage = new EventEmitter<boolean>();
 
-  postNewfeedForm = this.formBuilder.group({
+  postNewsStoryForm = this.formBuilder.group({
     textContent: [''],
     imageContent: [''],
     videoContent: ['']
@@ -26,14 +26,14 @@ export class PostNewFeedComponent implements OnInit {
     console.log(imageInput.target.value);
   }
 
-  addToNewfeed() {
+  addToNewsStory() {
     let currentBody = {
       publisherName: 'Cat',
       publishedTime: new Date(),
       content: {
-        image: this.postNewfeedForm.get('imageContent')?.value,
-        video: this.postNewfeedForm.get('videoContent')?.value,
-        text: this.postNewfeedForm.get('textContent')?.value,
+        image: this.postNewsStoryForm.get('imageContent')?.value,
+        video: this.postNewsStoryForm.get('videoContent')?.value,
+        text: this.postNewsStoryForm.get('textContent')?.value,
       }
     }
     this._newsFeedService.postNewsFeed(currentBody).subscribe((data) => {
@@ -42,8 +42,8 @@ export class PostNewFeedComponent implements OnInit {
   }
 
   resetForm() {
-    this.postNewfeedForm.controls["textContent"].setValue("");
-    this.postNewfeedForm.controls["imageContent"].setValue("");
-    this.postNewfeedForm.controls["videoContent"].setValue("");
+    this.postNewsStoryForm.controls["textContent"].setValue("");
+    this.postNewsStoryForm.controls["imageContent"].setValue("");
+    this.postNewsStoryForm.controls["videoContent"].setValue("");
   }
 }

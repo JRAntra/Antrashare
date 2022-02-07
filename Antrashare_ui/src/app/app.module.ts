@@ -30,7 +30,7 @@ import { SettingsComponent } from './components/settings/settings.component';
 import { SettingPanelComponent } from './components/settings/setting-panel/setting-panel.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { LogoutConfirmationDialogComponent } from './components/logout-confirmation-dialog/logout-confirmation-dialog.component';
-import { PostNewFeedComponent } from './components/news-feed/post-new-feed/post-new-feed.component';
+import { PostNewsStoryComponent } from './components/news-feed/post-new-feed/post-new-feed.component';
 import { CommentsComponent } from './components/news-feed/comments/comments.component';
 import { AddCommentComponent } from './components/news-feed/add-comment/add-comment.component';
 
@@ -50,7 +50,7 @@ import { AddCommentComponent } from './components/news-feed/add-comment/add-comm
     SettingPanelComponent,
     PageNotFoundComponent,
     LogoutConfirmationDialogComponent,
-    PostNewFeedComponent,
+    PostNewsStoryComponent,
     CommentsComponent,
     AddCommentComponent
   ],

@@ -1,6 +1,6 @@
 <div class="contentPage">
   <div class="avatarDisplay">
-    <app-user-display [userInNewFeed]="userInfoFromServer"> </app-user-display>
+    <app-user-display [userInNewsStory]="userInfoFromServer"> </app-user-display>
     <mat-icon 
       aria-hidden="false" 
       aria-label="delete" 
@@ -47,7 +47,7 @@
         </div>
       </div>
       <app-add-comment 
-        (isChanged) = "refreshNewFeed($event)"
+        (isChanged) = "refreshNewsStory($event)"
         [serverData] = "currentStory"
       ></app-add-comment>
       <app-comments 
