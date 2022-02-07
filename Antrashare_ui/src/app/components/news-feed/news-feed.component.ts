@@ -19,7 +19,6 @@ export class NewsFeedComponent implements OnInit {
   constructor(private _idleTimeService: idleTimeService, private _newsFeedService: NewsFeedService) {
     _idleTimeService.currentPageIsSignInPage = false;
     _idleTimeService.currentPageForRouting = 'newsFeed';
-    console.log(this.isCommentChanged)
   }
 
   ngOnInit() {

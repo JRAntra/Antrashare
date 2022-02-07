@@ -12,7 +12,7 @@ export class CommentsComponent implements OnInit {
   isVideo: boolean = false;
   pageNumber: PageEvent = {
     length: this.commentData?.length,
-    pageIndex: 1,
+    pageIndex: 0,
     pageSize: 1
   };
 

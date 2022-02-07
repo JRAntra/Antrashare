@@ -1,6 +1,7 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angular/core';
 import { NewFeed } from '../../../interfaces/newfeed.interface';
 import { NewsFeedService } from '../../services/news-feed.service';
+import { NewsFeedComponent } from '../news-feed.component';
 
 @Component({
   selector: 'app-content',
@@ -8,6 +9,8 @@ import { NewsFeedService } from '../../services/news-feed.service';
   styleUrls: ['./content.component.scss']
 })
 export class ContentComponent implements OnInit {
+  @ViewChild(NewsFeedComponent, {static:true}) child: NewsFeedComponent | null = null;
+
   public userInfoFromServer: NewFeed = {
     content: {},
     comment: [],
@@ -32,7 +35,6 @@ export class ContentComponent implements OnInit {
   }
   isVideo: boolean = false;
   ngOnInit(): void {
-
     this.userInfoFromServer = {
       content: this.currentStory.content!,
       comment: this.currentStory.comment!,
@@ -57,8 +59,11 @@ export class ContentComponent implements OnInit {
 
   deletePost() {
     this._newsFeedService.deletePostNewsFeed(this.currentStory._id).subscribe(() => {
-      this.refreshNewFeed(true);
+      //this.refreshNewFeed(true);
     });
-    
+    setTimeout(() => {
+      this.refreshNewFeed(true);
+    }, 500);
+
   }
 }

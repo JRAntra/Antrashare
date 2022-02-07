@@ -1,7 +1,8 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { FormBuilder, Validators } from '@angular/forms';
 import { NewsFeedService } from '../../services/news-feed.service';
+import { NewsFeedComponent } from '../news-feed.component';
 
 @Component({
   selector: 'app-add-comment',
@@ -11,6 +12,7 @@ import { NewsFeedService } from '../../services/news-feed.service';
 export class AddCommentComponent implements OnInit {
   @Input() serverData!: any;
   @Output() isChanged = new EventEmitter<boolean>();
+  @ViewChild(NewsFeedComponent, {static:true}) child: NewsFeedComponent | null = null;
 
   addCommentForm = this.formBuilder.group({
     textContent: [''],
@@ -33,7 +35,9 @@ export class AddCommentComponent implements OnInit {
       }
     };
     this._newsFeedService.addCommentNewsFeed(this.serverData._id, currentBody).subscribe((data) => {
-      this.isChanged.emit(true);
+      setTimeout(() => {
+        this.isChanged.emit(true);
+      }, 1000);
     });
 
   }

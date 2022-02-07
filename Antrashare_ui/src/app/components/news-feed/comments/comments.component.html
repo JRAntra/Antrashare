@@ -36,7 +36,6 @@
         <mat-paginator
             [length]="commentData.length"
             [pageSize]="1"
-            [pageSizeOptions]="[1, commentData.length]"
             (page)="pageNumber = $event"
             aria-label="Select page"
             class="paginatorBox"
