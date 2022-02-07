@@ -1,1 +1,28 @@
-<p>comment-post works!</p>
+<!-- #docregion multi -->
+<mat-accordion class="example-headers-align" multi>
+  <!-- #enddocregion multi -->
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title> Publish ur comment </mat-panel-title>
+
+      <mat-icon>account_circle</mat-icon>
+    </mat-expansion-panel-header>
+
+    <mat-form-field appearance="fill">
+      <mat-label>your image</mat-label>
+      <input id='image' matInput />
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill">
+      <mat-label>your video</mat-label>
+      <input id='video' matInput />
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill">
+      <mat-label>your text</mat-label>
+      <input id='text' matInput />
+    </mat-form-field>
+    <button mat-button (click)="onClickPostingComment()">Submit!</button>
+  </mat-expansion-panel>
+  
+</mat-accordion>

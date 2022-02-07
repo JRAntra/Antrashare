@@ -12,8 +12,7 @@ import { NewsfeedComment, story } from 'src/app/models/user.models';
 export class CommentListComponent implements OnInit {
   public commentList: NewsfeedComment[] = [];
   @Input() storyItem!: story;
-  matDialog: any;
-  
+  comment: any;
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
   public obj:MatDialogRef<CommentListComponent>  
@@ -23,13 +22,9 @@ export class CommentListComponent implements OnInit {
 
   ngOnInit(): void {
     this.commentList = this.data;
+  
     //this.dataService.getNewsFeed().subscribe((data) => (this.storyList = data));
     console.log(this.data);
-  }
-  onClickPostingComment(): void{
-   
-    
-    }
-
-  }
-
+  }  
+  
+}

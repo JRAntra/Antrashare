@@ -17,7 +17,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatDialogModule } from '@angular/material/dialog';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
-
+import { MatExpansionModule } from '@angular/material/expansion';
 /* Components */
 import { AppComponent } from './app.component';
 import { LoginPageComponent } from './components/login-page/login-page.component';
@@ -29,7 +29,6 @@ import { SettingsComponent } from './components/settings/settings.component';
 import { StoryComponent } from './components/news-feed/story/story.component';
 
 import { CommentListComponent } from './components/news-feed/story/comment-list/comment-list.component';
-
 
 import { TimeoutDialogComponent } from './components/timeout-dialog/timeout-dialog.component';
 
@@ -51,7 +50,7 @@ import { CommentPostComponent } from './components/news-feed/story/comment-list/
     StoryComponent,
     CommentListComponent,
     TimeoutDialogComponent,
-    
+
     NewsFeedTemplateComponent,
     HeaderComponent,
     LogOutDialogComponent,
@@ -73,6 +72,7 @@ import { CommentPostComponent } from './components/news-feed/story/comment-list/
     MatIconModule,
     MatDialogModule,
     HttpClientModule,
+    MatExpansionModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -49,7 +49,7 @@ export class DataService {
     ).subscribe(x => console.log(x))
   }
 
-  postComment(obj:any,id:string){
+  postComment(id:string,obj:any){
     return this.http.post(this.newsUrl+"/:"+id,obj);
   }
 
