@@ -1,6 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angular/core';
 import { NewFeed } from '../../../interfaces/newfeed.interface';
-import {PageEvent} from '@angular/material/paginator';
+import { NewsFeedService } from '../../services/news-feed.service';
+import { NewsFeedComponent } from '../news-feed.component';
 
 @Component({
   selector: 'app-content',
@@ -8,6 +9,7 @@ import {PageEvent} from '@angular/material/paginator';
   styleUrls: ['./content.component.scss']
 })
 export class ContentComponent implements OnInit {
+  @ViewChild(NewsFeedComponent, {static:true}) child: NewsFeedComponent | null = null;
 
   public userInfoFromServer: NewFeed = {
     content: {},
@@ -24,19 +26,15 @@ export class ContentComponent implements OnInit {
   videoUrl = "https://media.geeksforgeeks.org/wp-content/uploads/20200513195558/Placement100-_-GeeksforGeeks-1.mp4"
 
   @Input() currentStory!: NewFeed;
+  @Output() addedNewComment = new EventEmitter<boolean>();
+
   commentList: any[] = [];
-  pageNumber: PageEvent = {
-    length: this.commentList.length,
-    pageIndex: 1,
-    pageSize: 1
-  };
-  
+
   // listSize = 3;
-  constructor() {
+  constructor(private _newsFeedService: NewsFeedService) {
   }
   isVideo: boolean = false;
   ngOnInit(): void {
-
     this.userInfoFromServer = {
       content: this.currentStory.content!,
       comment: this.currentStory.comment!,
@@ -53,5 +51,19 @@ export class ContentComponent implements OnInit {
   hideImgTag() {
     console.log(`ERROR!`);
     return true;
+  }
+
+  refreshNewFeed(event: boolean) {
+    this.addedNewComment.emit(event);
+  }
+
+  deletePost() {
+    this._newsFeedService.deletePostNewsFeed(this.currentStory._id).subscribe(() => {
+      //this.refreshNewFeed(true);
+    });
+    setTimeout(() => {
+      this.refreshNewFeed(true);
+    }, 500);
+
   }
 }

@@ -31,6 +31,8 @@ import { SettingPanelComponent } from './components/settings/setting-panel/setti
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { LogoutConfirmationDialogComponent } from './components/logout-confirmation-dialog/logout-confirmation-dialog.component';
 import { PostNewFeedComponent } from './components/news-feed/post-new-feed/post-new-feed.component';
+import { CommentsComponent } from './components/news-feed/comments/comments.component';
+import { AddCommentComponent } from './components/news-feed/add-comment/add-comment.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +50,9 @@ import { PostNewFeedComponent } from './components/news-feed/post-new-feed/post-
     SettingPanelComponent,
     PageNotFoundComponent,
     LogoutConfirmationDialogComponent,
-    PostNewFeedComponent
+    PostNewFeedComponent,
+    CommentsComponent,
+    AddCommentComponent
   ],
   imports: [
     BrowserModule,

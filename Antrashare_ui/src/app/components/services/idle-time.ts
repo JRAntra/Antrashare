@@ -72,7 +72,6 @@ export class idleTimeService {
     );
 
     allEvents$.subscribe((data) => {
-      console.log(`Event detected.`) // deubg
       this.refreshTimer();
     });
   }

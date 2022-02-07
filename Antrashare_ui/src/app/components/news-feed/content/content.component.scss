@@ -34,11 +34,6 @@
   padding: 30px;
 }
 
-.story-comment {
-  background-color: theme.$secondary-color;
-  padding: 20px;
-}
-
 .commentLikeBox {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -51,8 +46,5 @@
   margin-left: 10px;
 }
 
-.paginatorBox {
-  background-color: theme.$secondary-color;
-  color: theme.$font_color;
-}
+
 

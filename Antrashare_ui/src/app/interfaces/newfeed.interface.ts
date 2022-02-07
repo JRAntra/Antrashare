@@ -1,10 +1,8 @@
 //newfeed
 export interface NewFeed {
-    avatar?: ImageBitmap;
-    // comment?: Story[],
     content: Content;
-    comment?: [],
-    likedIdList?: [],
+    comment?: Comment[],
+    likedIdList?: LikeList[],
     publishedTime: string,
     publisherName: string,
     __v?: number;
@@ -13,7 +11,6 @@ export interface NewFeed {
 
 //story item
 export interface Story {
-    avatar?: ImageBitmap;
     publisherName: string,
     publishedTime: string,
     content: Content;
@@ -27,10 +24,13 @@ export interface Comment {
     _id: string,
 }
 
-
 export interface Content {
     image?: string;
     video?: string;
     text?: string;
+    _id?: string;
+}
+
+export interface LikeList {
     _id?: string;
 }
