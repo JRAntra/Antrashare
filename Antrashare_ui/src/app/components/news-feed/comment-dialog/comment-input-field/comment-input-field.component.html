@@ -1,10 +1,9 @@
 <form class="comment-input" [formGroup]="commentListFormGroup">
-    <mat-form-field class="example-full-width" appearance="outline">
-        <label for="comments"></label>
-        <textarea id="comments" formControlName="commentFormControl" matInput placeholder="Write a comment...">
-            
+    <mat-form-field id="new-comment" class="example-full-width" appearance="outline">
+        <label for="comment"></label>
+        <textarea id="comment" formControlName="commentFormControl" matInput placeholder="Write a comment...">
+
         </textarea>
     </mat-form-field>
+    <button mat-button (click)="onPostComment()" >POST</button>
 </form>
-
-<button mat-button (click)="onPostComment()">POST</button>

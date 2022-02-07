@@ -120,7 +120,7 @@ export class PostFieldComponent implements OnInit {
         // likedList: []
       }
     //console.log(this.newsFeed);
-    this.newsService.postNews(this.newsFeed).subscribe(console.log);
+    this.newsService.postNews(this.newsFeed);
   }
 
   //Video Form Validator

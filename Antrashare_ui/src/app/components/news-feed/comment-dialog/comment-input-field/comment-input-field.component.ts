@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NewsService } from 'src/app/services/news/news.service';
 import { DatePipe } from '@angular/common';
@@ -10,6 +10,7 @@ import { DatePipe } from '@angular/common';
 })
 export class CommentInputFieldComponent implements OnInit {
   @Input() storyId: any
+  @Output() postEmitter: EventEmitter<any> = new EventEmitter();
   public commentListFormGroup = new FormGroup({
     commentFormControl: new FormControl('',  Validators.required),
   })
@@ -36,6 +37,7 @@ export class CommentInputFieldComponent implements OnInit {
 
     }
     this.newsService.postCommentById(postBody, this.storyId).subscribe(console.log);
+    // this.postEmitter.emit(null);
   }
 
 
