@@ -29,14 +29,14 @@ import { SettingsComponent } from './components/settings/settings.component';
 import { StoryComponent } from './components/news-feed/story/story.component';
 import { StoryCardComponent } from './components/news-feed/story/story-card/story-card.component';
 import { CommentListComponent } from './components/news-feed/story/comment-list/comment-list.component';
-import { CommentInputComponent } from './components/news-feed/story/comment-input/comment-input.component';
-import { CommentComponent } from './components/news-feed/story/comment-list/comment/comment.component';
+
+
 import { TimeoutDialogComponent } from './components/timeout-dialog/timeout-dialog.component';
 import { NewsFeedButtonComponent } from './components/news-feed/news-feed-button/news-feed-button.component';
 import { NewsFeedTemplateComponent } from './components/news-feed/news-feed-template/news-feed-template.component';
 import { HeaderComponent } from './components/header/header.component';
 import { LogOutDialogComponent } from './components/logout-dialog/logout-dialog.component';
-
+import { CommentPostComponent } from './components/news-feed/story/comment-list/comment-post/comment-post.component';
 
 @NgModule({
   declarations: [
@@ -51,13 +51,12 @@ import { LogOutDialogComponent } from './components/logout-dialog/logout-dialog.
     StoryComponent,
     StoryCardComponent,
     CommentListComponent,
-    CommentInputComponent,
-    CommentComponent,
     TimeoutDialogComponent,
     NewsFeedButtonComponent,
     NewsFeedTemplateComponent,
     HeaderComponent,
     LogOutDialogComponent,
+    CommentPostComponent,
   ],
   imports: [
     BrowserModule,
@@ -78,4 +77,4 @@ import { LogOutDialogComponent } from './components/logout-dialog/logout-dialog.
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

@@ -22,14 +22,16 @@ export class NewsFeedTemplateComponent implements OnInit {
   newsPostSubmit() {
     let newStory = {
       // image: '',
-      publisherName: 'test_without_comments_and_liked_list',
+      publisherName: 'test_Cat',
       publishedTime: '' + new Date(),
       content: {
         text: this.newsFeedForm.get('text')?.value,
         image: this.newsFeedForm.get('video')?.value,
         video: this.newsFeedForm.get('image')?.value
       },
-      // comment: [{}],
+      //  comment: [{
+         
+      //  }],
       // likedIdList: [{}],
     }
     this.newsfeedData.postNewsFeed(newStory);

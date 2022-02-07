@@ -1,5 +1,5 @@
 export interface story {
-  image?: string;
+  _id?: string;
   publisherName: string;
   publishedTime: string;
   content: {
@@ -7,19 +7,23 @@ export interface story {
     video: string;
     text: string;
   };
-  comment?: [
+  comment?: NewsfeedComment[];
+  likedIdList?: [
     {
-      image: string;
-      publisherName: string;
-      publisherTime: string;
-      content: {
-        image: string;
-        video: string;
-        text: string;
-      };
+      userId?: string;
     }
   ];
-  likedIdList?: [];
+}
+
+export interface NewsfeedComment{
+  _id?: string;
+  publisherName: string;
+  publishedTime?: number;
+  content: {
+    image?: string;
+    video?: string;
+    text?: string;
+  };
 }
 
 export interface UserProfile {

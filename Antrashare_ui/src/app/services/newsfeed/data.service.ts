@@ -34,7 +34,7 @@ export class DataService {
     //const news = of(newsfeed);
 
     return this.http.get(this.newsUrl);
-    //.subscribe(
+    // .subscribe(
     //   (data) =>
     //     console.log(data)
     // );
@@ -49,12 +49,18 @@ export class DataService {
     ).subscribe(x => console.log(x))
   }
 
+  postComment(obj:any,id:string){
+    return this.http.post(this.newsUrl+"/:"+id,obj);
+  }
+
   updateLikeNumber() {
     //return news;
   }
 
   editComment(storyId: string, commentID: string) { }
-  addComment(storyId: string, commentID: string) { }
+  addComment(storyId: string, commentID: string) { 
+    
+  }
 
   deleteComment(storyId: string, commentID: string) { }
 }

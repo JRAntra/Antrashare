@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { story } from 'src/app/models/user.models';
+import { NewsfeedComment, story } from 'src/app/models/user.models';
 import { HttpClient } from '@angular/common/http';
 
 // import { NewsFeedService } from 'src/app/services/news-feed.service';
@@ -12,6 +12,7 @@ import { DataService } from 'src/app/services/newsfeed/data.service';
 })
 export class NewsFeedComponent implements OnInit {
   storyList: story[] = [];
+ 
   dataFromServer: any;
 
   constructor(

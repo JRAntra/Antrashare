@@ -1,1 +1,22 @@
-<p>comment-list works!</p>
+<div>
+  <ng-container *ngFor="let comment of commentList">
+    <mat-card color="primary">
+      <mat-card-title>
+        <p>Publisher: {{ comment.publisherName }}</p></mat-card-title
+      >
+      <mat-card-subtitle
+        ><p>ID : {{ comment._id }}</p></mat-card-subtitle
+      >
+      <mat-icon>comment </mat-icon>
+      <!-- <img mat-card-image src="{{ comment.content.image }}" /> -->
+      <p>Video : {{ comment.content.video }}</p>
+      <p>Text : {{ comment.content.text }}</p>
+
+      <p align="end">
+        published by {{ comment.publishedTime | date: "short" }}
+      </p>
+    </mat-card>
+    <br />
+  </ng-container>
+  <button mat-button (click)="onClickPostingComment()">Comment</button>
+</div>
