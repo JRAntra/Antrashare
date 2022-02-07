@@ -1,11 +1,16 @@
 <div class="commentDialogBody">
-    <h2 mat-dialog-title>Comments</h2>
-    <div mat-dialog-content >
-        <app-comment-input-field></app-comment-input-field>
-        <app-comment-list *ngFor="let comment of commentList" [comment]="comment"></app-comment-list>
-    </div>
-    <div mat-dialog-actions>
+    <mat-card id="commentList">
+        <h1 mat-dialog-title>Comments</h1>
+        <div mat-dialog-content id="comments">
+            <mat-card *ngFor="let comment of commentList" id="comment">
+                {{comment.content.text}}
+            </mat-card>
+        </div>
+    </mat-card>
+    <mat-card id="newPost">
+        <h1>Post A New Comment</h1>
+        <app-comment-input-field [storyId]="storyId" (postEmitter)="getCommentList()"></app-comment-input-field>
         <!-- <button mat-raised-button class="commentDialogCancelButton" (click)="onCancel()">Cancel</button>
         <button mat-raised-button class="commentDialogConfirmButton" (click)="onConfirmed()">Confirm</button> -->
-    </div>
+    </mat-card>
 </div>

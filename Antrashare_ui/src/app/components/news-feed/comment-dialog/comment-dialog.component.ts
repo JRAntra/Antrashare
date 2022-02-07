@@ -9,19 +9,27 @@ import { NewsService } from 'src/app/services/news/news.service';
   styleUrls: ['./comment-dialog.component.scss']
 })
 export class CommentDialogComponent implements OnInit {
-  commentList: any;
-  
+  //@Input() commentList!: News["comment"];
+  storyId!: any
+  commentList!: any;
+
   constructor(
-    private newsService: NewsService,
-    @Inject(MAT_DIALOG_DATA) private data: { 
-      story: News, //story_id: string
-    },
-    private dialogRef: MatDialogRef<CommentDialogComponent>
-  ) { }
-  
+    @Inject(MAT_DIALOG_DATA) data: any,
+    private dialogRef: MatDialogRef<CommentDialogComponent>,
+    private newsService: NewsService
+  ) {
+    this.storyId = data.story._id;
+    this.commentList = data.story.comment;
+  }
+
   ngOnInit(): void {
-    this.commentList = this.data.story.comment;
-    // this.newsService.getNewsById(this.data.story_id).subscribe(story => this.commentList = story.comment);
+    // this.getCommentList();
+  }
+
+  getCommentList() {
+    // this.newsService.getNewsById(this.storyId).subscribe(story => {
+    //   this.commentList = story.comment;
+    // });
   }
 
 }

@@ -1,34 +1,24 @@
 @import '../../../../../styles.scss';
 
-#newCommentForm {
-    margin: 0 auto;
-    background-color: $white2;
+.comment-input {
+  width: 100%;
+  margin: 0 auto;
+  margin-top: 5%;
 }
 
-#newCommentTitle {
-    font-size:16px;
+#new-comment {
+  width: 100%;
 }
 
-.newCommentInput {
-    display: flex;
-    margin: 0 auto;
-    flex-direction: column;
-    align-items: flex-start
+button {
+  color: $white;
+  background-color: $red;
+  transition: 0.3s ease-in-out;
 }
 
-#text {
-    width: 85%;
-    margin: 0 auto;
-}
-
-#newCommentMedia {
-    display: grid;
-    grid-template-columns: 50% 50%;
-    width: 90%;
-    margin: 0 auto;
-}
-
-#image, #video {
-    margin: 0 auto;
-    width: 80%;
+button:hover {
+  cursor: pointer;
+  color: $red;
+  background-color: $white;
+  transition: 0.3s ease-in-out;
 }

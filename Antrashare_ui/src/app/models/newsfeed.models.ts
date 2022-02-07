@@ -1,7 +1,6 @@
 //newsfeed
 export interface News {
     _id?: string,
-    avatar?: ImageBitmap,
     publisherName: string,
     publishedTime?: number,
     content: {
@@ -9,20 +8,19 @@ export interface News {
         video?: string,
         text?: string,
     },
-    comment?: [StoryComment],
+    comment?: NewsComment[];
     likedIdList?: [
         {
             userId?: string;
         }
-    ];
+    ]
 }
 
-export interface StoryComment {
-    _id?: string;
-    avatar?: ImageBitmap,
-    publisherName?: string,
+export interface NewsComment {
+    _id?: string,
+    publisherName: string,
     publishedTime?: number,
-    content?: {
+    content: {
         image?: string,
         video?: string,
         text?: string

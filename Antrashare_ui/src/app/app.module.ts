@@ -1,6 +1,7 @@
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
+import { DatePipe } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -30,7 +31,6 @@ import { StoryComponent } from './components/news-feed/story/story.component';
 import { TimeoutDialogComponent } from 'src/app/components/timeout-dialog/timeout-dialog.component';
 import { CommentDialogComponent } from './components/news-feed/comment-dialog/comment-dialog.component';
 import { CommentInputFieldComponent } from './components/news-feed/comment-dialog/comment-input-field/comment-input-field.component';
-import { CommentListComponent } from './components/news-feed/comment-dialog/comment-list/comment-list.component';
 
 
 
@@ -53,8 +53,7 @@ import { CommentListComponent } from './components/news-feed/comment-dialog/comm
     LogoutDialogComponent,
     PostFieldComponent,
     CommentDialogComponent,
-    CommentInputFieldComponent,
-    CommentListComponent
+    CommentInputFieldComponent
   ],
   imports: [
     BrowserModule,
@@ -70,7 +69,7 @@ import { CommentListComponent } from './components/news-feed/comment-dialog/comm
     MatCardModule,
     ReactiveFormsModule
   ],
-  providers: [NewsService],
+  providers: [NewsService, DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

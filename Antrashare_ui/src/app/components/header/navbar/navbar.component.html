@@ -1,16 +1,10 @@
 <!-- by HuazhenXu navigation bar-->
 <div id="navbar-body">
-    <button routerLink="" class="nav_button" mat-icon-button>
-        <mat-icon aria-hidden="false" aria-label="home icon">home</mat-icon>
-    </button>
-    <div class="nav_button">
-        <button class="default_button" routerLink="newsFeed" mat-raised-button>NewsFeed</button>
-    </div>
     <button id="account-button" mat-icon-button [matMenuTriggerFor]="menu">
         <mat-icon>account_circle</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
-        <button routerLink="login" mat-menu-item>LogIn</button>
+        <button routerLink="login" mat-menu-item >LogIn</button>
         <button routerLink="myProfile" mat-menu-item>My profile</button>
         <button routerLink="settings" mat-menu-item>Setting</button>
     </mat-menu>

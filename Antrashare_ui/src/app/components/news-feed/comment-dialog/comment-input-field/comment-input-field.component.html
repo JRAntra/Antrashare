@@ -1,31 +1,9 @@
-<mat-card id='newCommentForm'>
-    <mat-card-title id="newCommentTitle">
-        Create New Comment
-    </mat-card-title>
-    <form class="newCommentInput" [formGroup]="newCommentFormGroup">
-        <mat-form-field id="text" class="example-full-width" appearance="outline">
-            <label for="newCommentText"></label>
-            <textarea id="newCommentText" formControlName="commentTextFormControl" matInput
-                placeholder="Write a comment..."></textarea>
-        </mat-form-field>
-        <div id='newCommentMedia'>
-            <mat-form-field id='image' class="example-full-width" appearance="outline">
-                <mat-label>
-                    <mat-icon>image</mat-icon>
-                    Comment with Image
-                </mat-label>
-                <input matInput formControlName="commentImageFormControl" matInput placeholder="Image Url">
-            </mat-form-field>
-            <mat-form-field id='video' class="example-full-width" appearance="outline">
-                <mat-label>
-                    <mat-icon>movie</mat-icon>
-                    Comment with Video
-                </mat-label>
-                <input matInput formControlName="commentVideoFormControl" matInput placeholder="Video Url">
-            </mat-form-field>
-        </div>
-        <mat-card-actions>
-            <button type="submit" [disabled]="!newCommentFormGroup.valid" class="default_button" mat-button (click)="onSubmitComment()">POST</button>
-        </mat-card-actions>
-    </form>
-</mat-card>
+<form class="comment-input" [formGroup]="commentListFormGroup">
+    <mat-form-field id="new-comment" class="example-full-width" appearance="outline">
+        <label for="comment"></label>
+        <textarea id="comment" formControlName="commentFormControl" matInput placeholder="Write a comment...">
+
+        </textarea>
+    </mat-form-field>
+    <button mat-button (click)="onPostComment()" >POST</button>
+</form>

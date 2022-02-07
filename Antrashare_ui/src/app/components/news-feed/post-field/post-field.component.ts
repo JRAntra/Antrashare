@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators, ValidationErrors, AbstractControl } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
-import { News } from 'src/app/models/newsfeed.models';
 import { NewsService } from 'src/app/services/news/news.service';
+import { DatePipe } from '@angular/common';
+
 
 @Component({
   selector: 'app-post-field',
@@ -11,6 +12,7 @@ import { NewsService } from 'src/app/services/news/news.service';
 })
 export class PostFieldComponent implements OnInit {
   // newPostFormGroup: FormGroup;
+  newsFeed: object = [];
   hasVideo: boolean = false;
   hasImage: boolean = false;
   //unsanitized links from form
@@ -53,7 +55,11 @@ export class PostFieldComponent implements OnInit {
   //   });
   // }
 
-  constructor(private _sanitizer: DomSanitizer, private newsService: NewsService) { 
+  constructor(
+    private _sanitizer: DomSanitizer,
+    private newsService: NewsService,
+    public datePipe: DatePipe
+    ) {
   }
 
   ngOnInit(): void {
@@ -78,7 +84,7 @@ export class PostFieldComponent implements OnInit {
       }
     });
   }
-  
+
   //video
   videoTest(video: any) {
     this.videoMatch = video.match(this.videoRegex);
@@ -89,34 +95,34 @@ export class PostFieldComponent implements OnInit {
       return false;
     }
   }
-  
+
+
+
   onSubmitPost() {
-    var newsImage = this.newPostFormGroup.get('imageFormControl')?.value;
-    var newsVideo = this.newPostFormGroup.get('videoFormControl')?.value;
-    var newsText = this.newPostFormGroup.get('textFormControl')?.value;
-    
-    const tempNews: News = {
-      publisherName: 'Get Hired Story',
-      publishedTime: Date.now(),
+    var image = this.newPostFormGroup.get('imageFormControl')?.value;
+    var video = this.newPostFormGroup.get('videoFormControl')?.value;
+    var text = this.newPostFormGroup.get('textFormControl')?.value;
+
+    this.newsFeed = {
+      // avatar?: ImageBitmap,
+      publisherName: 'test name', //For test post
+      publishedTime: this.datePipe.transform((new Date), 'MM/dd/yyyy h:mm:ss'), //^^
       content: {
-        image: newsImage,
-        video: newsVideo,
-        text: newsText,
+        // image: this.newPostFormGroup.get('image')?.value,
+        // video: this.newPostFormGroup.get('video')?.value,
+        // text: this.newPostFormGroup.get('text')?.value,
+        image: image ? image : '',
+        video: video ? video : '',
+        text: text
       },
       // comment: [{
-        
-      // }],
-      // likedIdList: [{
-
-      // }]
-    };
-    // this.newsService.postNewsFeedStory(tempNews);
-    this.newPostFormGroup.get('videoFormControl')?.setValue("");
-    this.newPostFormGroup.get('textFormControl')?.setValue("");
-    this.newPostFormGroup.get('imageFormControl')?.setValue("");
-    console.log(tempNews);
+        // }],
+        // likedList: []
+      }
+    //console.log(this.newsFeed);
+    this.newsService.postNews(this.newsFeed);
   }
-  
+
   //Video Form Validator
   validVideoUrl(control: AbstractControl): ValidationErrors | null  {
     var videoRegex = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=|\?v=)([^#\&\?]*).*/;
@@ -130,4 +136,3 @@ export class PostFieldComponent implements OnInit {
     }
   }
 }
-  
