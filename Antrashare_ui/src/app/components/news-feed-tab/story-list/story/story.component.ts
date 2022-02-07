@@ -1,16 +1,18 @@
-import { Component, OnInit, AfterViewInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { News, Story, Comment } from 'src/app/models/newsfeed.model';
-import { NewsService } from 'src/app/services/news.service';
 import { NewsFeedService } from 'src/app/services/news-feed.service';
-import { NewsFeedTabComponent } from '../../news-feed-tab.component';
 
 @Component({
   selector: 'app-story',
   templateUrl: './story.component.html',
   styleUrls: ['../../../../css/story.component.scss']
 })
-export class StoryComponent implements OnInit {
+export class StoryComponent implements OnInit, OnDestroy {
+  // declare an unsubscribeAll for all subscriptions
+  private unsubscribeAll: Subject<any> = new Subject<any>();
 
   @Input() news!: News;
   Content!: Story;
@@ -23,7 +25,13 @@ export class StoryComponent implements OnInit {
   cmtCount: number = 0;
   likes: number = 0;
 
-  constructor(private newsService: NewsService, private newsFeedService: NewsFeedService) { }
+  constructor(private newsFeedService: NewsFeedService) { }
+
+  ngOnDestroy(): void {
+    // unsubscrib for all subscriptions
+    this.unsubscribeAll.next(null);
+    this.unsubscribeAll.complete();
+  }
 
   newsData: News[] = [];
 
@@ -56,7 +64,10 @@ export class StoryComponent implements OnInit {
       content: newCommentContent,
       publisherName: "Team Best Devs",
     }
-    this.newsFeedService.addComment(this.news._id!, newComment).subscribe((story => {
+
+    this.newsFeedService.addComment(this.news._id!, newComment).pipe(
+      takeUntil(this.unsubscribeAll)
+    ).subscribe((story => {
       this.Comment = story.comment;
     }));
   }

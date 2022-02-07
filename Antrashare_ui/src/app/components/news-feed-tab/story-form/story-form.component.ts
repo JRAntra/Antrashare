@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
-import { Comment, News, Story } from 'src/app/models/newsfeed.model';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Subject, takeUntil } from 'rxjs';
+import { News, Story } from 'src/app/models/newsfeed.model';
 import { NewsFeedService } from 'src/app/services/news-feed.service';
 
 @Component({
@@ -8,7 +9,9 @@ import { NewsFeedService } from 'src/app/services/news-feed.service';
   templateUrl: './story-form.component.html',
   styleUrls: ['../../../css/story.component.scss']
 })
-export class StoryFormComponent implements OnInit {
+export class StoryFormComponent implements OnInit, OnDestroy {
+  // declare an unsubscribeAll for all subscriptions
+  private unsubscribeAll: Subject<any> = new Subject<any>();
 
   postForm!: FormGroup;
 
@@ -17,14 +20,20 @@ export class StoryFormComponent implements OnInit {
     private newsFeedService: NewsFeedService
   ) {
     this.postForm = this.fb.group({
-      text: '',
+      text: ['', [Validators.required]],
       images: this.fb.array([]),
       videos: this.fb.array([])
     });
   }
 
+  ngOnDestroy(): void {
+    // unsubscrib for all subscriptions
+    this.unsubscribeAll.next(null);
+    this.unsubscribeAll.complete();
+  }
+
   ngOnInit(): void {
-    
+
   }
 
   get images(): FormArray {
@@ -64,7 +73,6 @@ export class StoryFormComponent implements OnInit {
   }
 
   public post(): void {
-    console.log(this.postForm.value);
     const data: Story = {
       text: this.postForm.get('text')?.value,
       image: this.images.value.map((value: { url: any; }) => value.url).join(';') || 'image',
@@ -73,17 +81,18 @@ export class StoryFormComponent implements OnInit {
 
     // this.newsFeedService.delete(data.text).subscribe();
 
-    // const comment: Comment = {
-    //   publisherName: 'Team Best Devs',
-    //   content: data
-    // };
-    // this.newsFeedService.addComment('61ff4e58c2d8c83d637d3e4b', comment).subscribe(console.log);
+    // ------ clear and reset form ------
+    this.images.clear();
+    this.videos.clear();
 
-    this.newsFeedService.createContent(data).subscribe((news: News) => {
-      this.images.clear();
-      this.videos.clear();
-      this.postForm.reset();
-    });
+    this.postForm.reset();
+    this.postForm.setErrors(null);
+    this.postForm.updateValueAndValidity();
+
+    // // ------ create this post ------
+    this.newsFeedService.createContent(data).pipe(
+      takeUntil(this.unsubscribeAll)
+    ).subscribe();
 
   }
 
