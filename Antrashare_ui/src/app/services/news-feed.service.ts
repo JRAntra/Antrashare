@@ -107,6 +107,7 @@ export class NewsFeedService {
    * @param comment
    */
   addComment(id: string, comment: Comment) {
+    // console.log('patched' + comment.content.text);
     return this.patch(id, comment);
   }
 }

@@ -28,9 +28,15 @@
 
     </div>
     <div *ngIf="cmtStatus" class='comment' id="cmt">
-        <mat-form-field class="cmtField" (keyup.enter)="onEnter()">
-            <input matInput placeholder='Comment Here' [formControl]="cmtForm" />
-        </mat-form-field>
+        <div class = "Input">
+            <mat-form-field class="cmtField" >
+                <input matInput placeholder='Comment Here' [formControl]="cmtForm" />
+            </mat-form-field>
+            <div class = "Confirm">
+                <button mat-raised-button color="primary" (click) = onConfirm()>Confirm</button>
+            </div>
+        </div>
         <app-comment-list [userInput]="userInput" [userComment] = "Comment"></app-comment-list>
+
     </div>
 </mat-card>
