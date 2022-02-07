@@ -1,7 +1,7 @@
 import { Component, OnInit, Input} from '@angular/core';
 import { Router } from '@angular/router';
-import { NewFeed } from '../../interfaces/newfeed.interface';
-import { UserInfo, UserInfoNewFeed } from '../../interfaces/user-display.interface';
+import { NewsStory } from 'src/app/interfaces/newfeed.interface';
+import { UserInfo, UserInfoNewsStory } from '../../interfaces/user-display.interface';
 
 @Component({
   selector: 'app-user-display',
@@ -10,7 +10,7 @@ import { UserInfo, UserInfoNewFeed } from '../../interfaces/user-display.interfa
 })
 export class UserDisplayComponent implements OnInit {
   public correctPath: string;
-  @Input() userInNewFeed!: UserInfoNewFeed;
+  @Input() userInNewsStory!: NewsStory;
   @Input() userInProfile!: UserInfo;
 
   constructor(private router: Router) {

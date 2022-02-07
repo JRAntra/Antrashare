@@ -1,4 +1,4 @@
-export interface UserInfoNewFeed {
+export interface UserInfoNewsStory {
     publisherName: string,
     publishedTime: string,
 }

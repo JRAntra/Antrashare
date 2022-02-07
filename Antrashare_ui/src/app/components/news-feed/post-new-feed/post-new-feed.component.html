@@ -1,7 +1,7 @@
 <mat-card class="newPostBox">
     <mat-card-title>Create New Post</mat-card-title>
     <mat-card-content>
-      <form class="contentBox"  [formGroup]="postNewfeedForm">
+      <form class="contentBox"  [formGroup]="postNewsStoryForm">
         <mat-form-field class="formBox">
           <mat-label>Text Content</mat-label>
           <textarea 
@@ -24,7 +24,7 @@
       <button
         mat-raised-button
         type="button"
-        (click)="addToNewfeed()"
+        (click)="addToNewsStory()"
         class="postButton"
       >
         Post

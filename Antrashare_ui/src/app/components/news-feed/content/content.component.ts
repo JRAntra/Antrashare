@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angular/core';
-import { NewFeed } from '../../../interfaces/newfeed.interface';
+import { NewsStory } from 'src/app/interfaces/newfeed.interface';
 import { NewsFeedService } from '../../services/news-feed.service';
 import { NewsFeedComponent } from '../news-feed.component';
 
@@ -9,12 +9,12 @@ import { NewsFeedComponent } from '../news-feed.component';
   styleUrls: ['./content.component.scss']
 })
 export class ContentComponent implements OnInit {
-  @ViewChild(NewsFeedComponent, {static:true}) child: NewsFeedComponent | null = null;
+  @ViewChild(NewsFeedComponent, { static: true }) child: NewsFeedComponent | null = null;
 
-  public userInfoFromServer: NewFeed = {
+  public userInfoFromServer: NewsStory = {
     content: {},
     comment: [],
-    likedIdList: [],
+    likedIdList: [{}],
     publishedTime: '',
     publisherName: '',
     _id: '',
@@ -25,7 +25,7 @@ export class ContentComponent implements OnInit {
   badImgUrl = "https://www.gannpg?width";
   videoUrl = "https://media.geeksforgeeks.org/wp-content/uploads/20200513195558/Placement100-_-GeeksforGeeks-1.mp4"
 
-  @Input() currentStory!: NewFeed;
+  @Input() currentStory!: NewsStory;
   @Output() addedNewComment = new EventEmitter<boolean>();
 
   commentList: any[] = [];
@@ -53,16 +53,16 @@ export class ContentComponent implements OnInit {
     return true;
   }
 
-  refreshNewFeed(event: boolean) {
+  refreshNewsStory(event: boolean) {
     this.addedNewComment.emit(event);
   }
 
   deletePost() {
-    this._newsFeedService.deletePostNewsFeed(this.currentStory._id).subscribe(() => {
-      //this.refreshNewFeed(true);
+    this._newsFeedService.deletePostNewsFeed(this.currentStory._id!).subscribe(() => {
+      //this.refreshNewsStory(true);
     });
     setTimeout(() => {
-      this.refreshNewFeed(true);
+      this.refreshNewsStory(true);
     }, 500);
 
   }

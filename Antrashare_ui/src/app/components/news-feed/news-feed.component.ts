@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { idleTimeService } from '../services/idle-time';
-import { NewFeed } from '../../interfaces/newfeed.interface';
+import { NewsStory } from 'src/app/interfaces/newfeed.interface';
 import { NewsFeedService } from '../services/news-feed.service';
 import { Subscription } from 'rxjs';
 
@@ -10,7 +10,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./news-feed.component.scss']
 })
 export class NewsFeedComponent implements OnInit {
-  public storiesFromServer: NewFeed[] = [];
+  public storiesFromServer: NewsStory[] = [];
 
   dataFromMongoDB: any;
   markToUnsubscribe: Subscription | undefined;
@@ -42,18 +42,18 @@ export class NewsFeedComponent implements OnInit {
     this.markToUnsubscribe?.unsubscribe();
   }
 
-  refreshNewFeed(event: boolean) {
+  refreshNewsStory(event: boolean) {
     if (event) {
       this._newsFeedService.getRequest()
-      .subscribe(
-        (data) => {
-          // Save the data locally to create dynamically with ngFor
-          this.dataFromMongoDB = data;
-          this.storiesFromServer = this.dataFromMongoDB;
-  
-          console.log(`Data from server: `, this.storiesFromServer) // debug
-        }
-      )
+        .subscribe(
+          (data) => {
+            // Save the data locally to create dynamically with ngFor
+            this.dataFromMongoDB = data;
+            this.storiesFromServer = this.dataFromMongoDB;
+
+            console.log(`Data from server: `, this.storiesFromServer) // debug
+          }
+        )
     }
   }
 }
