@@ -1,9 +1,24 @@
-<form class="comment-input" [formGroup]="commentListFormGroup">
+<form class="comment-input" [formGroup]="newCommentFormGroup">
     <mat-form-field id="new-comment" class="example-full-width" appearance="outline">
         <label for="comment"></label>
-        <textarea id="comment" formControlName="commentFormControl" matInput placeholder="Write a comment...">
-
+        <textarea id="comment" formControlName="commentTextFormControl" matInput placeholder="Write a comment...">
         </textarea>
     </mat-form-field>
-    <button mat-button (click)="onPostComment()" >POST</button>
+    <div id='newCommentMedia'>
+        <mat-form-field id='image' class="example-full-width" appearance="outline">
+            <mat-label>
+                <mat-icon>image</mat-icon>
+                Comment with Image
+            </mat-label>
+            <input matInput formControlName="commentImageFormControl" matInput placeholder="Image Url">
+        </mat-form-field>
+        <mat-form-field id='video' class="example-full-width" appearance="outline">
+            <mat-label>
+                <mat-icon>movie</mat-icon>
+                Comment with Video
+            </mat-label>
+            <input matInput formControlName="commentVideoFormControl" matInput placeholder="Video Url">
+        </mat-form-field>
+    </div>
+    <button type="submit" [disabled]="!newCommentFormGroup.valid" class="default_button" mat-button (click)="onSubmitComment()">POST</button>
 </form>
