@@ -1,20 +1,9 @@
-$navHeight: 40px;
-
 #navbar-body {
     background-color: #A62626;
     width: 100%;
-    height: $navHeight;
+    height: 40px;
     display: inline-block;
-}
-
-.nav_button {
-    float: left;
-    max-width: 100px;
-    height: $navHeight;
-    display: flex;
-    margin: 0 10px;
     align-items: center;
-    justify-content: center;
 }
 
 #account-button {
