@@ -1,0 +1,24 @@
+@import '../../../../../styles.scss';
+
+.comment-input {
+  width: 100%;
+  margin: 0 auto;
+  margin-top: 5%;
+}
+
+#new-comment {
+  width: 100%;
+}
+
+button {
+  color: $white;
+  background-color: $red;
+  transition: 0.3s ease-in-out;
+}
+
+button:hover {
+  cursor: pointer;
+  color: $red;
+  background-color: $white;
+  transition: 0.3s ease-in-out;
+}

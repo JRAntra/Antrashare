@@ -13,7 +13,7 @@ export class NewsService {
   constructor(private http: HttpClient) {
 
   }
-  
+
   getNews(): Observable<any> {
     return this.http.get(this.baseurl)
   }
@@ -30,6 +30,6 @@ export class NewsService {
     return this.http.patch<any>(this.baseurl + "/addComment/" + id, body)
   }
 
-  
-  
+
+
 }

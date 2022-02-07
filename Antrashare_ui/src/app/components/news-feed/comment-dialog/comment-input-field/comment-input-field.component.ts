@@ -1,6 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NewsService } from 'src/app/services/news/news.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-comment-input-field',
@@ -9,13 +10,17 @@ import { NewsService } from 'src/app/services/news/news.service';
 })
 export class CommentInputFieldComponent implements OnInit {
   @Input() storyId: any
+  @Output() postEmitter: EventEmitter<any> = new EventEmitter();
   public commentListFormGroup = new FormGroup({
     commentFormControl: new FormControl('',  Validators.required),
   })
-  constructor(private newsService: NewsService) { }
+  constructor(
+    private newsService: NewsService,
+    public datePipe: DatePipe
+    ) { }
 
   ngOnInit(): void {
-    
+
   }
 
   onPostComment(): void {
@@ -23,15 +28,16 @@ export class CommentInputFieldComponent implements OnInit {
     let commentContent = this.commentListFormGroup.get('commentFormControl')?.value;
     let postBody = {
       content:{
-        image: 'image',
-        video: 'video',
+        image: 'image', //for testing
+        video: 'video', //for testing
         text: commentContent
       },
       publisherName: "getHired",
-      publishedTime: "2022-02-07"
+      publishedTime: this.datePipe.transform((new Date), 'MM/dd/yyyy h:mm:ss'), //^^
+
     }
     this.newsService.postCommentById(postBody, this.storyId).subscribe(console.log);
-
+    // this.postEmitter.emit(null);
   }
 
 

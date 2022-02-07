@@ -52,3 +52,21 @@ $black: #0d0d0d;
 
 html, body { height: 100%; background-color: $white;}
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+::-webkit-scrollbar {
+  width: 15px;
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px $white;
+  // border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $red;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-track:hover {
+  cursor: pointer;
+}
