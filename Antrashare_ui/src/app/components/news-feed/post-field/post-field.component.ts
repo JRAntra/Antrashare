@@ -3,7 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators, ValidationErrors, Abst
 import { DomSanitizer } from '@angular/platform-browser';
 import { NewsService } from 'src/app/services/news/news.service';
 import { DatePipe } from '@angular/common';
-
+import { News } from 'src/app/models/newsfeed.models';
 
 @Component({
   selector: 'app-post-field',
@@ -11,8 +11,8 @@ import { DatePipe } from '@angular/common';
   styleUrls: ['./post-field.component.scss']
 })
 export class PostFieldComponent implements OnInit {
+  newsFeed!: News;
   // newPostFormGroup: FormGroup;
-  newsFeed: object = [];
   hasVideo: boolean = false;
   hasImage: boolean = false;
   //unsanitized links from form
@@ -105,8 +105,9 @@ export class PostFieldComponent implements OnInit {
 
     this.newsFeed = {
       // avatar?: ImageBitmap,
-      publisherName: 'test name', //For test post
-      publishedTime: this.datePipe.transform((new Date), 'MM/dd/yyyy h:mm:ss'), //^^
+      publisherName: 'Get hired test name', //For test post
+      publishedTime: Date.now(),
+      //publishedTime: this.datePipe.transform((new Date), 'MM/dd/yyyy h:mm:ss'), //^^
       content: {
         // image: this.newPostFormGroup.get('image')?.value,
         // video: this.newPostFormGroup.get('video')?.value,
@@ -119,8 +120,7 @@ export class PostFieldComponent implements OnInit {
         // }],
         // likedList: []
       }
-    //console.log(this.newsFeed);
-    this.newsService.postNews(this.newsFeed);
+    this.newsService.postNews(this.newsFeed).subscribe(x => console.log(x));
   }
 
   //Video Form Validator

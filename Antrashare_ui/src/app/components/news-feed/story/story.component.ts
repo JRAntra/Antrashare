@@ -10,7 +10,7 @@ import { News } from 'src/app/models/newsfeed.models';
   styleUrls: ['./story.component.scss']
 })
 export class StoryComponent implements OnInit {
-  @Input() story!:News
+  @Input() story!: News
   @Output() storyEmiter = new EventEmitter()
   dialogRef?: MatDialogRef<CommentDialogComponent>;
 
@@ -63,14 +63,14 @@ export class StoryComponent implements OnInit {
   //video link validator. Must be a youtube link.
   validateVideoUrl() {
     if (this.videoLink !== undefined || this.videoLink !== '') {
-        var videoRegex = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=|\?v=)([^#\&\?]*).*/;
-        var isValidVideo = this.videoLink.match(videoRegex);
-        if (isValidVideo && isValidVideo[2].length == 11) {
-          this.hasVideo = true;
-        }
-        else {
-          this.hasVideo = false;
-        }
+      var videoRegex = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=|\?v=)([^#\&\?]*).*/;
+      var isValidVideo = this.videoLink.match(videoRegex);
+      if (isValidVideo && isValidVideo[2].length == 11) {
+        this.hasVideo = true;
+      }
+      else {
+        this.hasVideo = false;
+      }
     }
   }
 
