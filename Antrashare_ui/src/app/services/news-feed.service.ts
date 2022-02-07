@@ -77,9 +77,9 @@ export class NewsFeedService {
   patch(id: string, comment: Comment) {
     return this.http.patch<Comment>([this.path, 'addComment', id].join('/'), comment, SERVER_CONFIG.httpOptions).pipe(tap((story: any) => {
       this.storyList.filter((post: News) => {
-        return post._id == story._id;
+        return post._id == story[0]._id;
       }).forEach((post: News) => {
-        post.comment = story.comment;
+        post.comment = story[0].comment;
       });
       this.stories$.next(this.storyList);
     }));
