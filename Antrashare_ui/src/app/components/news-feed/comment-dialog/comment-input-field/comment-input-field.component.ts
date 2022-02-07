@@ -27,8 +27,8 @@ export class CommentInputFieldComponent implements OnInit {
     let commentContent = this.commentListFormGroup.get('commentFormControl')?.value;
     let postBody = {
       content:{
-        image: 'image',
-        video: 'video',
+        image: 'image', //for testing
+        video: 'video', //for testing
         text: commentContent
       },
       publisherName: "getHired",
@@ -36,7 +36,6 @@ export class CommentInputFieldComponent implements OnInit {
 
     }
     this.newsService.postCommentById(postBody, this.storyId).subscribe(console.log);
-
   }
 
 

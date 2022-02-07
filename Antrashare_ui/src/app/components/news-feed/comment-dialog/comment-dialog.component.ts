@@ -18,10 +18,10 @@ export class CommentDialogComponent implements OnInit {
   ) {
     this.story = data.storyForComment
     this.commentList = data.storyForComment.comment
-   }
-  
+  }
+
   ngOnInit(): void {
-    //console.log("commentList:", this.commentList)
+
   }
 
 }
