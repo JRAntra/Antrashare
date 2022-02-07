@@ -30,6 +30,7 @@ import { StoryComponent } from './components/news-feed/story/story.component';
 import { TimeoutDialogComponent } from 'src/app/components/timeout-dialog/timeout-dialog.component';
 import { CommentDialogComponent } from './components/news-feed/comment-dialog/comment-dialog.component';
 import { CommentInputFieldComponent } from './components/news-feed/comment-dialog/comment-input-field/comment-input-field.component';
+import { CommentListComponent } from './components/news-feed/comment-dialog/comment-list/comment-list.component';
 
 
 
@@ -52,7 +53,8 @@ import { CommentInputFieldComponent } from './components/news-feed/comment-dialo
     LogoutDialogComponent,
     PostFieldComponent,
     CommentDialogComponent,
-    CommentInputFieldComponent
+    CommentInputFieldComponent,
+    CommentListComponent
   ],
   imports: [
     BrowserModule,

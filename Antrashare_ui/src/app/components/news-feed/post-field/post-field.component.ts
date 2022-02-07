@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators, ValidationErrors, AbstractControl } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
+import { News } from 'src/app/models/newsfeed.models';
+import { NewsService } from 'src/app/services/news/news.service';
 
 @Component({
   selector: 'app-post-field',
@@ -9,7 +11,6 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class PostFieldComponent implements OnInit {
   // newPostFormGroup: FormGroup;
-  newsFeed: object = [];
   hasVideo: boolean = false;
   hasImage: boolean = false;
   //unsanitized links from form
@@ -52,7 +53,7 @@ export class PostFieldComponent implements OnInit {
   //   });
   // }
 
-  constructor(private _sanitizer: DomSanitizer) { 
+  constructor(private _sanitizer: DomSanitizer, private newsService: NewsService) { 
   }
 
   ngOnInit(): void {
@@ -88,31 +89,32 @@ export class PostFieldComponent implements OnInit {
       return false;
     }
   }
-
-  
   
   onSubmitPost() {
-    var image = this.newPostFormGroup.get('imageFormControl')?.value;
-    var video = this.newPostFormGroup.get('videoFormControl')?.value;
-    var text = this.newPostFormGroup.get('textFormControl')?.value;
+    var newsImage = this.newPostFormGroup.get('imageFormControl')?.value;
+    var newsVideo = this.newPostFormGroup.get('videoFormControl')?.value;
+    var newsText = this.newPostFormGroup.get('textFormControl')?.value;
     
-    this.newsFeed = {
-      // avatar?: ImageBitmap,
-      // publisherName: string,
-      // publishedTime: string,
+    const tempNews: News = {
+      publisherName: 'Get Hired Story',
+      publishedTime: Date.now(),
       content: {
-        // image: this.newPostFormGroup.get('image')?.value,
-        // video: this.newPostFormGroup.get('video')?.value,
-        // text: this.newPostFormGroup.get('text')?.value,
-        image: image,
-        video: video,
-        text: text
+        image: newsImage,
+        video: newsVideo,
+        text: newsText,
       },
       // comment: [{
-        // }],
-        // likedList: []
-      }
-    console.log(this.newsFeed);
+        
+      // }],
+      // likedIdList: [{
+
+      // }]
+    };
+    // this.newsService.postNewsFeedStory(tempNews);
+    this.newPostFormGroup.get('videoFormControl')?.setValue("");
+    this.newPostFormGroup.get('textFormControl')?.setValue("");
+    this.newPostFormGroup.get('imageFormControl')?.setValue("");
+    console.log(tempNews);
   }
   
   //Video Form Validator
