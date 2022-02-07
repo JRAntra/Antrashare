@@ -76,6 +76,6 @@ export class StoryComponent implements OnInit {
 
   //opens comment dialog
   onTriggerCommentDialog() {
-    this.dialog.open(CommentDialogComponent, {data:{story:this.story}});
+    this.dialog.open(CommentDialogComponent, {data:{storyForComment:this.story}});
   }
 }
