@@ -46,15 +46,21 @@ export class StoryComponent implements OnInit, OnDestroy {
     // console.log(this.Content);
   }
 
+  /**
+   * Can delete the post
+   */
   canDelete(): boolean {
     return this.news.publisherName === this.userService.userAccount.userName;
   }
 
+  /**
+   * Delete the post
+   */
   deletePost() {
     const id = this.news._id || '';
     this.newsFeedService.delete(id).pipe(
       takeUntil(this.unsubscribeAll)
-    ).subscribe(console.log);
+    ).subscribe();
   }
 
   showComment() {
