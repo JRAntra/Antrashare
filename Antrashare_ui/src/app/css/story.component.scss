@@ -9,9 +9,13 @@
 
 .cardHead {
     display: flex;
-    // justify-content: space-between;
+    justify-content: space-between;
     padding-bottom: 0.5em;
     gap: 20px;
+
+    .delete {
+        color: red;
+    }
 }
 
 .card-header-image {
@@ -32,7 +36,7 @@
     // padding-bottom: 0.75em;
 }
 
-.Confirm{
+.Confirm {
     padding-bottom: 0.75em;
 }
 
@@ -50,4 +54,3 @@
         margin-right: 8px;
     }
 }
-

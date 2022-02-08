@@ -1,20 +1,26 @@
-<!-- <p>story works!</p> -->
-
-
 <mat-card class='container'>
     <div class='cardHead'>
-        <!-- <img mat-card-avatar> -->
-        <button mat-icon-button>
-            <mat-icon>person_outline</mat-icon>
+        <mat-card-header>
+            <!-- <img mat-card-avatar> -->
+    
+            <!-- <span>
+                <mat-card-content>{{news.publisherName}}</mat-card-content>
+                <mat-card-content>{{news.publishedTime}}</mat-card-content>
+            </span> -->
+            <button mat-icon-button mat-card-avatar>
+                <mat-icon>person_outline</mat-icon>
+            </button>
+            <mat-card-title>{{news.publisherName}}</mat-card-title>
+            <mat-card-subtitle>{{news.publishedTime}}</mat-card-subtitle>
+        </mat-card-header>
+
+        <button mat-button mat-icon-button class="delete" matTooltip="delete this post" *ngIf="canDelete()" (click)="deletePost()">
+            <mat-icon>delete</mat-icon>
         </button>
-        <span>
-            <mat-card-content>{{news.publisherName}}</mat-card-content>
-            <mat-card-content>{{news.publishedTime}}</mat-card-content>
-        </span>
     </div>
     
     <mat-card-content>{{Content.text}}</mat-card-content>
-    <img mat-card-image >
+    <img mat-card-image>
 
     <div class='cardFoot'>
         <button mat-icon-button (click)="MoreLikes()">
@@ -28,15 +34,15 @@
 
     </div>
     <div *ngIf="cmtStatus" class='comment' id="cmt">
-        <div class = "Input">
-            <mat-form-field class="cmtField" >
+        <div class="Input">
+            <mat-form-field class="cmtField">
                 <input matInput placeholder='Comment Here' [formControl]="cmtForm" />
             </mat-form-field>
-            <div class = "Confirm">
-                <button mat-raised-button color="primary" (click) = onConfirm()>Confirm</button>
+            <div class="Confirm">
+                <button mat-raised-button color="primary" (click)=onConfirm()>Confirm</button>
             </div>
         </div>
-        <app-comment-list [userInput]="userInput" [userComment] = "Comment"></app-comment-list>
+        <app-comment-list [userInput]="userInput" [userComment]="Comment"></app-comment-list>
 
     </div>
 </mat-card>

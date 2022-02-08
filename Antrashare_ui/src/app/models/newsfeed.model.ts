@@ -1,5 +1,5 @@
 export interface Comment {
-    publisherName: string;
+    publisherName?: string;
     content: Story;
     publishedTime?: string;
 }

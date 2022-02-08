@@ -1,17 +1,18 @@
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy, ViewEncapsulation } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { News, Story, Comment } from 'src/app/models/newsfeed.model';
 import { NewsFeedService } from 'src/app/services/news-feed.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-story',
   templateUrl: './story.component.html',
-  styleUrls: ['../../../../css/story.component.scss']
+  styleUrls: ['../../../../css/story.component.scss'],
 })
 export class StoryComponent implements OnInit, OnDestroy {
-  // declare an unsubscribeAll for all subscriptions
+  // declare an unsubscribeAll for all subscriptions 
   private unsubscribeAll: Subject<any> = new Subject<any>();
 
   @Input() news!: News;
@@ -25,7 +26,10 @@ export class StoryComponent implements OnInit, OnDestroy {
   cmtCount: number = 0;
   likes: number = 0;
 
-  constructor(private newsFeedService: NewsFeedService) { }
+  constructor(
+    private newsFeedService: NewsFeedService,
+    private userService: UserService
+  ) { }
 
   ngOnDestroy(): void {
     // unsubscrib for all subscriptions
@@ -40,6 +44,23 @@ export class StoryComponent implements OnInit, OnDestroy {
     this.Content = this.news.content;
     this.Comment = this.news.comment;
     // console.log(this.Content);
+  }
+
+  /**
+   * Can delete the post
+   */
+  canDelete(): boolean {
+    return this.news.publisherName === this.userService.userAccount.userName;
+  }
+
+  /**
+   * Delete the post
+   */
+  deletePost() {
+    const id = this.news._id || '';
+    this.newsFeedService.delete(id).pipe(
+      takeUntil(this.unsubscribeAll)
+    ).subscribe();
   }
 
   showComment() {
@@ -62,7 +83,6 @@ export class StoryComponent implements OnInit, OnDestroy {
     }
     const newComment: Comment = {
       content: newCommentContent,
-      publisherName: "Team Best Devs",
     }
 
     this.newsFeedService.addComment(this.news._id!, newComment).pipe(

@@ -79,8 +79,6 @@ export class StoryFormComponent implements OnInit, OnDestroy {
       video: this.videos.value.map((value: { url: any; }) => value.url).join(';') || 'video'
     }
 
-    // this.newsFeedService.delete(data.text).subscribe();
-
     // ------ clear and reset form ------
     this.images.clear();
     this.videos.clear();

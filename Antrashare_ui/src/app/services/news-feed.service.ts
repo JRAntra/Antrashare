@@ -4,6 +4,7 @@ import { Observable, Subject } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import { SERVER_CONFIG } from '../core/config/server.config';
 import { Comment, News, Story } from '../models/newsfeed.model';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,10 @@ export class NewsFeedService {
   private storyList!: News[];
   private stories$ = new Subject();
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private userService: UserService
+  ) { }
 
   getList(): Observable<News[]> {
     return this.stories$.asObservable() as Observable<News[]>;
@@ -27,10 +31,12 @@ export class NewsFeedService {
    * @param entity
    */
   get(): Observable<News[]> {
-    return this.http.get<News[]>(this.path).pipe(tap(list => {
-      this.storyList = list;
-      this.stories$.next(this.storyList);
-    }));
+    return this.http.get<News[]>(this.path).pipe(
+      tap(list => {
+        this.storyList = list;
+        this.stories$.next(this.storyList);
+      })
+    );
   }
 
   /**
@@ -65,7 +71,12 @@ export class NewsFeedService {
    * @param entity
    */
   delete(id: string): Observable<News> {
-    return this.http.delete<News>([this.path, 'deletePost', id].join('/'), SERVER_CONFIG.httpOptions);
+    return this.http.delete<News>([this.path, 'deletePost', id].join('/'), SERVER_CONFIG.httpOptions).pipe(
+      tap(() => {
+        this.storyList = this.storyList.filter(story => story._id !== id);
+        this.stories$.next(this.storyList);
+      })
+    );
   }
 
   /**
@@ -97,7 +108,7 @@ export class NewsFeedService {
    */
   createContent(data: Story): Observable<News> {
     const entity: News = {
-      publisherName: 'Team Best Devs',
+      publisherName: this.userService.userAccount.userName,
       content: data,
       comment: []
     }
@@ -112,7 +123,8 @@ export class NewsFeedService {
    * @param comment
    */
   addComment(id: string, comment: Comment) {
-    
+    comment.publisherName = this.userService.userAccount.userName;
+
     return this.patch(id, comment);
   }
 }
