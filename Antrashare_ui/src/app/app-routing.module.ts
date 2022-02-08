@@ -9,6 +9,7 @@ import { LogoutWindowComponent } from './dialogs/logout-window/logout-window.dia
 import { NewsFeedTabComponent } from './components/news-feed-tab/news-feed-tab.component';
 import { ProfileTabComponent } from './components/profile-tab/profile-tab.component';
 import { SettingsTabComponent } from './components/settings-tab/settings-tab.component';
+import { AuthGuard } from './core/guards/auth.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -26,6 +27,8 @@ const routes: Routes = [
   // router for authenticated users
   {
     path: '',
+    canActivate: [AuthGuard],
+    canActivateChild: [AuthGuard],
     component: LayoutsComponent,
     children: [
       { path: 'newsfeed', component: NewsFeedTabComponent },

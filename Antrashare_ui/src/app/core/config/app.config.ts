@@ -10,7 +10,8 @@ export const APP_CONFIG = {
   localStorage: {
     prefix: 'TBD-', // Team Best DEVs
     theme: 'theme',
-    idle: 'idle'
+    idle: 'idle',
+    token: 'bearerToken'
   },
 
 }
