@@ -62,7 +62,6 @@ export class StoryComponent implements OnInit, OnDestroy {
     }
     const newComment: Comment = {
       content: newCommentContent,
-      publisherName: "Team Best Devs",
     }
 
     this.newsFeedService.addComment(this.news._id!, newComment).pipe(
