@@ -7,6 +7,7 @@ import { map, shareReplay, takeUntil } from 'rxjs/operators';
 import { TimeoutComponent } from 'src/app/dialogs/timeout/timeout.dialog.component';
 import { TABS } from 'src/app/models/layouts.model';
 import { IdleService } from 'src/app/services/idle.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'layout-horizontal',
@@ -33,6 +34,7 @@ export class HorizontalLayoutComponent implements OnInit, OnDestroy {
     private idleService: IdleService,
     private dialog: MatDialog,
     private router: Router,
+    private userService: UserService
   ) { }
 
   ngOnDestroy(): void {
@@ -86,6 +88,10 @@ export class HorizontalLayoutComponent implements OnInit, OnDestroy {
         this.router.navigate(['login']);
       }
     });
+  }
+
+  get userName(): string {
+    return this.userService.userAccount.userName ?? '';
   }
 
 }
