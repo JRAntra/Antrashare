@@ -32,10 +32,8 @@ import { CommentListComponent } from './components/news-feed/story/comment-list/
 import { CommentInputComponent } from './components/news-feed/story/comment-input/comment-input.component';
 import { CommentComponent } from './components/news-feed/story/comment-list/comment/comment.component';
 import { TimeoutDialogComponent } from './components/timeout-dialog/timeout-dialog.component';
-import { NewsFeedButtonComponent } from './components/news-feed/news-feed-button/news-feed-button.component';
-import { NewsFeedTemplateComponent } from './components/news-feed/news-feed-template/news-feed-template.component';
 import { HeaderComponent } from './components/header/header.component';
-import { LogOutDialogComponent } from './components/logout-dialog/logout-dialog.component';
+import { LogOutDialogComponent } from './components/settings/logout-dialog/logout-dialog.component';
 
 
 @NgModule({
@@ -54,8 +52,6 @@ import { LogOutDialogComponent } from './components/logout-dialog/logout-dialog.
     CommentInputComponent,
     CommentComponent,
     TimeoutDialogComponent,
-    NewsFeedButtonComponent,
-    NewsFeedTemplateComponent,
     HeaderComponent,
     LogOutDialogComponent,
   ],

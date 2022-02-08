@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
-
 import { UserProfile } from '../models/user.models';
 
 @Injectable({
@@ -17,7 +16,7 @@ export class AuthService {
     return this.loggedIn.asObservable();
   }
 
-  constructor(private router: Router) {}
+  constructor(private router: Router) { }
 
   login(user: UserProfile) {
     if (user.username !== '' && user.password !== '') {
