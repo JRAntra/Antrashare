@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const {News, validate} = require('../models/news');
+const { News, validate } = require('../models/news');
 
 router.get("/", async (req, res) => {
   const news = await News.find().sort();
@@ -9,7 +9,7 @@ router.get("/", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-  const {error} = validate(req.body);
+  const { error } = validate(req.body);
   if (error) {
     console.log(error);
     return res.status(400).send(error.details[0].message);
@@ -23,7 +23,7 @@ router.post("/", async (req, res) => {
 router.patch("/addComment/:id", async (req, res) => {
   const news = await News.find({ _id: req.params.id });
   if (!news.length) {
-      return res.status(404).send("Story not found.");
+    return res.status(404).send("Story not found.");
   }
 
   const query = { _id: req.params.id };
@@ -40,7 +40,7 @@ router.patch("/addComment/:id", async (req, res) => {
       },
     },
   };
-  
+
   const options = { upsert: false };
   await News.updateOne(query, update, options)
     .then((result) => {
