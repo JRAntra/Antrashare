@@ -30,6 +30,13 @@ export class StoryComponent implements OnInit {
   constructor(private _sanitizer: DomSanitizer, private dialog: MatDialog) { }
 
   ngOnInit(): void {
+    if(!this.story.content) {
+      this.story.content = {
+        text: '',
+        video: '',
+        image: '',
+      }
+    }
     this.videoLink = this.story.content.video ? this.story.content.video : '';
     this.imageLink = this.story.content.image ? this.story.content.image : '';
 
@@ -41,6 +48,8 @@ export class StoryComponent implements OnInit {
     //link sanitizers
     this.safeVideo = this._sanitizer.bypassSecurityTrustResourceUrl(this.videoLink);
     this.safeImage = this._sanitizer.bypassSecurityTrustResourceUrl(this.imageLink);
+
+
   }
 
   //Makes text fill up box if no media is present.
@@ -57,7 +66,7 @@ export class StoryComponent implements OnInit {
   }
 
   validateImageUrl() {
-    if (this.videoLink !== undefined || this.videoLink !== '') {
+    if (this.imageLink !== undefined || this.imageLink !== '') {
       var urlRegex = /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[\w]*))?)/;
       var isValidImage = this.imageLink.match(urlRegex);
       if (isValidImage) {
@@ -66,6 +75,8 @@ export class StoryComponent implements OnInit {
       else {
         this.hasImage = false;
       }
+    } else {
+      this.hasImage = false;
     }
   }
 
@@ -76,10 +87,13 @@ export class StoryComponent implements OnInit {
       var isValidVideo = this.videoLink.match(videoRegex);
       if (isValidVideo && isValidVideo[2].length == 11) {
         this.hasVideo = true;
+        this.videoLink = 'https://www.youtube.com/embed/' + isValidVideo[2];
       }
       else {
         this.hasVideo = false;
       }
+    } else {
+      this.hasVideo = false;
     }
   }
 
