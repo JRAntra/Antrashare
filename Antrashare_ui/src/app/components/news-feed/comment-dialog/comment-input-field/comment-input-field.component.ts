@@ -12,7 +12,6 @@ import { StoryComment } from 'src/app/models/newsfeed.models';
 
 export class CommentInputFieldComponent implements OnInit {
   @Input() storyId: any;
-  @Output() commentSubmitted = new EventEmitter<void>()
 
   public newCommentFormGroup = new FormGroup({
     commentTextFormControl: new FormControl('', {
@@ -33,15 +32,15 @@ export class CommentInputFieldComponent implements OnInit {
       updateOn: 'change'
     }),
   })
-  
+
   constructor(
-    private newsService: NewsService, 
+    private newsService: NewsService,
     public datePipe: DatePipe) { }
 
   ngOnInit(): void {
 
   }
-  
+
   //Video Form Validator
   validVideoUrl(control: AbstractControl): ValidationErrors | null {
     var videoRegex = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=|\?v=)([^#\&\?]*).*/;
@@ -54,12 +53,12 @@ export class CommentInputFieldComponent implements OnInit {
       return { validVideoUrl: false };
     }
   }
-  
+
   onSubmitComment() {
     var image = this.newCommentFormGroup.get('commentImageFormControl')?.value;
     var video = this.newCommentFormGroup.get('commentVideoFormControl')?.value;
     var text = this.newCommentFormGroup.get('commentTextFormControl')?.value;
-    
+
     const postBody: StoryComment = {
       publisherName: 'Get Hired Comment',
       publishedTime: Date.now(),
@@ -70,11 +69,10 @@ export class CommentInputFieldComponent implements OnInit {
       }
     };
     this.newsService.postCommentById(postBody, this.storyId).subscribe(console.log);
-    this.commentSubmitted.emit()
     //this.newsService.storyEventer.emit(this.updatedStory)
     //console.log(postBody);
   }
-  
+
   // onPostComment(): void {
   //   //must contain <HTMLInputElement>, otherwise you can not find a property named "value"
   //   let commentContent = this.commentListFormGroup.get('commentFormControl')?.value;
@@ -93,5 +91,5 @@ export class CommentInputFieldComponent implements OnInit {
   // }
 
 
-  
+
 }
