@@ -33,22 +33,22 @@ export class StoryComponent implements OnInit {
     if(!this.story.content) {
       this.story.content = {
         text: '',
-        video:'',
+        video: '',
         image: '',
       }
-    } else {
-      this.videoLink = this.story.content.video ? this.story.content.video : '';
-      this.imageLink = this.story.content.image ? this.story.content.image : '';
-
-      //video link validation
-      this.validateVideoUrl();
-      //image url validation. Error (i.e. bad link) is also handled in HTML.
-      this.validateImageUrl();
-
-      //link sanitizers
-      this.safeVideo = this._sanitizer.bypassSecurityTrustResourceUrl(this.videoLink);
-      this.safeImage = this._sanitizer.bypassSecurityTrustResourceUrl(this.imageLink);
     }
+    this.videoLink = this.story.content.video ? this.story.content.video : '';
+    this.imageLink = this.story.content.image ? this.story.content.image : '';
+
+    //video link validation
+    this.validateVideoUrl();
+    //image url validation. Error (i.e. bad link) is also handled in HTML.
+    this.validateImageUrl();
+
+    //link sanitizers
+    this.safeVideo = this._sanitizer.bypassSecurityTrustResourceUrl(this.videoLink);
+    this.safeImage = this._sanitizer.bypassSecurityTrustResourceUrl(this.imageLink);
+
 
   }
 
