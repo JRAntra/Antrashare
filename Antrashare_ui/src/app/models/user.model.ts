@@ -3,10 +3,10 @@ export interface Role {
 }
 
 export interface UserAccount {
-  userName: string;
+  userName?: string;
   userEmail: string;
   password?: string;
-  userRole: string;
+  userRole?: string;
   bearerTokey?: string;
 }
 
