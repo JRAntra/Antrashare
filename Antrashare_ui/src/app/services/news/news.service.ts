@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 import { News, StoryComment } from '../../models/newsfeed.models'
 import { Observable, of } from 'rxjs';
@@ -8,7 +8,6 @@ import { Observable, of } from 'rxjs';
 })
 export class NewsService {
   baseurl = "http://localhost:4231/api/news"
-  story!: News
 
   constructor(private http: HttpClient) {
 
