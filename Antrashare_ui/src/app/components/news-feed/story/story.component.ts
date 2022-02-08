@@ -30,6 +30,7 @@ export class StoryComponent implements OnInit {
   constructor(private _sanitizer: DomSanitizer, private dialog: MatDialog) { }
 
   ngOnInit(): void {
+    console.log(this.story.content);
     this.videoLink = this.story.content.video ? this.story.content.video : '';
     this.imageLink = this.story.content.image ? this.story.content.image : '';
 
@@ -66,6 +67,8 @@ export class StoryComponent implements OnInit {
       else {
         this.hasImage = false;
       }
+    } else {
+      this.hasImage = false;
     }
   }
 
@@ -76,10 +79,13 @@ export class StoryComponent implements OnInit {
       var isValidVideo = this.videoLink.match(videoRegex);
       if (isValidVideo && isValidVideo[2].length == 11) {
         this.hasVideo = true;
+        this.videoLink = 'https://www.youtube.com/embed/' + isValidVideo[2];
       }
       else {
         this.hasVideo = false;
       }
+    } else {
+      this.hasVideo = false;
     }
   }
 
