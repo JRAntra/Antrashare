@@ -4,6 +4,7 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { News, Story, Comment } from 'src/app/models/newsfeed.model';
 import { NewsFeedService } from 'src/app/services/news-feed.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-story',
@@ -25,7 +26,10 @@ export class StoryComponent implements OnInit, OnDestroy {
   cmtCount: number = 0;
   likes: number = 0;
 
-  constructor(private newsFeedService: NewsFeedService) { }
+  constructor(
+    private newsFeedService: NewsFeedService,
+    private userService: UserService
+  ) { }
 
   ngOnDestroy(): void {
     // unsubscrib for all subscriptions
@@ -40,6 +44,17 @@ export class StoryComponent implements OnInit, OnDestroy {
     this.Content = this.news.content;
     this.Comment = this.news.comment;
     // console.log(this.Content);
+  }
+
+  canDelete(): boolean {
+    return this.news.publisherName === this.userService.userAccount.userName;
+  }
+
+  deletePost() {
+    const id = this.news._id || '';
+    this.newsFeedService.delete(id).pipe(
+      takeUntil(this.unsubscribeAll)
+    ).subscribe(console.log);
   }
 
   showComment() {

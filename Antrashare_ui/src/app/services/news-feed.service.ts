@@ -71,7 +71,12 @@ export class NewsFeedService {
    * @param entity
    */
   delete(id: string): Observable<News> {
-    return this.http.delete<News>([this.path, 'deletePost', id].join('/'), SERVER_CONFIG.httpOptions);
+    return this.http.delete<News>([this.path, 'deletePost', id].join('/'), SERVER_CONFIG.httpOptions).pipe(
+      tap(() => {
+        this.storyList = this.storyList.filter(story => story._id !== id);
+        this.stories$.next(this.storyList);
+      })
+    );
   }
 
   /**
