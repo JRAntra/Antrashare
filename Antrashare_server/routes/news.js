@@ -61,7 +61,8 @@ router.delete("/deletePost/:id", async (req, res) => {
     return res.status(404).send("Post is not exist.");
 
   await News.deleteOne({ _id: req.params.id });
-  res.send("Post has been deleted.");
+  // res.send("Post has been deleted.");
+  res.status(204).send();
 });
 
 module.exports = router;
