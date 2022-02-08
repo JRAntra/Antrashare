@@ -3,6 +3,7 @@ import { idleTimeService } from '../services/idle-time';
 import { NewsStory } from 'src/app/interfaces/newfeed.interface';
 import { NewsFeedService } from '../services/news-feed.service';
 import { Subscription } from 'rxjs';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-news-feed',

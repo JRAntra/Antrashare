@@ -31,7 +31,7 @@
     <mat-checkbox
       class="rememberCheckbox"
       color="primary"
-      (click)="rememberMeChecked($event)"
+      (click)="rememberMeChecked()"
     >
       <span class="rememberText">Remember me</span>
     </mat-checkbox>
@@ -42,6 +42,14 @@
       (click)="signIn()"
     >
       Sign In
+    </button>
+    <button
+      mat-raised-button
+      type="button"
+      class="loginButton"
+      (click)="signUp()"
+    >
+      Sign Up
     </button>
   </form>
 </div>
