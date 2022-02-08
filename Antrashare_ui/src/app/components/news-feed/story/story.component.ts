@@ -47,11 +47,11 @@ export class StoryComponent implements OnInit {
   resizeTextbox() {
     if (!this.videoLink && !this.imageLink) {
       this.textboxSize = {
-        'grid-template-rows': '100% auto'
+        'grid-template-rows': '100% 0%'
       };
     } else {
       this.textboxSize = {
-        'grid-template-rows': '55% auto'
+        'grid-template-rows': '55% 45%'
       };
     }
   }
