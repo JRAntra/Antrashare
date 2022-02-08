@@ -35,12 +35,8 @@ export class StoryComponent implements OnInit {
 
     //video link validation
     this.validateVideoUrl();
-    //image presence validation. Error (i.e. bad link) is handled in HTML.
-    if (this.imageLink !== '') {
-      this.hasImage = true;
-    } else {
-      this.hasImage = false;
-    }
+    //image url validation. Error (i.e. bad link) is also handled in HTML.
+    this.validateImageUrl();
 
     //link sanitizers
     this.safeVideo = this._sanitizer.bypassSecurityTrustResourceUrl(this.videoLink);
@@ -51,12 +47,25 @@ export class StoryComponent implements OnInit {
   resizeTextbox() {
     if (!this.videoLink && !this.imageLink) {
       this.textboxSize = {
-        'grid-template-rows': '100% auto'
+        'grid-template-rows': '100% 0%'
       };
     } else {
       this.textboxSize = {
-        'grid-template-rows': '55% auto'
+        'grid-template-rows': '55% 45%'
       };
+    }
+  }
+
+  validateImageUrl() {
+    if (this.videoLink !== undefined || this.videoLink !== '') {
+      var urlRegex = /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[\w]*))?)/;
+      var isValidImage = this.imageLink.match(urlRegex);
+      if (isValidImage) {
+        this.hasImage = true;
+      }
+      else {
+        this.hasImage = false;
+      }
     }
   }
 
