@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy, ViewEncapsulation } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -9,10 +9,10 @@ import { UserService } from 'src/app/services/user.service';
 @Component({
   selector: 'app-story',
   templateUrl: './story.component.html',
-  styleUrls: ['../../../../css/story.component.scss']
+  styleUrls: ['../../../../css/story.component.scss'],
 })
 export class StoryComponent implements OnInit, OnDestroy {
-  // declare an unsubscribeAll for all subscriptions
+  // declare an unsubscribeAll for all subscriptions 
   private unsubscribeAll: Subject<any> = new Subject<any>();
 
   @Input() news!: News;

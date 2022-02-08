@@ -14,7 +14,7 @@
             <mat-card-subtitle>{{news.publishedTime}}</mat-card-subtitle>
         </mat-card-header>
 
-        <button mat-button mat-icon-button *ngIf="canDelete()" (click)="deletePost()">
+        <button mat-button mat-icon-button class="delete" matTooltip="delete this post" *ngIf="canDelete()" (click)="deletePost()">
             <mat-icon>delete</mat-icon>
         </button>
     </div>
