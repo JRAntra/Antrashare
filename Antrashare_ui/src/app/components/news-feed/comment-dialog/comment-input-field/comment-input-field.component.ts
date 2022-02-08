@@ -12,7 +12,8 @@ import { StoryComment } from 'src/app/models/newsfeed.models';
 
 export class CommentInputFieldComponent implements OnInit {
   @Input() storyId: any;
-  
+  @Output() commentSubmitted = new EventEmitter<void>()
+
   public newCommentFormGroup = new FormGroup({
     commentTextFormControl: new FormControl('', {
       validators: [
@@ -69,8 +70,9 @@ export class CommentInputFieldComponent implements OnInit {
       }
     };
     this.newsService.postCommentById(postBody, this.storyId).subscribe(console.log);
-    // this.newsService.postNewsFeedStory(tempNews);
-    console.log(postBody);
+    this.commentSubmitted.emit()
+    //this.newsService.storyEventer.emit(this.updatedStory)
+    //console.log(postBody);
   }
   
   // onPostComment(): void {

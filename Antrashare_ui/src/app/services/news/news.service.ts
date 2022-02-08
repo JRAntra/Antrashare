@@ -8,6 +8,7 @@ import { Observable, of } from 'rxjs';
 })
 export class NewsService {
   baseurl = "http://localhost:4231/api/news"
+  story!: News
 
   constructor(private http: HttpClient) {
 
