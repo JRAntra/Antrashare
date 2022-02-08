@@ -17,8 +17,8 @@
             {{story.content.text}}
         </mat-card>
         <mat-card class="storyMedia" *ngIf='hasImage || hasVideo'>
-            <img class='story-image' *ngIf='hasImage' [src]="safeImage" (error)='hasImage = false'> <!-- 'validation' of image is handled here through conditional rendering -->
-            <iframe class='story-video' *ngIf='hasVideo' [src]='safeVideo' allowfullscreen></iframe>
+            <img class='storyImage' *ngIf='hasImage' [src]="safeImage" (error)='hasImage = false'> <!-- 'validation' of image is handled here through conditional rendering -->
+            <iframe class='storyVideo' *ngIf='hasVideo' [src]='safeVideo' allowfullscreen (error)='hasVideo = false'></iframe>
         </mat-card>
     </mat-card>
     <mat-card class="storyBottomBar">
