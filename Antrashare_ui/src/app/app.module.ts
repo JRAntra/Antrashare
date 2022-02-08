@@ -24,6 +24,8 @@ import { NewsPostComponent } from './components/news-feed/newsPost/newsPost.comp
 import { NewsStoryComponent } from './components/news-feed/newsStory/newsStory.component';
 import { SingleNewsStoryComponent } from './components/news-feed/newsStory/singleNewsStory/singleNewsStory.component';
 import { CommentListComponent } from './dialogs/commentList/commentList.component';
+import { MyProfileComponent } from './components/my-profile/my-profile.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,6 +37,7 @@ import { CommentListComponent } from './dialogs/commentList/commentList.componen
     NewsPostComponent,
     NewsStoryComponent,
     SingleNewsStoryComponent,
+    MyProfileComponent
   ],
   imports: [
     AppRoutingModule,

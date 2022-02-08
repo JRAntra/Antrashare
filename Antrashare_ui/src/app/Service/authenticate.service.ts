@@ -7,6 +7,8 @@ import { BehaviorSubject, Observable, Observer, of } from 'rxjs';
 export class AuthenticateService {
   constructor() {}
 
+  public userRole  = "user"
+
   // public $has_userID = new Observable<boolean>(this.changeLoginStatusSubscriber);
   // public has_userId = false;
   public $has_userId = new BehaviorSubject<boolean>(localStorage.getItem('username')? true:false)

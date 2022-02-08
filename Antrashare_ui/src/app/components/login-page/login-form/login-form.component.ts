@@ -25,7 +25,7 @@ export interface UserInfo {
 export class LoginFormComponent implements OnInit {
 
   constructor(private auth: AuthenticateService,
-    private router : Router){}
+    private router: Router) { }
 
   public userFormGroup = new FormGroup({
     userNameFormControl: new FormControl('', [
@@ -42,16 +42,22 @@ export class LoginFormComponent implements OnInit {
 
   @Output() userLogin = new EventEmitter()
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   onLogin() {
-    localStorage.setItem('username','JR')
-    this.router.navigate(['newsFeed']);
+    localStorage.setItem('username', 'JR')
+    this.router.navigate(['newsFeed'], {
+      queryParams:
+      {
+        username:"JR",
+        preference:"dark mode"
+      }
+    });
     this.auth.changeLoginStatus();
 
   }
 
-  submitUserInfo() {}
+  submitUserInfo() { }
 
   set userNamevalue(val) {
     this.userFormGroup?.get('userNameFormControl')?.setValue(val);
