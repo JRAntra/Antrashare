@@ -66,7 +66,7 @@ export class StoryComponent implements OnInit {
   }
 
   validateImageUrl() {
-    if (this.imageLink !== undefined || this.videoLink !== '') {
+    if (this.imageLink !== undefined || this.imageLink !== '') {
       var urlRegex = /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[\w]*))?)/;
       var isValidImage = this.imageLink.match(urlRegex);
       if (isValidImage) {
