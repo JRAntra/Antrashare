@@ -108,7 +108,7 @@ export class NewsFeedService {
    */
   createContent(data: Story): Observable<News> {
     const entity: News = {
-      publisherName: this.userService.userAccount.userName,
+      publisherName: this.userService.userAccount.userName || '',
       content: data,
       comment: []
     }

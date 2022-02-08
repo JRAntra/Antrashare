@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, ValidatorFn, AbstractControl, ValidationErrors } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { UserAccount } from 'src/app/models/user.model';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login-form',
@@ -22,14 +24,38 @@ export class LoginFormComponent implements OnInit {
     ]),
   });
 
-  constructor(private router: Router) { }
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private router: Router,
+    private authService: AuthService
+  ) { }
 
   ngOnInit(): void { }
 
   onSubmit() {
+    // if (this.userLoginForm.invalid) {
+    //   return;
+    // }
+
+    this.userLoginForm.disable();
+
+    const account: UserAccount = {
+      userEmail: 'JR.Zhang@gmail.com',//this.userLoginForm.get('email')?.value,
+      password: 'ZYS93'//this.userLoginForm.get('password')?.value
+    }
+    this.authService.login(account).subscribe(
+      () => {
+        const redirectUrl = this.activatedRoute.snapshot.queryParamMap.get('redirectTo') || 'newsfeed';
+        this.router.navigateByUrl(redirectUrl);
+      }, 
+      (response) => {
+        this.userLoginForm.enable();
+      }
+    );
+
     //placeholder
     console.log(this.userLoginForm.value);
-    this.router.navigate(['newsfeed']);
+    
   }
 
   getErrorMessageEmail() {

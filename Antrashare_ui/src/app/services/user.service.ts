@@ -17,4 +17,8 @@ export class UserService {
     return this.account;
   }
 
+  set userAccount(account: UserAccount) {
+    Object.assign(this.account, account);
+  }
+
 }
