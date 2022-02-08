@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { SignupFormComponent } from '../signup-form/signup-form.component';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-login-form',
@@ -13,10 +16,10 @@ export class LoginFormComponent implements OnInit {
     username: ['', Validators.compose([Validators.required, Validators.minLength(5)])],
     password: ['', Validators.compose([Validators.required, Validators.minLength(5), Validators.pattern(/^(?=.*[A-Z])(?=.*[@#$%^&+*!=]).*$/)])]
   });
-  loginData: string = '';
+  loginData: any = null;
   rememberedUserIsChecked: boolean = false;
 
-  constructor(private formBuilder: FormBuilder, private router: Router) {
+  constructor(private formBuilder: FormBuilder, private router: Router, public dialog: MatDialog, private userService: UserService) {
   }
 
 
@@ -26,45 +29,31 @@ export class LoginFormComponent implements OnInit {
     this.loginForm.controls["password"].setValue(rememberedData.password ? rememberedData.password : "");
   }
 
-  rememberMeChecked(event: any) {
+  rememberMeChecked() {
     this.rememberedUserIsChecked = !this.rememberedUserIsChecked;
   }
 
   signIn() {
     if (!this.loginForm.controls['password'].errors && !this.loginForm.controls['username'].errors) {
-      // Logic for checking login input to go to news feed page or not
-      let currentUsername = this.loginForm.get('username')?.value;
-      let currentPassword = this.loginForm.get('password')?.value;
-
-      // Direct testing:
-      // Can only go to news feed if the user input match the tmpUserData array
-      let tmpUserData = [
-        // Users that will fail on validation
-        { username: 'Josh', password: "123456" },
-        { username: 'Kim', password: "696969" },
-
-        // Users that pass validators
-        { username: 'LilyKim', password: "gh@ghGH" }
-
-        // add more to test if you want
-      ];
-
-      for (const element of tmpUserData) {
-        if (currentUsername === element.username &&
-          currentPassword === element.password) {
-          // Matched so co go to news feed page
-          console.log('Current login match so preceed to newsFeed page!');
-          this.router.navigate(['/newsFeed']);
-        }
+      let currentBody = {
+        userEmail: this.loginForm.get('username')?.value,
+        password: this.loginForm.get('password')?.value
       }
 
-      // If remember me checkbox is checked
-      // Save input into local storage and check with database later
+      this.userService.authenUser(currentBody).subscribe((data) => {
+        this.loginData = data;
+        localStorage.setItem('user-data', JSON.stringify(this.loginData.bearerToken));
+        this.router.navigate(['/newsFeed']);
+      })
+
       if (this.rememberedUserIsChecked === true) {
         this.loginData = JSON.stringify(this.loginForm.value);
         localStorage.setItem('login-data', this.loginData);
       }
     }
+  }
 
+  signUp() {
+    const dialogRef = this.dialog.open(SignupFormComponent);
   }
 }

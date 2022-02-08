@@ -1,0 +1,46 @@
+@use "../../../../styles.scss" as theme;
+
+.formContainer {
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 10px;
+    padding: 10px;
+    color: theme.$primary_color;
+
+    .formTitle {
+        margin-bottom: 10px;
+        font-size: 30px;
+    }
+
+    mat-form-field {
+        width: 100%;
+    }
+
+    .loginButton {
+        background-color: theme.$tertiary-color;
+        color: theme.$font-color;
+        padding: 5px;
+        margin-top: 5px;
+    }
+
+    .errorMessage {
+        margin-top: 5px;
+        margin-bottom: 5px;
+        display: block;
+        font-size: 13px;
+        width: 200px;
+        word-wrap: break-word;
+    }
+
+    .formBox {
+        position: static;
+        margin-bottom: 30px;
+    }
+
+    .formLayout {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-column-gap: 50px;
+    }
+
+}

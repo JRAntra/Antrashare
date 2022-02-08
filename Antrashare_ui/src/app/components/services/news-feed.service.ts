@@ -11,18 +11,9 @@ export class NewsFeedService {
   contentList$: any;
 
   constructor(private _httpClient: HttpClient) {
-    // _httpClient.get("http://localhost:4231/api/news")
-    //   .subscribe(
-    //     (data) => {
-    //       console.log(`Connected to mongoDB server`);
-    //       console.log(data);
-
-    //     }
-    //   )
   }
 
   getRequest() {
-    // Note. it returns an observable
     return this._httpClient.get(this.url);
   }
 

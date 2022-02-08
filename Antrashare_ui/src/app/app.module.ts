@@ -33,6 +33,7 @@ import { LogoutConfirmationDialogComponent } from './components/logout-confirmat
 import { PostNewsStoryComponent } from './components/news-feed/post-new-feed/post-new-feed.component';
 import { CommentsComponent } from './components/news-feed/comments/comments.component';
 import { AddCommentComponent } from './components/news-feed/add-comment/add-comment.component';
+import { SignupFormComponent } from './components/login-page/signup-form/signup-form.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { AddCommentComponent } from './components/news-feed/add-comment/add-comm
     LogoutConfirmationDialogComponent,
     PostNewsStoryComponent,
     CommentsComponent,
-    AddCommentComponent
+    AddCommentComponent,
+    SignupFormComponent
   ],
   imports: [
     BrowserModule,
