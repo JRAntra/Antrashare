@@ -21,7 +21,7 @@ export class CommentDialogComponent implements OnInit {
     private zone:NgZone
   ) {
     this.storyId = data.story._id;
-    this.commentList = data.story.comment;
+    this.commentList = data.story.comment ? data.story.comment : [];
   }
 
   ngOnInit(): void {

@@ -30,7 +30,14 @@ export class StoryComponent implements OnInit {
   constructor(private _sanitizer: DomSanitizer, private dialog: MatDialog) { }
 
   ngOnInit(): void {
-    console.log(this.story.content);
+    if(!this.story.content) {
+      this.story.content = {
+        text: '',
+        video:'',
+        image: '',
+      }
+    }
+
     this.videoLink = this.story.content.video ? this.story.content.video : '';
     this.imageLink = this.story.content.image ? this.story.content.image : '';
 
@@ -58,7 +65,7 @@ export class StoryComponent implements OnInit {
   }
 
   validateImageUrl() {
-    if (this.videoLink !== undefined || this.videoLink !== '') {
+    if (this.imageLink !== undefined || this.videoLink !== '') {
       var urlRegex = /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[\w]*))?)/;
       var isValidImage = this.imageLink.match(urlRegex);
       if (isValidImage) {
