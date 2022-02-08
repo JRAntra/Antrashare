@@ -38,7 +38,7 @@ export class AuthService {
    * @returns Observable<boolean>
    */
   check(): Observable<boolean> {
-    if (this.authenticated || this.accessToken) {
+    if (this.authenticated || (this.accessToken && this.accessToken === this.userService.userAccount.bearerTokey)) {
       return of(true);
     }
 
