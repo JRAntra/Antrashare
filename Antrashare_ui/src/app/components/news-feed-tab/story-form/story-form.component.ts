@@ -73,6 +73,12 @@ export class StoryFormComponent implements OnInit, OnDestroy {
   }
 
   public post(): void {
+    if (this.postForm.invalid) {
+      return;
+    }
+
+    this.postForm.disable();
+
     const data: Story = {
       text: this.postForm.get('text')?.value,
       image: this.images.value.map((value: { url: any; }) => value.url).join(';') || 'image',
@@ -90,7 +96,9 @@ export class StoryFormComponent implements OnInit, OnDestroy {
     // // ------ create this post ------
     this.newsFeedService.createContent(data).pipe(
       takeUntil(this.unsubscribeAll)
-    ).subscribe();
+    ).subscribe(() => {
+      this.postForm.enable();
+    });
 
   }
 
