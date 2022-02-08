@@ -121,6 +121,7 @@ export class PostFieldComponent implements OnInit {
         // likedList: []
       }
     this.newsService.postNews(this.newsFeed).subscribe(x => console.log(x));
+    window.location.reload()
   }
 
   //Video Form Validator
