@@ -1,5 +1,5 @@
 <div class="centered">
-  <app-comment-input></app-comment-input>
+  <app-comment-input [storyId]="storyId"></app-comment-input>
 </div>
 <ul class="story">
   <app-comment *ngFor="let comment of commentsList" [comment]="comment"></app-comment>

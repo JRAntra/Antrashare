@@ -5,6 +5,7 @@ import {
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, throwError } from 'rxjs';
+import { NewsFeedComment } from 'src/app/models/comments.models';
 import { newsStory } from 'src/app/models/newsStory.models';
 
 const httpOptions = {
@@ -35,7 +36,10 @@ export class newsFeedService {
   }
 
   editComment(storyId: string, commentID: string) { }
-  addComment(storyId: string, commentID: string) { }
+
+  addComment(storyId: string, body: NewsFeedComment) {
+    return this.http.patch(`http://localhost:4231/api/news/addComment/${storyId}`, body)
+  }
 
   deleteComment(storyId: string, commentID: string) { }
 }

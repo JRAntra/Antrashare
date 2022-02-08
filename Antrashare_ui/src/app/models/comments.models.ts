@@ -1,7 +1,7 @@
 export interface NewsFeedComment {
     _id?: string;
     publisherName: string;
-    publisherTime?: number;
+    publishedTime: string;
     content: {
         image?: string;
         video?: string;

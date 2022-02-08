@@ -8,9 +8,13 @@ import { NewsFeedComment } from 'src/app/models/comments.models';
   styleUrls: ['./comment-list.component.scss']
 })
 export class CommentListComponent implements OnInit {
-  constructor(@Inject(MAT_DIALOG_DATA) public commentsList: NewsFeedComment[]) { }
+  public commentsList: any;
+  public storyId!: string;
+  constructor(@Inject(MAT_DIALOG_DATA) public storyData: any) { }
 
   ngOnInit(): void {
+    this.commentsList = this.storyData.storyComments;
+    this.storyId = this.storyData.storyId;
   }
 
 }

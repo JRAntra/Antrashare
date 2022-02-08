@@ -1,1 +1,18 @@
-<p>comment-input works!</p>
+<form [formGroup]="commentForm">
+  <mat-form-field appearance="fill">
+    <mat-label>Picture url: </mat-label>
+    <input matInput formControlName="image">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Video url: </mat-label>
+    <input matInput formControlName="video">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Content:</mat-label>
+    <textarea matInput formControlName="text"></textarea>
+  </mat-form-field>
+
+  <button (click)="newsCommentSubmit()">Post a new Comment</button>
+</form>
