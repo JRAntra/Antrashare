@@ -32,15 +32,18 @@ export class CommentInputComponent implements OnInit {
       publisherName: this.authService.username,
       publishedTime: '' + new Date(),
       content: {
-        image: this.commentForm.get('image')?.value
-          ? this.commentForm.get('image')?.value
-          : '.',
-        video: this.commentForm.get('video')?.value
-          ? this.commentForm.get('video')?.value
-          : '.',
-        text: this.commentForm.get('text')?.value
-          ? this.commentForm.get('text')?.value
-          : '.',
+        image:
+          this.commentForm.get('image')?.value !== null
+            ? this.commentForm.get('image')?.value
+            : '.',
+        video:
+          this.commentForm.get('video')?.value !== null
+            ? this.commentForm.get('video')?.value
+            : '.',
+        text:
+          this.commentForm.get('text')?.value !== null
+            ? this.commentForm.get('text')?.value
+            : '.',
       },
     };
     this.newsfeedservice

@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
 import { newsStory } from 'src/app/models/newsStory.models';
 import { newsFeedService } from 'src/app/services/newsfeed/newsfeed.service';
@@ -9,9 +10,11 @@ import { newsFeedService } from 'src/app/services/newsfeed/newsfeed.service';
   templateUrl: './story.component.html',
   styleUrls: ['./story.component.scss'],
 })
-export class StoryComponent implements OnInit {
+export class StoryComponent implements OnInit, OnDestroy {
   public storyList: newsStory[] = [];
-  newsFeedForm = this.fb.group({
+  private subscriptions = new Subscription();
+
+  public newsFeedForm = this.fb.group({
     text: [''],
     image: [''],
     video: [''],
@@ -23,10 +26,12 @@ export class StoryComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.newsfeedservice.getNewsFeed().subscribe((data: any) => {
-      this.storyList = data;
-      // console.log(data);
-    });
+    this.subscriptions.add(
+      this.newsfeedservice.getNewsFeed().subscribe((data: any) => {
+        this.storyList = data;
+        // console.log(data);
+      })
+    );
   }
 
   newsPostSubmit() {
@@ -48,7 +53,15 @@ export class StoryComponent implements OnInit {
       // comment: [{}],
       // likedIdList: [{}],
     };
-    this.newsfeedservice.postNewsFeed(newStory).subscribe((x) => console.log);
+
+    console.log(newStory);
+    this.subscriptions.add(
+      this.newsfeedservice.postNewsFeed(newStory).subscribe((x) => console.log)
+    );
     // console.log(newStory);
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.unsubscribe();
   }
 }
