@@ -13,6 +13,7 @@ import { signupUserComponent } from '../signup-user/signup-user.component';
 export class LoginFormComponent implements OnInit {
   public loginForm: FormGroup;
   private formSubmitAttempt: boolean = false;
+  private rememberMe: boolean = false;
 
   constructor(public dialog: MatDialog, private authService: AuthService) {
     this.loginForm = new FormGroup({
@@ -37,7 +38,11 @@ export class LoginFormComponent implements OnInit {
     return this.loginForm.get('password');
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    let cachedData = localStorage.getItem('login-data') ? JSON.parse(localStorage.getItem('login-data') || "") : "";
+    this.loginForm.controls["username"].setValue(cachedData.username ? cachedData.username : "");
+    this.loginForm.controls["password"].setValue(cachedData.password ? cachedData.password : "");
+  }
 
   submitForm() {
     if (this.loginForm.valid) {
@@ -52,5 +57,9 @@ export class LoginFormComponent implements OnInit {
       width: '80vw',
       height: '80vh',
     });
+  }
+
+  rememberMeButton() {
+    this.rememberMe = !this.rememberMe;
   }
 }
