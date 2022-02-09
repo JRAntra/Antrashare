@@ -24,18 +24,18 @@ const THUMBUP_ICON =
 })
 export class MyProfileComponent implements OnInit {
   public userData: UserProfile = {
-    id: '123',
-    userEmail: 'Cat@gmail.com',
-    userRole: 'user',
-    name: 'Cat',
-    username: 'TuxedoCat',
-    gender: 'male',
-    age: 20,
-    phone: '3498234'
+    _id: '',
+    userEmail: '',
+    userRole: '',
+    name: '',
+    userName: '',
+    gender: '',
+    age: 0,
+    phone: 0
   }
 
   public userInfo: UserInfo = {
-    username: "",
+    userName: "",
     userEmail: ""
   };
 
@@ -65,9 +65,13 @@ export class MyProfileComponent implements OnInit {
     this.markToUnsubscribe = this._idleTimeService.countIdleTime();
     this._idleTimeService.eventRefreshesIdleTime();
 
+    this._userService.getUserProfile(this._userService.userProfile$.userEmail).subscribe((data) => {
+      console.log(data)
+      //this.userData = data;
+    })
     this.userInfo = {
-      username: this.userData.username,
-      userEmail: this.userData.userEmail,
+      userName: this._userService.userProfile$.userName,
+      userEmail: this._userService.userProfile$.userEmail,
     }
   }
 

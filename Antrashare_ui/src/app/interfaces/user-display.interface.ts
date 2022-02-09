@@ -4,6 +4,6 @@ export interface UserInfoNewsStory {
 }
 
 export interface UserInfo {
-    username: string,
+    userName: string,
     userEmail: string
 }
