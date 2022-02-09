@@ -40,16 +40,17 @@
     </mat-card-content>
 
     <mat-card-actions>
-      <button type="button" mat-button mat-icon-button aria-label="add image" (click)="addImage()">
+      <button type="button" mat-button mat-icon-button aria-label="add image" [disabled]="numImages <= 0" (click)="addImage()">
         <mat-icon>image</mat-icon>
       </button>
 
-      <button type="button" mat-button mat-icon-button aria-label="add video" (click)="addVideo()">
+      <button type="button" mat-button mat-icon-button aria-label="add video" [disabled]="numVideos <= 0" (click)="addVideo()">
         <mat-icon>movie</mat-icon>
       </button>
 
-      <button mat-raised-button color="primary" type="submit" [disabled]="!postForm.valid"
-        (click)="post()">Post</button>
+      <button mat-raised-button color="primary" type="submit" [disabled]="!postForm.valid" (click)="createPost()">
+        Post
+      </button>
     </mat-card-actions>
   </mat-card>
 </form>

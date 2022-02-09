@@ -15,15 +15,14 @@ const PATH: string = [environment.apiEndPoint, 'news'].join('/');
 export class NewsService {
 
   private storyList!: News[];
-  private stories$ = new Subject();
 
   constructor(
     private http: HttpClient,
     private userService: UserService
   ) { }
 
-  getStoryList(): Observable<News[]> {
-    return this.stories$.asObservable() as Observable<News[]>;
+  getStoryList(): News[] {
+    return this.storyList;
   }
 
   /**
@@ -37,7 +36,6 @@ export class NewsService {
         tap(list => {
           this.storyList = list.sort(sortByPublishedTime);
           this.storyList.forEach((story) => story.comment.sort(sortByPublishedTime));
-          this.stories$.next(this.storyList);
         })
       );
   }
@@ -52,7 +50,6 @@ export class NewsService {
       pipe(
         tap(story => {
           this.storyList.unshift(story);
-          this.stories$.next(this.storyList);
         })
       );
   }
@@ -83,7 +80,6 @@ export class NewsService {
       pipe(
         tap(() => {
           this.storyList = this.storyList.filter(story => story._id !== id);
-          this.stories$.next(this.storyList);
         })
       );
   }
@@ -106,8 +102,6 @@ export class NewsService {
           this.storyList.filter((post: News) => {
             return post._id === story._id;
           })[0].comment = story.comment.sort(sortByPublishedTime);
-
-          this.stories$.next(this.storyList);
         })
       );
   }

@@ -1,7 +1,5 @@
-import { Component, OnInit, Input, OnDestroy, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
 import { News, Story, Comment } from 'src/app/models/newsfeed.model';
 import { NewsService } from 'src/app/services/news.service';
 import { UserService } from 'src/app/services/user.service';
@@ -11,14 +9,13 @@ import { UserService } from 'src/app/services/user.service';
   templateUrl: './story.component.html',
   styleUrls: ['../../../../css/story.component.scss'],
 })
-export class StoryComponent implements OnInit, OnDestroy {
-  // declare an unsubscribeAll for all subscriptions 
-  private unsubscribeAll: Subject<any> = new Subject<any>();
+export class StoryComponent implements OnInit {
 
   @Input() news!: News;
+  @Output() deleteEmitter = new EventEmitter();
+
   Content!: Story;
   Comment!: Comment[];
-  // News!: News;
 
   userInput!: string;
   cmtForm = new FormControl('');
@@ -30,12 +27,6 @@ export class StoryComponent implements OnInit, OnDestroy {
     private newsService: NewsService,
     private userService: UserService
   ) { }
-
-  ngOnDestroy(): void {
-    // unsubscrib for all subscriptions
-    this.unsubscribeAll.next(null);
-    this.unsubscribeAll.complete();
-  }
 
   newsData: News[] = [];
 
@@ -58,9 +49,11 @@ export class StoryComponent implements OnInit, OnDestroy {
    */
   deletePost() {
     const id = this.news._id || '';
-    this.newsService.deletePost(id).pipe(
-      takeUntil(this.unsubscribeAll)
-    ).subscribe();
+    this.newsService.deletePost(id).subscribe(
+      () => {
+        this.deleteEmitter.emit();
+      }
+    );
   }
 
   showComment() {
@@ -85,9 +78,7 @@ export class StoryComponent implements OnInit, OnDestroy {
       content: newCommentContent,
     }
 
-    this.newsService.addComment(this.news._id!, newComment).pipe(
-      takeUntil(this.unsubscribeAll)
-    ).subscribe((story => {
+    this.newsService.addComment(this.news._id!, newComment).subscribe((story => {
       this.Comment = story.comment;
     }));
   }

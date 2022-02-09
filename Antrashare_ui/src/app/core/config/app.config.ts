@@ -5,6 +5,10 @@ export const APP_CONFIG = {
     idleTime: 10 * 60, // 10 minutes
     timeoutTime: 10 // 10 seconds
   },
+  defaultStory: {
+    numImages: 1,
+    numVideos: 1
+  },
   defaultTheme: ThemeType.Dark,
 
   localStorage: {
