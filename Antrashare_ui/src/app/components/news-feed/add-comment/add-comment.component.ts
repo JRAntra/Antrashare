@@ -12,7 +12,7 @@ import { NewsFeedComponent } from '../news-feed.component';
 export class AddCommentComponent implements OnInit {
   @Input() serverData!: any;
   @Output() isChanged = new EventEmitter<boolean>();
-  @ViewChild(NewsFeedComponent, {static:true}) child: NewsFeedComponent | null = null;
+  @ViewChild(NewsFeedComponent, { static: true }) child: NewsFeedComponent | null = null;
 
   addCommentForm = this.formBuilder.group({
     textContent: [''],
@@ -25,8 +25,10 @@ export class AddCommentComponent implements OnInit {
   }
 
   addComment() {
+    let retrievedObject: string = localStorage.getItem('user-data')!;
+
     let currentBody = {
-      publisherName: 'Dog',
+      publisherName: JSON.parse(retrievedObject).name,
       publishedTime: new Date(),
       content: {
         text: this.addCommentForm.get('textContent')?.value,
