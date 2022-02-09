@@ -46,7 +46,12 @@ export class newsFeedService {
 
   deletePostNewsFeed(postId: string) {
     let path = baseUrl + newsApiUrl + `deletePost/${postId}`;
-    return this.http.delete(path);
+    return this.http.delete<newsStory>(path).pipe(
+      catchError((err) => {
+        console.log(err);
+        return throwError(() => new Error('Error while deleting a new Story!'));
+      })
+    );
   }
 
   updateLikeNumber() {}
