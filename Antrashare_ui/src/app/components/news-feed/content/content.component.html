@@ -16,6 +16,7 @@
       <div>
         <img
           #image
+          width="320" height="240"
           [src]="userInfoFromServer.content.image"
           (error)="image.hidden = true"
           [hidden]="image.hidden"
