@@ -20,7 +20,8 @@ export class SettingsComponent implements OnInit {
 
   ngOnInit(): void {
     let userData = localStorage.getItem('user-data') ? JSON.parse(localStorage.getItem('user-data') || "") : "";
-    if (!this._userService.checkUserToken(userData)) {
+    let userEmail = localStorage.getItem('user-email') ? JSON.parse(localStorage.getItem('user-email') || "") : "";
+    if (!this._userService.checkUserToken(userData, userEmail)) {
       this.router.navigate(['/loginPage']);
     }
 

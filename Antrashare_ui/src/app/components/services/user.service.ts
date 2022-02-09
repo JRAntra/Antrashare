@@ -17,7 +17,7 @@ export class UserService {
     userRole: ''
   };
   private userInfo$: any;
-  private userToken: string = '';
+  private userToken$: any;
 
   constructor(private _httpClient: HttpClient) { }
 
@@ -30,7 +30,7 @@ export class UserService {
   }
 
   updateUserToken(token: string) {
-    this.userToken = token;
+    this.userToken$ = token;
     this.userInfo$ = jwt_decode(token);
     this.userProfile$ = {
       userName: this.userInfo$.userName, 
@@ -39,8 +39,10 @@ export class UserService {
     }
   }
 
-  checkUserToken(token: string) {
-    return token === this.userToken;
+  checkUserToken(token: string, userEmail: string) {
+    const tokenInfo: any = jwt_decode(token);
+    console.log(tokenInfo.userEmail, userEmail)
+    return tokenInfo.userEmail === userEmail;
   }
 
   getUserProfile(userEmail: string) {
