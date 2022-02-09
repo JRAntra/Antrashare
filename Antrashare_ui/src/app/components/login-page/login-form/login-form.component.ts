@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 
 import { AuthService } from '../../../auth/auth.service';
+import { signupUserComponent } from '../signup-user/signup-user.component';
 
 @Component({
   selector: 'app-login-form',
@@ -36,7 +37,7 @@ export class LoginFormComponent implements OnInit {
     return this.loginForm.get('password');
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   submitForm() {
     if (this.loginForm.valid) {
@@ -46,8 +47,10 @@ export class LoginFormComponent implements OnInit {
     }
     this.formSubmitAttempt = true;
   }
-
-  // ngOnDestroy(): void {
-  //   this.authService.unsubcribe()
-  // }
+  signUp(): void {
+    const dialogRef = this.dialog.open(signupUserComponent, {
+      width: '80vw',
+      height: '80vh',
+    });
+  }
 }

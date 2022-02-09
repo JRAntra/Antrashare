@@ -54,7 +54,7 @@ export class newsFeedService {
         console.log(err);
         return throwError(() => new Error('Error while adding a new comment!'));
       })
-    );;
+    );
   }
 
   deleteComment(storyId: string, commentID: string) { }
