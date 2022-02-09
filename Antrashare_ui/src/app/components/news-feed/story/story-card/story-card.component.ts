@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { newsStory } from 'src/app/models/newsStory.models';
 import { CommentListComponent } from '../comment-list/comment-list.component';
 import { newsFeedService } from 'src/app/services/newsfeed/newsfeed.service';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-story-card',
@@ -16,15 +17,20 @@ export class StoryCardComponent implements OnInit {
 
   constructor(
     private commentListDialog: MatDialog,
-    private newsfeedservice: newsFeedService
+    private newsfeedservice: newsFeedService,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {}
 
   deletePost() {
-    this.subscriptions.add(
-      this.newsfeedservice.deletePostNewsFeed(this.storyItem._id!).subscribe()
-    );
+    if (this.authService.username === this.storyItem.publisherName) {
+      this.subscriptions.add(
+        this.newsfeedservice.deletePostNewsFeed(this.storyItem._id!).subscribe()
+      );
+    } else {
+      console.log('You can only delete your posts.');
+    }
   }
 
   openComment() {
