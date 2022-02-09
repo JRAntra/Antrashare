@@ -25,7 +25,9 @@ export class StoryCardComponent implements OnInit {
     this.subscriptions.add(
       this.newsfeedservice
         .deletePostNewsFeed(this.storyItem._id!)
-        .subscribe(() => {})
+        .subscribe((data) => {
+          console.log(data);
+        })
     );
   }
 
