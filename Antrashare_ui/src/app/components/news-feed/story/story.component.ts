@@ -50,8 +50,6 @@ export class StoryComponent implements OnInit {
       // likedIdList: [{}],
     };
 
-    console.log(newStory);
-    this.newsfeedservice.postNewsFeed(newStory);
-    // console.log(newStory);
+    this.newsfeedservice.postNewsFeed(newStory).subscribe();
   }
 }
