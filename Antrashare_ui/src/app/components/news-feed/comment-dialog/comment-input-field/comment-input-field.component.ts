@@ -68,7 +68,7 @@ export class CommentInputFieldComponent implements OnInit {
         text: text
       }
     };
-    this.newsService.postCommentById(postBody, this.storyId).subscribe(console.log);
+    this.newsService.postCommentById(postBody, this.storyId);
     // this.newsService.postNewsFeedStory(tempNews);
     console.log(postBody);
   }

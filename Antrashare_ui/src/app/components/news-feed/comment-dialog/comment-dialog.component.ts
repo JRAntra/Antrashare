@@ -11,7 +11,7 @@ import { NewsService } from 'src/app/services/news/news.service';
 export class CommentDialogComponent implements OnInit {
   //@Input() commentList!: News["comment"];
   storyId!: any
-  commentList!: any;
+  commentList$: any;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) data: any,
@@ -19,11 +19,12 @@ export class CommentDialogComponent implements OnInit {
     private newsService: NewsService
   ) {
     this.storyId = data.story._id;
-    this.commentList = data.story.comment;
   }
 
   ngOnInit(): void {
     // this.getCommentList();
+    this.commentList$ = this.newsService.getCommentList();
+    this.newsService.getNewsById(this.storyId);
   }
 
   getCommentList() {
