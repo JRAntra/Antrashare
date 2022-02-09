@@ -3,19 +3,26 @@
     <mat-card-header>
       <!-- <mat-card class="storyMedia" *ngIf='hasImage'></mat-card> -->
       <!-- <img *ngIf="storyItem.image" mat-card-avatar src="{{storyItem.image}}" /> -->
-      <mat-card-title>{{storyItem.publisherName}}</mat-card-title>
-      <mat-card-subtitle>{{storyItem.publishedTime | date:'short'}}</mat-card-subtitle>
+      <mat-card-title>{{ storyItem.publisherName }}</mat-card-title>
+      <mat-card-subtitle>{{
+        storyItem.publishedTime | date: "short"
+      }}</mat-card-subtitle>
     </mat-card-header>
     <!-- <img mat-card-image src={{storyItem.content.image}} alt="Image" onerror="this.src=''">
     <iframe mat-card-image src={{storyItem.content.video}} alt="video" onerror="this.src=''"></iframe> -->
     <mat-card-content>
       <p>
-        {{storyItem.content.text}}
+        {{ storyItem.content.text }}
       </p>
     </mat-card-content>
     <mat-card-actions>
       <button mat-button>LIKE</button>
       <button mat-button (click)="openComment()">COMMENT</button>
+    </mat-card-actions>
+    <mat-card-actions>
+      <button aria-hidden="false" aria-label="Post-delete button">
+        <mat-icon (click)="deletePost()">delete</mat-icon>
+      </button>
     </mat-card-actions>
   </mat-card>
 </li>
