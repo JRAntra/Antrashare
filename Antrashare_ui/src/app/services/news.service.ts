@@ -35,10 +35,8 @@ export class NewsService {
     return this.http.get<News[]>(PATH).
       pipe(
         tap(list => {
-          this.storyList = list.sort((a: any, b: any) => a.publishedTime - b.publishedTime);
-          this.storyList.forEach((story) => {
-            story.comment.sort((a: any, b: any) => b.publishedTime - a.publishedTime ? 1 : -1);
-          })
+          this.storyList = list.sort(sortByPublishedTime);
+          this.storyList.forEach((story) => story.comment.sort(sortByPublishedTime));
           this.stories$.next(this.storyList);
         })
       );
@@ -107,7 +105,7 @@ export class NewsService {
         tap((story: any) => {
           this.storyList.filter((post: News) => {
             return post._id === story._id;
-          })[0].comment = story.comment.sort((a: any, b: any) => b.publishedTime - a.publishedTime ? 1 : -1);
+          })[0].comment = story.comment.sort(sortByPublishedTime);
 
           this.stories$.next(this.storyList);
         })
@@ -140,4 +138,8 @@ export class NewsService {
 
     return this.patchComment(id, comment);
   }
+}
+
+export function sortByPublishedTime(a: any, b: any): number {
+  return b.publishedTime.localeCompare(a.publishedTime);
 }
