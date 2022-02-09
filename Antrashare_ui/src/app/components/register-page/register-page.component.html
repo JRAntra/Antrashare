@@ -1,0 +1,14 @@
+<div id="register-page">
+  <div>
+      <form [formGroup] = "registerFormGroup">
+          <input type='text' formControlName='firstNameFormControl' placeholder='First Name'/>
+          <input type='text' formControlName='lastNameFormControl' placeholder='Last Name'/>
+          <input type='text' formControlName="usernameFormControl" placeholder='Username'/>
+          <input type='text' formControlName='emailFormControl' placeholder='Email'/>
+          <input type='number' formControlName="ageFormControl" placeholder='Age'/>
+          <input type='password' formControlName="passwordFormControl" placeholder = 'Password'/>
+          <input type='password' formControlName="passwordConfirmFormControl" placeholder = 'Confirm Your Password'/>
+      </form>
+  </div>
+  <button mat-raised-button color="warn" type="submit" [disabled]="!registerFormGroup.valid" (click)='Register()'>Register</button>
+</div>
