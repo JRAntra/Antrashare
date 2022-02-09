@@ -12,12 +12,13 @@ export class UserService {
   private loginURL = 'http://localhost:4231/api/login';
   private userURL = 'http://localhost:4231/api/users/getProfile/';
   public userProfile$: UserInfoStore = {
-    userName: '', 
+    userName: '',
     userEmail: '',
     userRole: ''
   };
   private userInfo$: any;
   private userToken$: any;
+  public currentUserValue: any;
 
   constructor(private _httpClient: HttpClient) { }
 
@@ -33,7 +34,7 @@ export class UserService {
     this.userToken$ = token;
     this.userInfo$ = jwt_decode(token);
     this.userProfile$ = {
-      userName: this.userInfo$.userName, 
+      userName: this.userInfo$.userName,
       userEmail: this.userInfo$.userEmail,
       userRole: this.userInfo$.userRole
     }

@@ -7,6 +7,7 @@ import { MyProfileComponent } from './components/my-profile/my-profile.component
 import { NewsFeedComponent } from './components/news-feed/news-feed.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { AuthGuardService as AuthGuard } from './components/services/auth-guard.service';
 
 const routes: Routes = [
   // List of objects of possible paths
@@ -16,7 +17,7 @@ const routes: Routes = [
 
   // Other possible paths
   { path: 'loginPage', component: LoginPageComponent },
-  { path: 'newsFeed', component: NewsFeedComponent },
+  { path: 'newsFeed', component: NewsFeedComponent, canActivate: [AuthGuard] },
   { path: 'myProfile', component: MyProfileComponent },
   { path: 'settings', component: SettingsComponent },
 
