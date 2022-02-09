@@ -7,18 +7,20 @@ import { newsFeedService } from 'src/app/services/newsfeed/newsfeed.service';
 @Component({
   selector: 'app-story',
   templateUrl: './story.component.html',
-  styleUrls: ['./story.component.scss']
+  styleUrls: ['./story.component.scss'],
 })
 export class StoryComponent implements OnInit {
-  storyList: newsStory[] = [];
+  public storyList: newsStory[] = [];
   newsFeedForm = this.fb.group({
     text: [''],
     image: [''],
     video: [''],
   });
-  constructor(private newsfeedservice: newsFeedService,
+  constructor(
+    private newsfeedservice: newsFeedService,
     private fb: FormBuilder,
-    private authService: AuthService) { }
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {
     this.newsfeedservice.getNewsFeed().subscribe((data: any) => {
@@ -33,15 +35,20 @@ export class StoryComponent implements OnInit {
       publisherName: this.authService.username,
       publishedTime: '' + new Date(),
       content: {
-        text: this.newsFeedForm.get('text') != null ? this.newsFeedForm.get('text')?.value : '.',
-        image: this.newsFeedForm.get('image') != null ? this.newsFeedForm.get('image')?.value : '.',
-        video: this.newsFeedForm.get('video') != null ? this.newsFeedForm.get('video')?.value : '.',
+        text: this.newsFeedForm.get('text')?.value
+          ? this.newsFeedForm.get('text')?.value
+          : '.',
+        image: this.newsFeedForm.get('image')?.value
+          ? this.newsFeedForm.get('image')?.value
+          : '.',
+        video: this.newsFeedForm.get('video')?.value
+          ? this.newsFeedForm.get('video')?.value
+          : '.',
       },
       // comment: [{}],
       // likedIdList: [{}],
     };
-    this.newsfeedservice.postNewsFeed(newStory).subscribe(x => console.log);
+    this.newsfeedservice.postNewsFeed(newStory).subscribe((x) => console.log);
     // console.log(newStory);
   }
 }
-

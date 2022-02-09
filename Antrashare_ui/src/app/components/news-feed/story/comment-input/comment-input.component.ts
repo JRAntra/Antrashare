@@ -7,7 +7,7 @@ import { newsFeedService } from 'src/app/services/newsfeed/newsfeed.service';
 @Component({
   selector: 'app-comment-input',
   templateUrl: './comment-input.component.html',
-  styleUrls: ['./comment-input.component.scss']
+  styleUrls: ['./comment-input.component.scss'],
 })
 export class CommentInputComponent implements OnInit {
   @Input() storyId: any;
@@ -17,9 +17,11 @@ export class CommentInputComponent implements OnInit {
     image: [''],
     video: [''],
   });
-  constructor(private newsfeedservice: newsFeedService,
+  constructor(
+    private newsfeedservice: newsFeedService,
     private fb: FormBuilder,
-    private authService: AuthService) { }
+    private authService: AuthService
+  ) {}
   ngOnInit(): void {
     console.log(this.storyId);
   }
@@ -30,11 +32,19 @@ export class CommentInputComponent implements OnInit {
       publisherName: this.authService.username,
       publishedTime: '' + new Date(),
       content: {
-        image: this.commentForm.get('image')?.value !== null ? this.commentForm.get('image')?.value : '.',
-        video: this.commentForm.get('video')?.value !== null ? this.commentForm.get('video')?.value : '.',
-        text: this.commentForm.get('text')?.value !== null ? this.commentForm.get('text')?.value : '.',
+        image: this.commentForm.get('image')?.value
+          ? this.commentForm.get('image')?.value
+          : '.',
+        video: this.commentForm.get('video')?.value
+          ? this.commentForm.get('video')?.value
+          : '.',
+        text: this.commentForm.get('text')?.value
+          ? this.commentForm.get('text')?.value
+          : '.',
       },
-    }
-    this.newsfeedservice.addComment(this.storyId, obj).subscribe((message) => console.log(message));
+    };
+    this.newsfeedservice
+      .addComment(this.storyId, obj)
+      .subscribe((message) => console.log(message));
   }
 }
