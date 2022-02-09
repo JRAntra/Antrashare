@@ -8,17 +8,18 @@ import { UserInfoStore } from '../../interfaces/user.interface';
   providedIn: 'root'
 })
 export class UserService {
+  public loginURL = 'http://localhost:4231/api/login';
   private registerURL = 'http://localhost:4231/api/register';
-  private loginURL = 'http://localhost:4231/api/login';
   private userURL = 'http://localhost:4231/api/users/getProfile/';
   public userProfile$: UserInfoStore = {
     userName: '',
     userEmail: '',
-    userRole: ''
+    userRole: '',
+    userJWT: '',
   };
+
   private userInfo$: any;
   private userToken$: any;
-  public currentUserValue: any;
 
   constructor(private _httpClient: HttpClient) { }
 
@@ -36,14 +37,14 @@ export class UserService {
     this.userProfile$ = {
       userName: this.userInfo$.userName,
       userEmail: this.userInfo$.userEmail,
-      userRole: this.userInfo$.userRole
+      userRole: this.userInfo$.userRole,
+      userJWT: this.userInfo$.userJWT,
     }
   }
 
-  checkUserToken(token: string, userEmail: string) {
-    const tokenInfo: any = jwt_decode(token);
-    console.log(tokenInfo.userEmail, userEmail)
-    return tokenInfo.userEmail === userEmail;
+  checkUserToken(userProfile: UserInfoStore) {
+    const tokenInfo: any = jwt_decode(this.userProfile$.userJWT);
+    return tokenInfo.userEmail === this.userProfile$.userEmail;
   }
 
   getUserProfile(userEmail: string) {

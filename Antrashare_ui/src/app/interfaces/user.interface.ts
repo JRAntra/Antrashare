@@ -16,6 +16,7 @@ export interface UserInfo {
     userEmail: string,
     userRole: string, 
     userName: string,
+    userJWT?: string,
     name?: string, 
     gender?: string,
     age?: number,
@@ -38,5 +39,6 @@ export interface Role {
 export interface UserInfoStore {
     userName: string, 
     userEmail: string,
-    userRole: string
+    userRole: string,
+    userJWT: string,
 }

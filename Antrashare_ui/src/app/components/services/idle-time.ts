@@ -18,8 +18,8 @@ export class idleTimeService {
   currentPageForRouting: string | undefined;
   currentPageIsSignInPage = false;
 
-  // Requirement for idle is 10 mins === 600000ms
-  idleTimeLimitInMS = 600000;
+  // Requirement for idle is 10 mins === 6000000ms
+  idleTimeLimitInMS = 6000000;
   testingTimeInMS = 30000; // 3 seconds
   idleTimeLimitInSecond = this.idleTimeLimitInMS / 10000;
   dialogLimitTimeInMS = 10000; // 10 seconds

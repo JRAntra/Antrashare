@@ -36,7 +36,8 @@ export class MyProfileComponent implements OnInit {
 
   public userInfo: UserInfo = {
     userName: "",
-    userEmail: ""
+    userEmail: "",
+    // userJWT: "",
   };
 
   public userProfileList = Object.keys(this.userData).map((item, index) => {
@@ -56,12 +57,6 @@ export class MyProfileComponent implements OnInit {
   markToUnsubscribe: Subscription | undefined;
 
   ngOnInit(): void {
-    let userData = localStorage.getItem('user-data') ? JSON.parse(localStorage.getItem('user-data') || "") : "";
-    let userEmail = localStorage.getItem('user-email') ? JSON.parse(localStorage.getItem('user-email') || "") : "";
-    if (!this._userService.checkUserToken(userData, userEmail)) {
-      this.router.navigate(['/loginPage']);
-    }
-
     // Check idle time
     this.markToUnsubscribe = this._idleTimeService.countIdleTime();
     this._idleTimeService.eventRefreshesIdleTime();
@@ -73,6 +68,7 @@ export class MyProfileComponent implements OnInit {
     this.userInfo = {
       userName: this._userService.userProfile$.userName,
       userEmail: this._userService.userProfile$.userEmail,
+      // userJWT: this._userService.userProfile$.userJWT,
     }
   }
 

@@ -19,7 +19,7 @@ export class LoginFormComponent implements OnInit {
   loginData: any = null;
   rememberedUserIsChecked: boolean = false;
 
-  constructor(private formBuilder: FormBuilder, private router: Router, public dialog: MatDialog, private userService: UserService) {
+  constructor(private formBuilder: FormBuilder, private router: Router, public dialog: MatDialog, private _userService: UserService) {
   }
 
 
@@ -40,11 +40,13 @@ export class LoginFormComponent implements OnInit {
         password: this.loginForm.get('password')?.value
       }
 
-      this.userService.authenUser(currentBody).subscribe((data) => {
+      this._userService.authenUser(currentBody).subscribe((data) => {
         this.loginData = data;
-        localStorage.setItem('user-data', JSON.stringify(this.loginData.bearerToken));
+        localStorage.setItem('user-jwt', JSON.stringify(this.loginData.bearerToken));
         localStorage.setItem('user-email', JSON.stringify(this.loginData.userEmail));
-        this.userService.updateUserToken(this.loginData.bearerToken);
+        localStorage.setItem('user-role', JSON.stringify(this.loginData.userRole));
+        localStorage.setItem('all-user-data', JSON.stringify(this.loginData));
+        this._userService.updateUserToken(this.loginData.bearerToken);
         this.router.navigate(['/newsFeed']);
       })
 
