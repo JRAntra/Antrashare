@@ -2,7 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
-import { SERVER_CONFIG } from '../core/config/server.config';
+import { environment } from 'src/environments/environment';
+import { DEFAULT_HTTP_CONFIG } from '../core/config/http.config';
 import { Comment, News, Story } from '../models/newsfeed.model';
 import { UserService } from './user.service';
 
@@ -11,7 +12,7 @@ import { UserService } from './user.service';
 })
 export class NewsFeedService {
 
-  private path: string = [SERVER_CONFIG.baseUrl, 'news'].join('/');
+  private path: string = [environment.apiEndPoint, 'news'].join('/');
 
   private storyList!: News[];
   private stories$ = new Subject();
@@ -45,7 +46,7 @@ export class NewsFeedService {
    * @param entity
    */
   post(entity: News): Observable<News> {
-    return this.http.post<News>(this.path, entity, SERVER_CONFIG.httpOptions).pipe(tap(story => {
+    return this.http.post<News>(this.path, entity, DEFAULT_HTTP_CONFIG.httpOptions).pipe(tap(story => {
       this.storyList.push(story);
       this.stories$.next(this.storyList);
     }));
@@ -62,7 +63,7 @@ export class NewsFeedService {
     delete entity._id;
     delete entity.__v;
 
-    return this.http.put<News>([this.path, id].join('/'), entity, SERVER_CONFIG.httpOptions);
+    return this.http.put<News>([this.path, id].join('/'), entity, DEFAULT_HTTP_CONFIG.httpOptions);
   }
 
   /**
@@ -71,7 +72,7 @@ export class NewsFeedService {
    * @param entity
    */
   delete(id: string): Observable<News> {
-    return this.http.delete<News>([this.path, 'deletePost', id].join('/'), SERVER_CONFIG.httpOptions).pipe(
+    return this.http.delete<News>([this.path, 'deletePost', id].join('/'), DEFAULT_HTTP_CONFIG.httpOptions).pipe(
       tap(() => {
         this.storyList = this.storyList.filter(story => story._id !== id);
         this.stories$.next(this.storyList);
@@ -86,13 +87,13 @@ export class NewsFeedService {
    * @param comment
    */
   patch(id: string, comment: Comment) {
-    return this.http.patch<Comment>([this.path, 'addComment', id].join('/'), comment, SERVER_CONFIG.httpOptions).pipe(
+    return this.http.patch<Comment>([this.path, 'addComment', id].join('/'), comment, DEFAULT_HTTP_CONFIG.httpOptions).pipe(
       map(((list: any) => {
         return list[0];
       })),
       tap((story: any) => {
         this.storyList.filter((post: News) => {
-          return post._id == story._id;
+          return post._id === story._id;
         }).forEach((post: News) => {
           post.comment = story.comment;
         });

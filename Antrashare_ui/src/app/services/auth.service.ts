@@ -2,13 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 import { APP_CONFIG } from '../core/config/app.config';
-import { SERVER_CONFIG } from '../core/config/server.config';
+import { DEFAULT_HTTP_CONFIG } from '../core/config/http.config';
 import { UserAccount } from '../models/user.model';
 import { UserService } from './user.service';
 
 const KEY: string = `${APP_CONFIG.localStorage.prefix}${APP_CONFIG.localStorage.token}`;
-const PATH: string = [SERVER_CONFIG.baseUrl, 'login'].join('/');
+const PATH: string = [environment.apiEndPoint, 'login'].join('/');
 
 @Injectable({
   providedIn: 'root'
@@ -48,7 +49,7 @@ export class AuthService {
   login(entity: UserAccount) {
     this.reset();
 
-    return this.http.post<UserAccount>(PATH, entity, SERVER_CONFIG.httpOptions).pipe(
+    return this.http.post<UserAccount>(PATH, entity, DEFAULT_HTTP_CONFIG.httpOptions).pipe(
       switchMap((response: any) => {
         this.userService.userAccount = response;
 

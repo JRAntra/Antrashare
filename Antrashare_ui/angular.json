@@ -60,6 +60,17 @@
               ],
               "outputHashing": "all"
             },
+            "test": {
+              "buildOptimizer": false,
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.test.ts"
+                }
+              ],
+              "namedChunks": true,
+              "optimization": false
+            },
             "development": {
               "buildOptimizer": false,
               "optimization": false,
@@ -76,6 +87,9 @@
           "configurations": {
             "production": {
               "browserTarget": "Antrashare_ui:build:production"
+            },
+            "test": {
+              "browserTarget": "Antrashare_ui:build:test"
             },
             "development": {
               "browserTarget": "Antrashare_ui:build:development"

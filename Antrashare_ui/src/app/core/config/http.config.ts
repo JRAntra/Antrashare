@@ -1,8 +1,6 @@
 import { HttpHeaders } from '@angular/common/http';
 
-export const SERVER_CONFIG = {
-  baseUrl: 'http://localhost:4231/api',
-
+export const DEFAULT_HTTP_CONFIG = {
   httpOptions: {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
