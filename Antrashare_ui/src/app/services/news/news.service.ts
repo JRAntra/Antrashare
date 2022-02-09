@@ -48,4 +48,13 @@ export class NewsService {
       });
   }
 
+  deletePost() {
+    this.http
+      .delete(
+        'http://localhost:4231/api/news/deletePost/61fe1c10c5e01ced78d0760a',
+
+      )
+      .subscribe();
+  }
+
 }
