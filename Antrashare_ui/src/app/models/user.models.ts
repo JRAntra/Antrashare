@@ -6,19 +6,18 @@ export interface Role {
 export interface UserProfile {
     id: string,
     userEmail: string,
-    userRole: string, 
-    name?: string, 
+    userRole: string,
+    name?: string,
     username: string,
     gender?: string,
     age?: number,
     phone?: string,
-    avatar?: ImageBitmap,
 }
 
 //user account
 export interface UserAccount {
     id: string,
     userEmail: string,
-    userRole: string, 
+    userRole: string,
     password: string
 }
