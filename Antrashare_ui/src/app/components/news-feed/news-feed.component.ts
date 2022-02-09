@@ -13,6 +13,7 @@ export class NewsFeedComponent implements OnInit {
   constructor(private newsService: NewsService) { }
 
   ngOnInit(): void {
+    this.newsService.getNewsById("6201482fe7fdea38211ac510").subscribe(res => console.log("res:",res))
     this.newsService.getNews().subscribe(storyList => this.storyList = storyList);
   }
 }

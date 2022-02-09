@@ -34,7 +34,6 @@ export class CommentDialogComponent implements OnInit {
     //   this.commentList = story.comment;
     // });
   }
-
   // updateComments() {
   //   this.newsService.getNewsById(this.storyId).subscribe(newStory => {
   //     this.updatedStory = newStory
@@ -44,5 +43,6 @@ export class CommentDialogComponent implements OnInit {
   //     })
   //   });
   // }
+
 
 }

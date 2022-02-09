@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 import { News, StoryComment } from '../../models/newsfeed.models'
 import { Observable, of } from 'rxjs';
