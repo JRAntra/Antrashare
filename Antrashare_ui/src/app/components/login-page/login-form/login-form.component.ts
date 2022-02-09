@@ -61,12 +61,12 @@ export class LoginFormComponent implements OnInit {
   rememberMeButton() {
     this.rememberMe = !this.rememberMe;
   }
-  openRegisterPage():void{
-    this.matDialog.open(signupUserComponent,{
-      width:'650px',
-      height:'650px',
-     
-      })
+  openRegisterPage(): void {
+    this.dialog.open(signupUserComponent, {
+      width: '650px',
+      height: '650px',
+
+    })
 
   }
 }
