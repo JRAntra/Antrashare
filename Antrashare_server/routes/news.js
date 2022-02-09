@@ -4,7 +4,12 @@ const router = express.Router();
 const { News, validate } = require('../models/news');
 
 router.get("/", async (req, res) => {
-  const news = await News.find().sort();
+  const news = await News.find().sort({ publishedTime: 'desc' });
+  res.send(news);
+});
+
+router.get('/:id', async (req, res) => {
+  const news = await News.findOne({_id: req.params.id});
   res.send(news);
 });
 

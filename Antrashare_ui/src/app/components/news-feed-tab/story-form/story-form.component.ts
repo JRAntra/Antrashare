@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subject, takeUntil } from 'rxjs';
 import { News, Story } from 'src/app/models/newsfeed.model';
-import { NewsFeedService } from 'src/app/services/news-feed.service';
+import { NewsService } from 'src/app/services/news.service';
 
 @Component({
   selector: 'app-story-form',
@@ -17,7 +17,7 @@ export class StoryFormComponent implements OnInit, OnDestroy {
 
   constructor(
     private fb: FormBuilder,
-    private newsFeedService: NewsFeedService
+    private newsService: NewsService
   ) {
     this.postForm = this.fb.group({
       text: ['', [Validators.required]],
@@ -26,14 +26,14 @@ export class StoryFormComponent implements OnInit, OnDestroy {
     });
   }
 
+  ngOnInit(): void {
+
+  }
+
   ngOnDestroy(): void {
     // unsubscrib for all subscriptions
     this.unsubscribeAll.next(null);
     this.unsubscribeAll.complete();
-  }
-
-  ngOnInit(): void {
-
   }
 
   get images(): FormArray {
@@ -94,7 +94,7 @@ export class StoryFormComponent implements OnInit, OnDestroy {
     this.postForm.updateValueAndValidity();
 
     // // ------ create this post ------
-    this.newsFeedService.createContent(data).pipe(
+    this.newsService.createPost(data).pipe(
       takeUntil(this.unsubscribeAll)
     ).subscribe(() => {
       this.postForm.enable();
