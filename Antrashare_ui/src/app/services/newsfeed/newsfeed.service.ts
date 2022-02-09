@@ -20,14 +20,16 @@ const httpOptions = {
   providedIn: 'root',
 })
 export class newsFeedService {
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getNewsFeed(): Observable<newsStory[]> {
     let path = baseUrl + newsApiUrl;
     return this.http.get<newsStory[]>(path).pipe(
       catchError((err) => {
         console.log(err);
-        return throwError(() => new Error('Error while running fetching the storyList!'));
+        return throwError(
+          () => new Error('Error while running fetching the storyList!')
+        );
       })
     );
   }
@@ -42,20 +44,27 @@ export class newsFeedService {
     );
   }
 
-  updateLikeNumber() {
+  deletePostNewsFeed(postId: string) {
+    let path = baseUrl + newsApiUrl + `deletePost/${postId}`;
+    return this.http.delete(path);
   }
 
-  editComment(storyId: string, commentID: string) { }
+  updateLikeNumber() {}
 
-  addComment(storyId: string, body: NewsFeedComment): Observable<NewsFeedComment> {
+  editComment(storyId: string, commentID: string) {}
+
+  addComment(
+    storyId: string,
+    body: NewsFeedComment
+  ): Observable<NewsFeedComment> {
     let path = baseUrl + newsApiUrl + `addComment/${storyId}`;
     return this.http.patch<NewsFeedComment>(path, body).pipe(
       catchError((err) => {
         console.log(err);
         return throwError(() => new Error('Error while adding a new comment!'));
       })
-    );;
+    );
   }
 
-  deleteComment(storyId: string, commentID: string) { }
+  deleteComment(storyId: string, commentID: string) {}
 }

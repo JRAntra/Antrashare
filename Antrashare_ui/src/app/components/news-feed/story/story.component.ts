@@ -2,8 +2,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
-import { newsStory } from 'src/app/models/newsStory.models';
 import { newsFeedService } from 'src/app/services/newsfeed/newsfeed.service';
+import { newsStory } from 'src/app/models/newsStory.models';
 
 @Component({
   selector: 'app-story',
@@ -20,8 +20,8 @@ export class StoryComponent implements OnInit, OnDestroy {
     video: [''],
   });
   constructor(
-    private newsfeedservice: newsFeedService,
     private fb: FormBuilder,
+    private newsfeedservice: newsFeedService,
     private authService: AuthService
   ) {}
 
