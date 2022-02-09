@@ -15,15 +15,14 @@ const PATH: string = [environment.apiEndPoint, 'news'].join('/');
 export class NewsService {
 
   private storyList!: News[];
-  private stories$ = new Subject();
 
   constructor(
     private http: HttpClient,
     private userService: UserService
   ) { }
 
-  getStoryList(): Observable<News[]> {
-    return this.stories$.asObservable() as Observable<News[]>;
+  getStoryList(): News[] {
+    return this.storyList;
   }
 
   /**
@@ -35,11 +34,8 @@ export class NewsService {
     return this.http.get<News[]>(PATH).
       pipe(
         tap(list => {
-          this.storyList = list.sort((a: any, b: any) => a.publishedTime - b.publishedTime);
-          this.storyList.forEach((story) => {
-            story.comment.sort((a: any, b: any) => b.publishedTime - a.publishedTime ? 1 : -1);
-          })
-          this.stories$.next(this.storyList);
+          this.storyList = list.sort(sortByPublishedTime);
+          this.storyList.forEach((story) => story.comment.sort(sortByPublishedTime));
         })
       );
   }
@@ -54,7 +50,6 @@ export class NewsService {
       pipe(
         tap(story => {
           this.storyList.unshift(story);
-          this.stories$.next(this.storyList);
         })
       );
   }
@@ -85,7 +80,6 @@ export class NewsService {
       pipe(
         tap(() => {
           this.storyList = this.storyList.filter(story => story._id !== id);
-          this.stories$.next(this.storyList);
         })
       );
   }
@@ -107,9 +101,7 @@ export class NewsService {
         tap((story: any) => {
           this.storyList.filter((post: News) => {
             return post._id === story._id;
-          })[0].comment = story.comment.sort((a: any, b: any) => b.publishedTime - a.publishedTime ? 1 : -1);
-
-          this.stories$.next(this.storyList);
+          })[0].comment = story.comment.sort(sortByPublishedTime);
         })
       );
   }
@@ -140,4 +132,8 @@ export class NewsService {
 
     return this.patchComment(id, comment);
   }
+}
+
+export function sortByPublishedTime(a: any, b: any): number {
+  return b.publishedTime.localeCompare(a.publishedTime);
 }
