@@ -11,8 +11,8 @@ import { NewsService } from 'src/app/services/news/news.service';
 export class CommentDialogComponent implements OnInit {
   //@Input() commentList!: News["comment"];
   storyId!: any
-  commentList!: any
-  // updatedStory: any
+  // commentList!: any
+  commentList$: any;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) data: any,
@@ -21,11 +21,15 @@ export class CommentDialogComponent implements OnInit {
     // private zone:NgZone
   ) {
     this.storyId = data.story._id;
-    this.commentList = data.story.comment ? data.story.comment : [];
+    // this.commentList = data.story.comment ? data.story.comment : [];
   }
 
   ngOnInit(): void {
     // this.getCommentList();
+    
+    // subscribe comment list
+    this.commentList$ = this.newsService.getCommentList();
+    this.newsService.getNewsById(this.storyId);
   }
 
 
@@ -34,7 +38,6 @@ export class CommentDialogComponent implements OnInit {
     //   this.commentList = story.comment;
     // });
   }
-
   // updateComments() {
   //   this.newsService.getNewsById(this.storyId).subscribe(newStory => {
   //     this.updatedStory = newStory
