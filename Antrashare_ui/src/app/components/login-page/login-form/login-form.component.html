@@ -21,16 +21,16 @@
 
       <section>
         <mat-checkbox>Remember Me!</mat-checkbox>
-        <a href="#" class="register-link">Register</a>
+        <a (click)="signUp()" class="register-link">Register</a>
       </section>
 
       <button mat-raised-button color="warn" type="submit" [disabled]="loginForm.invalid">
         Sign In
       </button>
 
-      <button mat-raised-button color="warn" (click)="signUp()">
+      <!-- <button mat-raised-button color="warn" (click)="signUp()">
         Sign Up
-      </button>
+      </button> -->
     </form>
   </mat-card>
 </div>

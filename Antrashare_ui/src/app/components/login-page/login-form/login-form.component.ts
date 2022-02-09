@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-
-import { AuthService } from '../../../auth/auth.service';
 import { signupUserComponent } from '../signup-user/signup-user.component';
+import { AuthService } from '../../../auth/auth.service';
+//import { signupUserComponent } from '../signup-user/signup-user.component';
 
 @Component({
   selector: 'app-login-form',
@@ -13,6 +13,7 @@ import { signupUserComponent } from '../signup-user/signup-user.component';
 export class LoginFormComponent implements OnInit {
   public loginForm: FormGroup;
   private formSubmitAttempt: boolean = false;
+  matDialog: any;
 
   constructor(public dialog: MatDialog, private authService: AuthService) {
     this.loginForm = new FormGroup({
@@ -52,5 +53,12 @@ export class LoginFormComponent implements OnInit {
       width: '80vw',
       height: '80vh',
     });
+  }
+  openRegisterPage():void{
+    this.matDialog.open(signupUserComponent,{
+      width:'650px',
+      height:'650px',
+     
+      })
   }
 }
