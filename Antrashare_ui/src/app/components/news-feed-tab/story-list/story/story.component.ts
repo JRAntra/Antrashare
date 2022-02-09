@@ -3,7 +3,7 @@ import { FormControl } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { News, Story, Comment } from 'src/app/models/newsfeed.model';
-import { NewsFeedService } from 'src/app/services/news-feed.service';
+import { NewsService } from 'src/app/services/news.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -27,7 +27,7 @@ export class StoryComponent implements OnInit, OnDestroy {
   likes: number = 0;
 
   constructor(
-    private newsFeedService: NewsFeedService,
+    private newsService: NewsService,
     private userService: UserService
   ) { }
 
@@ -58,7 +58,7 @@ export class StoryComponent implements OnInit, OnDestroy {
    */
   deletePost() {
     const id = this.news._id || '';
-    this.newsFeedService.delete(id).pipe(
+    this.newsService.deletePost(id).pipe(
       takeUntil(this.unsubscribeAll)
     ).subscribe();
   }
@@ -85,7 +85,7 @@ export class StoryComponent implements OnInit, OnDestroy {
       content: newCommentContent,
     }
 
-    this.newsFeedService.addComment(this.news._id!, newComment).pipe(
+    this.newsService.addComment(this.news._id!, newComment).pipe(
       takeUntil(this.unsubscribeAll)
     ).subscribe((story => {
       this.Comment = story.comment;
