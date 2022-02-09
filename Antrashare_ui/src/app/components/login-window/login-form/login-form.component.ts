@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AbstractControl } from '@angular/forms';
+import { LoginService } from 'src/app/services/login/login.service';
+
 
 @Component({
   selector: 'login-form',
@@ -36,7 +38,10 @@ export class LoginFormComponent implements OnInit {
     })
 
 
-    constructor(private router: Router){}
+    constructor(
+        private router: Router,
+        private loginService: LoginService
+        ){}
 
     ngOnInit(): void {
        
@@ -62,8 +67,16 @@ export class LoginFormComponent implements OnInit {
     }
 
     SignIn() {
+        var username = this.userFormGroup.get('usernameFormControl')?.value;
+        var password = this.userFormGroup.get('passwordFormControl')?.value;
+        /*
+        const postBody:  {
+
+        }*/
         console.log(this.userFormGroup.value);
+        //this.loginService.postLogin()
         this.router.navigate(['/newsFeed/'])
+
 
     }
 
