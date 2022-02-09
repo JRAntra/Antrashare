@@ -10,7 +10,7 @@ import { newsFeedService } from 'src/app/services/newsfeed/newsfeed.service';
   styleUrls: ['./comment-input.component.scss']
 })
 export class CommentInputComponent implements OnInit {
-  @Input() storyId: any;
+  @Input() public storyId: any;
 
   commentForm = this.fb.group({
     text: [''],
