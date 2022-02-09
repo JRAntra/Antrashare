@@ -10,13 +10,13 @@
   width: 100%;
 }
 
-button {
+button:enabled {
   color: $white;
   background-color: $red;
   transition: 0.3s ease-in-out;
 }
 
-button:hover {
+button:enabled:hover {
   cursor: pointer;
   color: $red;
   background-color: $white;

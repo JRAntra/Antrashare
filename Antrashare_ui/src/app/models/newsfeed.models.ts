@@ -8,7 +8,7 @@ export interface News {
         video?: string,
         text?: string,
     },
-    comment?: NewsComment[];
+    comment?: StoryComment[];
     likedIdList?: [
         {
             userId?: string;
@@ -25,20 +25,12 @@ export interface Story {
         video?: string,
         text?: string,
     },
-    comment?: NewsComment[];
+    comment?: StoryComment[];
     likedIdList?: [
         {
             userId?: string;
         }
     ]
-}
-
-
-export interface NewsComment {
-    _id?: string,
-    publisherName: string,
-    publishedTime?: number,
-    comment?: NewsComment[];
 }
 
 export interface StoryComment {

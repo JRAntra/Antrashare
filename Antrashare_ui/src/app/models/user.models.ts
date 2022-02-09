@@ -4,7 +4,7 @@ export interface Role {
 }
 //user profile
 export interface UserProfile {
-    id: string,
+    _id: string,
     userEmail: string,
     userRole: string, 
     name?: string, 
@@ -17,8 +17,8 @@ export interface UserProfile {
 
 //user account
 export interface UserAccount {
-    id: string,
+    _id?: string,
     userEmail: string,
-    userRole: string, 
+    _userRole?: string, 
     password: string
 }
