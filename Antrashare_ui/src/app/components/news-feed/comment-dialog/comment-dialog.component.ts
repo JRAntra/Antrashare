@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, Inject, Input, NgZone, OnInit } from '@angular/core';
+import { Component, Inject, Input, NgZone, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog'
 import { News } from 'src/app/models/newsfeed.models';
 import { NewsService } from 'src/app/services/news/news.service';
@@ -12,17 +12,16 @@ export class CommentDialogComponent implements OnInit {
   //@Input() commentList!: News["comment"];
   storyId!: any
   commentList!: any
-  updatedStory: any
+  // updatedStory: any
 
   constructor(
     @Inject(MAT_DIALOG_DATA) data: any,
     private dialogRef: MatDialogRef<CommentDialogComponent>,
     private newsService: NewsService,
-    private zone:NgZone,
-    private changeDetectorRef: ChangeDetectorRef
+    // private zone:NgZone
   ) {
     this.storyId = data.story._id;
-    this.commentList = data.story.comment;
+    this.commentList = data.story.comment ? data.story.comment : [];
   }
 
   ngOnInit(): void {
@@ -35,20 +34,15 @@ export class CommentDialogComponent implements OnInit {
     //   this.commentList = story.comment;
     // });
   }
+  // updateComments() {
+  //   this.newsService.getNewsById(this.storyId).subscribe(newStory => {
+  //     this.updatedStory = newStory
+  //     this.commentList = this.updatedStory.comment
+  //     this.zone.run(() => {
+  //       console.log("test")
+  //     })
+  //   });
+  // }
 
-  updateComments() {
-    this.newsService.getNewsById(this.storyId).subscribe(newStory => {
-      this.changeDetectorRef.detectChanges()
-      this.updatedStory = newStory
-      this.commentList = this.updatedStory.comment
-      
-      /*
-      this.zone.run(() => {
-        console.log("test")
-      })*/
-      
-    });
-    
-  }
 
 }
