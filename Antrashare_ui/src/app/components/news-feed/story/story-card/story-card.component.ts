@@ -23,11 +23,7 @@ export class StoryCardComponent implements OnInit {
 
   deletePost() {
     this.subscriptions.add(
-      this.newsfeedservice
-        .deletePostNewsFeed(this.storyItem._id!)
-        .subscribe((data) => {
-          console.log(data);
-        })
+      this.newsfeedservice.deletePostNewsFeed(this.storyItem._id!).subscribe()
     );
   }
 
@@ -39,9 +35,5 @@ export class StoryCardComponent implements OnInit {
         storyId: this.storyItem._id,
       },
     });
-  }
-
-  ngOnDestroy() {
-    this.subscriptions.unsubscribe();
   }
 }

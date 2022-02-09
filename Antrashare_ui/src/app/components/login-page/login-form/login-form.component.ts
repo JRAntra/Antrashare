@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-
-import { AuthService } from '../../../auth/auth.service';
 import { signupUserComponent } from '../signup-user/signup-user.component';
+import { AuthService } from '../../../auth/auth.service';
+//import { signupUserComponent } from '../signup-user/signup-user.component';
 
 @Component({
   selector: 'app-login-form',
@@ -58,8 +58,15 @@ export class LoginFormComponent implements OnInit {
       height: '80vh',
     });
   }
-
   rememberMeButton() {
     this.rememberMe = !this.rememberMe;
+  }
+  openRegisterPage():void{
+    this.matDialog.open(signupUserComponent,{
+      width:'650px',
+      height:'650px',
+     
+      })
+
   }
 }
