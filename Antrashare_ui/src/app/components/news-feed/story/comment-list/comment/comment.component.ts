@@ -7,7 +7,7 @@ import { NewsFeedComment } from 'src/app/models/comments.models';
   styleUrls: ['./comment.component.scss']
 })
 export class CommentComponent implements OnInit {
-  @Input() comment!: NewsFeedComment;
+  @Input() public comment!: NewsFeedComment;
   constructor() { }
 
   ngOnInit(): void {
