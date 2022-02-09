@@ -7,9 +7,11 @@ export const environment = {
   idleTimeInSeconds: 600,
 };
 
-export const baseUrl = 'http://localhost:4231/';
+export const baseUrl = 'http://localhost:4231/api/';
 
-export const newsApiUrl = 'api/news/';
+export const newsApiUrl = 'news/';
+
+export const registerApiUrl = 'register/';
 
 /*
  * For easier debugging in development mode, you can import the following file

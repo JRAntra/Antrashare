@@ -23,3 +23,13 @@ export interface UserAccount {
 export interface role {
   canAccess: boolean;
 }
+
+export interface registerUser {
+  name: string;
+  username: string;
+  useremail: string;
+  password: string;
+  gender: string;
+  age: number;
+  phone: string;
+}
