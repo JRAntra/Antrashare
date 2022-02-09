@@ -37,7 +37,7 @@ export class SignupFormComponent implements OnInit {
         age: this.signupForm.get('age')?.value,
         gender: this.signupForm.get('gender')?.value,
         phone: this.signupForm.get('phone')?.value,
-        userRole: 'Admin'
+        userRole: 'user'
       }
 
       this.userService.userRegister(currentBody).subscribe((data) => {

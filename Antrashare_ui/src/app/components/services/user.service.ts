@@ -7,9 +7,11 @@ import jwt_decode from 'jwt-decode';
   providedIn: 'root'
 })
 export class UserService {
-  registerURL = 'http://localhost:4231/api/register';
-  loginURL = 'http://localhost:4231/api/login';
-  userToken$: any;
+  private registerURL = 'http://localhost:4231/api/register';
+  private loginURL = 'http://localhost:4231/api/login';
+  public userInfo$: any;
+  private userToken: string = '';
+
 
   constructor(private _httpClient: HttpClient) { }
 
@@ -22,6 +24,11 @@ export class UserService {
   }
 
   updateUserToken(token: string) {
-    console.log(jwt_decode(token));
+    this.userToken = token;
+    this.userInfo$ = jwt_decode(token);
+  }
+
+  checkUserToken(token: string) {
+    return token === this.userToken;
   }
 }
