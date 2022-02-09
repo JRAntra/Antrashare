@@ -2,7 +2,8 @@
     <mat-card id="commentList">
         <h1 mat-dialog-title>Comments</h1>
         <div mat-dialog-content id="comments">
-            <app-comment-list *ngFor="let comment of commentList" [comment]="comment"></app-comment-list>
+            <!-- <app-comment-list *ngFor="let comment of commentList" [comment]="comment"></app-comment-list> -->
+            <app-comment-list *ngFor="let comment of commentList$ | async" [comment]="comment"></app-comment-list>
             <!-- <mat-card *ngFor="let comment of commentList" id="comment">
                 {{comment.content.text}}
             </mat-card> -->
@@ -10,6 +11,7 @@
     </mat-card>
     <mat-card id="newPost">
         <h1>Post A New Comment</h1>
-        <app-comment-input-field [storyId]="storyId" (commentSubmitted)="updateComments()"></app-comment-input-field>
+        <app-comment-input-field [storyId]="storyId"></app-comment-input-field>
+        <!-- <app-comment-input-field [storyId]="storyId" (commentSubmitted)="updateComments()"></app-comment-input-field> -->
     </mat-card>
 </div>
