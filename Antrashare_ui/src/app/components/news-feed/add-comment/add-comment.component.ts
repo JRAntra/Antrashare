@@ -37,7 +37,7 @@ export class AddCommentComponent implements OnInit {
     this._newsFeedService.addCommentNewsFeed(this.serverData._id, currentBody).subscribe((data) => {
       setTimeout(() => {
         this.isChanged.emit(true);
-      }, 1000);
+      }, 500);
     });
 
   }

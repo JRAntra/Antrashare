@@ -43,6 +43,8 @@ export class LoginFormComponent implements OnInit {
       this.userService.authenUser(currentBody).subscribe((data) => {
         this.loginData = data;
         localStorage.setItem('user-data', JSON.stringify(this.loginData.bearerToken));
+        localStorage.setItem('user-email', JSON.stringify(this.loginData.userEmail));
+        this.userService.updateUserToken(this.loginData.bearerToken);
         this.router.navigate(['/newsFeed']);
       })
 

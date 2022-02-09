@@ -5,6 +5,8 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { idleTimeService } from '../services/idle-time';
 import { UserInfo } from '../../interfaces/user-display.interface';
 import { Subscription } from 'rxjs';
+import { UserService } from '../services/user.service';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 const THUMBUP_ICON =
   `
@@ -22,18 +24,18 @@ const THUMBUP_ICON =
 })
 export class MyProfileComponent implements OnInit {
   public userData: UserProfile = {
-    id: '123',
-    userEmail: 'Cat@gmail.com',
-    userRole: 'user',
-    name: 'Cat',
-    username: 'TuxedoCat',
-    gender: 'male',
-    age: 20,
-    phone: '3498234'
+    _id: '',
+    userEmail: '',
+    userRole: '',
+    name: '',
+    userName: '',
+    gender: '',
+    age: 0,
+    phone: 0
   }
 
   public userInfo: UserInfo = {
-    username: "",
+    userName: "",
     userEmail: ""
   };
 
@@ -45,7 +47,7 @@ export class MyProfileComponent implements OnInit {
 
   key = Object.keys(this.userData);
   value = Object.values(this.userData);
-  constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer, private _idleTimeService: idleTimeService) {
+  constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer, private _idleTimeService: idleTimeService, private _userService: UserService, private router: Router) {
     _idleTimeService.currentPageIsSignInPage = false;
     _idleTimeService.currentPageForRouting = 'myProfile';
     iconRegistry.addSvgIconLiteral('thumbs-up', sanitizer.bypassSecurityTrustHtml(THUMBUP_ICON));
@@ -54,13 +56,23 @@ export class MyProfileComponent implements OnInit {
   markToUnsubscribe: Subscription | undefined;
 
   ngOnInit(): void {
+    let userData = localStorage.getItem('user-data') ? JSON.parse(localStorage.getItem('user-data') || "") : "";
+    let userEmail = localStorage.getItem('user-email') ? JSON.parse(localStorage.getItem('user-email') || "") : "";
+    if (!this._userService.checkUserToken(userData, userEmail)) {
+      this.router.navigate(['/loginPage']);
+    }
+
     // Check idle time
     this.markToUnsubscribe = this._idleTimeService.countIdleTime();
     this._idleTimeService.eventRefreshesIdleTime();
 
+    this._userService.getUserProfile(this._userService.userProfile$.userEmail).subscribe((data) => {
+      console.log(data)
+      //this.userData = data;
+    })
     this.userInfo = {
-      username: this.userData.username,
-      userEmail: this.userData.userEmail,
+      userName: this._userService.userProfile$.userName,
+      userEmail: this._userService.userProfile$.userEmail,
     }
   }
 

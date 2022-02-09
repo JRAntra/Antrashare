@@ -9,7 +9,6 @@ import { idleTimeService } from '../services/idle-time';
 })
 export class TimeoutDialogComponent implements OnInit {
 
-
   ngOnInit(): void {
   }
 
@@ -17,6 +16,7 @@ export class TimeoutDialogComponent implements OnInit {
 
   // After the dialog come out, click “Cancel“ or not reacting in 10 seconds will navigate back to Login Page.
   clickedCancel() {
+    localStorage.removeItem('user-data');
     this.router.navigate(['loginPage']);
   }
 

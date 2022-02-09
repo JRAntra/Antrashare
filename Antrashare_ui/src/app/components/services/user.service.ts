@@ -2,14 +2,22 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Subject } from "rxjs";
 import jwt_decode from 'jwt-decode';
+import { UserInfoStore } from '../../interfaces/user.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  registerURL = 'http://localhost:4231/api/register';
-  loginURL = 'http://localhost:4231/api/login';
-  userToken$: any;
+  private registerURL = 'http://localhost:4231/api/register';
+  private loginURL = 'http://localhost:4231/api/login';
+  private userURL = 'http://localhost:4231/api/users/getProfile/';
+  public userProfile$: UserInfoStore = {
+    userName: '', 
+    userEmail: '',
+    userRole: ''
+  };
+  private userInfo$: any;
+  private userToken$: any;
 
   constructor(private _httpClient: HttpClient) { }
 
@@ -22,6 +30,22 @@ export class UserService {
   }
 
   updateUserToken(token: string) {
-    console.log(jwt_decode(token));
+    this.userToken$ = token;
+    this.userInfo$ = jwt_decode(token);
+    this.userProfile$ = {
+      userName: this.userInfo$.userName, 
+      userEmail: this.userInfo$.userEmail,
+      userRole: this.userInfo$.userRole
+    }
+  }
+
+  checkUserToken(token: string, userEmail: string) {
+    const tokenInfo: any = jwt_decode(token);
+    console.log(tokenInfo.userEmail, userEmail)
+    return tokenInfo.userEmail === userEmail;
+  }
+
+  getUserProfile(userEmail: string) {
+    return this._httpClient.get(this.userURL + userEmail);
   }
 }

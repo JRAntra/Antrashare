@@ -4,6 +4,7 @@ import { NewsStory } from 'src/app/interfaces/newfeed.interface';
 import { NewsFeedService } from '../services/news-feed.service';
 import { Subscription } from 'rxjs';
 import { UserService } from '../services/user.service';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
   selector: 'app-news-feed',
@@ -17,12 +18,18 @@ export class NewsFeedComponent implements OnInit {
   markToUnsubscribe: Subscription | undefined;
   isCommentChanged: boolean = false;
 
-  constructor(private _idleTimeService: idleTimeService, private _newsFeedService: NewsFeedService) {
+  constructor(private _idleTimeService: idleTimeService, private _userService: UserService, private _newsFeedService: NewsFeedService, private router: Router) {
     _idleTimeService.currentPageIsSignInPage = false;
     _idleTimeService.currentPageForRouting = 'newsFeed';
   }
 
   ngOnInit() {
+    let userData = localStorage.getItem('user-data') ? JSON.parse(localStorage.getItem('user-data') || "") : "";
+    let userEmail = localStorage.getItem('user-email') ? JSON.parse(localStorage.getItem('user-email') || "") : "";
+    if (!this._userService.checkUserToken(userData, userEmail)) {
+      this.router.navigate(['/loginPage']);
+    }
+
     // Check idle time
     this.markToUnsubscribe = this._idleTimeService.countIdleTime();
     this._idleTimeService.eventRefreshesIdleTime();
@@ -37,6 +44,8 @@ export class NewsFeedComponent implements OnInit {
           console.log(`Data from server: `, this.storiesFromServer) // debug
         }
       )
+    
+    
   }
 
   ngOnDestroy() {
