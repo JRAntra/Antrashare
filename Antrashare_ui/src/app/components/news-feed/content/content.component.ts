@@ -33,7 +33,7 @@ export class ContentComponent implements OnInit {
   // listSize = 3;
   constructor(private _newsFeedService: NewsFeedService) {
   }
-  isVideo: boolean = false;
+  isVideo: boolean = true;
   ngOnInit(): void {
     this.userInfoFromServer = {
       content: this.currentStory.content!,
@@ -44,6 +44,9 @@ export class ContentComponent implements OnInit {
       _id: this.currentStory._id!,
     }
 
+    let videoBox = document.getElementById("videoLink");
+    console.log()
+    //videoBox.src = this.currentStory.content.video;
     // Save comment list locally for comment section's *ngFor
     this.commentList = this.currentStory.comment!;
   }

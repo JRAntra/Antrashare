@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Subject } from "rxjs";
 import jwt_decode from 'jwt-decode';
 import { UserInfoStore } from '../../interfaces/user.interface';
 
@@ -40,9 +39,12 @@ export class UserService {
   }
 
   checkUserToken(token: string, userEmail: string) {
-    const tokenInfo: any = jwt_decode(token);
-    console.log(tokenInfo.userEmail, userEmail)
-    return tokenInfo.userEmail === userEmail;
+    let tokenInfo: any;
+    if (token) {
+      tokenInfo = jwt_decode(token);
+      return tokenInfo.userEmail === userEmail;
+    } 
+    return false;
   }
 
   getUserProfile(userEmail: string) {

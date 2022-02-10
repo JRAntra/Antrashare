@@ -11,7 +11,7 @@
   <div>
     <table class="profileTable">
       <tr *ngFor="let profileItem of userProfileList; let i = index">
-        <td>{{ key[i] }}</td>
+        <td>{{ key[i].toLowerCase() }}</td>
         <td>{{ profileItem[key[i]] }}</td>
       </tr>
     </table>

@@ -1,8 +1,7 @@
 @use "../../../styles.scss" as theme;
 
 .userDisplay {
-  //   display: flex;
-  //   margin: 20px;
+  width: 100%;
 }
 
 .userDisplayContent {
@@ -12,8 +11,8 @@
 }
 
 .infoBox {
-  //   display: grid;
+  display: grid;
   //   width: 80%;
-  //   grid-template-columns: 1fr 0.5fr;
+  grid-template-columns: 1fr 1fr;
   //   grid-column-gap: 10px;
 }

@@ -3,14 +3,15 @@
 .profilePage {
     width: 100%;
     display: grid;
-    grid-template-columns: 0.5fr 1.5fr;
+    grid-template-columns: 0.75fr 1.5fr;
     grid-column-gap: 50px;
-    margin-left: 10%;
+    margin-left: 5%;
     margin-right: 10%;
 }
 
 .avatarDisplay {
     margin-top: 10%;
+    width: 100%;
 }
 
 .profileTable {
