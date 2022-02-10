@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Observable, Subscriber, Subscription } from 'rxjs';
+import { News } from 'src/app/models/newsfeed.models';
 import { NewsService } from 'src/app/services/news/news.service';
 
 @Component({
@@ -8,12 +10,12 @@ import { NewsService } from 'src/app/services/news/news.service';
   styleUrls: ['./news-feed.component.scss']
 })
 export class NewsFeedComponent implements OnInit {
-  storyList: any;
+  storyList$: any;
 
   constructor(private newsService: NewsService) { }
 
   ngOnInit(): void {
-    // this.newsService.getNewsById("6201482fe7fdea38211ac510").subscribe(res => console.log("res:",res))
-    this.newsService.getNews().subscribe(storyList => this.storyList = storyList);
+    this.newsService.getNews();
+    this.storyList$ = this.newsService.getStoryList() as Observable<News>;
   }
 }
