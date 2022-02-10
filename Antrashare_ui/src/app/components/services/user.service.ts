@@ -42,9 +42,16 @@ export class UserService {
     }
   }
 
-  checkUserToken(userProfile: UserInfoStore) {
-    const tokenInfo: any = jwt_decode(this.userProfile$.userJWT);
-    return tokenInfo.userEmail === this.userProfile$.userEmail;
+
+  checkUserToken(token: string, userEmail: string) {
+    let tokenInfo: any;
+
+    if (token) {
+      tokenInfo = jwt_decode(token);
+      return tokenInfo.userEmail === userEmail;
+    }
+
+    return false;
   }
 
   getUserProfile(userEmail: string) {

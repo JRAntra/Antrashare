@@ -13,20 +13,27 @@ export class AuthGuardService implements CanActivate {
 
   canActivate(_route: ActivatedRouteSnapshot, _state: RouterStateSnapshot) {
     // Check local storage
-    let retrievedObject: string = localStorage.getItem('user-data')!;
+
+    let retrievedUserEmail: string = localStorage.getItem('user-email')!;
+    let retrievedUserRole: string = localStorage.getItem('user-role')!;
+    let retrievedUserName: string = localStorage.getItem('user-name')!;
+    let retrievedUserJWT: string = localStorage.getItem('user-jwt')!;
+
     // console.log('retrievedObject: ', JSON.parse(retrievedObject)); // debug
 
-    this._userService.userProfile$.userName = JSON.parse(retrievedObject).name;
-    this._userService.userProfile$.userJWT = JSON.parse(retrievedObject).bearerToken;
-    this._userService.userProfile$.userEmail = JSON.parse(retrievedObject).userEmail;
-    this._userService.userProfile$.userRole = JSON.parse(retrievedObject).userRole;
+    this._userService.userProfile$.userName = JSON.parse(retrievedUserName);
+    this._userService.userProfile$.userJWT = JSON.parse(retrievedUserJWT);
+    this._userService.userProfile$.userEmail = JSON.parse(retrievedUserEmail);
+    this._userService.userProfile$.userRole = JSON.parse(retrievedUserRole);
 
     // console.log(
     //   `userEmail: `, this._userService.userProfile$.userEmail,
     //   `userRole: `, this._userService.userProfile$.userRole,
     //   `userJWT: `, this._userService.userProfile$.userJWT); // debug
 
-    if (!this._userService.checkUserToken(this._userService.userProfile$)) {
+    if (!this._userService.checkUserToken(
+      this._userService.userProfile$.userJWT,
+      this._userService.userProfile$.userEmail)) {
       console.log(`currentUser not found`); // debug
 
       // not logged in so redirect to login page with the return url

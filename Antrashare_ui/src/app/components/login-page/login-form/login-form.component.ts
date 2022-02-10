@@ -45,7 +45,7 @@ export class LoginFormComponent implements OnInit {
         localStorage.setItem('user-jwt', JSON.stringify(this.loginData.bearerToken));
         localStorage.setItem('user-email', JSON.stringify(this.loginData.userEmail));
         localStorage.setItem('user-role', JSON.stringify(this.loginData.userRole));
-        localStorage.setItem('user-data', JSON.stringify(this.loginData));
+        // localStorage.setItem('user-data', JSON.stringify(this.loginData));
         this._userService.updateUserToken(this.loginData.bearerToken);
         this.router.navigate(['/newsFeed']);
       })
