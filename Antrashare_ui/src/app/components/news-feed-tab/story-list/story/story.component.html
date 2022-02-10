@@ -10,7 +10,7 @@
             <button mat-icon-button mat-card-avatar>
                 <mat-icon>person_outline</mat-icon>
             </button>
-            <mat-card-title><a [routerLink]="['/profile/{{news.publisherName}}']" routerLinkActive="router-link-active" >{{news.publisherName}}</a></mat-card-title>
+            <mat-card-title><a [routerLink]="['/profile/' + news.publisherName]" routerLinkActive="router-link-active" >{{news.publisherName}}</a></mat-card-title>
             <mat-card-subtitle>{{news.publishedTime}}</mat-card-subtitle>
         </mat-card-header>
 
