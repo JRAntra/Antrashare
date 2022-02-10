@@ -16,6 +16,8 @@
   "author": "JR Zhang, Daivd Dong",
   "license": "ISC",
   "dependencies": {
+    "@angular/cdk": "^13.2.2",
+    "@angular/material": "^13.2.2",
     "concurrently": "^7.0.0"
   }
 }

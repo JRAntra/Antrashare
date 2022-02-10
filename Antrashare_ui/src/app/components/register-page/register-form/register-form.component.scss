@@ -1,12 +1,31 @@
 @import '../../../../styles.scss';
 
+#accountInfo {
+  display: grid;
+  grid-template-rows: 20% 20% 20% auto;
+}
 
 input.ng-invalid.ng-dirty {
   border: 1px solid $red;
 }
 
+
 input, select {
-  width: 80%;
+  display: block;
+  margin: 0 auto;
+  width: 85%;
+  margin-top: 2%;
+  background-color: $white2;
+}
+
+mat-form-field {
+  background-color: $white2;
+}
+
+mat-card-actions {
+  width: 100%;
+  margin: 0 auto;
+  justify-content: center;
 }
 
 #registerCard {
@@ -14,13 +33,20 @@ input, select {
   width: 80vw;
   margin: 0 auto;
   display: grid;
-  grid-template-rows: 85% 15%;
+  grid-template-rows: 10% 75% 15%;
+}
+
+#registerForm {
+  display: grid;
+  grid-template-columns: 50% 50%;
 }
 
 #registerSubmit {
+  display: block;
   width: 30%;
   height: 30%;
   margin: 0 auto;
+  margin-top: 5%;
   transition: 0.3s ease-in-out;
 }
 
@@ -33,7 +59,7 @@ input, select {
 
 #userInfo {
   display: grid;
-  grid-template-rows: 25% 25% 25% 25%;
+  grid-template-rows: 20% 20% 20% 20% 20%;
   justify-content: center;
   width: 100%;
 }

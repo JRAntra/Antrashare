@@ -1,18 +1,19 @@
 <div id="register-page">
   <mat-card id="registerCard">
-      <form [formGroup]="registerFormGroup">
+      <mat-card-title>Register</mat-card-title>
+      <form id="registerForm" [formGroup]="registerFormGroup">
         <div id="userInfo">
-          <mat-form-field id='nameField' class="example-full-width" appearance="outline">
-            <div>
-              <mat-label for="firstName">First Name</mat-label>
-              <input id="firstName" type='text' matInput formControlName='firstNameFormControl' matInput placeholder='First Name'/>
-            </div>
-            <div>
-              <label for="lastName">Last Name</label>
+          <div id="nameField">
+            <mat-form-field id='firstNameField' class="example-full-width" appearance="outline">
+              <mat-label>First Name</mat-label>
+              <input matInput id="firstName" type='text' formControlName='firstNameFormControl' placeholder='First Name'/>
+            </mat-form-field>
+            <mat-form-field id='lastNameField' class="example-full-width" appearance="outline">
+              <mat-label>Last Name</mat-label>
               <input matInput id="lastName" type='text' formControlName='lastNameFormControl' placeholder='Last Name'/>
-            </div>
-          </mat-form-field>
-          <mat-form-field id='emailField' class="example-full-width" appearance="outline">
+            </mat-form-field>
+          </div>
+            <mat-form-field id='emailField' class="example-full-width" appearance="outline">
             <label for="email"></label>
             <input matInput id="email" type='text' formControlName='emailFormControl' placeholder='Email'/>
           </mat-form-field>
@@ -21,7 +22,7 @@
             <input matInput id="phone" type='text' formControlName='phoneFormControl' placeholder='Phone'/>
           </mat-form-field>
           <mat-form-field id='genderField' class="example-full-width" appearance="outline">
-            <select matInput formControlName="genderFormControl" matInput placeholder="Gender">
+            <select mat-select formControlName="genderFormControl" matSelect placeholder="Gender">
               <option value="Male">Male</option>
               <option value="Female">Female</option>
               <option value="Other">Other</option>
@@ -43,6 +44,8 @@
           </mat-form-field>
         </div>
       </form>
-      <button mat-raised-button id="registerSubmit" color="warn" type="submit" [disabled]="!registerFormGroup.valid" (click)='Register()'>Register</button>
+      <mat-card-actions>
+        <button mat-raised-button id="registerSubmit" color="warn" type="submit" [disabled]="!registerFormGroup.valid" (click)='Register()'>Register</button>
+      </mat-card-actions>
     </mat-card>
 </div>
