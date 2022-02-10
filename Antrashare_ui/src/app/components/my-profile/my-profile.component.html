@@ -1,12 +1,22 @@
 <div class="profilePage">
   <div class="avatarDisplay">
-    <app-user-display [userInProfile] = "userInfo"></app-user-display>
+    <app-user-display></app-user-display>
+    <!-- 
+      getProfile api doesn't provide amount of posts and likes
     <div class="postLikeContainer">
-      <mat-icon aria-hidden="false" aria-label="Example home icon">question_answer</mat-icon>
-      <p>Amount of Posts</p>
-      <mat-icon svgIcon="thumbs-up" aria-hidden="false" aria-label="thumbs up SVG icon"></mat-icon>
-      <p>Amount of Likes</p>
-    </div>
+
+        <mat-icon aria-hidden="false" aria-label="Example home icon"
+        >question_answer</mat-icon
+      >
+        <p>Amount of Posts</p>
+        <mat-icon
+        svgIcon="thumbs-up"
+        aria-hidden="false"
+        aria-label="thumbs up SVG icon"
+        ></mat-icon>
+        <p>Amount of Likes</p>
+      </div>
+    -->
   </div>
   <div>
     <table class="profileTable">
@@ -17,4 +27,5 @@
     </table>
   </div>
 </div>
+
 <app-navigation-bar></app-navigation-bar>

@@ -1,7 +1,8 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { FormBuilder, Validators } from '@angular/forms';
-import { NewsFeedService } from '../../services/news-feed.service';
+import { NewsFeedService } from '../../../services/news-feed.service';
+import { UserService } from '../../../services/user.service';
 
 @Component({
   selector: 'app-post-new-feed',
@@ -17,7 +18,11 @@ export class PostNewsStoryComponent implements OnInit {
     videoContent: ['', Validators.required]
   });
 
-  constructor(private formBuilder: FormBuilder, private _newsFeedService: NewsFeedService) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private _newsFeedService: NewsFeedService,
+    private _userService: UserService,
+  ) { }
 
   ngOnInit(): void {
   }
@@ -28,7 +33,7 @@ export class PostNewsStoryComponent implements OnInit {
 
   addToNewsStory() {
     let currentBody = {
-      publisherName: 'Cat',
+      publisherName: JSON.parse(localStorage.getItem('user-name')!),
       publishedTime: new Date(),
       content: {
         image: this.postNewsStoryForm.get('imageContent')?.value,

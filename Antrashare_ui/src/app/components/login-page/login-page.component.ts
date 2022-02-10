@@ -1,6 +1,6 @@
 import { Component, OnInit, } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { idleTimeService } from '../services/idle-time';
+import { idleTimeService } from '../../services/idle-time';
 
 @Component({
   selector: 'app-login-page',

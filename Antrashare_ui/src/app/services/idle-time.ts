@@ -5,8 +5,8 @@ import { fromEvent, merge } from 'rxjs';
 import { Observable, timer } from 'rxjs';
 import { Subject } from 'rxjs';
 import { startWith, switchMap } from 'rxjs/operators';
-import { LogoutConfirmationDialogComponent } from '../logout-confirmation-dialog/logout-confirmation-dialog.component';
-import { TimeoutDialogComponent } from '../timeout-dialog/timeout-dialog.component';
+import { LogoutConfirmationDialogComponent } from '../components/logout-confirmation-dialog/logout-confirmation-dialog.component';
+import { TimeoutDialogComponent } from '../components/timeout-dialog/timeout-dialog.component';
 
 @Injectable({
   providedIn: 'root'
@@ -18,8 +18,8 @@ export class idleTimeService {
   currentPageForRouting: string | undefined;
   currentPageIsSignInPage = false;
 
-  // Requirement for idle is 10 mins === 600000ms
-  idleTimeLimitInMS = 600000;
+  // Requirement for idle is 10 mins === 6000000ms
+  idleTimeLimitInMS = 6000000;
   testingTimeInMS = 30000; // 3 seconds
   idleTimeLimitInSecond = this.idleTimeLimitInMS / 10000;
   dialogLimitTimeInMS = 10000; // 10 seconds

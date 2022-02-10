@@ -1,20 +1,22 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import jwt_decode from 'jwt-decode';
-import { UserInfoStore } from '../../interfaces/user.interface';
+import { UserInfoStore } from '../interfaces/user.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
+  public loginURL = 'http://localhost:4231/api/login';
   private registerURL = 'http://localhost:4231/api/register';
-  private loginURL = 'http://localhost:4231/api/login';
   private userURL = 'http://localhost:4231/api/users/getProfile/';
   public userProfile$: UserInfoStore = {
-    userName: '', 
+    userName: '',
     userEmail: '',
-    userRole: ''
+    userRole: '',
+    userJWT: '',
   };
+
   private userInfo$: any;
   private userToken$: any;
 
@@ -32,18 +34,21 @@ export class UserService {
     this.userToken$ = token;
     this.userInfo$ = jwt_decode(token);
     this.userProfile$ = {
-      userName: this.userInfo$.userName, 
+      userName: this.userInfo$.userName,
       userEmail: this.userInfo$.userEmail,
-      userRole: this.userInfo$.userRole
+      userRole: this.userInfo$.userRole,
+      userJWT: this.userInfo$.userJWT,
     }
   }
 
+
   checkUserToken(token: string, userEmail: string) {
     let tokenInfo: any;
+
     if (token) {
       tokenInfo = jwt_decode(token);
       return tokenInfo.userEmail === userEmail;
-    } 
+    }
     return false;
   }
 

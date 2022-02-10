@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { idleTimeService } from '../services/idle-time';
-import { UserService } from '../services/user.service';
+import { idleTimeService } from 'src/app/services/idle-time';
+import { UserService } from '../../services/user.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
@@ -19,12 +19,6 @@ export class SettingsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    let userData = localStorage.getItem('user-data') ? JSON.parse(localStorage.getItem('user-data') || "") : "";
-    let userEmail = localStorage.getItem('user-email') ? JSON.parse(localStorage.getItem('user-email') || "") : "";
-    if (!this._userService.checkUserToken(userData, userEmail)) {
-      this.router.navigate(['/loginPage']);
-    }
-
     // Check idle time
     this.markToUnsubscribe = this._idleTimeService.countIdleTime();
     this._idleTimeService.eventRefreshesIdleTime();

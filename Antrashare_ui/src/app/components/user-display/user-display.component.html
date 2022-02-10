@@ -6,7 +6,12 @@
     </div>
     <div *ngSwitchCase="'newsFeed'" class="infoBox">
       <p>
-        {{ userInNewsStory.publisherName }} at {{ userInNewsStory.publishedTime | date:'short'}}
+        User:
+        <a href="{{ userMyProfileURL }}" (click)="clickedToViewUserProfile()">
+          {{ userInNewsStory.publisherName }}
+        </a>
+        at
+        {{ userInNewsStory.publishedTime | date: "short" }}
       </p>
     </div>
   </div>

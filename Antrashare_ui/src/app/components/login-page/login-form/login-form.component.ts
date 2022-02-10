@@ -4,7 +4,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { SignupFormComponent } from '../signup-form/signup-form.component';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { UserService } from '../../services/user.service';
+import { UserService } from '../../../services/user.service';
 
 @Component({
   selector: 'app-login-form',
@@ -19,7 +19,7 @@ export class LoginFormComponent implements OnInit {
   loginData: any = null;
   rememberedUserIsChecked: boolean = false;
 
-  constructor(private formBuilder: FormBuilder, private router: Router, public dialog: MatDialog, private userService: UserService) {
+  constructor(private formBuilder: FormBuilder, private router: Router, public dialog: MatDialog, private _userService: UserService) {
   }
 
 
@@ -34,17 +34,23 @@ export class LoginFormComponent implements OnInit {
   }
 
   signIn() {
+    console.log(`signIn()`);
+
+
     if (!this.loginForm.controls['password'].errors && !this.loginForm.controls['username'].errors) {
       let currentBody = {
         userEmail: this.loginForm.get('username')?.value,
         password: this.loginForm.get('password')?.value
       }
 
-      this.userService.authenUser(currentBody).subscribe((data) => {
+      this._userService.authenUser(currentBody).subscribe((data) => {
         this.loginData = data;
-        localStorage.setItem('user-data', JSON.stringify(this.loginData.bearerToken));
+        localStorage.setItem('user-name', JSON.stringify(this.loginData.userName));
+        localStorage.setItem('name', JSON.stringify(this.loginData.name));
+        localStorage.setItem('user-jwt', JSON.stringify(this.loginData.bearerToken));
         localStorage.setItem('user-email', JSON.stringify(this.loginData.userEmail));
-        this.userService.updateUserToken(this.loginData.bearerToken);
+        localStorage.setItem('user-role', JSON.stringify(this.loginData.userRole));
+        this._userService.updateUserToken(this.loginData.bearerToken);
         this.router.navigate(['/newsFeed']);
       })
 
