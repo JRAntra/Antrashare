@@ -40,6 +40,11 @@ $ npm install jsonwebtoken --save
 ```
 > *[JWT](https://jwt.io/)*
 
+```bash
+$ npm install bcrypt --save
+```
+> *A library to help you hash passwords.*
+
 ### Restart the application automatically
 Install the nodemon module globally to system path
 
