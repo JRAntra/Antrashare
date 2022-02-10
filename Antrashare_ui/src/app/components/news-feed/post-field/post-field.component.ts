@@ -96,8 +96,6 @@ export class PostFieldComponent implements OnInit {
     }
   }
 
-
-
   onSubmitPost() {
     var image = this.newPostFormGroup.get('imageFormControl')?.value;
     var video = this.newPostFormGroup.get('videoFormControl')?.value;
@@ -120,8 +118,8 @@ export class PostFieldComponent implements OnInit {
         // }],
         // likedList: []
       }
-    this.newsService.postNews(this.newsFeed).subscribe(x => console.log(x));
-    window.location.reload()
+    this.newsService.postNews(this.newsFeed);
+    this.newPostFormGroup.reset();
   }
 
   //Video Form Validator
