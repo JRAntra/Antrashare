@@ -16,7 +16,6 @@ export class CommentDialogComponent implements OnInit {
 
   constructor(
     @Inject(MAT_DIALOG_DATA) data: any,
-    private dialogRef: MatDialogRef<CommentDialogComponent>,
     private newsService: NewsService,
     // private zone:NgZone
   ) {
@@ -29,7 +28,7 @@ export class CommentDialogComponent implements OnInit {
     
     // subscribe comment list
     this.commentList$ = this.newsService.getCommentList();
-    this.newsService.getNewsById(this.storyId);
+    this.newsService.getCommentByNewsId(this.storyId);
   }
 
 
