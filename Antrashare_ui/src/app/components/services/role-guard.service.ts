@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
 import { UserService } from './user.service';
+
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuardService implements CanActivate {
+export class RoleGuardService implements CanActivate {
 
   constructor(
     private _userService: UserService,
@@ -21,22 +22,17 @@ export class AuthGuardService implements CanActivate {
     this._userService.userProfile$.userEmail = JSON.parse(retrievedObject).userEmail;
     this._userService.userProfile$.userRole = JSON.parse(retrievedObject).userRole;
 
-    // console.log(
-    //   `userEmail: `, this._userService.userProfile$.userEmail,
-    //   `userRole: `, this._userService.userProfile$.userRole,
-    //   `userJWT: `, this._userService.userProfile$.userJWT); // debug
-
-    if (!this._userService.checkUserToken(this._userService.userProfile$)) {
-      console.log(`currentUser not found`); // debug
-
-      // not logged in so redirect to login page with the return url
-      this._router.navigate(['/login']);
-      return false;
-
+    // Block from viewing other user's profile on newsFeed
+    if (window.location.href.includes(this._userService.userProfile$.userName)) {
+      console.log(`Matched, grant access!`);
+      return true;
     } else {
+      alert(`You cannot access someone's profile`);
+      console.log(`You cannot access someone's profile`);
+      this._router.navigate(['newsFeed/']);
       return true;
     }
-
-
   }
 }
+
+

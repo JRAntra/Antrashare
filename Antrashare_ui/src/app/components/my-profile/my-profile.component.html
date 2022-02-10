@@ -1,20 +1,36 @@
 <div class="profilePage">
   <div class="avatarDisplay">
-    <app-user-display [userInProfile] = "userInfo"></app-user-display>
-    <div class="postLikeContainer">
-      <mat-icon aria-hidden="false" aria-label="Example home icon">question_answer</mat-icon>
-      <p>Amount of Posts</p>
-      <mat-icon svgIcon="thumbs-up" aria-hidden="false" aria-label="thumbs up SVG icon"></mat-icon>
-      <p>Amount of Likes</p>
+    <!-- <app-user-display [userInProfile]="userInfo"></app-user-display> -->
+
+    <div>
+      <div>{{ userData.userName }}</div>
+      <div>{{ userData.userEmail }}</div>
     </div>
+
+    <!-- 
+      getProfile api doesn't provide amount of posts and likes
+    <div class="postLikeContainer">
+
+        <mat-icon aria-hidden="false" aria-label="Example home icon"
+        >question_answer</mat-icon
+      >
+        <p>Amount of Posts</p>
+        <mat-icon
+        svgIcon="thumbs-up"
+        aria-hidden="false"
+        aria-label="thumbs up SVG icon"
+        ></mat-icon>
+        <p>Amount of Likes</p>
+      </div>
+    -->
   </div>
-  <div>
-    <table class="profileTable">
-      <tr *ngFor="let profileItem of userProfileList; let i = index">
-        <td>{{ key[i] }}</td>
-        <td>{{ profileItem[key[i]] }}</td>
-      </tr>
-    </table>
-  </div>
+
+  <table class="profileTable">
+    <tr *ngFor="let profileItem of userProfileList; let i = index">
+      <td>{{ key[i] }}</td>
+      <td>{{ profileItem[key[i]] }}</td>
+    </tr>
+  </table>
 </div>
+
 <app-navigation-bar></app-navigation-bar>

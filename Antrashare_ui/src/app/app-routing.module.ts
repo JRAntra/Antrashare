@@ -8,30 +8,18 @@ import { NewsFeedComponent } from './components/news-feed/news-feed.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { AuthGuardService as AuthGuard } from './components/services/auth-guard.service';
+import { RoleGuardService as RoleGuard } from './components/services/role-guard.service';
 
 const routes: Routes = [
   // List of objects of possible paths
   // Default path
   { path: '', redirectTo: '/loginPage', pathMatch: "full" }, // original
-  // { path: '', redirectTo: '/newsFeed', pathMatch: "full" }, // for testing timeout dialog
 
   // Other possible paths
-  { path: 'loginPage', component: LoginPageComponent, data: { userName: 'kkk_1' } },
+  { path: 'loginPage', component: LoginPageComponent },
+  { path: 'newsFeed', component: NewsFeedComponent, canActivate: [AuthGuard] },
   {
-    path: 'newsFeed', component: NewsFeedComponent,
-    // canActivate: [AuthGuard]
-  },
-  // {
-  //   path: 'myProfile/',
-  //   component: MyProfileComponent,
-  //   // data: { userName: 'kkk_1' }
-  //   // canActivate: [AuthGuard]
-  // },
-  {
-    path: 'myProfile/:userName',
-    component: MyProfileComponent,
-    // data: { userName: 'kkk_1' }
-    // canActivate: [AuthGuard]
+    path: 'myProfile/:userName', component: MyProfileComponent, canActivate: [RoleGuard]
   },
   { path: 'settings', component: SettingsComponent },
 

@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { NewsStory } from 'src/app/interfaces/newfeed.interface';
-import { UserInfo, UserInfoNewsStory } from '../../interfaces/user-display.interface';
+import { UserProfile } from 'src/app/interfaces/user.interface';
 
 @Component({
   selector: 'app-user-display',
@@ -11,22 +11,23 @@ import { UserInfo, UserInfoNewsStory } from '../../interfaces/user-display.inter
 export class UserDisplayComponent implements OnInit {
   public correctPath: string;
   @Input() userInNewsStory!: NewsStory;
-  @Input() userInProfile!: UserInfo;
+  @Input() userInProfile!: UserProfile;
 
   constructor(private _router: Router) {
     const path = this._router.url;
     this.correctPath = path.slice(1, path.length);
   }
 
-  ngOnInit(): void {
 
+  ngOnInit(): void {
   }
 
   userMyProfileURL: string = "http://localhost:4200/myProfile/";
+  
   clickedToViewUserProfile() {
     console.log(`clicked to view ${this.userInNewsStory.publisherName}`); // debug
     this.userMyProfileURL += this.userInNewsStory.publisherName;
-    console.log(this.userMyProfileURL);
+    // console.log(this.userMyProfileURL); // debug
   }
 
 }

@@ -24,17 +24,19 @@ const THUMBUP_ICON =
 })
 export class MyProfileComponent implements OnInit {
   public userData: UserProfile = {
-    _id: '',
-    userEmail: '',
-    userRole: '',
-    name: '',
-    userName: '',
-    gender: '',
     age: 0,
-    phone: 0
+    gender: '',
+    name: '',
+    password: '',
+    phone: 0,
+    userEmail: '',
+    userName: '',
+    userRole: '',
+    __v: 0,
+    _id: '',
   }
 
-  public userInfo: UserInfo = {
+  public userInfo = {
     userName: "",
     userEmail: "",
     // userJWT: "",
@@ -45,10 +47,16 @@ export class MyProfileComponent implements OnInit {
       [item]: Object.values(this.userData)[index]
     };
   });
-
   key = Object.keys(this.userData);
   value = Object.values(this.userData);
-  constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer, private _idleTimeService: idleTimeService, private _userService: UserService, private router: Router) {
+
+  constructor(
+    iconRegistry: MatIconRegistry,
+    sanitizer: DomSanitizer,
+    private _idleTimeService: idleTimeService,
+    private _userService: UserService,
+    private router: Router,
+    private _activatedRoute: ActivatedRoute,) {
     _idleTimeService.currentPageIsSignInPage = false;
     _idleTimeService.currentPageForRouting = 'myProfile';
     iconRegistry.addSvgIconLiteral('thumbs-up', sanitizer.bypassSecurityTrustHtml(THUMBUP_ICON));
@@ -57,19 +65,33 @@ export class MyProfileComponent implements OnInit {
   markToUnsubscribe: Subscription | undefined;
 
   ngOnInit(): void {
+
+    this._activatedRoute.data.subscribe(
+      (data) => {
+        console.log(data);
+      }
+    );
+
     // Check idle time
     this.markToUnsubscribe = this._idleTimeService.countIdleTime();
     this._idleTimeService.eventRefreshesIdleTime();
 
+    // Get saved current user
+    let retrievedObject: string = localStorage.getItem('user-data')!;
+    this._userService.userProfile$.userEmail = JSON.parse(retrievedObject).userEmail;
+
+    // Send request to getUserProfile api
     this._userService.getUserProfile(this._userService.userProfile$.userEmail).subscribe((data) => {
-      console.log(data)
-      //this.userData = data;
+      // Update current data
+      this.userData = data;
+      this.key = Object.keys(this.userData);
+      this.value = Object.values(this.userData);
+      this.userProfileList = Object.keys(this.userData).map((item, index) => {
+        return {
+          [item]: Object.values(this.userData)[index]
+        };
+      });
     })
-    this.userInfo = {
-      userName: this._userService.userProfile$.userName,
-      userEmail: this._userService.userProfile$.userEmail,
-      // userJWT: this._userService.userProfile$.userJWT,
-    }
   }
 
   ngOnDestroy() {

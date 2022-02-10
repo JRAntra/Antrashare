@@ -1,23 +1,24 @@
 //user profile
 export interface UserProfile {
-    _id: string,
-    userEmail: string,
-    userRole: string, 
-    name?: string, 
-    userName: string,
+    _id?: string,
+    userEmail?: string,
+    userRole?: string,
+    name?: string,
+    userName?: string,
     password?: string,
     gender?: string,
     age?: number,
     phone?: number,
     avatar?: ImageBitmap,
+    __v?: number,
 }
 
 export interface UserInfo {
     userEmail: string,
-    userRole: string, 
+    userRole: string,
     userName: string,
     userJWT?: string,
-    name?: string, 
+    name?: string,
     gender?: string,
     age?: number,
     phone?: number,
@@ -27,7 +28,7 @@ export interface UserInfo {
 export interface UserAccount {
     id: string,
     userEmail: string,
-    userRole: string, 
+    userRole: string,
     password: string
 }
 
@@ -37,7 +38,7 @@ export interface Role {
 }
 
 export interface UserInfoStore {
-    userName: string, 
+    userName: string,
     userEmail: string,
     userRole: string,
     userJWT: string,
