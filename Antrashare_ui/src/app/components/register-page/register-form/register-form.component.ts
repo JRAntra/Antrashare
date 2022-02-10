@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
+import { FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AbstractControl } from '@angular/forms';
 import { RegisterService } from 'src/app/services/register/register.service';
+import { UserProfile } from 'src/app/models/user.models';
 
 @Component({
   selector: 'register-form',
@@ -11,6 +12,7 @@ import { RegisterService } from 'src/app/services/register/register.service';
 })
 
 export class RegisterFormComponent implements OnInit {
+  newAccount!: UserProfile;
 
   public registerFormGroup = new FormGroup({
     firstNameFormControl: new FormControl('', {
@@ -28,7 +30,6 @@ export class RegisterFormComponent implements OnInit {
     usernameFormControl: new FormControl('', {
         validators: [
             Validators.required,
-            Validators.minLength(5)
         ],
         updateOn: 'change'
     }),
@@ -51,7 +52,6 @@ export class RegisterFormComponent implements OnInit {
     passwordConfirmFormControl: new FormControl('',  {
       validators: [
           Validators.required,
-          // this.passwordsMatch
       ],
       updateOn: 'change'
     }),
@@ -74,7 +74,7 @@ export class RegisterFormComponent implements OnInit {
       ],
       updateOn: 'change'
     }),
-  })
+  }, {validators: this.passwordsMatch})
 
 
   constructor(
@@ -103,12 +103,11 @@ export class RegisterFormComponent implements OnInit {
     } else {
         return { oneSpecialChar: false};
     }
-
   }
 
   passwordsMatch(control: AbstractControl): ValidationErrors | null {
-    var password = this.registerFormGroup?.get('passwordFormControl')?.value;
-    var passwordConfirmation = this.registerFormGroup?.get('passwordConfirmFormControl')?.value;
+    var password = control.get('passwordFormControl')?.value;
+    var passwordConfirmation = control.get('passwordConfirmFormControl')?.value;
     if (password === passwordConfirmation) {
       return null;
     } else {
@@ -116,23 +115,25 @@ export class RegisterFormComponent implements OnInit {
     }
   }
 
+
   Register() {
-    var name = this.registerFormGroup?.get('firstNameFormControl')?.value + ' ' + this.registerFormGroup?.get('lastNameFormControl')?.value;
+    var name = this.registerFormGroup.get('firstNameFormControl')?.value + ' ' + this.registerFormGroup.get('lastNameFormControl')?.value;
 
     var newAccount = {
       name: name,
-      userName: this.registerFormGroup?.get('usernameFormControl')?.value,
-      userEmail: this.registerFormGroup?.get('emailFormControl')?.value,
-      password: this.registerFormGroup?.get('passwordFormControl')?.value,
+      userName: this.registerFormGroup.get('usernameFormControl')?.value,
+      userEmail: this.registerFormGroup.get('emailFormControl')?.value,
+      password: this.registerFormGroup.get('passwordFormControl')?.value,
       userRole: 'User',
-      age: this.registerFormGroup?.get('ageFormControl')?.value,
-      gender: this.registerFormGroup?.get('genderFormControl')?.value,
-      phone: this.registerFormGroup?.get('phoneFormControl')?.value,
+      age: this.registerFormGroup.get('ageFormControl')?.value,
+      gender: this.registerFormGroup.get('genderFormControl')?.value,
+      phone: this.registerFormGroup.get('phoneFormControl')?.value,
     }
 
+    console.log(newAccount);
     this.registerService.postNewAccount(newAccount).subscribe(console.log);
     this.router.navigate(['/login/']);
-    this.registerFormGroup.reset();
+    // this.registerFormGroup.reset();
   }
 
   NeedHelp() {

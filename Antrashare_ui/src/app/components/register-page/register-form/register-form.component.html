@@ -2,45 +2,45 @@
   <mat-card id="registerCard">
       <mat-card-title>Register</mat-card-title>
       <form id="registerForm" [formGroup]="registerFormGroup">
-        <div id="userInfo">
-          <mat-form-field id="firstNameField" class="example-full-width" appearance="outline">
-            <label for="firstName"></label>
-            <input matInput id="firstName" type='text' formControlName='firstNameFormControl' placeholder='First Name'/>
-          </mat-form-field>
-          <mat-form-field id='lastNameField' class="example-full-width" appearance="outline">
-            <label for="lastName"></label>
-            <input matInput id="lastName" type='text' formControlName='lastNameFormControl' placeholder='Last Name'/>
-          </mat-form-field>
-            <mat-form-field id='emailField' class="example-full-width" appearance="outline">
-            <label for="email"></label>
-            <input matInput id="email" type='text' formControlName='emailFormControl' placeholder='Email'/>
-          </mat-form-field>
-          <mat-form-field id='phoneField' class="example-full-width" appearance="outline">
-            <label for="phone"></label>
-            <input matInput id="phone" type='text' formControlName='phoneFormControl' placeholder='Phone'/>
-          </mat-form-field>
-          <mat-form-field id='genderField' class="example-full-width" appearance="outline">
-            <select mat-select formControlName="genderFormControl" matSelect placeholder="Gender">
-              <option value="Male">Male</option>
-              <option value="Female">Female</option>
-              <option value="Other">Other</option>
-            </select>
-          </mat-form-field>
-          <mat-form-field id='ageField' class="example-full-width" appearance="outline">
-            <input matInput type='number' formControlName="ageFormControl" placeholder='Age'/>
-          </mat-form-field>
-        </div>
-        <div id="accountInfo">
-          <mat-form-field id='usernameField' class="example-full-width" appearance="outline">
-            <input matInput type='text' formControlName="usernameFormControl" placeholder='Username'/>
-          </mat-form-field>
-          <mat-form-field id='passwordField' class="example-full-width" appearance="outline">
-            <input matInput type='password' formControlName="passwordFormControl" placeholder = 'Password'/>
-          </mat-form-field>
-          <mat-form-field id='passwordConfirmField' class="example-full-width" appearance="outline">
-            <input matInput type='password' formControlName="passwordConfirmFormControl" placeholder = 'Confirm Your Password'/>
-          </mat-form-field>
-        </div>
+        <mat-form-field id="firstNameField" class="example-full-width" appearance="outline">
+          <mat-label>First Name</mat-label>
+          <input matInput id='firstName' formControlName='firstNameFormControl' placeholder='First Name'/>
+        </mat-form-field>
+        <mat-form-field id='lastNameField' class="example-full-width" appearance="outline">
+          <mat-label>Last Name</mat-label>
+          <input matInput id='lastName' type='text' formControlName='lastNameFormControl' placeholder='Last Name'/>
+        </mat-form-field>
+        <mat-form-field id='usernameField' class="example-full-width" appearance="outline">
+          <mat-label>Username</mat-label>
+          <input matInput formControlName="usernameFormControl" placeholder='Username'/>
+        </mat-form-field>
+        <mat-form-field id='emailField' class="example-full-width" appearance="outline">
+          <mat-label>Email</mat-label>
+          <input matInput id="email" formControlName='emailFormControl' placeholder='Email'/>
+        </mat-form-field>
+        <mat-form-field id='phoneField' class="example-full-width" appearance="outline">
+          <mat-label>Phone</mat-label>
+          <input matInput id="phone" type='text' formControlName='phoneFormControl' placeholder='Phone'/>
+        </mat-form-field>
+        <!-- <mat-form-field id='genderField' class="example-full-width" appearance="outline">
+          <select mat-select formControlName="genderFormControl" matSelect placeholder="Gender">
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+          </select>
+        </mat-form-field> -->
+        <mat-form-field id='ageField' class="example-full-width" appearance="outline">
+          <mat-label>Age</mat-label>
+          <input matInput type='number' formControlName="ageFormControl" placeholder='Age'/>
+        </mat-form-field>
+        <mat-form-field id='passwordField' class="example-full-width" appearance="outline">
+          <mat-label>Password</mat-label>
+          <input matInput type='password' formControlName="passwordFormControl" placeholder = 'Password'/>
+        </mat-form-field>
+        <mat-form-field id='passwordConfirmField' class="example-full-width" appearance="outline">
+          <mat-label>Confirm Your Password</mat-label>
+          <input matInput type='password' formControlName="passwordConfirmFormControl" placeholder = 'Confirm Your Password'/>
+        </mat-form-field>
       </form>
       <mat-card-actions>
         <button mat-raised-button id="registerSubmit" color="warn" type="submit" [disabled]="!registerFormGroup.valid" (click)='Register()'>Register</button>

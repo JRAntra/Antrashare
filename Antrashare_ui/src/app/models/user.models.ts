@@ -8,7 +8,7 @@ export interface UserProfile {
     userEmail: string,
     userRole: string,
     name?: string,
-    username: string,
+    userName: string,
     gender?: string,
     age?: number,
     phone?: string,
