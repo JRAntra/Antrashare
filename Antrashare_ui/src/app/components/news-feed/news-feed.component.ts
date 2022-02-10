@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { idleTimeService } from '../services/idle-time';
+import { idleTimeService } from '../../services/idle-time';
 import { NewsStory } from 'src/app/interfaces/newfeed.interface';
-import { NewsFeedService } from '../services/news-feed.service';
+import { NewsFeedService } from '../../services/news-feed.service';
 import { Subscription } from 'rxjs';
-import { UserService } from '../services/user.service';
+import { UserService } from '../../services/user.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({

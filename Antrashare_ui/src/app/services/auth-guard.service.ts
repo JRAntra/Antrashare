@@ -14,9 +14,9 @@ export class AuthGuardService implements CanActivate {
   canActivate(_route: ActivatedRouteSnapshot, _state: RouterStateSnapshot) {
     // Check local storage
 
+    let retrievedUserName: string = localStorage.getItem('user-name')!;
     let retrievedUserEmail: string = localStorage.getItem('user-email')!;
     let retrievedUserRole: string = localStorage.getItem('user-role')!;
-    let retrievedUserName: string = localStorage.getItem('user-name')!;
     let retrievedUserJWT: string = localStorage.getItem('user-jwt')!;
 
     // console.log('retrievedObject: ', JSON.parse(retrievedObject)); // debug

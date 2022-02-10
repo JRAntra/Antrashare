@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angular/core';
 import { NewsStory } from 'src/app/interfaces/newfeed.interface';
-import { NewsFeedService } from '../../services/news-feed.service';
+import { NewsFeedService } from '../../../services/news-feed.service';
 import { NewsFeedComponent } from '../news-feed.component';
 
 @Component({

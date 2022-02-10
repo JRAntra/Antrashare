@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { FormBuilder, Validators } from '@angular/forms';
-import { NewsFeedService } from '../../services/news-feed.service';
+import { NewsFeedService } from '../../../services/news-feed.service';
 import { NewsFeedComponent } from '../news-feed.component';
 
 @Component({

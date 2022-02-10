@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
-import { idleTimeService } from '../services/idle-time';
+import { idleTimeService } from '../../services/idle-time';
 import { UserInfo, UserProfile } from '../../interfaces/user-display.interface';
 import { Subscription } from 'rxjs';
-import { UserService } from '../services/user.service';
+import { UserService } from '../../services/user.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 const THUMBUP_ICON =
@@ -61,35 +61,40 @@ export class MyProfileComponent implements OnInit {
     // Check local storage
     let userData = localStorage.getItem('user-data') ? JSON.parse(localStorage.getItem('user-data') || "") : "";
     let userEmail = localStorage.getItem('user-email') ? JSON.parse(localStorage.getItem('user-email') || "") : "";
-    
+
 
     // Check idle time
     this.markToUnsubscribe = this._idleTimeService.countIdleTime();
     this._idleTimeService.eventRefreshesIdleTime();
 
-    this._userService.getUserProfile(userEmail).subscribe((data) => {
-      this.userDataServer = data;
-      this.userData = {
-        userEmail: this.userDataServer.userEmail,
-        userRole: this.userDataServer.userRole,
-        name: this.userDataServer.name,
-        userName: this.userDataServer.userName,
-        gender: this.userDataServer.gender,
-        age: this.userDataServer.age,
-        phone: this.userDataServer.phone
-      };
-      this.userInfo = {
-        userName: this.userData.userName,
-        userEmail: this.userData.userEmail,
-      };
-      this.userProfileList = Object.keys(this.userData).map((item, index) => {
-        return {
-          [item]: Object.values(this.userData)[index]
+    this._userService.getUserProfile(userEmail)
+      .subscribe((data) => {
+        this.userDataServer = data;
+        this.userData = {
+          userEmail: this.userDataServer.userEmail,
+          userRole: this.userDataServer.userRole,
+          name: this.userDataServer.name,
+          userName: this.userDataServer.userName,
+          gender: this.userDataServer.gender,
+          age: this.userDataServer.age,
+          phone: this.userDataServer.phone
         };
-      });
-      this.key = Object.keys(this.userData);
-      this.value = Object.values(this.userData);
-    })
+        this.userInfo = {
+          userName: this.userData.userName,
+          userEmail: this.userData.userEmail,
+        };
+
+        console.log(`here: ${this.userInfo.userName}`);
+        console.log(`here: ${this.userInfo.userEmail}`);
+
+        this.userProfileList = Object.keys(this.userData).map((item, index) => {
+          return {
+            [item]: Object.values(this.userData)[index]
+          };
+        });
+        this.key = Object.keys(this.userData);
+        this.value = Object.values(this.userData);
+      })
   }
 
   ngOnDestroy() {

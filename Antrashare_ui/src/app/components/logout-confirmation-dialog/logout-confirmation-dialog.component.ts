@@ -1,6 +1,6 @@
 import { Component, OnInit, } from '@angular/core';
 import { Router } from '@angular/router';
-import { idleTimeService } from '../services/idle-time';
+import { idleTimeService } from '../../services/idle-time';
 
 @Component({
   selector: 'app-logout-confirmation-dialog',

@@ -5,8 +5,8 @@ import { fromEvent, merge } from 'rxjs';
 import { Observable, timer } from 'rxjs';
 import { Subject } from 'rxjs';
 import { startWith, switchMap } from 'rxjs/operators';
-import { LogoutConfirmationDialogComponent } from '../logout-confirmation-dialog/logout-confirmation-dialog.component';
-import { TimeoutDialogComponent } from '../timeout-dialog/timeout-dialog.component';
+import { LogoutConfirmationDialogComponent } from '../components/logout-confirmation-dialog/logout-confirmation-dialog.component';
+import { TimeoutDialogComponent } from '../components/timeout-dialog/timeout-dialog.component';
 
 @Injectable({
   providedIn: 'root'

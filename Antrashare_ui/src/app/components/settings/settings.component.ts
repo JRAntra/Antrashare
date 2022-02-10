@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { idleTimeService } from '../services/idle-time';
-import { UserService } from '../services/user.service';
+import { idleTimeService } from 'src/app/services/idle-time';
+import { UserService } from '../../services/user.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({

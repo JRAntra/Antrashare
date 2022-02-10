@@ -1,12 +1,6 @@
 <div class="profilePage">
   <div class="avatarDisplay">
-    <!-- <app-user-display [userInProfile]="userInfo"></app-user-display> -->
-
-    <div>
-      <div>{{ userData.userName }}</div>
-      <div>{{ userData.userEmail }}</div>
-    </div>
-
+    <app-user-display></app-user-display>
     <!-- 
       getProfile api doesn't provide amount of posts and likes
     <div class="postLikeContainer">
@@ -24,15 +18,6 @@
       </div>
     -->
   </div>
-<<<<<<< HEAD
-
-  <table class="profileTable">
-    <tr *ngFor="let profileItem of userProfileList; let i = index">
-      <td>{{ key[i] }}</td>
-      <td>{{ profileItem[key[i]] }}</td>
-    </tr>
-  </table>
-=======
   <div>
     <table class="profileTable">
       <tr *ngFor="let profileItem of userProfileList; let i = index">
@@ -41,7 +26,6 @@
       </tr>
     </table>
   </div>
->>>>>>> origin/Release_Branch/Meowoverflow
 </div>
 
 <app-navigation-bar></app-navigation-bar>

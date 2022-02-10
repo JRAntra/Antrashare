@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import jwt_decode from 'jwt-decode';
-import { UserInfoStore } from '../../interfaces/user.interface';
+import { UserInfoStore } from '../interfaces/user.interface';
 
 @Injectable({
   providedIn: 'root'

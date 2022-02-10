@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { idleTimeService } from '../services/idle-time';
+import { idleTimeService } from '../../services/idle-time';
 import { Router } from '@angular/router';
 
 @Component({
