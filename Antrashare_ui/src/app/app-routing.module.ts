@@ -10,6 +10,7 @@ import { NewsFeedTabComponent } from './components/news-feed-tab/news-feed-tab.c
 import { ProfileTabComponent } from './components/profile-tab/profile-tab.component';
 import { SettingsTabComponent } from './components/settings-tab/settings-tab.component';
 import { AuthGuard } from './core/guards/auth.guard';
+import { ProfileAuthService } from './core/guards/profile-auth.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -33,9 +34,11 @@ const routes: Routes = [
     children: [
       { path: 'newsfeed', component: NewsFeedTabComponent },
       { path: 'profile', component: ProfileTabComponent },
+      { path: 'profile/:userEmail', canActivate: [ProfileAuthService], component: ProfileTabComponent },
       { path: 'settings', component: SettingsTabComponent },
 
-      { path: '**', component: ErrorPageComponent }
+      { path: '404', component: ErrorPageComponent, pathMatch: 'full' },
+      { path: '**', redirectTo: '404' }
     ]
   },
 ];

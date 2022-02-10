@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { APP_CONFIG } from '../core/config/app.config';
 import { UserAccount } from '../models/user.model';
 
 @Injectable({
@@ -12,6 +13,10 @@ export class UserService {
   };
 
   constructor() { }
+
+  isAdmin(): boolean {
+    return this.userAccount.userName?.toLowerCase() === APP_CONFIG.admin.toLowerCase();
+  }
 
   get userAccount(): UserAccount {
     return this.account;

@@ -39,7 +39,7 @@ export class AuthService {
    * @returns Observable<boolean>
    */
   check(): Observable<boolean> {
-    if (this.authenticated || (this.accessToken && this.accessToken === this.userService.userAccount.bearerTokey)) {
+    if (this.authenticated || (this.accessToken.localeCompare(this.userService.userAccount.bearerToken || '') === 0)) {
       return of(true);
     }
 
@@ -55,7 +55,7 @@ export class AuthService {
 
         this.accessToken = response.bearerToken;
         this.authenticated = true;
-        
+
         return of(response);
       })
     );

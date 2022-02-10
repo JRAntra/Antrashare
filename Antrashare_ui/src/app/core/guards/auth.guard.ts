@@ -12,7 +12,6 @@ export class AuthGuard implements CanActivate, CanActivateChild {
     private router: Router,
     private authService: AuthService
   ) { }
-  
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
     return this.check(state.url);
   }
@@ -25,7 +24,7 @@ export class AuthGuard implements CanActivate, CanActivateChild {
     return this.authService.check().pipe(
       switchMap(authenticated => {
         if (!authenticated) {
-          this.router.navigate(['login'], {queryParams: {redirectTo: redirectUrl}})
+          this.router.navigate(['login'], { queryParams: { redirectTo: redirectUrl } })
         }
 
         return of(true);
