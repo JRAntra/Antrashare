@@ -1,5 +1,44 @@
 @import '../../../../styles.scss';
 
+
 input.ng-invalid.ng-dirty {
   border: 1px solid $red;
+}
+
+input, select {
+  width: 80%;
+}
+
+#registerCard {
+  height: 80vh;
+  width: 80vw;
+  margin: 0 auto;
+  display: grid;
+  grid-template-rows: 85% 15%;
+}
+
+#registerSubmit {
+  width: 30%;
+  height: 30%;
+  margin: 0 auto;
+  transition: 0.3s ease-in-out;
+}
+
+#registerSubmit:hover {
+  color: $red;
+  background-color: $white;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+}
+
+#userInfo {
+  display: grid;
+  grid-template-rows: 25% 25% 25% 25%;
+  justify-content: center;
+  width: 100%;
+}
+
+#nameField {
+  display: grid;
+  grid-template-columns: 50% 50%;
 }

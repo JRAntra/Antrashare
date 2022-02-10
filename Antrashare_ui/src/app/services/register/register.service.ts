@@ -13,6 +13,6 @@ export class RegisterService {
   }
 
   postNewAccount(body: any): Observable<any> {
-    return this.http.post<any>(this.baseurl, body)
+    return this.http.post<any>(this.baseurl, body);
   }
 }

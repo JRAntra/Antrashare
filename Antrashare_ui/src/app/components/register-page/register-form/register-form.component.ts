@@ -12,7 +12,7 @@ import { RegisterService } from 'src/app/services/register/register.service';
 
 export class RegisterFormComponent implements OnInit {
 
-    public registerFormGroup = new FormGroup({
+  public registerFormGroup = new FormGroup({
     firstNameFormControl: new FormControl('', {
       validators: [
           Validators.required,
@@ -77,7 +77,11 @@ export class RegisterFormComponent implements OnInit {
   })
 
 
-  constructor(private router: Router, private registerService: RegisterService){}
+  constructor(
+    private router: Router,
+    private registerService: RegisterService
+  )
+  { }
 
   ngOnInit(): void {
 
@@ -120,13 +124,15 @@ export class RegisterFormComponent implements OnInit {
       userName: this.registerFormGroup?.get('usernameFormControl')?.value,
       userEmail: this.registerFormGroup?.get('emailFormControl')?.value,
       password: this.registerFormGroup?.get('passwordFormControl')?.value,
-      userRole: '',
+      userRole: 'User',
       age: this.registerFormGroup?.get('ageFormControl')?.value,
       gender: this.registerFormGroup?.get('genderFormControl')?.value,
       phone: this.registerFormGroup?.get('phoneFormControl')?.value,
     }
-    this.registerService.postNewAccount
+
+    this.registerService.postNewAccount(newAccount).subscribe(console.log);
     this.router.navigate(['/login/']);
+    this.registerFormGroup.reset();
   }
 
   NeedHelp() {

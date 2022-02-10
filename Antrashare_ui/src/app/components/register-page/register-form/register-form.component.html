@@ -1,25 +1,48 @@
 <div id="register-page">
-  <div>
-      <form [formGroup] = "registerFormGroup">
-        <div>
-          <div>
-            <input type='text' formControlName='firstNameFormControl' placeholder='First Name'/>
-            <input type='text' formControlName='lastNameFormControl' placeholder='Last Name'/>
-          </div>
-          <input type='text' formControlName='emailFormControl' placeholder='Email'/>
+  <mat-card id="registerCard">
+      <form [formGroup]="registerFormGroup">
+        <div id="userInfo">
+          <mat-form-field id='nameField' class="example-full-width" appearance="outline">
+            <div>
+              <mat-label for="firstName">First Name</mat-label>
+              <input id="firstName" type='text' matInput formControlName='firstNameFormControl' matInput placeholder='First Name'/>
+            </div>
+            <div>
+              <label for="lastName">Last Name</label>
+              <input matInput id="lastName" type='text' formControlName='lastNameFormControl' placeholder='Last Name'/>
+            </div>
+          </mat-form-field>
+          <mat-form-field id='emailField' class="example-full-width" appearance="outline">
+            <label for="email"></label>
+            <input matInput id="email" type='text' formControlName='emailFormControl' placeholder='Email'/>
+          </mat-form-field>
+          <mat-form-field id='phoneField' class="example-full-width" appearance="outline">
+            <label for="phone"></label>
+            <input matInput id="phone" type='text' formControlName='phoneFormControl' placeholder='Phone'/>
+          </mat-form-field>
+          <mat-form-field id='genderField' class="example-full-width" appearance="outline">
+            <select matInput formControlName="genderFormControl" matInput placeholder="Gender">
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Other">Other</option>
+            </select>
+          </mat-form-field>
+          <mat-form-field id='ageField' class="example-full-width" appearance="outline">
+            <input matInput type='number' formControlName="ageFormControl" placeholder='Age'/>
+          </mat-form-field>
         </div>
-          <input type='text' formControlName="usernameFormControl" placeholder='Username'/>
-          <input type='password' formControlName="passwordFormControl" placeholder = 'Password'/>
-          <input type='password' formControlName="passwordConfirmFormControl" placeholder = 'Confirm Your Password'/>
-          <input type='number' formControlName="ageFormControl" placeholder='Age'/>
-          <select formControlName="genderFormControl">
-            <option value="" disabled selected>Gender</option>
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
-            <option value="Other">Other</option>
-            <option value="Decline To Say">Decline To Say</option>
-          </select>
+        <div id="accountInfo">
+          <mat-form-field id='usernameField' class="example-full-width" appearance="outline">
+            <input matInput type='text' formControlName="usernameFormControl" placeholder='Username'/>
+          </mat-form-field>
+          <mat-form-field id='passwordField' class="example-full-width" appearance="outline">
+            <input matInput type='password' formControlName="passwordFormControl" placeholder = 'Password'/>
+          </mat-form-field>
+          <mat-form-field id='passwordConfirmField' class="example-full-width" appearance="outline">
+            <input matInput type='password' formControlName="passwordConfirmFormControl" placeholder = 'Confirm Your Password'/>
+          </mat-form-field>
+        </div>
       </form>
-  </div>
-  <button mat-raised-button color="warn" type="submit" [disabled]="!registerFormGroup.valid" (click)='Register()'>Register</button>
+      <button mat-raised-button id="registerSubmit" color="warn" type="submit" [disabled]="!registerFormGroup.valid" (click)='Register()'>Register</button>
+    </mat-card>
 </div>
