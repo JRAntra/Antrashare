@@ -15,6 +15,23 @@ export interface News {
         }
     ]
 }
+//same as News, use it in news.service
+export interface Story {
+    _id?: string,
+    publisherName?: string,
+    publishedTime?: number,
+    content?: {
+        image?: string,
+        video?: string,
+        text?: string,
+    },
+    comment?: StoryComment[];
+    likedIdList?: [
+        {
+            userId?: string;
+        }
+    ]
+}
 
 export interface StoryComment {
     _id?: string;

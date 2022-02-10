@@ -32,8 +32,8 @@ import { TimeoutDialogComponent } from 'src/app/components/timeout-dialog/timeou
 import { CommentDialogComponent } from './components/news-feed/comment-dialog/comment-dialog.component';
 import { CommentInputFieldComponent } from './components/news-feed/comment-dialog/comment-input-field/comment-input-field.component';
 import { CommentListComponent } from './components/news-feed/comment-dialog/comment-list/comment-list.component';
-
-
+import { RegisterPageComponent } from './components/register-page/register-page.component';
+import { RegisterFormComponent } from './components/register-page/register-form/register-form.component';
 
 
 @NgModule({
@@ -55,7 +55,9 @@ import { CommentListComponent } from './components/news-feed/comment-dialog/comm
     PostFieldComponent,
     CommentDialogComponent,
     CommentInputFieldComponent,
-    CommentListComponent
+    CommentListComponent,
+    RegisterPageComponent,
+    RegisterFormComponent
   ],
   imports: [
     BrowserModule,

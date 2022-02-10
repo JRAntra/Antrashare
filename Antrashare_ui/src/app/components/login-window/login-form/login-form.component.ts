@@ -3,6 +3,7 @@ import { FormControl, FormGroup, ValidationErrors, Validators } from '@angular/f
 import { ActivatedRoute, Router } from '@angular/router';
 import { AbstractControl } from '@angular/forms';
 import { LoginService } from 'src/app/services/login/login.service';
+import { UserAccount } from 'src/app/models/user.models';
 
 
 @Component({
@@ -40,7 +41,7 @@ export class LoginFormComponent implements OnInit {
 
     constructor(
         private router: Router,
-        private loginService: LoginService
+        private loginService: LoginService        
         ){}
 
     ngOnInit(): void {
@@ -67,14 +68,20 @@ export class LoginFormComponent implements OnInit {
     }
 
     SignIn() {
-        var username = this.userFormGroup.get('usernameFormControl')?.value;
-        var password = this.userFormGroup.get('passwordFormControl')?.value;
-        /*
-        const postBody:  {
-
-        }*/
+        let inputUsername = this.userFormGroup.get('usernameFormControl')?.value;
+        let inputPassword = this.userFormGroup.get('passwordFormControl')?.value;
+        
+        const postBody: UserAccount = {
+            userEmail: inputUsername,
+            password: inputPassword
+        }
         console.log(this.userFormGroup.value);
-        //this.loginService.postLogin()
+        this.loginService.postLogin(postBody).subscribe((res: any ) =>
+            {
+                localStorage.setItem('loginToken', res.bearerToken)
+            }
+            
+        )
         this.router.navigate(['/newsFeed/'])
 
 
