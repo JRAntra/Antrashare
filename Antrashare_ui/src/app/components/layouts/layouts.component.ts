@@ -1,7 +1,7 @@
-import { Component, HostBinding, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, HostBinding, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { Subject } from 'rxjs';
 import { filter, shareReplay, takeUntil } from 'rxjs/operators';
+import { BaseComponent } from 'src/app/base.component';
 import { Layout } from 'src/app/models/layouts.model';
 import { ThemeType } from 'src/app/models/theme.model';
 import { ThemesService } from 'src/app/services/themes.service';
@@ -12,9 +12,7 @@ import { ThemesService } from 'src/app/services/themes.service';
   styleUrls: ['../../css/layouts.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class LayoutsComponent implements OnInit, OnDestroy {
-  // declare an unsubscribeAll for all subscriptions
-  private unsubscribeAll: Subject<any> = new Subject<any>();
+export class LayoutsComponent extends BaseComponent implements OnInit {
 
   @HostBinding('class')
   activeThemeCssClass!: string;
@@ -27,10 +25,10 @@ export class LayoutsComponent implements OnInit, OnDestroy {
     private router: Router,
     private themesService: ThemesService
   ) {
+    super();
     // subscribe router events
     this.router.events.pipe(
       filter((event) => event instanceof NavigationEnd),
-      takeUntil(this.unsubscribeAll),
       shareReplay()
     ).subscribe(() => {
       this.updateLayout();
@@ -38,17 +36,11 @@ export class LayoutsComponent implements OnInit, OnDestroy {
 
     // subscribe theme event
     this.themesService.getActiveTheme().pipe(
-      takeUntil(this.unsubscribeAll),
+      takeUntil(this.unsubscribeAll$),
       shareReplay()
     ).subscribe((value: ThemeType) => {
       this.activeThemeCssClass = value;
     });
-  }
-
-  ngOnDestroy(): void {
-    // unsubscrib for all subscriptions
-    this.unsubscribeAll.next(null);
-    this.unsubscribeAll.complete();
   }
 
   ngOnInit(): void {
