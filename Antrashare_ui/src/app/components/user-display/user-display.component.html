@@ -7,7 +7,7 @@
     <div *ngSwitchCase="'newsFeed'" class="infoBox">
       <p>
         User:
-        <a href="http://localhost:4200/myProfile">
+        <a href="{{ userMyProfileURL }}" (click)="clickedToViewUserProfile()">
           {{ userInNewsStory.publisherName }}
         </a>
         at

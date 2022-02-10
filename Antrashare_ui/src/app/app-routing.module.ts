@@ -16,9 +16,23 @@ const routes: Routes = [
   // { path: '', redirectTo: '/newsFeed', pathMatch: "full" }, // for testing timeout dialog
 
   // Other possible paths
-  { path: 'loginPage', component: LoginPageComponent },
-  { path: 'newsFeed', component: NewsFeedComponent, canActivate: [AuthGuard] },
-  { path: 'myProfile', component: MyProfileComponent },
+  { path: 'loginPage', component: LoginPageComponent, data: { userName: 'kkk_1' } },
+  {
+    path: 'newsFeed', component: NewsFeedComponent,
+    // canActivate: [AuthGuard]
+  },
+  // {
+  //   path: 'myProfile/',
+  //   component: MyProfileComponent,
+  //   // data: { userName: 'kkk_1' }
+  //   // canActivate: [AuthGuard]
+  // },
+  {
+    path: 'myProfile/:userName',
+    component: MyProfileComponent,
+    // data: { userName: 'kkk_1' }
+    // canActivate: [AuthGuard]
+  },
   { path: 'settings', component: SettingsComponent },
 
   // Error path
