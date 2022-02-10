@@ -4,7 +4,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
-  styleUrls: ['../../css/login-page.component.scss']
+  styleUrls: ['../../css/login.component.scss']
 })
 export class LoginPageComponent implements OnInit {
 
