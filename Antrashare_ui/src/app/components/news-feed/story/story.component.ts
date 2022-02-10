@@ -15,9 +15,9 @@ export class StoryComponent implements OnInit {
   dialogRef?: MatDialogRef<CommentDialogComponent>;
 
   //for conditional rendering
-  public isCommentOpened = false;
-  public hasVideo = false;
-  public hasImage = false;
+  isCommentOpened = false;
+  hasVideo = false;
+  hasImage = false;
   //unsanitized links from db
   videoLink: any;
   imageLink: any;
@@ -26,6 +26,8 @@ export class StoryComponent implements OnInit {
   safeImage: any;
   //conditional textbox size based on presence of media
   textboxSize: any;
+  //date to convert to iso format
+  date: any;
 
   constructor(private _sanitizer: DomSanitizer, private dialog: MatDialog) { }
 
@@ -37,6 +39,10 @@ export class StoryComponent implements OnInit {
         image: '',
       }
     }
+    this.date = this.story.publishedTime?.toString();
+    this.date = new Date(this.date);
+    // this.date = this.date.toISOString().split('T')[0];
+
     this.videoLink = this.story.content.video ? this.story.content.video : '';
     this.imageLink = this.story.content.image ? this.story.content.image : '';
 
