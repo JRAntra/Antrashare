@@ -55,8 +55,7 @@ export class MyProfileComponent implements OnInit {
     sanitizer: DomSanitizer,
     private _idleTimeService: idleTimeService,
     private _userService: UserService,
-    private router: Router,
-    private _activatedRoute: ActivatedRoute,) {
+  ) {
     _idleTimeService.currentPageIsSignInPage = false;
     _idleTimeService.currentPageForRouting = 'myProfile';
     iconRegistry.addSvgIconLiteral('thumbs-up', sanitizer.bypassSecurityTrustHtml(THUMBUP_ICON));
@@ -65,12 +64,6 @@ export class MyProfileComponent implements OnInit {
   markToUnsubscribe: Subscription | undefined;
 
   ngOnInit(): void {
-
-    this._activatedRoute.data.subscribe(
-      (data) => {
-        console.log(data);
-      }
-    );
 
     // Check idle time
     this.markToUnsubscribe = this._idleTimeService.countIdleTime();

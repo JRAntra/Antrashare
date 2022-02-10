@@ -21,6 +21,9 @@ export class NavigationBarComponent implements OnInit {
   myProfileIsClicked() {
     // Put the user name in the url on my profile page
     let retrievedObject: string = localStorage.getItem('user-data')!;
+    console.log(JSON.parse(retrievedObject).name);
+
+    // this._router.navigate(['/myProfile/s'])
     this._router.navigate(['/myProfile', JSON.parse(retrievedObject).name])
   }
 

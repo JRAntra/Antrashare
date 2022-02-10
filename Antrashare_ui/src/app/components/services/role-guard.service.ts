@@ -12,6 +12,8 @@ export class RoleGuardService implements CanActivate {
     private _router: Router,
   ) { }
 
+
+  defaultMyProfileURL = "http://localhost:4200/newsFeed";
   canActivate(_route: ActivatedRouteSnapshot, _state: RouterStateSnapshot) {
     // Check local storage
     let retrievedObject: string = localStorage.getItem('user-data')!;
@@ -23,7 +25,12 @@ export class RoleGuardService implements CanActivate {
     this._userService.userProfile$.userRole = JSON.parse(retrievedObject).userRole;
 
     // Block from viewing other user's profile on newsFeed
-    if (window.location.href.includes(this._userService.userProfile$.userName)) {
+    // console.log(window.location.href);
+    // console.log(this._userService.userProfile$.userName); 
+
+    if (window.location.href.includes(this._userService.userProfile$.userName)
+      || window.location.href === this.defaultMyProfileURL
+    ) {
       console.log(`Matched, grant access!`);
       return true;
     } else {
