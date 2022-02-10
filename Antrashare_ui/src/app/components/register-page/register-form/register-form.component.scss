@@ -10,23 +10,13 @@ input.ng-invalid.ng-dirty {
 }
 
 
-input, select {
-  display: block;
-  margin: 0 auto;
-  width: 85%;
-  margin-top: 2%;
-  background-color: $white2;
-}
-
-mat-form-field {
-  background-color: $white2;
-}
-
-mat-card-actions {
-  width: 100%;
-  margin: 0 auto;
-  justify-content: center;
-}
+// input, select {
+//   display: block;
+//   margin: 0 auto;
+//   width: 85%;
+//   margin-top: 2%;
+//   background-color: $white2;
+// }
 
 #registerCard {
   height: 80vh;
@@ -48,6 +38,8 @@ mat-card-actions {
   margin: 0 auto;
   margin-top: 5%;
   transition: 0.3s ease-in-out;
+  background-color: $red;
+  color: $white;
 }
 
 #registerSubmit:hover {
@@ -59,12 +51,7 @@ mat-card-actions {
 
 #userInfo {
   display: grid;
-  grid-template-rows: 20% 20% 20% 20% 20%;
+  grid-template-rows: 16.66% 16.66% 16.66% 16.66% 16.66% auto;
   justify-content: center;
   width: 100%;
-}
-
-#nameField {
-  display: grid;
-  grid-template-columns: 50% 50%;
 }

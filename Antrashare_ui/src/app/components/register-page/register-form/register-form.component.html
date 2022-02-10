@@ -3,16 +3,14 @@
       <mat-card-title>Register</mat-card-title>
       <form id="registerForm" [formGroup]="registerFormGroup">
         <div id="userInfo">
-          <div id="nameField">
-            <mat-form-field id='firstNameField' class="example-full-width" appearance="outline">
-              <mat-label>First Name</mat-label>
-              <input matInput id="firstName" type='text' formControlName='firstNameFormControl' placeholder='First Name'/>
-            </mat-form-field>
-            <mat-form-field id='lastNameField' class="example-full-width" appearance="outline">
-              <mat-label>Last Name</mat-label>
-              <input matInput id="lastName" type='text' formControlName='lastNameFormControl' placeholder='Last Name'/>
-            </mat-form-field>
-          </div>
+          <mat-form-field id="firstNameField" class="example-full-width" appearance="outline">
+            <label for="firstName"></label>
+            <input matInput id="firstName" type='text' formControlName='firstNameFormControl' placeholder='First Name'/>
+          </mat-form-field>
+          <mat-form-field id='lastNameField' class="example-full-width" appearance="outline">
+            <label for="lastName"></label>
+            <input matInput id="lastName" type='text' formControlName='lastNameFormControl' placeholder='Last Name'/>
+          </mat-form-field>
             <mat-form-field id='emailField' class="example-full-width" appearance="outline">
             <label for="email"></label>
             <input matInput id="email" type='text' formControlName='emailFormControl' placeholder='Email'/>

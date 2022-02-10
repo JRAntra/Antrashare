@@ -1,4 +1,4 @@
-<mat-card id='postForm'>
+<div id='postForm'>
     <mat-card-title>Create New Post</mat-card-title>
     <form class="newpost-input" [formGroup]="newPostFormGroup">
         <mat-form-field id='text' class="example-full-width" appearance="outline">
@@ -34,4 +34,4 @@
             <button class="default_button" [disabled]='!newPostFormGroup.valid' id="submit" type='submit' mat-button (click)="onSubmitPost()">POST</button>
         </mat-card-actions>
     </form>
-</mat-card>
+</div>
