@@ -12,33 +12,33 @@ import { NewsFeedComponent } from '../news-feed.component';
 export class AddCommentComponent implements OnInit {
   @Input() serverData!: any;
   @Output() isChanged = new EventEmitter<boolean>();
-  @ViewChild(NewsFeedComponent, {static:true}) child: NewsFeedComponent | null = null;
 
   addCommentForm = this.formBuilder.group({
-    textContent: [''],
+    textContent: ['', Validators.required],
   });
 
   constructor(private formBuilder: FormBuilder, private _newsFeedService: NewsFeedService) { }
 
   ngOnInit(): void {
-    //console.log(this.serverData)
+    console.log(this.addCommentForm.controls['textContent'].errors)
   }
 
   addComment() {
-    let currentBody = {
-      publisherName: 'Dog',
-      publishedTime: new Date(),
-      content: {
-        text: this.addCommentForm.get('textContent')?.value,
-        image: 'image',
-        video: 'video'
-      }
-    };
-    this._newsFeedService.addCommentNewsFeed(this.serverData._id, currentBody).subscribe((data) => {
-      setTimeout(() => {
-        this.isChanged.emit(true);
-      }, 500);
-    });
-
+    if (!this.addCommentForm.controls['textContent'].errors) {
+      let currentBody = {
+        publisherName: 'Dog',
+        publishedTime: new Date(),
+        content: {
+          text: this.addCommentForm.get('textContent')?.value,
+          image: 'image',
+          video: 'video'
+        }
+      };
+      this._newsFeedService.addCommentNewsFeed(this.serverData._id, currentBody).subscribe((data) => {
+        setTimeout(() => {
+          this.isChanged.emit(true);
+        }, 500);
+      });
+    }
   }
 }

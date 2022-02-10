@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Subject } from "rxjs";
 import jwt_decode from 'jwt-decode';
 import { UserInfoStore } from '../../interfaces/user.interface';
 
