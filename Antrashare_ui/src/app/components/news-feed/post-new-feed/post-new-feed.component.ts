@@ -13,9 +13,9 @@ export class PostNewsStoryComponent implements OnInit {
   @Output() refreshPage = new EventEmitter<boolean>();
 
   postNewsStoryForm = this.formBuilder.group({
-    textContent: [''],
-    imageContent: [''],
-    videoContent: ['']
+    textContent: ['', Validators.required],
+    imageContent: ['', Validators.required],
+    videoContent: ['', Validators.required]
   });
 
   constructor(
@@ -45,6 +45,7 @@ export class PostNewsStoryComponent implements OnInit {
     }
     this._newsFeedService.postNewsFeed(currentBody).subscribe((data) => {
       this.refreshPage.emit(true);
+      this.resetForm();
     });
   }
 

@@ -11,15 +11,19 @@ import { AuthGuardService as AuthGuard } from './components/services/auth-guard.
 import { RoleGuardService as RoleGuard } from './components/services/role-guard.service';
 
 const routes: Routes = [
-  // List of objects of possible paths
   // Default path
   { path: '', redirectTo: '/loginPage', pathMatch: "full" }, // original
 
   // Other possible paths
   { path: 'loginPage', component: LoginPageComponent },
-  { path: 'newsFeed', component: NewsFeedComponent, canActivate: [AuthGuard] },
   {
-    path: 'myProfile/:userName', component: MyProfileComponent, canActivate: [RoleGuard]
+    path: 'newsFeed', component: NewsFeedComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    // path: 'myProfile', component: MyProfileComponent,
+    path: 'myProfile/:userName', component: MyProfileComponent,
+    canActivate: [RoleGuard]
   },
   { path: 'settings', component: SettingsComponent },
 

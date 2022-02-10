@@ -24,6 +24,7 @@
       </div>
     -->
   </div>
+<<<<<<< HEAD
 
   <table class="profileTable">
     <tr *ngFor="let profileItem of userProfileList; let i = index">
@@ -31,6 +32,16 @@
       <td>{{ profileItem[key[i]] }}</td>
     </tr>
   </table>
+=======
+  <div>
+    <table class="profileTable">
+      <tr *ngFor="let profileItem of userProfileList; let i = index">
+        <td>{{ key[i].toLowerCase() }}</td>
+        <td>{{ profileItem[key[i]] }}</td>
+      </tr>
+    </table>
+  </div>
+>>>>>>> origin/Release_Branch/Meowoverflow
 </div>
 
 <app-navigation-bar></app-navigation-bar>

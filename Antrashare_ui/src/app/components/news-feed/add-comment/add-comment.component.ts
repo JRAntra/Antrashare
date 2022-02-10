@@ -12,23 +12,22 @@ import { NewsFeedComponent } from '../news-feed.component';
 export class AddCommentComponent implements OnInit {
   @Input() serverData!: any;
   @Output() isChanged = new EventEmitter<boolean>();
-  @ViewChild(NewsFeedComponent, { static: true }) child: NewsFeedComponent | null = null;
 
   addCommentForm = this.formBuilder.group({
-    textContent: [''],
+    textContent: ['', Validators.required],
   });
 
   constructor(private formBuilder: FormBuilder, private _newsFeedService: NewsFeedService) { }
 
   ngOnInit(): void {
-    //console.log(this.serverData)
+    // console.log(this.addCommentForm.controls['textContent'].errors)
   }
 
   addComment() {
-    let retrievedObject: string = localStorage.getItem('user-data')!;
+    let retrievedUserName: string = localStorage.getItem('user-name')!;
 
     let currentBody = {
-      publisherName: JSON.parse(retrievedObject).name,
+      publisherName: JSON.parse(retrievedUserName),
       publishedTime: new Date(),
       content: {
         text: this.addCommentForm.get('textContent')?.value,

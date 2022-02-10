@@ -15,29 +15,25 @@ export class RoleGuardService implements CanActivate {
 
   defaultMyProfileURL = "http://localhost:4200/newsFeed";
   canActivate(_route: ActivatedRouteSnapshot, _state: RouterStateSnapshot) {
-    // Check local storage
-    let retrievedObject: string = localStorage.getItem('user-data')!;
-    // console.log('retrievedObject: ', JSON.parse(retrievedObject)); // debug
-
-    this._userService.userProfile$.userName = JSON.parse(retrievedObject).name;
-    this._userService.userProfile$.userJWT = JSON.parse(retrievedObject).bearerToken;
-    this._userService.userProfile$.userEmail = JSON.parse(retrievedObject).userEmail;
-    this._userService.userProfile$.userRole = JSON.parse(retrievedObject).userRole;
+    // // Check local storage
+    let retrievedName: string = JSON.parse(localStorage.getItem('name')!);
+    let retrievedUserName: string = JSON.parse(localStorage.getItem('user-name')!);
 
     // Block from viewing other user's profile on newsFeed
-    // console.log(window.location.href);
-    // console.log(this._userService.userProfile$.userName); 
-
-    if (window.location.href.includes(this._userService.userProfile$.userName)
-      || window.location.href === this.defaultMyProfileURL
+    if (
+      window.location.href.includes(retrievedName) ||
+      window.location.href.includes(retrievedUserName) ||
+      window.location.href === this.defaultMyProfileURL
     ) {
       console.log(`Matched, grant access!`);
       return true;
     } else {
       alert(`You cannot access someone's profile`);
       console.log(`You cannot access someone's profile`);
+
+      // Reroute to newsfeed page
       this._router.navigate(['newsFeed/']);
-      return true;
+      return false;
     }
   }
 }

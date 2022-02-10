@@ -28,6 +28,12 @@ export class UserDisplayComponent implements OnInit {
     console.log(`clicked to view ${this.userInNewsStory.publisherName}`); // debug
     this.userMyProfileURL += this.userInNewsStory.publisherName;
     // console.log(this.userMyProfileURL); // debug
+
+
+    // let retrievedUserName: string = localStorage.getItem('user-name')!;
+    // console.log(`clicked to view ${JSON.parse(retrievedUserName)}`); // debug
+    // this.userMyProfileURL += JSON.parse(retrievedUserName);
+    // // console.log(this.userMyProfileURL); // debug
   }
 
 }

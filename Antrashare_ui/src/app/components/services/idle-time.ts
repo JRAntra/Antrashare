@@ -89,6 +89,7 @@ export class idleTimeService {
       () => {
         console.log(`Hit idle time limit ${this.dialogLimitTimeInMS / 1000}s`);
         this.dialog.closeAll();
+        localStorage.removeItem('user-data');
         this.router.navigate(['loginPage']);
       }
       // , 3000 // debug use 3s

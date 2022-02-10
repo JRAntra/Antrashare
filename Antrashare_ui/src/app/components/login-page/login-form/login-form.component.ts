@@ -34,6 +34,9 @@ export class LoginFormComponent implements OnInit {
   }
 
   signIn() {
+    console.log(`signIn()`);
+
+
     if (!this.loginForm.controls['password'].errors && !this.loginForm.controls['username'].errors) {
       let currentBody = {
         userEmail: this.loginForm.get('username')?.value,
@@ -42,10 +45,11 @@ export class LoginFormComponent implements OnInit {
 
       this._userService.authenUser(currentBody).subscribe((data) => {
         this.loginData = data;
+        localStorage.setItem('user-name', JSON.stringify(this.loginData.userName));
+        localStorage.setItem('name', JSON.stringify(this.loginData.name));
         localStorage.setItem('user-jwt', JSON.stringify(this.loginData.bearerToken));
         localStorage.setItem('user-email', JSON.stringify(this.loginData.userEmail));
         localStorage.setItem('user-role', JSON.stringify(this.loginData.userRole));
-        // localStorage.setItem('user-data', JSON.stringify(this.loginData));
         this._userService.updateUserToken(this.loginData.bearerToken);
         this.router.navigate(['/newsFeed']);
       })
