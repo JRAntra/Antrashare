@@ -130,10 +130,9 @@ export class RegisterFormComponent implements OnInit {
       phone: this.registerFormGroup.get('phoneFormControl')?.value,
     }
 
-    console.log(newAccount);
     this.registerService.postNewAccount(newAccount).subscribe(console.log);
     this.router.navigate(['/login/']);
-    // this.registerFormGroup.reset();
+    this.registerFormGroup.reset();
   }
 
   NeedHelp() {
