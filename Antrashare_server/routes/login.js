@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const bcrypt = require('bcrypt'); // hush password
+const bcrypt = require('bcryptjs'); // hush password
 const Joi = require("@hapi/joi");
 
 const { UserProfile } = require('../models/userProfile');
@@ -8,7 +8,6 @@ const { UserProfile } = require('../models/userProfile');
 router.post("/", async (req, res) => {
 
 
-    console.log(req);
     const { error } = validate(req.body);
     if (error) {
         return res.status(400).send(error.details[0].message);
