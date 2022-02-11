@@ -11,7 +11,9 @@ export interface UserProfile {
     userName: string,
     gender?: string,
     age?: number,
-    phone?: string,
+    phone?: number,
+    exp?: number,
+    iat?: number
 }
 
 //user account
