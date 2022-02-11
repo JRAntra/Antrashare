@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import {PageEvent} from '@angular/material/paginator';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-comments',
@@ -8,17 +8,46 @@ import {PageEvent} from '@angular/material/paginator';
 })
 export class CommentsComponent implements OnInit {
   @Input() commentData!: any[];
-
+  commentsList: any[] = [];
+  arrayLength: number = 0;
   isVideo: boolean = false;
   pageNumber: PageEvent = {
-    length: this.commentData?.length,
+    length: this.commentsList.length,
     pageIndex: 0,
-    pageSize: 1
+    pageSize: 1,
+    previousPageIndex: 0
   };
+  pageSizeOptions = [1, 2, 3, 5];
 
   constructor() { }
 
   ngOnInit(): void {
+    
   }
 
+  ngAfterViewInit() {
+    this.changePage(this.pageNumber);
+  }
+
+  changePage(event : any) {
+    this.arrayLength = Math.ceil(this.commentData.length / event.pageSize);
+
+    this.pageNumber.pageSize = event.pageSize;
+    this.pageNumber.pageIndex = event.pageIndex;
+    this.pageNumber.previousPageIndex = event.previousPageIndex;
+    this.pageNumber.length = this.commentData.length;
+
+    console.log(this.pageNumber)
+    if (this.commentData.length < this.pageNumber.pageSize) {
+      this.commentsList = this.commentData;
+    }
+
+    this.commentsList = [];
+    let currentArray = [];
+
+    for (let i = 0; i < this.arrayLength; i++) {
+      currentArray = this.commentData.slice(this.pageNumber.pageSize * i, this.pageNumber.pageSize * (i + 1));
+      this.commentsList.push(currentArray);
+    }
+  }
 }

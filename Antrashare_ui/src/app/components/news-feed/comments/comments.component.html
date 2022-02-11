@@ -1,23 +1,28 @@
 <div class="story-comment">
     <div>
-        <p>
-            {{ commentData[pageNumber.pageIndex]?.content?.text }}
-        </p>
-        <img
-            #image
-            [src]="commentData[pageNumber.pageIndex]?.content?.image"
-            (error)="image.hidden = true"
-            [hidden]="image.hidden"
-        />
-        <div *ngIf="isVideo === true">
-            <video width="320" height="240" controls>
-                <source src="{{ commentData[pageNumber.pageIndex]?.content?.video }}" type="video/mp4" />
-            </video>
-        </div>
         <div 
-            class="publishing-details" 
+            *ngFor="let comment of commentsList[pageNumber.pageIndex]; let i = index"
+            class="commentItem"
         >
-            By {{ commentData[pageNumber.pageIndex]?.publisherName }} at {{ commentData[pageNumber.pageIndex]?.publishedTime | date:'short'}}
+            <p>
+                {{ comment?.content?.text }}
+            </p>
+            <img
+                #image
+                [src]="comment?.content?.image"
+                (error)="image.hidden = true"
+                [hidden]="image.hidden"
+            />
+            <!-- <div *ngIf="isVideo === true">
+                <video width="320" height="240" controls>
+                    <source src="{{ commentData[pageNumber.pageIndex]?.content?.video }}" type="video/mp4" />
+                </video>
+            </div> -->
+            <div 
+                class="publishing-details" 
+            >
+                By {{ comment?.publisherName }} at {{ comment?.publishedTime | date:'short'}}
+            </div>
         </div>
         <!-- <div class="commentLikeBox">
             <div>
@@ -34,11 +39,13 @@
             </div>
         </div> -->
         <mat-paginator
-            [length]="commentData.length"
-            [pageSize]="1"
-            (page)="pageNumber = $event"
+            [length]="pageNumber.length"
+            [pageSize]="pageNumber.pageSize"
+            [pageSizeOptions]="pageSizeOptions"
+            (page)="changePage($event)"
             aria-label="Select page"
             class="paginatorBox"
+            showFirstLastButtons="true"
         >
         </mat-paginator>
     </div>
