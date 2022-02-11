@@ -53,7 +53,11 @@ export class CommentInputFieldComponent implements OnInit {
       return { validVideoUrl: false };
     }
   }
-
+  
+  checkCommentValid() {
+    return this.newCommentFormGroup.get('commentTextFormControl')?.valid;
+  }
+  
   onSubmitComment() {
     var image = this.newCommentFormGroup.get('commentImageFormControl')?.value;
     var video = this.newCommentFormGroup.get('commentVideoFormControl')?.value;

@@ -11,6 +11,11 @@
                 Posted on: {{story.publishedTime}}
             </mat-card-subtitle>
         </div>
+        <div >
+            <button mat-raised-button id="delete-button" class="storyBottomBarButton" (click)="onDeletePost()">
+                <mat-icon>delete</mat-icon>
+            </button>
+        </div>
     </mat-card-title>
     <mat-card class="storyContent" [ngStyle]="textboxSize">
         <mat-card class="storyText">
@@ -25,6 +30,7 @@
         <div class="storyBottomBarItem">
             <button mat-raised-button class="storyBottomBarButton" (click)="onTriggerCommentDialog()">
                 <mat-icon>comment</mat-icon>
+                {{this.comLength}}
             </button>
         </div>
         <div class="storyBottomBarItem">
