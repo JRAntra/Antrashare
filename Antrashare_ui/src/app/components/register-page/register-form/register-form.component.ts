@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { Component, Injector, OnInit } from '@angular/core';
+import { AsyncValidatorFn, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AbstractControl } from '@angular/forms';
 import { RegisterService } from 'src/app/services/register/register.service';
 import { UserProfile } from 'src/app/models/user.models';
+
 
 @Component({
   selector: 'register-form',
@@ -30,13 +31,15 @@ export class RegisterFormComponent implements OnInit {
     usernameFormControl: new FormControl('', {
         validators: [
             Validators.required,
+            this.availableUsername
         ],
         updateOn: 'change'
     }),
     emailFormControl: new FormControl('', {
       validators: [
           Validators.required,
-          Validators.email
+          Validators.email,
+          this.availableEmail
       ],
       updateOn: 'change'
     }),
@@ -74,7 +77,11 @@ export class RegisterFormComponent implements OnInit {
       ],
       updateOn: 'change'
     }),
-  }, {validators: this.passwordsMatch})
+  }, {
+    validators: [
+      this.passwordsMatch,
+    ]
+  })
 
 
   constructor(
@@ -83,10 +90,48 @@ export class RegisterFormComponent implements OnInit {
   )
   { }
 
-  ngOnInit(): void {
+  ngOnInit(): void { };
 
+  availableEmail(): ValidatorFn {
+    var availableEmail = false;
+    var checkEmail = (email: string) => {
+      this.registerService.checkEmail(email)
+      .subscribe(result => {
+        if (result === 'Email is OK to use.') {
+          availableEmail = true;
+        } else {
+          availableEmail = false;
+          window.alert('Email already in use');
+        }
+      });
+    }
+    return (control: AbstractControl) => {
+      checkEmail(control.value);
+      return availableEmail ? null : {availableEmail: false};
+    }
+  }
 
-  };
+  availableUsername = (control: AbstractControl): ValidationErrors => {
+    if (true){
+      console.log(this.checkUsername(control.value))
+        return null;
+    } else {
+        return { available: false};
+    }
+  }
+
+  checkUsername(username: string){
+    this.registerService.checkUsername(username)
+    .subscribe(result => {
+      if (result === 'Username is OK to use') {
+        console.log('approved user')
+        return true;
+      } else {
+        window.alert('Username already in use');
+        return false;
+      }
+    });
+  }
 
   oneUppercase(control: AbstractControl): ValidationErrors | null  {
     if (control.value !== control.value.toLowerCase()){
@@ -130,9 +175,9 @@ export class RegisterFormComponent implements OnInit {
       phone: this.registerFormGroup.get('phoneFormControl')?.value,
     }
 
-    this.registerService.postNewAccount(newAccount).subscribe(console.log);
-    this.router.navigate(['/login/']);
-    this.registerFormGroup.reset();
+    // this.registerService.postNewAccount(newAccount).subscribe(console.log);
+    // this.router.navigate(['/login/']);
+    // this.registerFormGroup.reset();
   }
 
   NeedHelp() {

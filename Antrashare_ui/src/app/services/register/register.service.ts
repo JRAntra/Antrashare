@@ -12,6 +12,14 @@ export class RegisterService {
 
   }
 
+  checkEmail(userEmail: string) {
+    return this.http.get(this.baseurl + "/checkExistByEmail/:" + userEmail);
+  }
+
+  checkUsername(username: string) {
+    return this.http.get(this.baseurl + "/checkExistByUsername/:" + username);
+  }
+
   postNewAccount(body: any): Observable<any> {
     return this.http.post<any>(this.baseurl, body);
   }
