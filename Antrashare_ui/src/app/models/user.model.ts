@@ -14,7 +14,7 @@ export interface UserProfile {
   id: string;
   userEmail: string;
   userRole: string;
-  username: string;
+  userName: string;
   password: string;
   name: string;
   gender: string;

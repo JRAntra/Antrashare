@@ -1,6 +1,11 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { APP_CONFIG } from '../core/config/app.config';
-import { UserAccount } from '../models/user.model';
+import { UserAccount, UserProfile } from '../models/user.model';
+
+const PATH: string = [environment.apiEndPoint, 'users'].join('/');
 
 @Injectable({
   providedIn: 'root'
@@ -12,10 +17,12 @@ export class UserService {
     userRole: "User"
   };
 
-  constructor() { }
+  constructor(
+    private http: HttpClient,
+  ) { }
 
   isAdmin(): boolean {
-    return this.userAccount.userName?.toLowerCase() === APP_CONFIG.admin.toLowerCase();
+    return this.userAccount.userRole?.toLowerCase() === APP_CONFIG.admin.toLowerCase();
   }
 
   get userAccount(): UserAccount {
@@ -24,6 +31,17 @@ export class UserService {
 
   set userAccount(account: UserAccount) {
     Object.assign(this.account, account);
+  }
+
+  /**
+   * get news data from back-end server
+   *
+   * @param entity
+   */
+  getProfile(userName: string): Observable<UserProfile> {
+    const url = [PATH, 'getProfile', userName].join('/');
+
+    return this.http.get<UserProfile>(url);
   }
 
 }

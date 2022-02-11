@@ -1,0 +1,18 @@
+<mat-card class='info-container'>
+  <mat-card-header>
+    <mat-card-title>
+      {{ profile.name ?? profile.userName | titlecase }}
+    </mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content class="info-content">
+    <mat-divider></mat-divider>
+    <mat-list>
+      <mat-list-item><mat-icon>person</mat-icon>UserName: {{ profile.userName }}</mat-list-item>
+      <mat-list-item><mat-icon>email</mat-icon>UserEmail: {{ profile.userEmail }}</mat-list-item>
+      <mat-list-item *ngIf="profile.gender"><mat-icon>face</mat-icon>Gender: {{ profile.gender }}</mat-list-item>
+      <mat-list-item *ngIf="profile.age"><mat-icon>spa</mat-icon>Age: {{ profile.age }}</mat-list-item>
+      <mat-list-item *ngIf="profile.phone"><mat-icon>phone</mat-icon>Phone: {{ profile.phone }}</mat-list-item>
+    </mat-list>
+  </mat-card-content>
+</mat-card>

@@ -1,3 +1,7 @@
+:host {
+  margin: 16px;
+}
+
 .contents {
   width: 410px;
 }
@@ -12,6 +16,26 @@
     margin: 0;
     padding-bottom: 12px;
   }
+}
+
+.info-container {
+  margin: 0px 16px;
+  box-shadow: none !important;
+
+  .info-content {
+    .mat-icon {
+      margin-right: 16px;
+    }
+  }
+
+  .mat-divider {
+    position: inherit;
+  }
+
+  .mat-list-item-content {
+    padding: 0px;
+  }
+
 }
 
 .profile-container {
