@@ -25,6 +25,25 @@ router.post("/", async (req, res) => {
   res.send(news);
 });
 
+router.post('/page', async (req, res) => {
+  const pageIndex = Number(req.body.pageIndex) || 1;
+  const pageSize = Number(req.body.pageSize) || 1;
+
+  const query = { };
+  const count = await News.estimatedDocumentCount();
+  const news = await News.find(query).skip(pageSize * (pageIndex - 1)).limit(pageSize);
+  if (!news) {
+    return res.status(404).send("Story not found.");
+  }
+
+  res.send({
+    data: news,
+    total: count,
+    pageIndex: pageIndex,
+    pageSize: pageSize,
+  });
+});
+
 router.patch("/addComment/:id", async (req, res) => {
   const news = await News.find({ _id: req.params.id });
   if (!news.length) {

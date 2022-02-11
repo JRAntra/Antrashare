@@ -45,6 +45,12 @@ $ npm install bcrypt --save
 ```
 > *A library to help you hash passwords.*
 
+```bash
+$ npm i lodash --save
+```
+> *[Lodash](https://lodash.com/)*
+> A modern JavaScript utility library delivering modularity, performance & extras.
+
 ### Restart the application automatically
 Install the nodemon module globally to system path
 
