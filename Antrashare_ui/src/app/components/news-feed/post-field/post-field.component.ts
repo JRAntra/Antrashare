@@ -125,7 +125,6 @@ export class PostFieldComponent implements OnInit {
   //Video Form Validator
   validVideoUrl(control: AbstractControl): ValidationErrors | null  {
     var videoRegex = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=|\?v=)([^#\&\?]*).*/;
-
     var videoMatch = control.value.match(videoRegex);
     if (videoMatch && videoMatch[2].length === 11) {
       return null;

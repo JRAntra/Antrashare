@@ -81,9 +81,16 @@ router.patch("/addComment/:id", async (req, res) => {
 //
 //});
 
-// router.delete('/:id', async (req, res) => {
-
-// });
+router.delete("/deletePost/:id", async (req, res) => {
+  const news = await News.find({ _id: req.params.id });
+  
+  if (!news.length) 
+    return res.status(400).send("Post is not exist");
+  
+  await News.deleteOne({ _id: req.params.id });
+  
+  res.send("Post has been deleted");
+});
 
 // const validateQuestion = question => {
 //     const schema = Joi.object({

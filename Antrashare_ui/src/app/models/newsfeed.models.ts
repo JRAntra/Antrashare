@@ -17,6 +17,7 @@ export interface News {
 }
 //same as News, use it in news.service
 export interface Story {
+    [x: string]: any;
     _id?: string,
     publisherName?: string,
     publishedTime?: number,

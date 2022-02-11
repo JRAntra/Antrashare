@@ -13,27 +13,27 @@ export class NewsService {
   storyList$ = new Subject();
   cList!: StoryComment[];
   commentsList$ = new Subject();
-  
+
   constructor(private http: HttpClient) {
 
   }
-  
-  // subscribe storylist
+
+  // subscribe storylist, call in newsFeed.ts
   getStoryList() {
     return this.storyList$.asObservable();
   }
-  
-  // subscribe commentlist
+
+  // subscribe commentlist, call in comment-dialog.ts
   getCommentList() {
     return this.commentsList$.asObservable();
   }
-
+  
+  // initialize in newsFeed.ts
   getNews() {
     this.http.get<News[]>(this.baseurl)
       .subscribe(story => {
-        this.sList = story.map((x) => x);
         story.reverse();
-        console.log(this.sList)
+        this.sList = story.map((x) => x);
         this.storyList$.next(story);
       });
   }
@@ -41,6 +41,7 @@ export class NewsService {
   //   return this.http.get(this.baseurl);
   // }
 
+  // initialize in comment-dialog.ts
   getCommentByNewsId(id: string) {
     this.http
       .get<Story>(this.baseurl + "/" + id)
@@ -53,11 +54,11 @@ export class NewsService {
   //   return this.http.get(this.baseurl + "/" + id);
   // }
 
+  // call in post-field.ts
   postNews(body: News) {
     this.http.post<News>(this.baseurl, body)
-      .subscribe( story => {
-        this.sList.push(story);
-        this.sList.reverse();
+      .subscribe(story => {
+        this.sList.unshift(story);
         this.storyList$.next(this.sList);
       });
   }
@@ -65,6 +66,7 @@ export class NewsService {
   //   return this.http.post<News>(this.baseurl, body)
   // }
 
+  // call in comment-input-field.ts
   postCommentById(body: any, id: string) {
     this.http.patch<any>(this.baseurl + "/addComment/" + id, body)
       .subscribe(story => {
@@ -75,14 +77,19 @@ export class NewsService {
         console.log(story);
       });
   }
-
-  deletePost() {
+  
+  // call in story.ts
+  deletePost(id: string) {
     this.http
-      .delete(
-        'http://localhost:4231/api/news/deletePost/61fe1c10c5e01ced78d0760a',
-
-      )
-      .subscribe();
+      .delete(this.baseurl + "/deletePost/" + `${id}`)
+      .subscribe(() => {
+        console.log()
+        // update the storylist after deleting a post
+        this.sList.map((ele, i) => {
+          if (ele._id === id) this.sList.splice(i, 1);
+        });
+        this.commentsList$.next(this.sList);
+      });
   }
 
 }

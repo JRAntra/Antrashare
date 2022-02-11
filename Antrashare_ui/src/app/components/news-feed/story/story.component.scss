@@ -8,7 +8,7 @@
 }
 .storyHeader {
     display: grid;
-    grid-template-columns: 15% 40% auto;
+    grid-template-columns: 15% 50% auto;
     padding: 4% 5%;
     color: $black;
     background-color: $white;
@@ -28,6 +28,10 @@
     width: 80%;
     margin: 0 auto;
     text-align: center;
+}
+
+#delete-button {
+    float: right;
 }
 
 .storyContent {
