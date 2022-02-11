@@ -3,7 +3,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { signupUserComponent } from '../signup-user/signup-user.component';
 import { AuthService } from '../../../auth/auth.service';
-//import { signupUserComponent } from '../signup-user/signup-user.component';
+import { LoginService } from 'src/app/services/login/login-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-form',
@@ -14,8 +15,9 @@ export class LoginFormComponent implements OnInit {
   public loginForm: FormGroup;
   private formSubmitAttempt: boolean = false;
   private rememberMe: boolean = false;
+  private userData: any = null;
 
-  constructor(public dialog: MatDialog, private authService: AuthService) {
+  constructor(public dialog: MatDialog, private authService: AuthService, private loginService: LoginService, private router: Router) {
     this.loginForm = new FormGroup({
       username: new FormControl('', [
         Validators.required,
@@ -61,12 +63,25 @@ export class LoginFormComponent implements OnInit {
   rememberMeButton() {
     this.rememberMe = !this.rememberMe;
   }
-  openRegisterPage(): void {
-    this.dialog.open(signupUserComponent, {
-      width: '650px',
-      height: '650px',
+  signIn() {
+    if (!this.loginForm.controls['password'].errors && !this.loginForm.controls['username'].errors) {
+      let currentBody = {
+        userEmail: this.loginForm.get('username')?.value,
+        password: this.loginForm.get('password')?.value
+      }
 
-    })
+      this.loginService.userAuth(currentBody).subscribe((data) => {
+        this.userData = data;
+        localStorage.setItem('user-data', JSON.stringify(this.userData.bearerToken));
+        localStorage.setItem('user-email', JSON.stringify(this.userData.userEmail));
+        this.loginService.updateUserToken(this.userData.bearerToken);
+        this.router.navigate(['/newsFeed']);
+      })
 
+      if (this.rememberMe === true) {
+        this.userData = JSON.stringify(this.loginForm.value);
+        localStorage.setItem('login-data', this.userData);
+      }
+    }
   }
 }

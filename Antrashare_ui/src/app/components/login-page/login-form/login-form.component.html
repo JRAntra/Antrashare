@@ -24,12 +24,8 @@
         <a (click)="signUp()" class="register-link">Register</a>
       </section>
 
-      <button mat-raised-button color="warn" type="submit" [disabled]="loginForm.invalid">
+      <button mat-raised-button color="warn" type="submit" [disabled]="loginForm.invalid" (click)="signIn()">
         Sign In
-      </button>
-
-      <button mat-raised-button color="warn" (click)="signUp()">
-        Sign Up
       </button>
     </form>
   </mat-card>

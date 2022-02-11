@@ -11,8 +11,9 @@ export const baseUrl = 'http://localhost:4231/api/';
 
 export const newsApiUrl = 'news/';
 
-export const registerApiUrl = 'register/';
+export const registerApiUrl = 'register/createNewAccount';
 
+export const loginApiUrl = 'login/';
 /*
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
