@@ -3,6 +3,7 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { CommentDialogComponent } from '../comment-dialog/comment-dialog.component';
 import { DomSanitizer } from '@angular/platform-browser';
 import { News } from 'src/app/models/newsfeed.models';
+import { NewsService } from 'src/app/services/news/news.service';
 
 @Component({
   selector: 'story',
@@ -29,10 +30,19 @@ export class StoryComponent implements OnInit {
   //date to convert to iso format
   date: any;
 
-  constructor(private _sanitizer: DomSanitizer, private dialog: MatDialog) { }
+  private userid!: string;
+  comLength: number = 0; // length of story comment
+
+  constructor(
+    private _sanitizer: DomSanitizer,
+    private dialog: MatDialog,
+    private newsService: NewsService
+  ) { }
 
   ngOnInit(): void {
-    if(!this.story.content) {
+    this.comLength = this.story.comment!.length;
+
+    if (!this.story.content) {
       this.story.content = {
         text: '',
         video: '',
@@ -54,7 +64,6 @@ export class StoryComponent implements OnInit {
     //link sanitizers
     this.safeVideo = this._sanitizer.bypassSecurityTrustResourceUrl(this.videoLink);
     this.safeImage = this._sanitizer.bypassSecurityTrustResourceUrl(this.imageLink);
-
 
   }
 
@@ -105,6 +114,12 @@ export class StoryComponent implements OnInit {
 
   //opens comment dialog
   onTriggerCommentDialog() {
-    this.dialog.open(CommentDialogComponent, {data:{story: this.story}});
+    this.dialog.open(CommentDialogComponent, { data: { story: this.story } });
+  }
+
+  // delelet a post with story id, (need to check userid later)
+  onDeletePost() {
+    console.log(this.story._id!)
+    this.newsService.deletePost(this.story._id!);
   }
 }

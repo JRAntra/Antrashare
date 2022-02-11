@@ -20,5 +20,5 @@
             <input matInput formControlName="commentVideoFormControl" matInput placeholder="Video Url">
         </mat-form-field>
     </div>
-    <button type="submit" [disabled]="!newCommentFormGroup.valid" class="default_button" mat-button (click)="onSubmitComment()">POST</button>
+    <button type="submit" [disabled]="!checkCommentValid()" class="default_button" mat-button (click)="onSubmitComment()">POST</button>
 </form>
