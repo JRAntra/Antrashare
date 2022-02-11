@@ -10,7 +10,7 @@ export class UserService {
   public loginURL = 'http://localhost:4231/api/login';
   public userMyProfileURL: string = "http://localhost:4200/myProfile/";
   private registerURL = 'http://localhost:4231/api/register/createNewAccount';
-  private getUserByEmailURL = 'http://localhost:4231/api/users/getProfile/';
+  private getUserByUserName = 'http://localhost:4231/api/users/getProfile/';
   private getUserByIdURL = 'http://localhost:4231/api/register/getUserById/';
   public userProfile$: UserInfoStore = {
     userName: '',
@@ -56,8 +56,8 @@ export class UserService {
     return false;
   }
 
-  getUserProfileByEmail(userEmail: string) {
-    return this._httpClient.get(this.getUserByEmailURL + userEmail);
+  getUserProfileByUserName(userName: string) {
+    return this._httpClient.get(this.getUserByUserName + userName);
   }
 
 

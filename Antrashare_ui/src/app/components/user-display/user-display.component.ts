@@ -29,15 +29,36 @@ export class UserDisplayComponent implements OnInit {
     }
   }
 
+
+  public userDataServer: any;
   ngOnInit(): void {
-    this.userInProfile.userName = JSON.parse(localStorage.getItem('user-name')!);
-    this.userInProfile.userEmail = JSON.parse(localStorage.getItem('user-email')!);
+    const currentPage = window.location.href.slice(22, window.location.href.length);
+
+    if (currentPage !== 'newsFeed') {
+      let userName = JSON.parse(localStorage.getItem('user-name')!);
+      const path = window.location.href;
+      const userIdFromURL = path.slice(32, path.length);
+
+      if (userIdFromURL !== userName) {
+        userName = userIdFromURL;
+        this._userService.getUserProfileByUserName(userName)
+          .subscribe((data) => {
+            this.userDataServer = data;
+            this.userInProfile.userName = this.userDataServer.userName;
+            this.userInProfile.userEmail = this.userDataServer.userEmail;
+          })
+      } else {
+        this.userInProfile.userName = JSON.parse(localStorage.getItem('user-name')!);
+        this.userInProfile.userEmail = JSON.parse(localStorage.getItem('user-email')!);
+      }
+    }
+
   }
 
   userMyProfileURL: string = "http://localhost:4200/myProfile/";
   clickedToViewUserProfile() {
     console.log(`clicked to view ${this.userInNewsStory.publisherName}`); // debug
-    this.userMyProfileURL += this.userInNewsStory._id;
+    this.userMyProfileURL += this.userInNewsStory.publisherName;
   }
 
 }

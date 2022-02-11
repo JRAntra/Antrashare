@@ -58,86 +58,46 @@ export class MyProfileComponent implements OnInit {
   markToUnsubscribe: Subscription | undefined;
 
   ngOnInit(): void {
-
-
     // Check local storage
-    let userEmail = JSON.parse(localStorage.getItem('user-email')!);
     let userName = JSON.parse(localStorage.getItem('user-name')!);
     const path = window.location.href;
     const userIdFromURL = path.slice(32, path.length);
-    console.log(userIdFromURL);
-
-
-
+    if (userIdFromURL !== userName) {
+      console.log('Admin view other users, use userIdFromURL');
+      userName = userIdFromURL;
+    }
 
     // Check idle time
     this.markToUnsubscribe = this._idleTimeService.countIdleTime();
     this._idleTimeService.eventRefreshesIdleTime();
 
 
+    // Read user profile from server
+    this._userService.getUserProfileByUserName(userName)
+      .subscribe((data) => {
+        this.userDataServer = data;
+        this.userData = {
+          userEmail: this.userDataServer.userEmail,
+          userRole: this.userDataServer.userRole,
+          name: this.userDataServer.name,
+          userName: this.userDataServer.userName,
+          gender: this.userDataServer.gender,
+          age: this.userDataServer.age,
+          phone: this.userDataServer.phone
+        };
+        this.userInfo = {
+          userName: this.userData.userName,
+          userEmail: this.userData.userEmail,
+        };
 
-    if (userIdFromURL !== userName) {
-      console.log('Admin view other users, use getUserProfileById');
-      this._userService.getUserProfileById(userIdFromURL)
-        .subscribe((data) => {
-          this.userDataServer = data;
-          this.userData = {
-            userEmail: this.userDataServer.userEmail,
-            userRole: this.userDataServer.userRole,
-            name: this.userDataServer.name,
-            userName: this.userDataServer.userName,
-            gender: this.userDataServer.gender,
-            age: this.userDataServer.age,
-            phone: this.userDataServer.phone
+        this.userProfileList = Object.keys(this.userData).map((item, index) => {
+          return {
+            [item]: Object.values(this.userData)[index]
           };
-          this.userInfo = {
-            userName: this.userData.userName,
-            userEmail: this.userData.userEmail,
-          };
-
-          console.log(`here: ${this.userInfo.userName}`);
-          console.log(`here: ${this.userInfo.userEmail}`);
-
-          this.userProfileList = Object.keys(this.userData).map((item, index) => {
-            return {
-              [item]: Object.values(this.userData)[index]
-            };
-          });
-          this.key = Object.keys(this.userData);
-          this.value = Object.values(this.userData);
-        })
-
-    } else {
-      console.log('Admin case, use getUserProfileById');
-      this._userService.getUserProfileByEmail(userEmail)
-        .subscribe((data) => {
-          this.userDataServer = data;
-          this.userData = {
-            userEmail: this.userDataServer.userEmail,
-            userRole: this.userDataServer.userRole,
-            name: this.userDataServer.name,
-            userName: this.userDataServer.userName,
-            gender: this.userDataServer.gender,
-            age: this.userDataServer.age,
-            phone: this.userDataServer.phone
-          };
-          this.userInfo = {
-            userName: this.userData.userName,
-            userEmail: this.userData.userEmail,
-          };
-
-          console.log(`here: ${this.userInfo.userName}`);
-          console.log(`here: ${this.userInfo.userEmail}`);
-
-          this.userProfileList = Object.keys(this.userData).map((item, index) => {
-            return {
-              [item]: Object.values(this.userData)[index]
-            };
-          });
-          this.key = Object.keys(this.userData);
-          this.value = Object.values(this.userData);
-        })
-    }
+        });
+        this.key = Object.keys(this.userData);
+        this.value = Object.values(this.userData);
+      })
 
   }
 
