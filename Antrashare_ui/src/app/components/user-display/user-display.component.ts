@@ -41,6 +41,7 @@ export class UserDisplayComponent implements OnInit {
   userMyProfileURL: string = "http://localhost:4200/myProfile/";
 
   clickedToViewUserProfile() {
+    
     console.log(`clicked to view ${this.userInNewsStory.publisherName}`); // debug
     this.userMyProfileURL += this.userInNewsStory.publisherName;
     // console.log(this.userMyProfileURL); // debug

@@ -40,7 +40,9 @@ export class SignupFormComponent implements OnInit {
         userRole: 'user'
       }
 
-      this.userService.userRegister(currentBody).subscribe((data) => {
+      console.log(currentBody);
+
+      this.userService.createNewAccount(currentBody).subscribe((data) => {
         this.signUpSuccess = true;
       })
     }

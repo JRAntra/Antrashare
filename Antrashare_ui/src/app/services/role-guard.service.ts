@@ -18,9 +18,12 @@ export class RoleGuardService implements CanActivate {
     // // Check local storage
     let retrievedName: string = JSON.parse(localStorage.getItem('name')!);
     let retrievedUserName: string = JSON.parse(localStorage.getItem('user-name')!);
+    let retrievedUserRole: string = JSON.parse(localStorage.getItem('user-role')!);
 
-    // Block from viewing other user's profile on newsFeed
+
+    // Block normal users from viewing other user's profile on newsFeed
     if (
+      retrievedUserRole === "Admin" ||
       window.location.href.includes(retrievedName) ||
       window.location.href.includes(retrievedUserName) ||
       window.location.href === this.defaultMyProfileURL

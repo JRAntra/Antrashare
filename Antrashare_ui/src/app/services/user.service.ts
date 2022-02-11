@@ -8,7 +8,9 @@ import { UserInfoStore } from '../interfaces/user.interface';
 })
 export class UserService {
   public loginURL = 'http://localhost:4231/api/login';
-  private registerURL = 'http://localhost:4231/api/register';
+
+  private getUserByIdURL = '/api/register/getUserById/:id';
+  private registerURL = 'http://localhost:4231/api/register/createNewAccount';
   private userURL = 'http://localhost:4231/api/users/getProfile/';
   public userProfile$: UserInfoStore = {
     userName: '',
@@ -22,7 +24,7 @@ export class UserService {
 
   constructor(private _httpClient: HttpClient) { }
 
-  userRegister(body: any) {
+  createNewAccount(body: any) {
     return this._httpClient.post(this.registerURL, body);
   }
 
