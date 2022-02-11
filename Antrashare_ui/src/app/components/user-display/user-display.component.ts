@@ -12,14 +12,14 @@ import { UserService } from '../../services/user.service';
 export class UserDisplayComponent implements OnInit {
   public correctPath: string;
   @Input() userInNewsStory!: NewsStory;
-  // @Input() userInProfile!: UserProfile;
 
   userInProfile = {
     userName: "",
     userEmail: "",
   };
 
-  constructor(private _router: Router,
+  constructor(
+    private _router: Router,
     private _userService: UserService,
   ) {
     const path = this._router.url;
@@ -29,27 +29,36 @@ export class UserDisplayComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void {
 
-    this.userInProfile.userName = JSON.parse(localStorage.getItem('user-name')!);
-    this.userInProfile.userEmail  = JSON.parse(localStorage.getItem('user-email')!);
-        
-    // this.userInProfile.userName = this._userService.userProfile$.userName;
-    // this.userInProfile.userEmail = this._userService.userProfile$.userEmail;
+  public userDataServer: any;
+  ngOnInit(): void {
+    const currentPage = window.location.href.slice(22, window.location.href.length);
+
+    if (currentPage !== 'newsFeed') {
+      let userName = JSON.parse(localStorage.getItem('user-name')!);
+      const path = window.location.href;
+      const userIdFromURL = path.slice(32, path.length);
+
+      if (userIdFromURL !== userName) {
+        userName = userIdFromURL;
+        this._userService.getUserProfileByUserName(userName)
+          .subscribe((data) => {
+            this.userDataServer = data;
+            this.userInProfile.userName = this.userDataServer.userName;
+            this.userInProfile.userEmail = this.userDataServer.userEmail;
+          })
+      } else {
+        this.userInProfile.userName = JSON.parse(localStorage.getItem('user-name')!);
+        this.userInProfile.userEmail = JSON.parse(localStorage.getItem('user-email')!);
+      }
+    }
+
   }
 
   userMyProfileURL: string = "http://localhost:4200/myProfile/";
-
   clickedToViewUserProfile() {
     console.log(`clicked to view ${this.userInNewsStory.publisherName}`); // debug
     this.userMyProfileURL += this.userInNewsStory.publisherName;
-    // console.log(this.userMyProfileURL); // debug
-
-
-    // let retrievedUserName: string = localStorage.getItem('user-name')!;
-    // console.log(`clicked to view ${JSON.parse(retrievedUserName)}`); // debug
-    // this.userMyProfileURL += JSON.parse(retrievedUserName);
-    // // console.log(this.userMyProfileURL); // debug
   }
 
 }

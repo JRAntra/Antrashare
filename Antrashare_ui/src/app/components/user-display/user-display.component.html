@@ -1,8 +1,10 @@
 <div class="userDisplay">
   <div class="userDisplayContent" [ngSwitch]="correctPath">
     <div *ngSwitchCase="'myProfile'" class="infoBox">
-      <p>{{ userInProfile.userName }}</p>
-      <p>{{ userInProfile.userEmail }}</p>
+      <p>
+        {{ userInProfile.userName }}
+        {{ userInProfile.userEmail }}
+      </p>
     </div>
     <div *ngSwitchCase="'newsFeed'" class="infoBox">
       <p>

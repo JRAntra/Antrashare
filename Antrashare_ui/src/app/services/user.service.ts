@@ -8,8 +8,10 @@ import { UserInfoStore } from '../interfaces/user.interface';
 })
 export class UserService {
   public loginURL = 'http://localhost:4231/api/login';
-  private registerURL = 'http://localhost:4231/api/register';
-  private userURL = 'http://localhost:4231/api/users/getProfile/';
+  public userMyProfileURL: string = "http://localhost:4200/myProfile/";
+  private registerURL = 'http://localhost:4231/api/register/createNewAccount';
+  private getUserByUserName = 'http://localhost:4231/api/users/getProfile/';
+  private getUserByIdURL = 'http://localhost:4231/api/register/getUserById/';
   public userProfile$: UserInfoStore = {
     userName: '',
     userEmail: '',
@@ -22,11 +24,13 @@ export class UserService {
 
   constructor(private _httpClient: HttpClient) { }
 
-  userRegister(body: any) {
+  createNewAccount(body: any) {
     return this._httpClient.post(this.registerURL, body);
   }
 
   authenUser(body: any) {
+    console.log(body);
+
     return this._httpClient.post(this.loginURL, body);
   }
 
@@ -52,7 +56,12 @@ export class UserService {
     return false;
   }
 
-  getUserProfile(userEmail: string) {
-    return this._httpClient.get(this.userURL + userEmail);
+  getUserProfileByUserName(userName: string) {
+    return this._httpClient.get(this.getUserByUserName + userName);
+  }
+
+
+  getUserProfileById(userId: string) {
+    return this._httpClient.get(this.getUserByIdURL + userId);
   }
 }

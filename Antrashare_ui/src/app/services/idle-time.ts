@@ -98,7 +98,6 @@ export class idleTimeService {
   }
 
   popLogoutDialog() {
-    console.log(`Pop Logout Dialog()`);
     this.refreshTimer();
 
     // pop logout tDialog Component
