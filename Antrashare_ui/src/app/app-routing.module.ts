@@ -34,7 +34,7 @@ const routes: Routes = [
     children: [
       { path: 'newsfeed', component: NewsFeedTabComponent },
       { path: 'profile', component: ProfileTabComponent },
-      { path: 'profile/:userEmail', canActivate: [ProfileAuthService], component: ProfileTabComponent },
+      { path: 'profile/:userName', canActivate: [ProfileAuthService], component: ProfileTabComponent },
       { path: 'settings', component: SettingsTabComponent },
 
       { path: '404', component: ErrorPageComponent, pathMatch: 'full' },

@@ -23,6 +23,7 @@ import { LoginFormComponent } from './components/login-page/login-form/login-for
 import { LogoutWindowComponent } from './dialogs/logout-window/logout-window.dialog.component';
 import { NewsFeedTabComponent } from './components/news-feed-tab/news-feed-tab.component';
 import { ProfileFormComponent } from './components/profile-tab/profile-form/profile-form.component';
+import { ProfileInfoComponent } from './components/profile-tab/profile-info/profile-info.component';
 import { ProfileTabComponent } from './components/profile-tab/profile-tab.component';
 import { SettingsTabComponent } from './components/settings-tab/settings-tab.component';
 import { StoryComponent } from './components/news-feed-tab/story-list/story/story.component';
@@ -46,6 +47,7 @@ import { SharedModule } from './shared/shared.module';
     LogoutWindowComponent,
     NewsFeedTabComponent,
     ProfileFormComponent,
+    ProfileInfoComponent,
     ProfileTabComponent,
     SettingsTabComponent,
     StoryComponent,

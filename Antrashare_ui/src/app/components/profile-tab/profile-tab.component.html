@@ -1,1 +1,5 @@
-<app-profile-form></app-profile-form>
+<button mat-icon-button *ngIf="getUrlUserName()" (click)="back()" matTooltip="back to News Feed">
+  <mat-icon>keyboard_backspace</mat-icon>
+</button>
+<app-profile-form *ngIf="editMode"></app-profile-form>
+<app-profile-info *ngIf="!editMode && profile" [profile]="profile"></app-profile-info>
