@@ -18,22 +18,35 @@ export class RoleGuardService implements CanActivate {
     // // Check local storage
     let retrievedName: string = JSON.parse(localStorage.getItem('name')!);
     let retrievedUserName: string = JSON.parse(localStorage.getItem('user-name')!);
+    let retrievedUserRole: string = JSON.parse(localStorage.getItem('user-role')!);
 
-    // Block from viewing other user's profile on newsFeed
+    const path = window.location.href;
+    const userNameFromURL = path.slice(32, path.length);
+
+    // Block normal users from viewing other user's profile on newsFeed
     if (
+      retrievedUserRole === 'admin' ||
+      retrievedUserRole === "Admin"
+    ) {
+      // Admin can go for sure
+      return true;
+    }
+    else if (
       window.location.href.includes(retrievedName) ||
       window.location.href.includes(retrievedUserName) ||
       window.location.href === this.defaultMyProfileURL
     ) {
-      console.log(`Matched, grant access!`);
+      // Same user, grant access
       return true;
+
     } else {
+      // Block normal users
       alert(`You cannot access someone's profile`);
-      console.log(`You cannot access someone's profile`);
 
       // Reroute to newsfeed page
       this._router.navigate(['newsFeed/']);
       return false;
+
     }
   }
 }

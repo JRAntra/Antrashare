@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { idleTimeService } from '../../services/idle-time';
-import { UserInfo, UserProfile } from '../../interfaces/user-display.interface';
+import { UserProfile } from '../../interfaces/user-display.interface';
 import { Subscription } from 'rxjs';
 import { UserService } from '../../services/user.service';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { Router } from '@angular/router';
 
 const THUMBUP_ICON =
   `
@@ -15,7 +15,8 @@ const THUMBUP_ICON =
   `44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5` +
   `1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-1.91l-.01-.01L23 10z"/>
   </svg>
-`;
+  `;
+
 @Component({
   selector: 'app-my-profile',
   templateUrl: './my-profile.component.html',
@@ -57,17 +58,22 @@ export class MyProfileComponent implements OnInit {
   markToUnsubscribe: Subscription | undefined;
 
   ngOnInit(): void {
-
     // Check local storage
-    let userData = localStorage.getItem('user-data') ? JSON.parse(localStorage.getItem('user-data') || "") : "";
-    let userEmail = localStorage.getItem('user-email') ? JSON.parse(localStorage.getItem('user-email') || "") : "";
-
+    let userName = JSON.parse(localStorage.getItem('user-name')!);
+    const path = window.location.href;
+    const userIdFromURL = path.slice(32, path.length);
+    if (userIdFromURL !== userName) {
+      console.log('Admin view other users, use userIdFromURL');
+      userName = userIdFromURL;
+    }
 
     // Check idle time
     this.markToUnsubscribe = this._idleTimeService.countIdleTime();
     this._idleTimeService.eventRefreshesIdleTime();
 
-    this._userService.getUserProfile(userEmail)
+
+    // Read user profile from server
+    this._userService.getUserProfileByUserName(userName)
       .subscribe((data) => {
         this.userDataServer = data;
         this.userData = {
@@ -84,9 +90,6 @@ export class MyProfileComponent implements OnInit {
           userEmail: this.userData.userEmail,
         };
 
-        console.log(`here: ${this.userInfo.userName}`);
-        console.log(`here: ${this.userInfo.userEmail}`);
-
         this.userProfileList = Object.keys(this.userData).map((item, index) => {
           return {
             [item]: Object.values(this.userData)[index]
@@ -95,6 +98,7 @@ export class MyProfileComponent implements OnInit {
         this.key = Object.keys(this.userData);
         this.value = Object.values(this.userData);
       })
+
   }
 
   ngOnDestroy() {

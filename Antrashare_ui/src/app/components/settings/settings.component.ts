@@ -28,7 +28,6 @@ export class SettingsComponent implements OnInit {
   }
 
   clickedLogout() {
-    console.log(`clickedLogout()`);
     this._idleTimeService.popLogoutDialog(); // pop logout dialog
   }
 
