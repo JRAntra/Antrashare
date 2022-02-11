@@ -69,6 +69,7 @@ export class CommentInputFieldComponent implements OnInit {
       }
     };
     this.newsService.postCommentById(postBody, this.storyId);
+    this.newCommentFormGroup.reset();
     // this.newsService.postNewsFeedStory(tempNews);
     console.log(postBody);
   }
