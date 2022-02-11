@@ -45,6 +45,7 @@ export class LoginFormComponent implements OnInit {
         ){}
 
     ngOnInit(): void {
+        localStorage.clear()
         //if already has the token, enter newsfeed directly
         if (localStorage.getItem('loginToken')) {
             this.router.navigate(['/newsFeed/'])
