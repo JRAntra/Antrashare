@@ -6,13 +6,14 @@ export interface Role {
 export interface UserProfile {
     _id: string,
     userEmail: string,
-    userRole: string, 
-    name?: string, 
-    username: string,
+    userRole: string,
+    name?: string,
+    userName: string,
     gender?: string,
     age?: number,
-    phone?: string,
-    avatar?: ImageBitmap,
+    phone?: number,
+    exp?: number,
+    iat?: number
 }
 
 //user account

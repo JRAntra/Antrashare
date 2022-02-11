@@ -8,6 +8,7 @@ import { SettingsComponent } from './components/settings/settings.component';
 import { NewsFeedComponent } from './components/news-feed/news-feed.component';
 import { StoryComponent } from './components/news-feed/story/story.component';
 import { ErrorPageComponent } from './components/error-page/error-page.component';
+import { RegisterPageComponent } from './components/register-page/register-page.component';
 
 
 const routes: Routes = [
@@ -15,6 +16,7 @@ const routes: Routes = [
   // {path:'', component:NewsFeedComponent}, //FOR NEWS FEED TESTING
   {path:'',component:LoginWindowComponent},
   {path:'login',component:LoginWindowComponent},
+  {path:'register',component:RegisterPageComponent},
   {path:'myProfile',component:MyProfilePageComponent},
   {path:'newsFeed',component:NewsFeedComponent},
   {path:'settings',component:SettingsComponent},

@@ -1,0 +1,25 @@
+<div id="register-page">
+  <div>
+      <form [formGroup] = "registerFormGroup">
+        <div>
+          <div>
+            <input type='text' formControlName='firstNameFormControl' placeholder='First Name'/>
+            <input type='text' formControlName='lastNameFormControl' placeholder='Last Name'/>
+          </div>
+          <input type='text' formControlName='emailFormControl' placeholder='Email'/>
+        </div>
+          <input type='text' formControlName="usernameFormControl" placeholder='Username'/>
+          <input type='password' formControlName="passwordFormControl" placeholder = 'Password'/>
+          <input type='password' formControlName="passwordConfirmFormControl" placeholder = 'Confirm Your Password'/>
+          <input type='number' formControlName="ageFormControl" placeholder='Age'/>
+          <select formControlName="genderFormControl">
+            <option value="" disabled selected>Gender</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+            <option value="Decline To Say">Decline To Say</option>
+          </select>
+      </form>
+  </div>
+  <button mat-raised-button color="warn" type="submit" [disabled]="!registerFormGroup.valid" (click)='Register()'>Register</button>
+</div>

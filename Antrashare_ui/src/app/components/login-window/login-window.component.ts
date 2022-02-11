@@ -9,20 +9,4 @@ export class LoginWindowComponent implements OnInit {
 
     ngOnInit(): void {
     };
-
-    SignIn() {
-        console.log('Sign In')
-    }
-
-    NeedHelp() {
-        console.log('Need Help')
-    }
-
-    SignUp() {
-        console.log('Sign Up')
-    }
-
-    LearnMore() {
-        console.log('Learn More')
-    }
 }

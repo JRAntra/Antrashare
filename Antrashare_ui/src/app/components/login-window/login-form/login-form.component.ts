@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AbstractControl } from '@angular/forms';
+import { LoginService } from 'src/app/services/login/login.service';
+import { UserAccount } from 'src/app/models/user.models';
+
 
 @Component({
   selector: 'login-form',
@@ -36,12 +39,21 @@ export class LoginFormComponent implements OnInit {
     })
 
 
-    constructor(private router: Router){}
+    constructor(
+        private router: Router,
+        private loginService: LoginService        
+        ){}
 
     ngOnInit(): void {
-       
+        localStorage.clear()
+        //if already has the token, enter newsfeed directly
+        if (localStorage.getItem('loginToken')) {
+            this.router.navigate(['/newsFeed/'])
+        }
         
     };
+
+
 
     oneUppercase(control: AbstractControl): ValidationErrors | null  {
         if (control.value !== control.value.toLowerCase()){
@@ -62,8 +74,23 @@ export class LoginFormComponent implements OnInit {
     }
 
     SignIn() {
+        let inputUsername = this.usernameValue;
+        let inputPassword = this.passwordValue;
+        
+        const postBody: UserAccount = {
+            userEmail: inputUsername,
+            password: inputPassword
+        }
         console.log(this.userFormGroup.value);
+        this.loginService.postLogin(postBody).subscribe((res: any ) =>
+            {
+                localStorage.setItem('loginToken', res.bearerToken)
+                this.loginService.decodeToken(res.bearerToken)
+            }
+            
+        )
         this.router.navigate(['/newsFeed/'])
+
 
     }
 
