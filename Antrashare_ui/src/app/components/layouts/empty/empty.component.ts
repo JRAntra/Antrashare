@@ -1,24 +1,18 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { BaseComponent } from 'src/app/base.component';
 
 @Component({
   selector: 'layout-empty',
   templateUrl: './empty.component.html'
 })
-export class EmptyLayoutComponent implements OnInit, OnDestroy {
-  private unsubscribeAll!: Subject<any>;
+export class EmptyLayoutComponent extends BaseComponent implements OnInit {
 
-  constructor() { }
-
-  ngOnDestroy(): void {
-    // unsubscrib for all subscriptions
-    this.unsubscribeAll.next(null);
-    this.unsubscribeAll.complete();
+  constructor() {
+    super();
   }
 
   ngOnInit(): void {
-    // new an unsubscribeAll for all subscriptions
-    this.unsubscribeAll = new Subject<any>();
+
   }
 
 }

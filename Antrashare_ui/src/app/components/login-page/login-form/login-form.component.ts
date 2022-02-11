@@ -7,7 +7,7 @@ import { AuthService } from 'src/app/services/auth.service';
 @Component({
   selector: 'app-login-form',
   templateUrl: './login-form.component.html',
-  styleUrls: ['../../../css/login-form.component.scss'],
+  styleUrls: ['../../../css/login.component.scss'],
 })
 export class LoginFormComponent implements OnInit {
   hide = true;

@@ -1,11 +1,11 @@
-<div class = 'container'>
-    <mat-form-field class="formField" floatLabel="auto" appearance="fill" [formGroup]="userLoginForm">
+<div class = 'form-container'>
+    <mat-form-field class="form-field" floatLabel="auto" appearance="fill" [formGroup]="userLoginForm">
         <mat-label>Email:</mat-label>
         <input matInput formControlName="email">
         <mat-error *ngIf="userLoginForm.get('email')?.invalid">{{getErrorMessageEmail()}}</mat-error>
     </mat-form-field>
 
-    <mat-form-field class = "formField" floatLabel="auto" appearance="fill" [formGroup]="userLoginForm">
+    <mat-form-field class = "form-field" floatLabel="auto" appearance="fill" [formGroup]="userLoginForm">
         <mat-label>Password:</mat-label>
         <input matInput formControlName="password" [type]="hide ? 'password' : 'text'">
         <button mat-icon-button matSuffix (click)="hide = !hide" >
@@ -13,5 +13,5 @@
         </button>
         <mat-error *ngIf="userLoginForm.get('password')?.invalid">{{getErrorMessagePassword()}}</mat-error>
     </mat-form-field>
-    <button mat-raised-button class = "loginButton" type="submit" color="primary" (click)="onSubmit()">Login</button>
+    <button mat-raised-button class = "login-button" type="submit" color="primary" (click)="onSubmit()">Login</button>
 </div>

@@ -47,6 +47,7 @@ export class ThemesService {
   setActiveTheme(theme: ThemeType = APP_CONFIG.defaultTheme): void {
     this.setOverlayContainer(theme);
     localStorage.setItem(KEY, theme);
+    
     this.activeTheme$.next(theme);
   }
 

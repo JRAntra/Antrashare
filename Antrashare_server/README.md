@@ -35,6 +35,16 @@ $ npm install cors --save
 ```
 > *CORS is a node.js package for providing a Connect/Express middleware that can be used to enable CORS with various options.*
 
+```bash
+$ npm install jsonwebtoken --save
+```
+> *[JWT](https://jwt.io/)*
+
+```bash
+$ npm install bcrypt --save
+```
+> *A library to help you hash passwords.*
+
 ### Restart the application automatically
 Install the nodemon module globally to system path
 

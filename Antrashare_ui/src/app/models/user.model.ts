@@ -7,7 +7,7 @@ export interface UserAccount {
   userEmail: string;
   password?: string;
   userRole?: string;
-  bearerTokey?: string;
+  bearerToken?: string;
 }
 
 export interface UserProfile {
