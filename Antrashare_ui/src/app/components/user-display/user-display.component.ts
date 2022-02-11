@@ -12,14 +12,14 @@ import { UserService } from '../../services/user.service';
 export class UserDisplayComponent implements OnInit {
   public correctPath: string;
   @Input() userInNewsStory!: NewsStory;
-  // @Input() userInProfile!: UserProfile;
 
   userInProfile = {
     userName: "",
     userEmail: "",
   };
 
-  constructor(private _router: Router,
+  constructor(
+    private _router: Router,
     private _userService: UserService,
   ) {
     const path = this._router.url;
@@ -30,27 +30,14 @@ export class UserDisplayComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
     this.userInProfile.userName = JSON.parse(localStorage.getItem('user-name')!);
-    this.userInProfile.userEmail  = JSON.parse(localStorage.getItem('user-email')!);
-        
-    // this.userInProfile.userName = this._userService.userProfile$.userName;
-    // this.userInProfile.userEmail = this._userService.userProfile$.userEmail;
+    this.userInProfile.userEmail = JSON.parse(localStorage.getItem('user-email')!);
   }
 
   userMyProfileURL: string = "http://localhost:4200/myProfile/";
-
   clickedToViewUserProfile() {
-    
     console.log(`clicked to view ${this.userInNewsStory.publisherName}`); // debug
-    this.userMyProfileURL += this.userInNewsStory.publisherName;
-    // console.log(this.userMyProfileURL); // debug
-
-
-    // let retrievedUserName: string = localStorage.getItem('user-name')!;
-    // console.log(`clicked to view ${JSON.parse(retrievedUserName)}`); // debug
-    // this.userMyProfileURL += JSON.parse(retrievedUserName);
-    // // console.log(this.userMyProfileURL); // debug
+    this.userMyProfileURL += this.userInNewsStory._id;
   }
 
 }
