@@ -45,9 +45,14 @@ export class LoginFormComponent implements OnInit {
         ){}
 
     ngOnInit(): void {
-       
+        //if already has the token, enter newsfeed directly
+        if (localStorage.getItem('loginToken')) {
+            this.router.navigate(['/newsFeed/'])
+        }
         
     };
+
+
 
     oneUppercase(control: AbstractControl): ValidationErrors | null  {
         if (control.value !== control.value.toLowerCase()){
@@ -68,8 +73,8 @@ export class LoginFormComponent implements OnInit {
     }
 
     SignIn() {
-        let inputUsername = this.userFormGroup.get('usernameFormControl')?.value;
-        let inputPassword = this.userFormGroup.get('passwordFormControl')?.value;
+        let inputUsername = this.usernameValue;
+        let inputPassword = this.passwordValue;
         
         const postBody: UserAccount = {
             userEmail: inputUsername,
@@ -79,6 +84,7 @@ export class LoginFormComponent implements OnInit {
         this.loginService.postLogin(postBody).subscribe((res: any ) =>
             {
                 localStorage.setItem('loginToken', res.bearerToken)
+                this.loginService.decodeToken(res.bearerToken)
             }
             
         )
