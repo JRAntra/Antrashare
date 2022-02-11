@@ -2,18 +2,25 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-// import { UserAccount } from '../models/newsFeed.framework.model';
+import { UserAccount } from '../models/newsFeed.framework.model';
 @Injectable({
   providedIn: 'root',
 })
 
 
 export class UserInfoService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
+  private envUrl = 'http://localhost:4231/';
 
-  // public getUserInfo(): Observable<UserAccount> {
-  //   return this.http.get('');
-  // }
+
+
+  public getUserInfo(userEmail: string): Observable<UserAccount | null> {
+
+    const apiUrl = 'api/register/checkexist/'
+    const finalUrl = `${this.envUrl}` + apiUrl + userEmail
+    console.log(finalUrl)
+    return this.http.get<UserAccount | null>(finalUrl);
+  }
 
   // public updateUserInfo(){
 

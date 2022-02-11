@@ -1,5 +1,5 @@
 export interface NewsStory {
-  _id?:string;
+  _id?: string;
   publisherName: string;
   publishedTime?: number;
   content: {
@@ -16,7 +16,7 @@ export interface NewsStory {
 }
 
 export interface NewsFeedComment {
-  _id?:string;
+  _id?: string;
   publisherName: string;
   publishedTime?: number;
   content: {
@@ -24,5 +24,18 @@ export interface NewsFeedComment {
     video?: string;
     text?: string;
   };
+}
+
+export interface UserAccount {
+
+  name: string,
+  userName: string,
+  userEmail: string,
+
+  userRole: string,
+  age: string,
+  gender: string,
+  phone: string
+
 }
 

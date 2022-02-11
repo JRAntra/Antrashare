@@ -8,10 +8,15 @@ import {
   FormArray,
   ValidationErrors,
   Validators,
+  AsyncValidatorFn,
+  ControlContainer,
 } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { TimeoutComponent } from 'src/app/dialogs/timeout/timeout.component';
 import { Router } from '@angular/router';
+import { UserInfoService } from 'src/app/Service/userInfo.service';
+import { debounceTime, map, Observable, switchMap } from 'rxjs';
+import { UserValidationServiceService } from 'src/app/Service/validators/userValidationService.service';
 export interface UserInfo {
   username: string;
   password: string;
@@ -25,13 +30,17 @@ export interface UserInfo {
 export class LoginFormComponent implements OnInit {
 
   constructor(private auth: AuthenticateService,
-    private router: Router) { }
+    private router: Router,
+    private userService: UserInfoService,
+    private userValidationService:UserValidationServiceService ){ }
 
   public userFormGroup = new FormGroup({
-    userNameFormControl: new FormControl('', [
+    userNameFormControl: new FormControl('jr', 
+    [
       Validators.required,
-      Validators.maxLength(5),
-    ]),
+      Validators.maxLength(50),
+    ],
+     [this.existingUser()]),
     passwordFormControl: new FormControl(''),
   });
 
@@ -44,13 +53,51 @@ export class LoginFormComponent implements OnInit {
 
   ngOnInit(): void { }
 
+  existingUser(): AsyncValidatorFn {
+    return (control: AbstractControl): Observable<ValidationErrors | null> => {
+
+    return control.valueChanges.pipe(
+      debounceTime(2000),
+      switchMap(()=> {
+        return this.userService.getUserInfo(this.userNamevalue).pipe(
+          
+          map(res => {
+          return res ?  null : { "userExist": false }
+        }));
+      })
+    )
+
+
+
+    
+
+      // return control.valueChanges.pipe(
+      //   debounceTime(1000),
+      //   switchMap(()=>this.userService.getUserInfo(this.userNamevalue)),
+      //   map(res => {
+      //   return res ?  null : { "userExist": false }
+      // }));
+      // return this.userService.getUserInfo(this.userNamevalue).pipe(
+      //   map(res => {
+      //   return res ?  null : { "userExist": false }
+      // }));
+    }
+  }
+
+  // existingUser(): AsyncValidatorFn{
+  //   return this.userValidationService.isUserExist()
+  // }
+
+
+
+
   onLogin() {
     localStorage.setItem('username', 'JR')
     this.router.navigate(['newsFeed'], {
       queryParams:
       {
-        username:"JR",
-        preference:"dark mode"
+        username: "JR",
+        preference: "dark mode"
       }
     });
     this.auth.changeLoginStatus();
@@ -61,6 +108,9 @@ export class LoginFormComponent implements OnInit {
 
   set userNamevalue(val) {
     this.userFormGroup?.get('userNameFormControl')?.setValue(val);
+  }
+  get userNameControl(){
+    return this.userFormGroup?.get('userNameFormControl');
   }
   get userNamevalue() {
     return this.userFormGroup?.get('userNameFormControl')?.value;
