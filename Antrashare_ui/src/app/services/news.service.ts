@@ -6,6 +6,7 @@ import { Comment, News, Story } from '../models/newsfeed.model';
 import { environment } from 'src/environments/environment';
 import { UserService } from './user.service';
 import { DEFAULT_HTTP_CONFIG } from '../core/config/http.config';
+import { APP_CONFIG } from '../core/config/app.config';
 
 const PATH: string = [environment.apiEndPoint, 'news'].join('/');
 
@@ -26,7 +27,7 @@ export class NewsService {
   }
 
   /**
-   * get news data from back-end server
+   * get all news data from back-end server
    *
    * @param entity
    */
@@ -36,6 +37,43 @@ export class NewsService {
         tap(list => {
           this.storyList = list.sort(sortByPublishedTime);
           this.storyList.forEach((story) => story.comment.sort(sortByPublishedTime));
+        })
+      );
+  }
+
+  /**
+   * get news data by page
+   *
+   * @param entity
+   */
+  getNewsByPage(pageNo: number): Observable<any> {
+    const url = [PATH, 'page'].join('/');
+    const pageConfig = {
+      pageIndex: pageNo,
+      pageSize: APP_CONFIG.defaultStory.pageSize
+    }
+
+    // clear all the stories
+    if (pageNo <= 1) {
+      this.storyList = [];
+    }
+
+    return this.http.post(url, pageConfig, DEFAULT_HTTP_CONFIG.httpOptions).
+      pipe(
+        tap((data: any) => {
+          if (data.data.length) {
+            data.data.forEach((story: any) => story.comment.sort(sortByPublishedTime));
+            // deduplication
+            const merged = [...this.storyList, ...data.data].reduce(
+              (acc, curr) => ({
+                ...acc,
+                ...{ [curr._id]: { ...curr } }
+              }),
+              {}
+            );
+            // reset
+            this.storyList = Object.values(merged);
+          }
         })
       );
   }
@@ -111,7 +149,7 @@ export class NewsService {
    *
    * @param data
    */
-   createPost(data: Story): Observable<News> {
+  createPost(data: Story): Observable<News> {
     const entity: News = {
       publisherName: this.userService.userAccount.userName || '',
       content: data,

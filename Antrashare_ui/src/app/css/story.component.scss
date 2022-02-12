@@ -64,4 +64,14 @@
     overflow: auto;
     overflow-x: hidden;
     overflow-y: auto;
+
+    .noMore {
+        margin: 24px 24px 16px 24px;
+        color: gainsboro;
+        text-align: center;
+
+        .mat-divider {
+            margin-bottom: 16px;
+        }
+    }
 }
