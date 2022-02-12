@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // Directive
 import { AutoHideDirective } from '../directives/auto-hide.directive';
+import { InfiniteScrollDirective } from '../directives/infinite-scroll.directive';
 
 // Angular Material Modules
 import { MatButtonModule } from '@angular/material/button';
@@ -37,8 +38,9 @@ const matModules = [
 
 @NgModule({
   declarations: [
-     // Directive
-     AutoHideDirective,
+    // Directive
+    AutoHideDirective,
+    InfiniteScrollDirective,
   ],
   imports: [
     CommonModule,
@@ -55,6 +57,7 @@ const matModules = [
 
     // Directive
     AutoHideDirective,
+    InfiniteScrollDirective,
 
     // Angular Material Modules
     ...matModules,
