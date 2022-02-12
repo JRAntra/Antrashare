@@ -17,33 +17,6 @@ export class InfiniteScrollDirective implements OnInit, AfterViewInit, OnDestroy
     private renderer: Renderer2
   ) { }
 
-  ngAfterViewInit(): void {
-    if (!this.scrollFooter) {
-      const footer = this.renderer.createElement('div');
-      this.renderer.setStyle(footer, "height", "1px");
-      this.renderer.appendChild(this.elementRef.nativeElement, footer);
-      this.observer.observe(footer);
-    } else {
-      this.observer.observe(this.scrollFooter.nativeElement);
-    }
-  }
-
-  ngOnInit(): void {
-    const options = {
-      root: this.isHostScrollable() ? this.elementRef.nativeElement : null,
-      threshold: 0,
-      ...this.options
-    };
-
-    this.observer = new IntersectionObserver(([entry]) => {
-      entry.isIntersecting && this.scrolled.emit();
-    }, options);
-  }
-
-  ngOnDestroy(): void {
-    this.observer.disconnect();
-  }
-
   get hostElement() {
     return this.elementRef.nativeElement;
   }
@@ -53,6 +26,45 @@ export class InfiniteScrollDirective implements OnInit, AfterViewInit, OnDestroy
 
     return style.getPropertyValue('overflow') === 'auto' ||
       style.getPropertyValue('overflow-y') === 'scroll';
+  }
+
+  ngOnInit(): void {
+    // initial options
+    const options = {
+      root: this.isHostScrollable() ? this.hostElement : null,
+      threshold: 0,
+      ...this.options
+    };
+
+    // create event for the observer
+    this.observer = new IntersectionObserver(([entry]) => {
+      entry.isIntersecting && this.scrolled.emit();
+    }, options);
+  }
+
+  ngAfterViewInit(): void {
+    if (!this.scrollFooter) {
+      // create comment
+      this.renderer.appendChild(
+        this.hostElement,
+        this.renderer.createComment("This is the scrollFooter element!")
+      );
+
+      // create footer
+      const footer = this.renderer.createElement('div');
+      this.renderer.setStyle(footer, "height", "1px");
+      this.renderer.appendChild(this.hostElement, footer);
+
+      // listen event
+      this.observer.observe(footer);
+    } else {
+      // listen event
+      this.observer.observe(this.scrollFooter.nativeElement);
+    }
+  }
+
+  ngOnDestroy(): void {
+    this.observer.disconnect();
   }
 
 }
