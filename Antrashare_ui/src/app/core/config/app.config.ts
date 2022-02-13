@@ -10,7 +10,7 @@ export const APP_CONFIG = {
   defaultStory: {
     numImages: 1,
     numVideos: 1,
-    pageSize: 3
+    pageSize: 10
   },
   defaultTheme: ThemeType.Dark,
 
