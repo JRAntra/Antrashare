@@ -1,3 +1,12 @@
-<app-story-form (postEmitter)="refreshStoryList()"></app-story-form>
+<div infiniteScroll class="scroll" (scrolled)="scrolled()">
+  <app-story-form (postEmitter)="refreshStoryList()"></app-story-form>
 
-<app-story *ngFor="let news of storyList" [news]="news" (deleteEmitter)="refreshStoryList()"></app-story>
+  <app-story *ngFor="let news of storyList" [news]="news" (deleteEmitter)="refreshStoryList()"></app-story>
+
+  <mat-progress-bar mode="query" *ngIf="isQuerying"></mat-progress-bar>
+
+  <div class="noMore" *ngIf="isEnd" autoHide>
+    <mat-divider aria-orientation="horizontal"></mat-divider>
+    No More Posts!
+  </div>
+</div>

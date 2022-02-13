@@ -5,11 +5,6 @@ const Joi = require('joi');
 
 const { Profile } = require('../models/profile');
 
-router.get("/", async (req, res) => {
-  const users = await Profile.find();
-  res.send(users);
-});
-
 router.post("/", async (req, res) => {
   const { error } = validate(req.body);
   if (error) {
@@ -29,7 +24,7 @@ router.post("/", async (req, res) => {
     return res.status(400).send('Invalid email or password.');
   }
 
-  const token = Profile.generateAuthToken.call(user);
+  const token = Profile.generateAuthToken.call(user); // user.generateAuthToken();
   console.log(token);
 
   const infoBack = {
