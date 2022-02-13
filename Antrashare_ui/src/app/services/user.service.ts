@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import jwt_decode from 'jwt-decode';
 import { UserInfoStore } from '../interfaces/user.interface';
+import { catchError, map, Observable, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,8 @@ export class UserService {
   private registerURL = 'http://localhost:4231/api/register/createNewAccount';
   private getUserByUserName = 'http://localhost:4231/api/users/getProfile/';
   private getUserByIdURL = 'http://localhost:4231/api/register/getUserById/';
+  private checkeExistByEmailURL = "http://localhost:4231/api/register/checkExistByEmail/";
+
   public userProfile$: UserInfoStore = {
     userName: '',
     userEmail: '',
@@ -64,4 +67,10 @@ export class UserService {
   getUserProfileById(userId: string) {
     return this._httpClient.get(this.getUserByIdURL + userId);
   }
+
+  checkExistByEmail(userEmail: string) {
+    return this._httpClient
+    .get(this.checkeExistByEmailURL + userEmail);
+  }
+  
 }

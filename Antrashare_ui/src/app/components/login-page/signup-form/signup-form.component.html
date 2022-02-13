@@ -1,72 +1,117 @@
 <form class="formContainer" [formGroup]="signupForm">
-    <p class="formTitle">Register</p>
-    <div class="formLayout">
-        <div class="formGroup">
-            <mat-form-field class="formBox" [hideRequiredMarker]="signupForm.value">
-                <mat-label>Username</mat-label>
-                <input matInput type="text" formControlName="username" />
-                <mat-hint class="formBox" *ngIf="signupForm.controls['username'].errors">
-                    <p class="errorMessage" *ngIf="signupForm.controls['username'].errors['required']">
-                        Please enter username
-                    </p>
-                    <p class="errorMessage" *ngIf="signupForm.controls['username'].errors['minlength']">
-                        Please enter more than 5 characters
-                    </p>
-                </mat-hint>
-            </mat-form-field>
-            <mat-form-field class="formBox" [hideRequiredMarker]="signupForm.value">
-                <mat-label>Password</mat-label>
-                <input matInput type="text" formControlName="password" />
-                <mat-hint class="formBox" *ngIf="signupForm.controls['password'].errors">
-                    <p class="errorMessage" *ngIf="signupForm.controls['password'].errors['required']">
-                        Please enter password
-                    </p>
-                    <p class="errorMessage" *ngIf="signupForm.controls['password'].errors['minlength']">
-                        Please enter more than 5 characters
-                    </p>
-                    <p class="errorMessage" *ngIf="signupForm.controls['password'].errors['pattern']">
-                        Password needs to include uppercase and special character
-                    </p>
-                </mat-hint>
-            </mat-form-field>
-            <mat-form-field [hideRequiredMarker]="signupForm.value">
-                <mat-label>Email</mat-label>
-                <input matInput formControlName="userEmail" />
-                <mat-hint class="formBox" *ngIf="signupForm.controls['password'].errors">
-                    <p class="errorMessage" *ngIf="signupForm.controls['password'].errors['required']">
-                        Please enter email
-                    </p>
-                </mat-hint>
-            </mat-form-field>
-        </div>
-        <div>
-            <mat-form-field [hideRequiredMarker]="signupForm.value">
-                <mat-label>Name</mat-label>
-                <input matInput formControlName="name" />
-            </mat-form-field>
+  <p class="formTitle">Register</p>
+  <div class="formLayout">
+    <div class="formGroup">
+      <mat-form-field class="formBox" [hideRequiredMarker]="signupForm.value">
+        <mat-label>Username</mat-label>
+        <input matInput type="text" formControlName="username" />
+        <mat-hint
+          class="formBox"
+          *ngIf="signupForm.controls['username'].errors"
+        >
+          <p
+            class="errorMessage"
+            *ngIf="signupForm.controls['username'].errors['required']"
+          >
+            Please enter username
+          </p>
+          <p
+            class="errorMessage"
+            *ngIf="signupForm.controls['username'].errors['minlength']"
+          >
+            Please enter more than 5 characters
+          </p>
+        </mat-hint>
+        <mat-error
+          *ngIf="signupForm.get('username')?.hasError('usernameAlreadyExists')"
+        >
+          Username already <strong>exists</strong>
+        </mat-error>
+      </mat-form-field>
 
-            <mat-form-field [hideRequiredMarker]="signupForm.value">
-                <mat-label>Age</mat-label>
-                <input matInput type="text" formControlName="age" />
-            </mat-form-field>
-            <mat-form-field [hideRequiredMarker]="signupForm.value">
-                <mat-label>Phone</mat-label>
-                <input matInput type="text" formControlName="phone" />
-            </mat-form-field>
-            <mat-form-field [hideRequiredMarker]="signupForm.value">
-                <mat-label>Gender</mat-label>
-                <input matInput type="text" formControlName="gender" />
-            </mat-form-field>
-        </div>
+      <mat-form-field class="formBox" [hideRequiredMarker]="signupForm.value">
+        <mat-label>Password</mat-label>
+        <input matInput type="text" formControlName="password" />
+        <mat-hint
+          class="formBox"
+          *ngIf="signupForm.controls['password'].errors"
+        >
+          <p
+            class="errorMessage"
+            *ngIf="signupForm.controls['password'].errors['required']"
+          >
+            Please enter password
+          </p>
+          <p
+            class="errorMessage"
+            *ngIf="signupForm.controls['password'].errors['minlength']"
+          >
+            Please enter more than 5 characters
+          </p>
+          <p
+            class="errorMessage"
+            *ngIf="signupForm.controls['password'].errors['pattern']"
+          >
+            Password needs to include uppercase and special character
+          </p>
+        </mat-hint>
+      </mat-form-field>
+      <mat-form-field [hideRequiredMarker]="signupForm.value">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="userEmail" />
+        <mat-hint
+          class="formBox"
+          *ngIf="signupForm.controls['password'].errors"
+        >
+          <p
+            class="errorMessage"
+            *ngIf="signupForm.controls['password'].errors['required']"
+          >
+            Please enter email
+          </p>
+        </mat-hint>
+        <mat-error
+          *ngIf="
+            signupForm.get('userEmail')?.hasError('userEmailAlreadyExists')
+          "
+        >
+          Email has been <strong>registered.</strong>
+        </mat-error>
+
+        {{ found404 }}
+        <mat-error *ngIf="found404">
+          {{found404}} <strong>registered.</strong>
+        </mat-error>
+
+      </mat-form-field>
     </div>
-    <button
-        mat-raised-button
-        type="button"
-        class="loginButton"
-        [mat-dialog-close]="signUpSuccess"
-        (click)="signUp()"
-    >
-        Sign Up
-    </button>
-</form>    
+    <div>
+      <mat-form-field [hideRequiredMarker]="signupForm.value">
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name" />
+      </mat-form-field>
 
+      <mat-form-field [hideRequiredMarker]="signupForm.value">
+        <mat-label>Age</mat-label>
+        <input matInput type="text" formControlName="age" />
+      </mat-form-field>
+      <mat-form-field [hideRequiredMarker]="signupForm.value">
+        <mat-label>Phone</mat-label>
+        <input matInput type="text" formControlName="phone" />
+      </mat-form-field>
+      <mat-form-field [hideRequiredMarker]="signupForm.value">
+        <mat-label>Gender</mat-label>
+        <input matInput type="text" formControlName="gender" />
+      </mat-form-field>
+    </div>
+  </div>
+  <button
+    mat-raised-button
+    type="button"
+    class="loginButton"
+    [mat-dialog-close]="signUpSuccess"
+    (click)="signUp()"
+  >
+    Sign Up
+  </button>
+</form>

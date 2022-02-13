@@ -34,6 +34,8 @@ import { PostNewsStoryComponent } from './components/news-feed/post-new-feed/pos
 import { CommentsComponent } from './components/news-feed/comments/comments.component';
 import { AddCommentComponent } from './components/news-feed/add-comment/add-comment.component';
 import { SignupFormComponent } from './components/login-page/signup-form/signup-form.component';
+import { CommonModule } from '@angular/common';
+
 
 @NgModule({
   declarations: [
@@ -71,6 +73,7 @@ import { SignupFormComponent } from './components/login-page/signup-form/signup-
     ReactiveFormsModule,
     MatButtonToggleModule,
     HttpClientModule,
+    CommonModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
