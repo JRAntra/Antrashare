@@ -29,9 +29,11 @@ export class ContentComponent implements OnInit {
   @Output() addedNewComment = new EventEmitter<boolean>();
 
   public commentList: any[] = [];
+  public videoId: string;
 
   // listSize = 3;
   constructor(private _newsFeedService: NewsFeedService) {
+    this.videoId = this.userInfoFromServer._id ? this.userInfoFromServer._id : '';
   }
   
   public isVideo: boolean = true;
@@ -46,11 +48,15 @@ export class ContentComponent implements OnInit {
       _id: this.currentStory._id!,
     }
 
-    let videoBox = document.getElementById("videoLink");
-    console.log()
+    this.videoId = this.userInfoFromServer._id ? this.userInfoFromServer._id : '';
+    this.isVideo = this.userInfoFromServer?.content?.video?.includes('https://www.youtube.com/embed/') ? true : false;
     //videoBox.src = this.currentStory.content.video;
     // Save comment list locally for comment section's *ngFor
     this.commentList = this.currentStory.comment!;
+  }
+
+  ngAfterViewInit() {
+    document.getElementById(this.videoId)?.setAttribute('src', this.userInfoFromServer?.content?.video ? this.userInfoFromServer?.content?.video : '');
   }
 
   hideImgTag(): boolean {

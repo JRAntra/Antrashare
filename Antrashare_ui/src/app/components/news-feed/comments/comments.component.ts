@@ -8,6 +8,8 @@ import { PageEvent } from '@angular/material/paginator';
 })
 export class CommentsComponent implements OnInit {
   @Input() commentData!: any[];
+
+  public element: HTMLImageElement;
   public commentsList: any[] = [];
   public arrayLength: number = 0;
   public isVideo: boolean = false;
@@ -19,7 +21,9 @@ export class CommentsComponent implements OnInit {
   };
   public pageSizeOptions = [1, 2, 3, 5];
 
-  constructor() { }
+  constructor() {
+    this.element = document.createElement('img');
+  }
 
   ngOnInit(): void {  
   }
@@ -36,7 +40,6 @@ export class CommentsComponent implements OnInit {
     this.pageNumber.previousPageIndex = event.previousPageIndex;
     this.pageNumber.length = this.commentData.length;
 
-    console.log(this.pageNumber)
     if (this.commentData.length < this.pageNumber.pageSize) {
       this.commentsList = this.commentData;
     }
