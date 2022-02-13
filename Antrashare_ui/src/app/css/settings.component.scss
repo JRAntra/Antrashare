@@ -1,0 +1,26 @@
+.logout-container {
+    text-align: center;
+
+    .logout-button {
+        margin-left: 20px;
+        padding-left: 68px;
+        padding-right: 68px;
+    }
+}
+
+.theme-container {
+    margin: 16px;
+    box-shadow: none !important;
+
+    .mat-card-actions {
+        padding: 12px 16px;
+
+        button {
+            border-radius: 25px;
+        }
+
+        button + button {
+            margin-left: 24px;
+        }
+    }
+}

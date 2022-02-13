@@ -1,0 +1,18 @@
+<mat-card class='theme-container'>
+  <mat-card-header>
+    <mat-card-title>
+      Theme
+    </mat-card-title>
+  </mat-card-header>
+
+  <mat-card-actions>
+    <button mat-stroked-button color="second" (click)="changeActiveTheme(ThemeType.Light)">
+      <mat-icon>light_mode</mat-icon>
+      Light
+    </button>
+    <button mat-stroked-button color="second" (click)="changeActiveTheme(ThemeType.Dark)">
+      <mat-icon>dark_mode</mat-icon>
+      Dark
+    </button>
+  </mat-card-actions>
+</mat-card>
