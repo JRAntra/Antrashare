@@ -28,12 +28,14 @@ export class ContentComponent implements OnInit {
   @Input() currentStory!: NewsStory;
   @Output() addedNewComment = new EventEmitter<boolean>();
 
-  commentList: any[] = [];
+  public commentList: any[] = [];
 
   // listSize = 3;
   constructor(private _newsFeedService: NewsFeedService) {
   }
-  isVideo: boolean = true;
+  
+  public isVideo: boolean = true;
+
   ngOnInit(): void {
     this.userInfoFromServer = {
       content: this.currentStory.content!,
@@ -51,16 +53,16 @@ export class ContentComponent implements OnInit {
     this.commentList = this.currentStory.comment!;
   }
 
-  hideImgTag() {
+  hideImgTag(): boolean {
     console.log(`ERROR!`);
     return true;
   }
 
-  refreshNewsStory(event: boolean) {
+  refreshNewsStory(event: boolean): void {
     this.addedNewComment.emit(event);
   }
 
-  deletePost() {
+  deletePost(): void {
     this._newsFeedService.deletePostNewsFeed(this.currentStory._id!).subscribe(() => {
       //this.refreshNewsStory(true);
     });

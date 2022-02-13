@@ -12,12 +12,12 @@ import { UserService } from '../../../services/user.service';
   styleUrls: ['./login-form.component.scss']
 })
 export class LoginFormComponent implements OnInit {
-  loginForm = this.formBuilder.group({
+  public loginForm = this.formBuilder.group({
     username: ['', Validators.compose([Validators.required, Validators.minLength(5)])],
     password: ['', Validators.compose([Validators.required, Validators.minLength(5), Validators.pattern(/^(?=.*[A-Z])(?=.*[@#$%^&+*!=]).*$/)])]
   });
-  loginData: any = null;
-  rememberedUserIsChecked: boolean = false;
+  public loginData: any = null;
+  public rememberedUserIsChecked: boolean = false;
 
   constructor(private formBuilder: FormBuilder, private router: Router, public dialog: MatDialog, private _userService: UserService) {
   }
@@ -29,14 +29,11 @@ export class LoginFormComponent implements OnInit {
     this.loginForm.controls["password"].setValue(rememberedData.password ? rememberedData.password : "");
   }
 
-  rememberMeChecked() {
+  rememberMeChecked(): void {
     this.rememberedUserIsChecked = !this.rememberedUserIsChecked;
   }
 
-  signIn() {
-    console.log(`signIn()`);
-
-
+  signIn(): void {
     if (!this.loginForm.controls['password'].errors && !this.loginForm.controls['username'].errors) {
       let currentBody = {
         userEmail: this.loginForm.get('username')?.value,
@@ -62,7 +59,7 @@ export class LoginFormComponent implements OnInit {
     }
   }
 
-  signUp() {
+  signUp(): void {
     const dialogRef = this.dialog.open(SignupFormComponent);
   }
 }

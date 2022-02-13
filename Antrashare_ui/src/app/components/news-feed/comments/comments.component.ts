@@ -8,28 +8,27 @@ import { PageEvent } from '@angular/material/paginator';
 })
 export class CommentsComponent implements OnInit {
   @Input() commentData!: any[];
-  commentsList: any[] = [];
-  arrayLength: number = 0;
-  isVideo: boolean = false;
-  pageNumber: PageEvent = {
+  public commentsList: any[] = [];
+  public arrayLength: number = 0;
+  public isVideo: boolean = false;
+  public pageNumber: PageEvent = {
     length: this.commentsList.length,
     pageIndex: 0,
     pageSize: 1,
     previousPageIndex: 0
   };
-  pageSizeOptions = [1, 2, 3, 5];
+  public pageSizeOptions = [1, 2, 3, 5];
 
   constructor() { }
 
-  ngOnInit(): void {
-    
+  ngOnInit(): void {  
   }
 
-  ngAfterViewInit() {
+  ngAfterViewInit(): void {
     this.changePage(this.pageNumber);
   }
 
-  changePage(event : any) {
+  changePage(event: any): void {
     this.arrayLength = Math.ceil(this.commentData.length / event.pageSize);
 
     this.pageNumber.pageSize = event.pageSize;

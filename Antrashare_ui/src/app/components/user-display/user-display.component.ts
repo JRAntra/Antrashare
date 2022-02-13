@@ -13,7 +13,7 @@ export class UserDisplayComponent implements OnInit {
   public correctPath: string;
   @Input() userInNewsStory!: NewsStory;
 
-  userInProfile = {
+  public userInProfile = {
     userName: "",
     userEmail: "",
   };
@@ -29,8 +29,8 @@ export class UserDisplayComponent implements OnInit {
     }
   }
 
-
   public userDataServer: any;
+
   ngOnInit(): void {
     const currentPage = window.location.href.slice(22, window.location.href.length);
 
@@ -56,7 +56,8 @@ export class UserDisplayComponent implements OnInit {
   }
 
   userMyProfileURL: string = "http://localhost:4200/myProfile/";
-  clickedToViewUserProfile() {
+
+  clickedToViewUserProfile(): void {
     console.log(`clicked to view ${this.userInNewsStory.publisherName}`); // debug
     this.userMyProfileURL += this.userInNewsStory.publisherName;
   }
