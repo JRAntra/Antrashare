@@ -13,6 +13,7 @@ export class CommentListComponent implements OnInit, OnChanges {
   // @Output() cmtNumChange = new EventEmitter<number>();
 
   cmtList: String[] = [];
+  pageNumber: number = 1; 
   
   constructor() { }
 
