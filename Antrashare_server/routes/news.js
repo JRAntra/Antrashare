@@ -13,6 +13,11 @@ router.get('/:id', async (req, res) => {
   res.send(news);
 });
 
+router.get('/userPosts/:userName', async (req, res) => {
+  const news = await News.find({publisherName: req.params.userName});
+  res.send(news);
+});
+
 router.post("/", async (req, res) => {
   const { error } = validate(req.body);
   if (error) {
