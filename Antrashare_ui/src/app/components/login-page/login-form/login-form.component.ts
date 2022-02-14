@@ -40,8 +40,8 @@ export class LoginFormComponent implements OnInit {
     this.userLoginForm.disable();
 
     const account: UserAccount = {
-      userEmail: 'JR.Zhang@gmail.com',//this.userLoginForm.get('email')?.value,
-      password: 'ZYS93'//this.userLoginForm.get('password')?.value
+      userEmail: this.userLoginForm.get('email')?.value,
+      password: this.userLoginForm.get('password')?.value
     }
     this.authService.login(account).subscribe(
       () => {

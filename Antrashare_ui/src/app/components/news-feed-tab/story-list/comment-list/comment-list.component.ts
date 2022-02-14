@@ -8,12 +8,15 @@ import { Story, Comment } from 'src/app/models/newsfeed.model';
 })
 export class CommentListComponent implements OnInit, OnChanges {
 
+  @Input() newsId!: string;
+
   @Input() userInput!: String;
-  @Input() userComment! : Comment[];
+  @Input() userComment!: Comment[];
   // @Output() cmtNumChange = new EventEmitter<number>();
 
   cmtList: String[] = [];
-  
+  pageNumber: number = 1;
+
   constructor() { }
 
   ngOnInit(): void {
@@ -24,8 +27,5 @@ export class CommentListComponent implements OnInit, OnChanges {
       this.cmtList.push(this.userInput);
     }
   }
-
-
-
 
 }
