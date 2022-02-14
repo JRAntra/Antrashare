@@ -101,7 +101,7 @@ export class NewsFeedComponent implements OnInit {
   scrollHandler(event: any): void {
     console.log(this.storiesFromServer)
     if( this.storiesFromServer.length === this.renderedElements.length) {
-      let elementHeight = event.target.clientHeight * (this.storiesFromServer.length - 0.5);
+      let elementHeight = event.target.clientHeight * (this.storiesFromServer.length - 1.5);
       let scrollPosition = event.target.scrollTop;
       if(elementHeight - scrollPosition < 50 && this.storiesFromServer.length < this.dataFromMongoDB.length) {
         this.addElements();
