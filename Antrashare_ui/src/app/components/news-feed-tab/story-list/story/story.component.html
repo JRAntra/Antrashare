@@ -1,48 +1,50 @@
 <mat-card class='container'>
-    <div class='cardHead'>
-        <mat-card-header>
-            <!-- <img mat-card-avatar> -->
-    
-            <!-- <span>
+  <div class='cardHead'>
+    <mat-card-header>
+      <!-- <img mat-card-avatar> -->
+
+      <!-- <span>
                 <mat-card-content>{{news.publisherName}}</mat-card-content>
                 <mat-card-content>{{news.publishedTime}}</mat-card-content>
             </span> -->
-            <button mat-icon-button mat-card-avatar>
-                <mat-icon>person_outline</mat-icon>
-            </button>
-            <mat-card-title><a [routerLink]="['/profile/' + news.publisherName]" routerLinkActive="router-link-active" >{{news.publisherName}}</a></mat-card-title>
-            <mat-card-subtitle>{{news.publishedTime}}</mat-card-subtitle>
-        </mat-card-header>
+      <button mat-icon-button mat-card-avatar>
+        <mat-icon>person_outline</mat-icon>
+      </button>
+      <mat-card-title><a [routerLink]="['/profile/' + news.publisherName]"
+          routerLinkActive="router-link-active">{{news.publisherName}}</a></mat-card-title>
+      <mat-card-subtitle>{{news.publishedTime}}</mat-card-subtitle>
+    </mat-card-header>
 
-        <button mat-button mat-icon-button class="delete" matTooltip="delete this post" *ngIf="canDelete()" (click)="deletePost()">
-            <mat-icon>delete</mat-icon>
-        </button>
+    <button mat-button mat-icon-button class="delete" matTooltip="delete this post" *ngIf="canDelete()"
+      (click)="deletePost()">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </div>
+
+  <mat-card-content>{{Content.text}}</mat-card-content>
+  <img mat-card-image>
+
+  <div class='cardFoot'>
+    <button mat-icon-button (click)="MoreLikes()">
+      <mat-icon color='accent'>thumb_up_alt</mat-icon>
+    </button>
+    <p>{{likes}}</p>
+    <button mat-icon-button (click)="showComment()">
+      <mat-icon color='accent'> comment</mat-icon>
+    </button>
+    <p>{{this.Comment.length}}</p>
+
+  </div>
+  <div *ngIf="cmtStatus" class='comment' id="cmt">
+    <div class="Input">
+      <mat-form-field class="cmtField">
+        <input matInput placeholder='Comment Here' [formControl]="cmtForm" />
+      </mat-form-field>
+      <div class="Confirm">
+        <button mat-raised-button color="primary" (click)=onConfirm()>Confirm</button>
+      </div>
     </div>
-    
-    <mat-card-content>{{Content.text}}</mat-card-content>
-    <img mat-card-image>
 
-    <div class='cardFoot'>
-        <button mat-icon-button (click)="MoreLikes()">
-            <mat-icon color='accent'>thumb_up_alt</mat-icon>
-        </button>
-        <p>{{likes}}</p>
-        <button mat-icon-button (click)="showComment()">
-            <mat-icon color='accent'> comment</mat-icon>
-        </button>
-        <p>{{this.Comment.length}}</p>
-
-    </div>
-    <div *ngIf="cmtStatus" class='comment' id="cmt">
-        <div class="Input">
-            <mat-form-field class="cmtField">
-                <input matInput placeholder='Comment Here' [formControl]="cmtForm" />
-            </mat-form-field>
-            <div class="Confirm">
-                <button mat-raised-button color="primary" (click)=onConfirm()>Confirm</button>
-            </div>
-        </div>
-        <app-comment-list [userInput]="userInput" [userComment]="Comment"></app-comment-list>
-
-    </div>
+    <app-comment-list [userInput]="userInput" [userComment]="Comment" [newsId]="news._id || ''"></app-comment-list>
+  </div>
 </mat-card>

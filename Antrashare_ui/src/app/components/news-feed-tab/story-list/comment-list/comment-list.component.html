@@ -1,7 +1,8 @@
 <mat-card>
-    <app-comment
-        *ngFor = "let cmt of userComment | paginate: { id: 'comment_list', itemsPerPage: 2, currentPage: pageNumber}"
-        [cmt] = "cmt">
-</app-comment>
-<pagination-controls id="comment_list" (pageChange)="pageNumber = $event"></pagination-controls>
+  <app-comment
+    *ngFor="let cmt of userComment | paginate: { id: 'comment_paginate' + newsId, itemsPerPage: 2, currentPage: pageNumber}"
+    [cmt]="cmt">
+  </app-comment>
+
+  <pagination-controls id="comment_paginate{{newsId}}" (pageChange)="pageNumber = $event"></pagination-controls>
 </mat-card>
