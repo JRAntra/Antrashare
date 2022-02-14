@@ -21,8 +21,8 @@ export class UserService {
     private http: HttpClient,
   ) { }
 
-  isAdmin(): boolean {
-    return this.userAccount.userRole?.toLowerCase() === APP_CONFIG.admin.toLowerCase();
+  isAdmin(userRole = this.userAccount.userRole || ''): boolean {
+    return userRole.toLowerCase() === APP_CONFIG.admin.toLowerCase();
   }
 
   get userAccount(): UserAccount {
