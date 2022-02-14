@@ -49,13 +49,16 @@ export class UserValidationService {
 
       return _userService.checkExistByEmail(control.value)
         .pipe(
-          // Stop http request keep checking for 404
           catchError((error) => {
             found404 = true;
             console.log(`found404: ${found404}`);
 
+            // debug
+            // return of({ "usernameAlreadyExists": true });
             // console.log('error is intercept')
             // console.error(error);
+
+            // Block from checking 404
             return throwError(error.message);
           }),
           map(data => {
