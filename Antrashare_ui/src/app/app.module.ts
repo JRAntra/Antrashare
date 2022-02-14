@@ -34,7 +34,7 @@ import { TimeoutComponent } from './dialogs/timeout/timeout.dialog.component';
 
 import { SharedModule } from './shared/shared.module';
 
-import {NgxPaginationModule} from 'ngx-pagination';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
