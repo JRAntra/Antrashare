@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Subject } from "rxjs";
+import { BehaviorSubject, Subject } from "rxjs";
+import { NewsStory } from '../interfaces/newfeed.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +9,7 @@ import { Subject } from "rxjs";
 export class NewsFeedService {
   url = 'http://localhost:4231/api/news';
   isRefreshed$ = false;
-  contentList$: any;
+  contentList$: BehaviorSubject<NewsStory[]> = new BehaviorSubject<NewsStory[]>([]);
 
   constructor(private _httpClient: HttpClient) {
   }

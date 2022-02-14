@@ -1,4 +1,4 @@
-<div id="stories">
+<div id="stories" (scroll)="scrollHandler($event)" >
   <app-post-new-feed
     (refreshPage) = "refreshNewsStory($event)"
   ></app-post-new-feed>
@@ -6,6 +6,8 @@
     *ngFor="let story of storiesFromServer"
     [currentStory]="story"
     (addedNewComment) = "refreshNewsStory($event)"
+    (rendered)="elementRendered($event)"
   ></app-content>
+
 </div>
 <app-navigation-bar></app-navigation-bar>

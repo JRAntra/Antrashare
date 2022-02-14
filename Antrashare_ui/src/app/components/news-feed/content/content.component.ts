@@ -27,7 +27,7 @@ export class ContentComponent implements OnInit {
 
   @Input() currentStory!: NewsStory;
   @Output() addedNewComment = new EventEmitter<boolean>();
-
+  @Output() rendered = new EventEmitter();
   public commentList: any[] = [];
   public videoId: string;
 
@@ -50,13 +50,15 @@ export class ContentComponent implements OnInit {
 
     this.videoId = this.userInfoFromServer._id ? this.userInfoFromServer._id : '';
     this.isVideo = this.userInfoFromServer?.content?.video?.includes('https://www.youtube.com/embed/') ? true : false;
-    //videoBox.src = this.currentStory.content.video;
-    // Save comment list locally for comment section's *ngFor
+
     this.commentList = this.currentStory.comment!;
+
+    
   }
 
   ngAfterViewInit() {
     document.getElementById(this.videoId)?.setAttribute('src', this.userInfoFromServer?.content?.video ? this.userInfoFromServer?.content?.video : '');
+    this.rendered.emit(this.userInfoFromServer._id);
   }
 
   hideImgTag(): boolean {
