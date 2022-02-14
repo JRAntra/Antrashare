@@ -14,17 +14,16 @@ import { TimeoutDialogComponent } from '../components/timeout-dialog/timeout-dia
 
 
 export class idleTimeService {
-
-  currentPageForRouting: string | undefined;
-  currentPageIsSignInPage = false;
+  public currentPageForRouting: string | undefined;
+  public currentPageIsSignInPage = false;
 
   // Requirement for idle is 10 mins === 6000000ms
-  idleTimeLimitInMS = 6000000;
-  testingTimeInMS = 30000; // 3 seconds
-  idleTimeLimitInSecond = this.idleTimeLimitInMS / 10000;
-  dialogLimitTimeInMS = 10000; // 10 seconds
-  idleTimer$ = new Subject();
-  subscription: Observable<number> | undefined;
+  public idleTimeLimitInMS = 6000000;
+  public testingTimeInMS = 30000; // 3 seconds
+  public idleTimeLimitInSecond = this.idleTimeLimitInMS / 10000;
+  public dialogLimitTimeInMS = 10000; // 10 seconds
+  public idleTimer$ = new Subject();
+  public subscription: Observable<number> | undefined;
 
   constructor(private dialog: MatDialog, private router: Router) {
     this.initializeIdleTimeTracker();
@@ -57,8 +56,7 @@ export class idleTimeService {
     this.idleTimer$.next(void 0);
   }
 
-
-  eventRefreshesIdleTime() {
+  eventRefreshesIdleTime(): void {
     // First, create a separate observable for each event:
     const scrollEvents$ = fromEvent(window, 'scroll');
     const clickEvents$ = fromEvent(window, 'click');
@@ -97,7 +95,7 @@ export class idleTimeService {
     );
   }
 
-  popLogoutDialog() {
+  popLogoutDialog(): void {
     this.refreshTimer();
 
     // pop logout tDialog Component

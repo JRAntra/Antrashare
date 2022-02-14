@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import jwt_decode from 'jwt-decode';
 import { UserInfoStore } from '../interfaces/user.interface';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -24,17 +25,15 @@ export class UserService {
 
   constructor(private _httpClient: HttpClient) { }
 
-  createNewAccount(body: any) {
+  createNewAccount(body: any): Observable<any> {
     return this._httpClient.post(this.registerURL, body);
   }
 
-  authenUser(body: any) {
-    console.log(body);
-
+  authenUser(body: any): Observable<any> {
     return this._httpClient.post(this.loginURL, body);
   }
 
-  updateUserToken(token: string) {
+  updateUserToken(token: string): void {
     this.userToken$ = token;
     this.userInfo$ = jwt_decode(token);
     this.userProfile$ = {
@@ -46,7 +45,7 @@ export class UserService {
   }
 
 
-  checkUserToken(token: string, userEmail: string) {
+  checkUserToken(token: string, userEmail: string): boolean {
     let tokenInfo: any;
 
     if (token) {
@@ -56,12 +55,12 @@ export class UserService {
     return false;
   }
 
-  getUserProfileByUserName(userName: string) {
+  getUserProfileByUserName(userName: string): Observable<any> {
     return this._httpClient.get(this.getUserByUserName + userName);
   }
 
 
-  getUserProfileById(userId: string) {
+  getUserProfileById(userId: string): Observable<any> {
     return this._httpClient.get(this.getUserByIdURL + userId);
   }
 }
