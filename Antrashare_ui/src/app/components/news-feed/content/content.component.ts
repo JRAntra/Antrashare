@@ -28,12 +28,16 @@ export class ContentComponent implements OnInit {
   @Input() currentStory!: NewsStory;
   @Output() addedNewComment = new EventEmitter<boolean>();
 
-  commentList: any[] = [];
+  public commentList: any[] = [];
+  public videoId: string;
 
   // listSize = 3;
   constructor(private _newsFeedService: NewsFeedService) {
+    this.videoId = this.userInfoFromServer._id ? this.userInfoFromServer._id : '';
   }
-  isVideo: boolean = true;
+  
+  public isVideo: boolean = true;
+
   ngOnInit(): void {
     this.userInfoFromServer = {
       content: this.currentStory.content!,
@@ -44,23 +48,27 @@ export class ContentComponent implements OnInit {
       _id: this.currentStory._id!,
     }
 
-    let videoBox = document.getElementById("videoLink");
-    console.log()
+    this.videoId = this.userInfoFromServer._id ? this.userInfoFromServer._id : '';
+    this.isVideo = this.userInfoFromServer?.content?.video?.includes('https://www.youtube.com/embed/') ? true : false;
     //videoBox.src = this.currentStory.content.video;
     // Save comment list locally for comment section's *ngFor
     this.commentList = this.currentStory.comment!;
   }
 
-  hideImgTag() {
+  ngAfterViewInit() {
+    document.getElementById(this.videoId)?.setAttribute('src', this.userInfoFromServer?.content?.video ? this.userInfoFromServer?.content?.video : '');
+  }
+
+  hideImgTag(): boolean {
     console.log(`ERROR!`);
     return true;
   }
 
-  refreshNewsStory(event: boolean) {
+  refreshNewsStory(event: boolean): void {
     this.addedNewComment.emit(event);
   }
 
-  deletePost() {
+  deletePost(): void {
     this._newsFeedService.deletePostNewsFeed(this.currentStory._id!).subscribe(() => {
       //this.refreshNewsStory(true);
     });

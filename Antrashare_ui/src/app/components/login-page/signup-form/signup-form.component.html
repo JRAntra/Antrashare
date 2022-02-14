@@ -78,11 +78,10 @@
           Email has been <strong>registered.</strong>
         </mat-error>
 
-        {{ found404 }}
+        <!-- Check for email async validator -->
         <mat-error *ngIf="found404">
-          {{found404}} <strong>registered.</strong>
+          {{ found404 }} <strong>registered.</strong>
         </mat-error>
-
       </mat-form-field>
     </div>
     <div>

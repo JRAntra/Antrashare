@@ -71,7 +71,6 @@ export class MyProfileComponent implements OnInit {
     this.markToUnsubscribe = this._idleTimeService.countIdleTime();
     this._idleTimeService.eventRefreshesIdleTime();
 
-
     // Read user profile from server
     this._userService.getUserProfileByUserName(userName)
       .subscribe((data) => {
@@ -101,7 +100,7 @@ export class MyProfileComponent implements OnInit {
 
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.markToUnsubscribe?.unsubscribe();
   }
 }

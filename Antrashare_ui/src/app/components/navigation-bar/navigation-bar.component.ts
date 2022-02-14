@@ -18,17 +18,17 @@ export class NavigationBarComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  myProfileIsClicked() {
+  myProfileIsClicked(): void {
     // Put the user name in the url on my profile page
     let retrievedUserName: string = localStorage.getItem('user-name')!;
     this._router.navigate(['/myProfile', JSON.parse(retrievedUserName)]);
   }
 
-  newsFeedIsClicked() {
+  newsFeedIsClicked(): void {
     this._router.navigate(['/newsFeed'])
   }
 
-  settingsIsClicked() {
+  settingsIsClicked(): void {
     this._router.navigate(['/settings'])
   }
 

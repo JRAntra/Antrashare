@@ -13,7 +13,7 @@ export class AddCommentComponent implements OnInit {
   @Input() serverData!: any;
   @Output() isChanged = new EventEmitter<boolean>();
 
-  addCommentForm = this.formBuilder.group({
+  public addCommentForm = this.formBuilder.group({
     textContent: ['', Validators.required],
   });
 
@@ -23,7 +23,7 @@ export class AddCommentComponent implements OnInit {
     // console.log(this.addCommentForm.controls['textContent'].errors)
   }
 
-  addComment() {
+  addComment(): void {
     let retrievedUserName: string = localStorage.getItem('user-name')!;
 
     let currentBody = {

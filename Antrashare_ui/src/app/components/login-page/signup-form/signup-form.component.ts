@@ -24,7 +24,7 @@ export class SignupFormComponent implements OnInit {
       [
         null,
         [Validators.required, Validators.minLength(5)],
-        [this._userValidationService.validateUniqueUserName(this._userService)],
+        [this._userValidationService.validateUniqueUserName(this._userService),],
       ],
     password: ['', [Validators.required, Validators.minLength(5), Validators.pattern(/^(?=.*[A-Z])(?=.*[@#$%^&+*!=]).*$/)]],
     name: ['', [Validators.required, Validators.minLength(3)]],
@@ -43,8 +43,7 @@ export class SignupFormComponent implements OnInit {
     return this.signupForm?.get('username')?.value;  // 
   }
 
-
-  signUpSuccess: boolean = false;
+  public signUpSuccess: boolean = false;
 
   constructor(
     private _formBuilder: FormBuilder,

@@ -11,7 +11,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 })
 export class SettingsComponent implements OnInit {
 
-  markToUnsubscribe: Subscription | undefined;
+  public markToUnsubscribe: Subscription | undefined;
 
   constructor(private _idleTimeService: idleTimeService, private _userService: UserService, private router: Router) {
     _idleTimeService.currentPageIsSignInPage = false;
@@ -23,11 +23,11 @@ export class SettingsComponent implements OnInit {
     this.markToUnsubscribe = this._idleTimeService.countIdleTime();
     this._idleTimeService.eventRefreshesIdleTime();
   }
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.markToUnsubscribe?.unsubscribe();
   }
 
-  clickedLogout() {
+  clickedLogout(): void {
     this._idleTimeService.popLogoutDialog(); // pop logout dialog
   }
 
