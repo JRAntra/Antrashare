@@ -5,7 +5,7 @@
 
   <mat-progress-bar mode="query" *ngIf="isQuerying"></mat-progress-bar>
 
-  <div class="noMore" *ngIf="isEnd" autoHide>
+  <div class="noMore" *ngIf="isEnd" autoHide [timings]="10000">
     <mat-divider aria-orientation="horizontal"></mat-divider>
     No More Posts!
   </div>
