@@ -1,11 +1,12 @@
 import { animate, AnimationBuilder, AnimationMetadata, style } from '@angular/animations';
-import { Directive, OnInit, ElementRef } from '@angular/core';
+import { Directive, OnInit, ElementRef, Input } from '@angular/core';
 
 @Directive({
   selector: '[autoHide]'
 })
 export class AutoHideDirective implements OnInit {
-  private time: number = DEFAULT_TIME;
+
+  @Input() timings: number = DEFAULT_TIME;
 
   constructor(private el: ElementRef, private builder: AnimationBuilder) { }
 
@@ -27,7 +28,7 @@ export class AutoHideDirective implements OnInit {
   private fadeOut(): AnimationMetadata[] {
     return [
       style({ opacity: '*' }),
-      animate(this.time + 'ms ease-in', style({ opacity: 0 })),
+      animate(this.timings + 'ms ease-in', style({ opacity: 0 })),
     ];
   }
 }
