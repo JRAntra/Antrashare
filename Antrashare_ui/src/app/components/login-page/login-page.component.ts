@@ -9,7 +9,7 @@ import { idleTimeService } from '../../services/idle-time';
 })
 export class LoginPageComponent implements OnInit {
 
-  markToUnsubscribe: Subscription | undefined;
+  public markToUnsubscribe: Subscription | undefined;
 
   constructor(private _idleTimeService: idleTimeService) {
     _idleTimeService.currentPageIsSignInPage = true;
@@ -18,10 +18,10 @@ export class LoginPageComponent implements OnInit {
 
   displayTimer$: any;
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.markToUnsubscribe?.unsubscribe();
   }
 }

@@ -12,7 +12,7 @@ import { UserService } from '../../../services/user.service';
 export class PostNewsStoryComponent implements OnInit {
   @Output() refreshPage = new EventEmitter<boolean>();
 
-  postNewsStoryForm = this.formBuilder.group({
+  public postNewsStoryForm = this.formBuilder.group({
     textContent: ['', Validators.required],
     imageContent: ['', Validators.required],
     videoContent: ['', Validators.required]
@@ -27,11 +27,11 @@ export class PostNewsStoryComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  processFile(imageInput: any) {
+  processFile(imageInput: any): void {
     console.log(imageInput.target.value);
   }
 
-  addToNewsStory() {
+  addToNewsStory(): void {
     let currentBody = {
       publisherName: JSON.parse(localStorage.getItem('user-name')!),
       publishedTime: new Date(),
@@ -47,7 +47,7 @@ export class PostNewsStoryComponent implements OnInit {
     });
   }
 
-  resetForm() {
+  resetForm(): void {
     this.postNewsStoryForm.controls["textContent"].setValue("");
     this.postNewsStoryForm.controls["imageContent"].setValue("");
     this.postNewsStoryForm.controls["videoContent"].setValue("");

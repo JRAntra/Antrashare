@@ -14,9 +14,9 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 export class NewsFeedComponent implements OnInit {
   public storiesFromServer: NewsStory[] = [];
 
-  dataFromMongoDB: any;
-  markToUnsubscribe: Subscription | undefined;
-  isCommentChanged: boolean = false;
+  public dataFromMongoDB: any;
+  public markToUnsubscribe: Subscription | undefined;
+  public isCommentChanged: boolean = false;
 
   constructor(
     private _idleTimeService: idleTimeService,
@@ -28,7 +28,7 @@ export class NewsFeedComponent implements OnInit {
     _idleTimeService.currentPageForRouting = 'newsFeed';
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     // Check idle time
     this.markToUnsubscribe = this._idleTimeService.countIdleTime();
     this._idleTimeService.eventRefreshesIdleTime();
@@ -45,11 +45,11 @@ export class NewsFeedComponent implements OnInit {
       )
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.markToUnsubscribe?.unsubscribe();
   }
 
-  refreshNewsStory(event: boolean) {
+  refreshNewsStory(event: boolean): void {
     if (event) {
       this._newsFeedService.getRequest()
         .subscribe(

@@ -15,12 +15,12 @@ export class TimeoutDialogComponent implements OnInit {
   constructor(private router: Router, private _idleTimeService: idleTimeService) { }
 
   // After the dialog come out, click “Cancel“ or not reacting in 10 seconds will navigate back to Login Page.
-  clickedCancel() {
+  clickedCancel(): void {
     localStorage.removeItem('user-data');
     this.router.navigate(['loginPage']);
   }
 
-  clickedConfirm() {
+  clickedConfirm(): void {
     clearTimeout(this._idleTimeService.timerId); // prevent jumping to home page
     this.router.navigate([this._idleTimeService.currentPageForRouting]);
   }

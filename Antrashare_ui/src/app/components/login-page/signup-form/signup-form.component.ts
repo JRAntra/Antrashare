@@ -10,7 +10,7 @@ import { UserService } from '../../../services/user.service';
   styleUrls: ['./signup-form.component.scss']
 })
 export class SignupFormComponent implements OnInit {
-  signupForm = this.formBuilder.group({
+  public signupForm = this.formBuilder.group({
     username: ['', [Validators.required, Validators.minLength(5)]],
     password: ['', [Validators.required, Validators.minLength(5), Validators.pattern(/^(?=.*[A-Z])(?=.*[@#$%^&+*!=]).*$/)]],
     name: ['', [Validators.required, Validators.minLength(3)]],
@@ -20,14 +20,14 @@ export class SignupFormComponent implements OnInit {
     phone: [''],
 
   });
-  signUpSuccess: boolean = false;
+  public signUpSuccess: boolean = false;
 
   constructor(private formBuilder: FormBuilder, private router: Router, private userService: UserService) { }
 
   ngOnInit(): void {
   }
 
-  signUp() {
+  signUp(): void {
     if (!this.signupForm.controls['password'].errors && !this.signupForm.controls['username'].errors && !this.signupForm.controls['name'].errors) {
       let currentBody = {
         password: this.signupForm.get('password')?.value,
@@ -39,8 +39,6 @@ export class SignupFormComponent implements OnInit {
         phone: this.signupForm.get('phone')?.value,
         userRole: 'user'
       }
-
-      console.log(currentBody);
 
       this.userService.createNewAccount(currentBody).subscribe((data) => {
         this.signUpSuccess = true;
