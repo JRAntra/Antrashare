@@ -1,6 +1,20 @@
 <div class="centered">
+  <table mat-table >
+
+
+  </table>
   <app-comment-input [storyId]="storyId"></app-comment-input>
 </div>
 <ul class="story">
-  <app-comment *ngFor="let comment of commentsList" [comment]="comment"></app-comment>
+  <app-comment *ngFor="let comment of commentsList,let i=index;" [comment]="comment">
+    
+  </app-comment>
 </ul>
+
+<mat-paginator 
+[length]="100"
+(page)="onPageChange($event)"  
+[pageSize]="5"
+[pageSizeOptions]="[5, 10]">>
+</mat-paginator>
+

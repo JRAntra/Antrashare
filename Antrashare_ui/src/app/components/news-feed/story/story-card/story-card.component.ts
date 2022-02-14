@@ -35,7 +35,8 @@ export class StoryCardComponent implements OnInit {
 
   openComment() {
     const dialogRef = this.commentListDialog.open(CommentListComponent, {
-      width: '50vw',
+      width: '600px',
+      height: '800px',
       data: {
         storyComments: this.storyItem.comment,
         storyId: this.storyItem._id,
