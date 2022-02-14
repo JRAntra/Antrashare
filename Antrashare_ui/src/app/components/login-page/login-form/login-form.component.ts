@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, ValidatorFn, AbstractControl, ValidationErrors } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import jwtDecode from 'jwt-decode';
+// import { access } from 'fs';
 import { UserAccount } from 'src/app/models/user.model';
 import { AuthService } from 'src/app/services/auth.service';
+
 
 @Component({
   selector: 'app-login-form',
@@ -43,10 +46,13 @@ export class LoginFormComponent implements OnInit {
       userEmail: this.userLoginForm.get('email')?.value,
       password: this.userLoginForm.get('password')?.value
     }
+    
     this.authService.login(account).subscribe(
       () => {
         const redirectUrl = this.activatedRoute.snapshot.queryParamMap.get('redirectTo') || 'newsfeed';
         this.router.navigateByUrl(redirectUrl);
+        // console.log(this.authService.userName);
+        // console.log(this.authService.userRole);
       }, 
       (response) => {
         this.userLoginForm.enable();
@@ -88,7 +94,7 @@ export class LoginFormComponent implements OnInit {
 
   specialCharValidator(control: FormControl): ValidationErrors | null {
     const nameRegexp: RegExp = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
-    console.log(nameRegexp.test(control.value));
+    // console.log(nameRegexp.test(control.value));
     if (control.value && nameRegexp.test(control.value)) {
       return null;
     }
