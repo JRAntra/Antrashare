@@ -1,6 +1,6 @@
 import { ConfirmationConfig } from "src/app/models/dialog.model";
 
-export const CONFIRMATION_CONFIG: ConfirmationConfig = {
+export const DEFAULT_CONFIRMATION_CONFIG: ConfirmationConfig = {
   title: 'Confirm',
   message: 'Are you sure that you want to confirm this action?',
   icon: {
