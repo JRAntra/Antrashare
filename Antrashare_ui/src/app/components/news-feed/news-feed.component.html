@@ -1,9 +1,16 @@
-<div>
+<div 
+infiniteScroll
+[infiniteScrollDistance]="2"
+[infiniteScrollThrottle]="50"
+(scrolled)="onScroll()"
+[infiniteScrollDisabled] = "stopFlag"
+>
     <app-post-field></app-post-field>
     <dialog open class="newsFeedNotification" appHideElement>Fide Out Notification(5s)</dialog>
 
     <div class="newsFeedContent">
-        <story *ngFor="let story of storyList$ | async" [story]="story" class="newsFeedStory"> </story>
+        <!-- <story *ngFor="let story of storyList$ | async" [story]="story" class="newsFeedStory"> </story> -->
+        <story *ngFor="let story of currentStoryList" [story]="story" class="newsFeedStory"> </story>
 
     </div>
     <app-bottom-bar></app-bottom-bar>

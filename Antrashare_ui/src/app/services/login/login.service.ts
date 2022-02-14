@@ -19,13 +19,15 @@ export class LoginService {
   //to send: this.loginService.decodeToken(token)
   //to subscribe: this.loginService.tokenInfo$.subscribe(value => console.log(value))
   decodeToken(token: string) {
-      this.tokenInfo = jwt_decode(token)
-      this.tokenInfo$.next(this.tokenInfo)
+    this.tokenInfo = jwt_decode(token)
+    this.tokenInfo$.next(this.tokenInfo)
   }
 
   postLogin(body: UserAccount) {
     return this.http.post(this.baseurl, body)
   }
+
+
 
 
 

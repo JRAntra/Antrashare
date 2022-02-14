@@ -2,6 +2,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -22,10 +23,10 @@ import { LogoutDialogComponent } from './components/logout-dialog/logout-dialog.
 import { LoginWindowComponent } from './components/login-window/login-window.component';
 import { LoginFormComponent } from './components/login-window/login-form/login-form.component';
 import { MyProfilePageComponent } from './components/my-profile-page/my-profile-page.component';
+import { OtherProfilePageComponent } from './components/other-profile-page/other-profile-page.component';
 import { PostFieldComponent } from './components/news-feed/post-field/post-field.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { NavbarComponent } from './components/header/navbar/navbar.component';
-import { NewsService } from 'src/app/services/news/news.service';
 import { NewsFeedComponent } from './components/news-feed/news-feed.component';
 import { StoryComponent } from './components/news-feed/story/story.component';
 import { TimeoutDialogComponent } from 'src/app/components/timeout-dialog/timeout-dialog.component';
@@ -34,6 +35,11 @@ import { CommentInputFieldComponent } from './components/news-feed/comment-dialo
 import { CommentListComponent } from './components/news-feed/comment-dialog/comment-list/comment-list.component';
 import { RegisterPageComponent } from './components/register-page/register-page.component';
 import { RegisterFormComponent } from './components/register-page/register-form/register-form.component';
+
+//service
+import { AuthorizedService } from './services/guards/authorized.service';
+import { NewsService } from 'src/app/services/news/news.service';
+
 
 
 @NgModule({
@@ -44,6 +50,7 @@ import { RegisterFormComponent } from './components/register-page/register-form/
     HideElementDirective,
     MyProfilePageComponent,
     NewsFeedComponent,
+    OtherProfilePageComponent,
     SettingsComponent,
     StoryComponent,
     TimeoutDialogComponent,
@@ -57,13 +64,14 @@ import { RegisterFormComponent } from './components/register-page/register-form/
     CommentInputFieldComponent,
     CommentListComponent,
     RegisterPageComponent,
-    RegisterFormComponent
+    RegisterFormComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    InfiniteScrollModule,
     MatDialogModule,
     MatFormFieldModule,
     MatInputModule,
@@ -73,7 +81,7 @@ import { RegisterFormComponent } from './components/register-page/register-form/
     MatCardModule,
     ReactiveFormsModule
   ],
-  providers: [NewsService, DatePipe],
+  providers: [AuthorizedService, NewsService, DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

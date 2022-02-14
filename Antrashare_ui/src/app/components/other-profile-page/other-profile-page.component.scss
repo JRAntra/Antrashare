@@ -1,0 +1,50 @@
+#container-body{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+form{
+  width: 70%;  
+}
+
+fieldset {
+    background-color: #eeeeee;
+    padding-left: 3rem;
+}
+  
+legend {
+    background-color: gray;
+    color: #F5F5F5;
+    padding: 5px 10px;
+}
+  
+input {
+    margin: 5px;
+}
+
+#imgProfile-container{
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#imgProfile {
+    margin: 10px 10px;
+    width:25%;
+}
+fieldset, #imgProfile-container {
+    border: solid 2px;
+    border-color: black;
+    border-radius: 20px;
+    margin: 0 2rem;
+}
+#img-button-container{
+    display: flex;
+    flex-direction: column;
+}
+button { 
+    background-color: #A62626;
+    color: #F5F5F5;
+}
