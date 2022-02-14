@@ -25,48 +25,53 @@ export class UserValidationService {
       const fullURL = this.checkExistByUsernameURL + control.value;
       // console.log(fullURL);
 
-      return _userService.checkExistByEmail(control.value)
+      // Monitor value in input field
+      return control.valueChanges
         .pipe(
-          catchError((error) => {
-            found404 = true;
-            console.log(`found404: ${found404}`);
+          debounceTime(1500),
+          // distinctUntilChanged(), // optional
+          switchMap(() => {
+            return _userService.checkExistByEmail(control.value).pipe(
+              // Handle 404
+              catchError((error) => {
+                found404 = true;
+                console.log(`found404: ${found404}`);
 
-            // debug
-            // return of({ "usernameAlreadyExists": true });
-            // console.log('error is intercept')
-            // console.error(error);
+                // debug
+                // return of({ "usernameAlreadyExists": true });
+                // console.log('error is intercept')
+                // console.error(error);
 
-            // Block from checking 404
-            return throwError(error.message);
+                // Block from checking 404
+                return throwError(error.message);
+              }),
+              map(data => {
+                if (data) {
+                  console.log(`User email is good to use`, data);
+                  return { "userEmailAlreadyExists": true };
+                } else {
+                  console.log(`User email has been registered.`, data);
+                  // return { "userEmailAlreadyExists": true }; // works here
+                  return null;
+                }
+              })
+            )
           }),
-          map(data => {
-            // console.log(data);
-            found404 = false;
-            console.log(fullURL);
-
-            if (data) {
-              console.log(`User email is good to use`, data);
-              return { "usernameAlreadyExists": true };
-            } else {
-              // TDO: check why NOT get called
-              console.log(`User email has been registered.`, data);
-              return null;
-            }
-          }),
+          first(), // important to make observable finite
         )
-
     };
   }
 
 
   validateUniqueUserName(_userService: UserService): AsyncValidatorFn {
     return (control: AbstractControl): Observable<ValidationErrors | null> => {
+      // Monitor value in input field
       return control.valueChanges
         .pipe(
           debounceTime(1500),
           // distinctUntilChanged(), // optional
           switchMap(() => {
-            return this._userService.getUserProfileByUserName(control.value).pipe(
+            return _userService.getUserProfileByUserName(control.value).pipe(
               map(data => {
                 if (data) {
                   console.log(`Username has been registered.`, data);
