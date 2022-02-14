@@ -1,5 +1,7 @@
 <button mat-icon-button *ngIf="getUrlUserName()" (click)="back()" matTooltip="back to News Feed">
   <mat-icon>keyboard_backspace</mat-icon>
 </button>
-<app-profile-form *ngIf="editMode"></app-profile-form>
-<app-profile-info *ngIf="!editMode && profile" [profile]="profile"></app-profile-info>
+
+<app-profile-form *ngIf="editMode" [profile]="profile" (saveEmitter)="editMode = false"></app-profile-form>
+
+<app-profile-info *ngIf="!editMode && profile" [profile]="profile" (editEmitter)="editMode = true"></app-profile-info>

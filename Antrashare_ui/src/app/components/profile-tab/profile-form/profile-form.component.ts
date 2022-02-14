@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { UserProfile } from 'src/app/models/user.model';
 
 @Component({
   selector: 'app-profile-form',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileFormComponent implements OnInit {
 
+  @Input() profile!: UserProfile;
+  @Output() saveEmitter = new EventEmitter();
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  save(): void {
+    this.saveEmitter.emit(this.profile);
   }
 
 }
