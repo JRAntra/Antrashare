@@ -32,19 +32,7 @@ export class UserValidationService {
           // distinctUntilChanged(), // optional
           switchMap(() => {
             return _userService.checkExistByEmail(control.value).pipe(
-              // Handle 404
-              catchError((error) => {
-                found404 = true;
-                console.log(`found404: ${found404}`);
 
-                // debug
-                // return of({ "usernameAlreadyExists": true });
-                // console.log('error is intercept')
-                // console.error(error);
-
-                // Block from checking 404
-                return throwError(error.message);
-              }),
               map(data => {
                 if (data) {
                   console.log(`User email is good to use`, data);
@@ -54,7 +42,21 @@ export class UserValidationService {
                   // return { "userEmailAlreadyExists": true }; // works here
                   return null;
                 }
-              })
+              }),
+              // Handle 404
+              catchError((error) => {
+                found404 = true;
+                console.log(`found404: ${found404}`);
+
+                // debug
+                // return of(null);
+                return of({ "usernameAlreadyExists": true });
+                // console.log('error is intercept')
+                // console.error(error);
+
+                // Block from checking 404
+                return throwError(error.message);
+              }),
             )
           }),
           first(), // important to make observable finite
