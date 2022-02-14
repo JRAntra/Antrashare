@@ -3,6 +3,7 @@
         <mat-label>Email:</mat-label>
         <input matInput formControlName="email">
         <mat-error *ngIf="userLoginForm.get('email')?.invalid">{{getErrorMessageEmail()}}</mat-error>
+        <mat-hint>{{getValidate()}}</mat-hint>
     </mat-form-field>
 
     <mat-form-field class = "form-field" floatLabel="auto" appearance="fill" [formGroup]="userLoginForm">

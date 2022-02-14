@@ -1,10 +1,27 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators, ValidatorFn, AbstractControl, ValidationErrors } from '@angular/forms';
+import { FormGroup, FormControl, Validators, ValidatorFn, AbstractControl, ValidationErrors, AsyncValidatorFn } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import jwtDecode from 'jwt-decode';
+import { catchError, debounceTime, of } from 'rxjs';
 // import { access } from 'fs';
 import { UserAccount } from 'src/app/models/user.model';
 import { AuthService } from 'src/app/services/auth.service';
+import { Observable } from 'rxjs';
+
+const asyncValidator = (HttpClient: HttpClient) => (control: AbstractControl): Observable<ValidationErrors> | null => {
+  control.valueChanges.pipe(debounceTime(400)).subscribe((email)=>{
+    return HttpClient.get("http://localhost:4231/api/register/checkExistByEmail/" + email).subscribe(
+      (response) =>{
+        console.log(response);
+      }
+     );
+    
+    // return HttpClient.get("http://localhost:4231/api/register/checkExistByEmail/" + email);
+  })
+  
+  return null;
+}
 
 
 @Component({
@@ -18,6 +35,7 @@ export class LoginFormComponent implements OnInit {
     email: new FormControl('', [
       Validators.required,
       Validators.minLength(5),
+      asyncValidator(this.http),
     ]),
     password: new FormControl('', [
       Validators.required,
@@ -30,7 +48,8 @@ export class LoginFormComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private http: HttpClient
   ) { }
 
   ngOnInit(): void { }
@@ -109,4 +128,11 @@ export class LoginFormComponent implements OnInit {
     return { capLetter: { value: control.value } };
   }
 
+  getValidate(): any{
+    if( this.userLoginForm.get('email')?.hasError('registered')){
+      return "Email has been registered";
+    }
+    return 'Email is OK to use';
+  }
 }
+

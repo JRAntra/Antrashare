@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable, of} from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { APP_CONFIG } from '../core/config/app.config';
@@ -10,8 +10,10 @@ import { UserService } from './user.service';
 import jwtDecode from 'jwt-decode';
 import { DecodedInfo } from '../models/user.model';
 
+
 const KEY: string = `${APP_CONFIG.localStorage.prefix}${APP_CONFIG.localStorage.token}`;
 const PATH: string = [environment.apiEndPoint, 'login'].join('/');
+const PATH1: string = [environment.apiEndPoint, 'register'].join('/');
 
 @Injectable({
   providedIn: 'root'
@@ -80,4 +82,10 @@ export class AuthService {
 
     this.authenticated = false;
   }
+
+  checkEmailExist(email: String): Observable<object>{
+    return this.http.get(PATH + '/checkExistByEmail/' + email);
+  }
+
+  
 }
