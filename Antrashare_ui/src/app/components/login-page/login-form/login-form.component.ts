@@ -10,11 +10,13 @@ import { AuthService } from 'src/app/services/auth.service';
 import { Observable } from 'rxjs';
 
 const asyncValidator = (HttpClient: HttpClient) => (control: AbstractControl): Observable<ValidationErrors> | null => {
-  control.valueChanges.pipe(debounceTime(400)).subscribe((email)=>{
+  control.valueChanges.pipe(debounceTime(1000)).subscribe((email)=>{
     return HttpClient.get("http://localhost:4231/api/register/checkExistByEmail/" + email).subscribe(
       (response) =>{
+        console.log(email);
         console.log(response);
       }
+      // (catchError)
      );
     
     // return HttpClient.get("http://localhost:4231/api/register/checkExistByEmail/" + email);
@@ -122,6 +124,7 @@ export class LoginFormComponent implements OnInit {
 
   capLetterValidator(control: FormControl): ValidationErrors | null {
     let hasCap = /[A-Z]/.test(control.value);
+    console.log('cap');
     if (hasCap) {
       return null;
     }
@@ -130,6 +133,7 @@ export class LoginFormComponent implements OnInit {
 
   getValidate(): any{
     if( this.userLoginForm.get('email')?.hasError('registered')){
+  
       return "Email has been registered";
     }
     return 'Email is OK to use';
