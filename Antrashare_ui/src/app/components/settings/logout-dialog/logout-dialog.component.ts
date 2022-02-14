@@ -22,6 +22,7 @@ export class LogOutDialogComponent {
 
   // click yes to logout
   onYesClick(): void {
+    localStorage.clear(); //need to check if the button remindMe was checked or not
     this.dialogRef.close();
     this.authService.logout();
   }

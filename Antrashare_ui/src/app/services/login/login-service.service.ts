@@ -33,12 +33,9 @@ export class LoginService {
       userRole: this.userInfo$.userRole
     }
   }
-  checkUserToken(token: string, userEmail: string) {
-    let tokenInfo: any;
-    if (token) {
-      tokenInfo = jwt_decode(token);
-      return tokenInfo.userEmail === userEmail;
-    }
-    return false;
+  checkUserToken(token: any, userEmail: string) {
+    console.log(token);
+    console.log(userEmail);
+    return token.username === userEmail;
   }
 }

@@ -33,7 +33,7 @@ export class LoginFormComponent implements OnInit {
   }
 
   get username() {
-    return this.loginForm.get('username');
+    return this.loginForm.get('username')?.value;
   }
 
   get password() {
@@ -47,12 +47,29 @@ export class LoginFormComponent implements OnInit {
   }
 
   submitForm() {
-    if (this.loginForm.valid) {
-      console.log('Valid?', this.loginForm.valid); // true or false
-      console.log(this.loginForm.value);
+    let token = localStorage.getItem('login-data') ? JSON.parse(localStorage.getItem('login-data') || "") : "";
+
+    if (this.loginForm.valid && this.loginService.checkUserToken(token, this.username)) {
       this.authService.login(this.loginForm.value);
+      let currentBody = {
+        userEmail: this.loginForm.get('username')?.value,
+        password: this.loginForm.get('password')?.value
+      }
+
+      this.loginService.userAuth(currentBody).subscribe((data) => {
+        this.userData = data;
+        this.loginService.updateUserToken(this.userData.bearerToken);
+        this.router.navigate(['/newsfeed']);
+      })
+
+      if (this.rememberMe === true) {
+        this.userData = JSON.stringify(this.loginForm.value);
+        localStorage.setItem('login-data', this.userData);
+      }
+    } else {
+      alert("Invalid username and password combination");
+      console.log("error");
     }
-    this.formSubmitAttempt = true;
   }
   signUp(): void {
     const dialogRef = this.dialog.open(signupUserComponent, {
@@ -62,26 +79,5 @@ export class LoginFormComponent implements OnInit {
   }
   rememberMeButton() {
     this.rememberMe = !this.rememberMe;
-  }
-  signIn() {
-    if (!this.loginForm.controls['password'].errors && !this.loginForm.controls['username'].errors) {
-      let currentBody = {
-        userEmail: this.loginForm.get('username')?.value,
-        password: this.loginForm.get('password')?.value
-      }
-
-      this.loginService.userAuth(currentBody).subscribe((data) => {
-        this.userData = data;
-        localStorage.setItem('user-data', JSON.stringify(this.userData.bearerToken));
-        localStorage.setItem('user-email', JSON.stringify(this.userData.userEmail));
-        this.loginService.updateUserToken(this.userData.bearerToken);
-        this.router.navigate(['/newsFeed']);
-      })
-
-      if (this.rememberMe === true) {
-        this.userData = JSON.stringify(this.loginForm.value);
-        localStorage.setItem('login-data', this.userData);
-      }
-    }
   }
 }
