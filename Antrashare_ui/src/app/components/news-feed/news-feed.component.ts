@@ -29,20 +29,19 @@ export class NewsFeedComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    // Handle deleted post
+    this._newsFeedService.childEventListner().subscribe(info => {
+      this._newsFeedService.deletePostNewsFeed(this._newsFeedService.currentStoryId).subscribe(() => {
+        this.refreshNewsStory(true);
+      });
+    })
+
     // Check idle time
     this.markToUnsubscribe = this._idleTimeService.countIdleTime();
     this._idleTimeService.eventRefreshesIdleTime();
 
-    this._newsFeedService.getRequest()
-      .subscribe(
-        (data) => {
-          // Save the data locally to create dynamically with ngFor
-          this.dataFromMongoDB = data;
-          this.storiesFromServer = this.dataFromMongoDB;
-
-          console.log(`Data from server: `, this.storiesFromServer) // debug
-        }
-      )
+    this.refreshNewsStory(true);
   }
 
   ngOnDestroy(): void {

@@ -5,6 +5,7 @@ import { fromEvent, merge } from 'rxjs';
 import { Observable, timer } from 'rxjs';
 import { Subject } from 'rxjs';
 import { startWith, switchMap } from 'rxjs/operators';
+import { DeleteConfirmationDialogComponent } from '../components/delete-confirmation-dialog/delete-confirmation-dialog.component';
 import { LogoutConfirmationDialogComponent } from '../components/logout-confirmation-dialog/logout-confirmation-dialog.component';
 import { TimeoutDialogComponent } from '../components/timeout-dialog/timeout-dialog.component';
 
@@ -17,6 +18,7 @@ export class idleTimeService {
 
   currentPageForRouting: string | undefined;
   currentPageIsSignInPage = false;
+  currentStoryId: string = "";
 
   // Requirement for idle is 10 mins === 6000000ms
   idleTimeLimitInMS = 6000000;
@@ -102,6 +104,13 @@ export class idleTimeService {
 
     // pop logout tDialog Component
     this.dialog.open(LogoutConfirmationDialogComponent);
+  }
+
+  popDeleteDialog() {
+    this.refreshTimer();
+
+    // pop logout tDialog Component
+    this.dialog.open(DeleteConfirmationDialogComponent);
   }
 
 }

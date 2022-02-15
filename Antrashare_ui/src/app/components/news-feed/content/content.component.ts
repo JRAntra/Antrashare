@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angular/core';
 import { NewsStory } from 'src/app/interfaces/newfeed.interface';
+import { idleTimeService } from 'src/app/services/idle-time';
 import { NewsFeedService } from '../../../services/news-feed.service';
 import { NewsFeedComponent } from '../news-feed.component';
 
@@ -26,16 +27,19 @@ export class ContentComponent implements OnInit {
   videoUrl = "https://media.geeksforgeeks.org/wp-content/uploads/20200513195558/Placement100-_-GeeksforGeeks-1.mp4"
 
   @Input() currentStory!: NewsStory;
-  @Output() addedNewComment = new EventEmitter<boolean>();
+  @Output() storyDataChanged = new EventEmitter<boolean>();
 
   public commentList: any[] = [];
   public videoId: string;
 
   // listSize = 3;
-  constructor(private _newsFeedService: NewsFeedService) {
+  constructor(
+    private _idleTimeService: idleTimeService,
+    private _newsFeedService: NewsFeedService,
+  ) {
     this.videoId = this.userInfoFromServer._id ? this.userInfoFromServer._id : '';
   }
-  
+
   public isVideo: boolean = true;
 
   ngOnInit(): void {
@@ -65,16 +69,18 @@ export class ContentComponent implements OnInit {
   }
 
   refreshNewsStory(event: boolean): void {
-    this.addedNewComment.emit(event);
+    /**
+     * NOTE:
+     * There are two cases with emit here:
+     * (1) Story got deleted
+     * (2) New comment
+     */
+    this.storyDataChanged.emit(event);
   }
 
-  deletePost(): void {
-    this._newsFeedService.deletePostNewsFeed(this.currentStory._id!).subscribe(() => {
-      //this.refreshNewsStory(true);
-    });
-    setTimeout(() => {
-      this.refreshNewsStory(true);
-    }, 500);
 
+  deletePost(): void {
+    this._idleTimeService.popDeleteDialog(); // pop logout dialog
+    this._newsFeedService.currentStoryId = this.currentStory._id!;
   }
 }

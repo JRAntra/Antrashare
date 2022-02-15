@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Subject } from "rxjs";
+import { BehaviorSubject, Subject } from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +9,18 @@ export class NewsFeedService {
   url = 'http://localhost:4231/api/news';
   isRefreshed$ = false;
   contentList$: any;
+  currentStoryId: string = "";
+
+
+  private childClickedEvent = new BehaviorSubject<string>('');
+
+  emitChildEvent(msg: string){
+     this.childClickedEvent.next(msg)
+  }
+
+  childEventListner(){
+     return this.childClickedEvent.asObservable();
+   } 
 
   constructor(private _httpClient: HttpClient) {
   }

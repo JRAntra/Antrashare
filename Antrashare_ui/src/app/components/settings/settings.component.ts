@@ -13,7 +13,11 @@ export class SettingsComponent implements OnInit {
 
   public markToUnsubscribe: Subscription | undefined;
 
-  constructor(private _idleTimeService: idleTimeService, private _userService: UserService, private router: Router) {
+  constructor(
+    private _idleTimeService: idleTimeService,
+    private _userService: UserService,
+    private _router: Router
+  ) {
     _idleTimeService.currentPageIsSignInPage = false;
     _idleTimeService.currentPageForRouting = 'settings';
   }
