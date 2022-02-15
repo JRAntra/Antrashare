@@ -15,7 +15,7 @@
 
         <div [formGroupName]="i">
           <mat-form-field class="full-width" appearance="outline">
-            <img matPrefix [src]="image.get('url')?.value" *ngIf="image.get('url')?.value">
+            <img matPrefix [src]="image.get('url')?.value" *ngIf="image.get('url')?.value" (error)="handleImageError($event)">
             <mat-label>Paste image URL</mat-label>
             <input matInput formControlName="url">
             <mat-icon matSuffix (click)="removeImage(i)">delete</mat-icon>

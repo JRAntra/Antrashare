@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { APP_CONFIG } from 'src/app/core/config/app.config';
-import { News, Story } from 'src/app/models/newsfeed.model';
+import { Story } from 'src/app/models/newsfeed.model';
 import { NewsService } from 'src/app/services/news.service';
 
 @Component({
@@ -47,7 +47,9 @@ export class StoryFormComponent implements OnInit {
 
     // ------ clear and reset form ------
     this.images.clear();
+    this.numImages = APP_CONFIG.defaultStory.numImages;
     this.videos.clear();
+    this.numVideos = APP_CONFIG.defaultStory.numVideos;
 
     this.postForm.reset();
     this.postForm.setErrors(null);
@@ -69,13 +71,17 @@ export class StoryFormComponent implements OnInit {
 
   private newImage(): FormGroup {
     return this.fb.group({
-      url: ''
+      url: ['', [Validators.required]]
     })
   }
 
   public addImage(): void {
     this.images.push(this.newImage());
     this.numImages--;
+  }
+
+  public handleImageError(event: any): void {
+    event.target.src = "../../../../../assets/images/not-found.png";
   }
 
   public removeImage(index: number): void {
@@ -89,7 +95,7 @@ export class StoryFormComponent implements OnInit {
 
   private newVideo(): FormGroup {
     return this.fb.group({
-      url: ''
+      url: ['', [Validators.required]]
     });
   }
 
