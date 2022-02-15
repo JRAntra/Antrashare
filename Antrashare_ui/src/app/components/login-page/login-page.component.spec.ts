@@ -1,8 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { UserInfoService } from 'src/app/Service/userInfo.service';
 
 import { LoginPageComponent } from './login-page.component';
 
-describe('LoginPageComponent', () => {
+describe('LoginPageComponentTest', () => {
   let component: LoginPageComponent;
   let fixture: ComponentFixture<LoginPageComponent>;
 
@@ -22,4 +23,10 @@ describe('LoginPageComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should return 100', () =>{
+    expect(component.onClick()).toEqual(100)
+  })
+
+
 });

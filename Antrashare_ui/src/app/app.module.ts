@@ -5,6 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { AdminModule } from './modules/admin/admin.module';
 
 //Angular Material Modules
 import { MatButtonModule } from '@angular/material/button';
@@ -25,6 +26,7 @@ import { NewsStoryComponent } from './components/news-feed/newsStory/newsStory.c
 import { SingleNewsStoryComponent } from './components/news-feed/newsStory/singleNewsStory/singleNewsStory.component';
 import { CommentListComponent } from './dialogs/commentList/commentList.component';
 import { MyProfileComponent } from './components/my-profile/my-profile.component';
+
 
 @NgModule({
   declarations: [
@@ -51,6 +53,7 @@ import { MyProfileComponent } from './components/my-profile/my-profile.component
     HttpClientModule,
     MatDialogModule,
     MatIconModule,
+ 
   ],
   providers: [],
   bootstrap: [AppComponent],

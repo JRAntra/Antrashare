@@ -22,6 +22,10 @@ export class UserInfoService {
     return this.http.get<UserAccount | null>(finalUrl);
   }
 
+  public getUserToken(){
+    return {name:"JR"}
+  }
+
   // public updateUserInfo(){
 
   //   const userInfo: UserAccount = {
