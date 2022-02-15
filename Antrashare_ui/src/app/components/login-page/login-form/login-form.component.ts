@@ -7,19 +7,7 @@ import { LoginService } from 'src/app/services/login/login-service.service';
 import { Router } from '@angular/router';
 import { catchError, throwError } from 'rxjs';
 import jwt_decode from 'jwt-decode';
-
-export interface cachedData {
-  age: number,
-  exp: number,
-  gender: string,
-  iat: number,
-  name: string,
-  phone: number,
-  userEmail: string,
-  userName: string,
-  userRole: string,
-  _id: string,
-};
+import { loginData } from 'src/app/models/user.models';
 
 @Component({
   selector: 'app-login-form',
@@ -77,9 +65,9 @@ export class LoginFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    let cachedData: cachedData = localStorage.getItem('login-data') ? jwt_decode(localStorage.getItem('login-data') || "") : this.template;
-    console.log(cachedData.userEmail);
-    this.changeUserEmail(cachedData.userName !== "template" ? JSON.stringify(cachedData.userEmail) : "");
+    let loginData: loginData = localStorage.getItem('login-data') ? jwt_decode(localStorage.getItem('login-data') || "") : this.template;
+    console.log(loginData.userEmail);
+    this.changeUserEmail(loginData.userName !== "template" ? JSON.stringify(loginData.userEmail) : "");
   }
 
   submitForm() {
@@ -100,24 +88,6 @@ export class LoginFormComponent implements OnInit {
         })
       ).subscribe((data) => {
         this.userData = data;
-        localStorage.setItem(
-          'user-username',
-          JSON.stringify(this.userData.userName)
-        );
-        localStorage.setItem('user-name', JSON.stringify(this.userData.name));
-        localStorage.setItem(
-          'user-jwt',
-          JSON.stringify(this.userData.bearerToken)
-        );
-        localStorage.setItem(
-          'user-email',
-          JSON.stringify(this.userData.userEmail)
-        );
-        localStorage.setItem(
-          'user-role',
-          JSON.stringify(this.userData.userRole)
-        );
-        localStorage.setItem('user-id', JSON.stringify(this.userData._id));
         this.loginService.updateUserToken(this.userData.bearerToken);
         localStorage.setItem('login-data', this.userData.bearerToken);
         this.router.navigate(['/newsfeed']);

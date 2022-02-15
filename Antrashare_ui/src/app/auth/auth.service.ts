@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
-import { UserProfile } from '../models/user.models';
+import { loginData, UserProfile } from '../models/user.models';
 import { LoginService } from '../services/login/login-service.service';
+import jwt_decode from 'jwt-decode'
 
 @Injectable({
   providedIn: 'root',
@@ -11,19 +12,28 @@ export class AuthService {
   private loggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
     false
   );
-  username!: string;
-  constructor(private loginService: LoginService, private router: Router) {}
+  constructor(private loginService: LoginService, private router: Router) { }
 
   get isLoggedIn() {
     return this.loggedIn.asObservable();
   }
 
+  public getUserName(): string {
+    let userT: loginData;
+    userT = jwt_decode(localStorage['login-data']);
+    return userT.userName;
+  }
+
+  public getUserEmail(): string {
+    let userT: loginData;
+    userT = jwt_decode(localStorage['login-data']);
+    return userT.userEmail;
+  }
+
+
   login(user: UserProfile) {
-    if (user.username !== '' && user.password !== '') {
-      this.loggedIn.next(true);
-      this.router.navigate(['/newsfeed']);
-      this.username = user.username;
-    }
+    this.loggedIn.next(true);
+    this.router.navigate(['/newsfeed']);
   }
 
   logout() {

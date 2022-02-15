@@ -21,7 +21,7 @@ export class CommentInputComponent implements OnInit {
     private newsfeedservice: newsFeedService,
     private fb: FormBuilder,
     private authService: AuthService
-  ) {}
+  ) { }
   ngOnInit(): void {
     console.log(this.storyId);
   }
@@ -29,7 +29,7 @@ export class CommentInputComponent implements OnInit {
   newsCommentSubmit() {
     let obj: NewsFeedComment = {
       _id: this.storyId,
-      publisherName: this.authService.username,
+      publisherName: this.authService.getUserName(),
       publishedTime: '' + new Date(),
       content: {
         image:

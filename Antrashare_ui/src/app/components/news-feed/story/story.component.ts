@@ -33,7 +33,7 @@ export class StoryComponent implements OnInit {
   newsPostSubmit() {
     let newStory = {
       // image: '',
-      publisherName: this.authService.username,
+      publisherName: this.authService.getUserName(),
       publishedTime: '' + new Date(),
       content: {
         text: this.newsFeedForm.get('text')?.value

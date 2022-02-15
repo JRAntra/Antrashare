@@ -19,17 +19,17 @@ export class StoryCardComponent implements OnInit {
     private commentListDialog: MatDialog,
     private newsfeedservice: newsFeedService,
     private authService: AuthService
-  ) {}
+  ) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   deletePost() {
-    if (this.authService.username === this.storyItem.publisherName) {
+    if (this.authService.getUserName() === this.storyItem.publisherName) {
       this.subscriptions.add(
         this.newsfeedservice.deletePostNewsFeed(this.storyItem._id!).subscribe()
       );
     } else {
-      console.log('You can only delete your posts.');
+      alert('You can only delete your posts.');
     }
   }
 

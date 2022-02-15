@@ -42,3 +42,4 @@ export class LoginService {
     console.log(this.userToken$);
     return this.userToken$.userEmail === userEmail;
   }
+}
