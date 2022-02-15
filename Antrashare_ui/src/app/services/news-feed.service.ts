@@ -11,6 +11,18 @@ export class NewsFeedService {
   private url = 'http://localhost:4231/api/news';
   public isRefreshed$ = false;
   public contentList$: BehaviorSubject<NewsStory[]> = new BehaviorSubject<NewsStory[]>([]);
+  public currentStoryId: string = "";
+
+
+  private childClickedEvent = new BehaviorSubject<string>('');
+
+  emitChildEvent(msg: string){
+     this.childClickedEvent.next(msg)
+  }
+
+  childEventListner(){
+     return this.childClickedEvent.asObservable();
+   } 
 
   constructor(private _httpClient: HttpClient) {
   }

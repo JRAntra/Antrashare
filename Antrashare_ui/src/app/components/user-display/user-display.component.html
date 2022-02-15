@@ -1,6 +1,6 @@
 <div class="userDisplay">
   <div class="userDisplayContent" [ngSwitch]="correctPath">
-    <div *ngSwitchCase="'myProfile'" class="infoBox">
+    <div *ngSwitchCase="'myProfile'" class="infoBoxForMyProfile">
       <p>
         {{ userInProfile.userName }}
         {{ userInProfile.userEmail }}
@@ -8,10 +8,9 @@
     </div>
     <div *ngSwitchCase="'newsFeed'" class="infoBox">
       <p>
-        User:
-        <a href="{{ userMyProfileURL }}" (click)="clickedToViewUserProfile()">
-          {{ userInNewsStory.publisherName }}
-        </a>
+        <a href="{{ userMyProfileURL }}" (click)="clickedToViewUserProfile()">{{
+          userInNewsStory.publisherName
+        }}</a>
         at
         {{ userInNewsStory.publishedTime | date: "short" }}
       </p>

@@ -31,6 +31,14 @@ export class NewsFeedComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    // Handle deleted post
+    this._newsFeedService.childEventListner().subscribe(info => {
+      this._newsFeedService.deletePostNewsFeed(this._newsFeedService.currentStoryId).subscribe(() => {
+        this.refreshNewsStory(true);
+      });
+    })
+
     // Check idle time
     this.markToUnsubscribe = this._idleTimeService.countIdleTime();
     this._idleTimeService.eventRefreshesIdleTime();
@@ -84,7 +92,7 @@ export class NewsFeedComponent implements OnInit {
     }
   }
 
-  elementRendered(id: any) {
+  elementRendered(id: any): void {
     this.renderedElements.push(id);
   }
 
@@ -93,22 +101,14 @@ export class NewsFeedComponent implements OnInit {
     this._newsFeedService.contentList$.next(this.storiesFromServer);
   }
 
-  removeElement(): void {
-    this.storiesFromServer.shift();
-  }
-
   @HostListener('window:scroll', ['$event']) 
   scrollHandler(event: any): void {
-    console.log(this.storiesFromServer)
     if( this.storiesFromServer.length === this.renderedElements.length) {
       let elementHeight = event.target.clientHeight * (this.storiesFromServer.length - 1.5);
       let scrollPosition = event.target.scrollTop;
       if(elementHeight - scrollPosition < 50 && this.storiesFromServer.length < this.dataFromMongoDB.length) {
         this.addElements();
       }
-      // if( this.storiesFromServer.length > 3 ) {
-      //   this.removeElement();
-      // }
     }
   }
 }

@@ -5,9 +5,17 @@
   <app-content
     *ngFor="let story of storiesFromServer"
     [currentStory]="story"
-    (addedNewComment) = "refreshNewsStory($event)"
     (rendered)="elementRendered($event)"
+    (storyDataChanged) = "refreshNewsStory($event)"
   ></app-content>
-
+  <button
+    mat-raised-button
+    type="button"
+    class="topButton"
+  >
+    <a class="topPage" href="/newsFeed">
+      Top
+    </a>
+  </button>
 </div>
 <app-navigation-bar></app-navigation-bar>

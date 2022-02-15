@@ -1,0 +1,9 @@
+<h1 mat-dialog-title>Logout Confirmation</h1>
+
+<div mat-dialog-content>Are you sure you want to delete this story?</div>
+<div mat-dialog-content>Click Yes will delete the story</div>
+<div mat-dialog-content>Click No will exit this dialog</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close (click)="clickedNo()">No</button>
+  <button mat-button mat-dialog-close (click)="clickedYes()">Yes</button>
+</div>

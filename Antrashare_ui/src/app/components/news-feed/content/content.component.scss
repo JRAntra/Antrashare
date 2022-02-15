@@ -9,9 +9,9 @@
 
 .avatarDisplay {
   display: flex;
-  margin-left: 10%;
-  margin-right: 10%;
-  margin-bottom: 40px;
+  background-color: theme.$secondary-color;
+  padding: 10px;
+  justify-content: space-between;
 }
 
 .content-follow-up {
@@ -31,6 +31,7 @@
 
 .content {
   background-color: theme.$secondary-color;
+  color: white;
   padding: 30px;
 }
 
