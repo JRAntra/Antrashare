@@ -39,7 +39,7 @@ export class AuthService {
    * @returns Observable<boolean>
    */
   check(): Observable<boolean> {
-    if (this.authenticated || (this.accessToken.localeCompare(this.userService.userAccount.bearerToken || '') === 0)) {
+    if (this.authenticated || (this.accessToken && this.accessToken.localeCompare(this.userService.userAccount.bearerToken || '') === 0)) {
       return of(true);
     }
 
@@ -69,6 +69,8 @@ export class AuthService {
 
   private reset(): void {
     localStorage.removeItem(KEY);
+
+    this.userService.userAccount.bearerToken = '';
 
     this.authenticated = false;
   }

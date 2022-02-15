@@ -9,6 +9,9 @@ import { OverlayContainer } from '@angular/cdk/overlay';
 // Router
 import { AppRoutingModule } from './app-routing.module';
 
+// Interceptor Module
+import { HttpHandlerInterceptorModule } from './core/interceptors/http-handler.interceptor';
+
 // Components
 import { AppComponent } from './app.component';
 // import { AutoHideDirective } from './directives/auto-hide.directive';
@@ -69,6 +72,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     HttpClientModule,
 
     AppRoutingModule,
+    HttpHandlerInterceptorModule,
 
     // Layouts module
     LayoutsModule,
