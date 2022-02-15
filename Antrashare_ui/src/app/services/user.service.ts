@@ -1,17 +1,23 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import jwt_decode from 'jwt-decode';
 import { UserInfoStore } from '../interfaces/user.interface';
+import { catchError, map, Observable, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  public loginURL = 'http://localhost:4231/api/login';
+  public loginURL: string = 'http://localhost:4231/api/login';
   public userMyProfileURL: string = "http://localhost:4200/myProfile/";
-  private registerURL = 'http://localhost:4231/api/register/createNewAccount';
-  private getUserByUserName = 'http://localhost:4231/api/users/getProfile/';
-  private getUserByIdURL = 'http://localhost:4231/api/register/getUserById/';
+  private getUserByUserName: string = 'http://localhost:4231/api/users/getProfile/';
+
+  // APIs for register
+  private registerURL: string = 'http://localhost:4231/api/register/createNewAccount';
+  private getUserByIdURL: string = 'http://localhost:4231/api/register/getUserById/';
+  private checkeExistByEmailURL: string = "http://localhost:4231/api/register/checkExistByEmail/";
+  private checkeExistByUserNameURL: string = "http://localhost:4231/api/register/checkExistByUsername/";
+
   public userProfile$: UserInfoStore = {
     userName: '',
     userEmail: '',
@@ -45,7 +51,6 @@ export class UserService {
     }
   }
 
-
   checkUserToken(token: string, userEmail: string) {
     let tokenInfo: any;
 
@@ -57,6 +62,8 @@ export class UserService {
   }
 
   getUserProfileByUserName(userName: string) {
+    console.log(this.getUserByUserName + userName);
+
     return this._httpClient.get(this.getUserByUserName + userName);
   }
 
@@ -64,4 +71,15 @@ export class UserService {
   getUserProfileById(userId: string) {
     return this._httpClient.get(this.getUserByIdURL + userId);
   }
+
+  checkExistByEmail(userEmail: string) {
+    return this._httpClient
+      .get(this.checkeExistByEmailURL + userEmail);
+  }
+
+  checkExistByUserName(userEmail: string) {
+    return this._httpClient
+      .get(this.checkeExistByUserNameURL + userEmail);
+  }
+
 }
