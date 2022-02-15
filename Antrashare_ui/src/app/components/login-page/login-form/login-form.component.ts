@@ -11,11 +11,16 @@ import {
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import jwtDecode from 'jwt-decode';
+
 import { catchError, debounceTime, of, map, switchMap, throwError } from 'rxjs';
+// =======
+// import { catchError, debounceTime, map, of, switchMap, tap } from 'rxjs';
+// >>>>>>> 9aa559f86683aaf26ee2ae0e131a155e4257c283
 // import { access } from 'fs';
 import { UserAccount } from 'src/app/models/user.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { Observable } from 'rxjs';
+
 
 const asyncValidator =
   (HttpClient: HttpClient) : AsyncValidatorFn=>
@@ -68,6 +73,31 @@ const asyncValidator =
 //   }
 // }
 
+// const asyncValidator = (httpClient: HttpClient): AsyncValidatorFn => {
+
+//   return (control: AbstractControl): Observable<ValidationErrors | null> => {
+//     // return httpClient.get("http://localhost:4231/api/register/checkExistByEmail/" + control.value).pipe(
+//     //         debounceTime(1000),
+//     //         map((data: any) => {
+//     //           console.log(data);
+//     //           return data ?? { "exist": true };
+//     //         })
+//     //       );
+//     // console.log(httpClient);
+//     return control.valueChanges.pipe(
+//       debounceTime(1000),
+//       switchMap(() => {
+//         return httpClient.get("http://localhost:4231/api/register/checkExistByEmail/" + control.value);
+//       }),
+//       map((data: any) => {
+//         console.log(data);
+//         return data ?? { "userEmailExist": false };
+//       })
+//     );
+//   }
+// }
+
+
 @Component({
   selector: 'app-login-form',
   templateUrl: './login-form.component.html',
@@ -79,8 +109,7 @@ export class LoginFormComponent implements OnInit {
     email: new FormControl('', [
       Validators.required,
       Validators.minLength(5)],
-      [asyncValidator(this.http)]
-      ),
+      [asyncValidator(this.http)]),
     password: new FormControl('', [
       Validators.required,
       Validators.minLength(5),
@@ -93,8 +122,9 @@ export class LoginFormComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private authService: AuthService,
-    private http: HttpClient
-  ) {}
+
+    public http: HttpClient
+  ) { }
 
   ngOnInit(): void {}
 
@@ -107,8 +137,9 @@ export class LoginFormComponent implements OnInit {
 
     const account: UserAccount = {
       userEmail: this.userLoginForm.get('email')?.value,
-      password: this.userLoginForm.get('password')?.value,
-    };
+      password: this.userLoginForm.get('password')?.value
+    }
+
 
     this.authService.login(account).subscribe(
       () => {
@@ -175,9 +206,11 @@ export class LoginFormComponent implements OnInit {
   }
 
   getValidate(): any {
-    if (this.userLoginForm.get('email')?.hasError('Registered')) {
-      console.log("hasError");
-      return 'Email has been registered';
+
+    if (this.userLoginForm.get('email')?.hasError('registered')) {
+
+      return "Email has been registered";
+
     }
     return 'Email is OK to use';
   }
