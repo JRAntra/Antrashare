@@ -5,6 +5,21 @@ import { signupUserComponent } from '../signup-user/signup-user.component';
 import { AuthService } from '../../../auth/auth.service';
 import { LoginService } from 'src/app/services/login/login-service.service';
 import { Router } from '@angular/router';
+import { catchError, throwError } from 'rxjs';
+import jwt_decode from 'jwt-decode';
+
+export interface cachedData {
+  age: number,
+  exp: number,
+  gender: string,
+  iat: number,
+  name: string,
+  phone: number,
+  userEmail: string,
+  userName: string,
+  userRole: string,
+  _id: string,
+};
 
 @Component({
   selector: 'app-login-form',
@@ -17,9 +32,22 @@ export class LoginFormComponent implements OnInit {
   private rememberMe: boolean = false;
   private userData: any = null;
 
+  private template = {
+    age: 0,
+    exp: 0,
+    gender: "template",
+    iat: 0,
+    name: "template",
+    phone: 0,
+    userEmail: "template@gmail.com",
+    userName: "template",
+    userRole: "template",
+    _id: "template",
+  }
+
   constructor(public dialog: MatDialog, private authService: AuthService, private loginService: LoginService, private router: Router) {
     this.loginForm = new FormGroup({
-      username: new FormControl('', [
+      userEmail: new FormControl('', [
         Validators.required,
         Validators.minLength(5),
       ]),
@@ -32,43 +60,50 @@ export class LoginFormComponent implements OnInit {
     });
   }
 
-  get username() {
-    return this.loginForm.get('username')?.value;
+  get userEmail() {
+    return this.loginForm.get('userEmail')?.value;
   }
 
   get password() {
-    return this.loginForm.get('password');
+    return this.loginForm.get('password')?.value;
+  }
+
+  changeUserEmail(val: string) {
+    this.loginForm.get('userEmail')?.setValue(val);
+  }
+
+  changePassword(val: string) {
+    this.loginForm.get('password')?.setValue(val);
   }
 
   ngOnInit(): void {
-    let cachedData = localStorage.getItem('login-data') ? JSON.parse(localStorage.getItem('login-data') || "") : "";
-    this.loginForm.controls["username"].setValue(cachedData.username ? cachedData.username : "");
-    this.loginForm.controls["password"].setValue(cachedData.password ? cachedData.password : "");
+    let cachedData: cachedData = localStorage.getItem('login-data') ? jwt_decode(localStorage.getItem('login-data') || "") : this.template;
+    console.log(cachedData.userEmail);
+    this.changeUserEmail(cachedData.userName !== "template" ? JSON.stringify(cachedData.userEmail) : "");
   }
 
   submitForm() {
-    let token = localStorage.getItem('login-data') ? JSON.parse(localStorage.getItem('login-data') || "") : "";
-
-    if (this.loginForm.valid && this.loginService.checkUserToken(token, this.username)) {
-      this.authService.login(this.loginForm.value);
-      let currentBody = {
-        userEmail: this.loginForm.get('username')?.value,
-        password: this.loginForm.get('password')?.value
+    if (this.loginForm.valid) {
+      // this.authService.login(this.loginForm.value);
+      let loginInfo = {
+        userEmail: this.userEmail,
+        password: this.password,
       }
-
-      this.loginService.userAuth(currentBody).subscribe((data) => {
+      console.log(loginInfo);
+      this.loginService.userAuth(loginInfo).pipe(
+        catchError((err) => {
+          // console.log(err);
+          return throwError(() => {
+            alert("Invalid username and password combination");
+            return new Error("Invalid username and password combination");
+          });
+        })
+      ).subscribe((data) => {
         this.userData = data;
         this.loginService.updateUserToken(this.userData.bearerToken);
-        this.router.navigate(['/newsfeed']);
+        localStorage.setItem('login-data', this.userData.bearerToken);
+        this.router.navigate(['/profile']);
       })
-
-      if (this.rememberMe === true) {
-        this.userData = JSON.stringify(this.loginForm.value);
-        localStorage.setItem('login-data', this.userData);
-      }
-    } else {
-      alert("Invalid username and password combination");
-      console.log("error");
     }
   }
   signUp(): void {

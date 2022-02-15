@@ -4,8 +4,8 @@
     <form [formGroup]="loginForm" (ngSubmit)="submitForm()" class="loginForm">
       <mat-form-field class="loginField">
         <mat-label class="loginLabel">Username</mat-label>
-        <input [formControlName]="'username'" matInput placeholder="Username" class="loginInput" id="username" />
-        <mat-hint *ngIf="username?.errors?.['minlength']">
+        <input [formControlName]="'userEmail'" matInput placeholder="User Email" class="loginInput" id="userEmail" />
+        <mat-hint *ngIf="userEmail?.errors?.['minlength']">
           Username must be at least 5 characters long.
         </mat-hint>
       </mat-form-field>

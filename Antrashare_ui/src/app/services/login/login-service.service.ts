@@ -34,8 +34,8 @@ export class LoginService {
     }
   }
   checkUserToken(token: any, userEmail: string) {
-    console.log(token);
-    console.log(userEmail);
-    return token.username === userEmail;
+    this.userToken$ = jwt_decode(token);
+    console.log(this.userToken$);
+    return this.userToken$.userEmail === userEmail;
   }
 }
