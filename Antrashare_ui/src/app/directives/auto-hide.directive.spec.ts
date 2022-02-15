@@ -15,8 +15,8 @@ class AutoHideDirectiveTestComponent { }
 
 fdescribe('AutoHideDirective', () => {
   let fixture: ComponentFixture<AutoHideDirectiveTestComponent>;
-  let des: DebugElement[];
-  let bareH2: DebugElement;
+  let des: DebugElement[];  // the two elements w/ the directive
+  let bareH2: DebugElement; // the <h2> w/o the directive
 
   beforeEach(() => {
     fixture = TestBed.configureTestingModule({
@@ -28,7 +28,7 @@ fdescribe('AutoHideDirective', () => {
     })
       .createComponent(AutoHideDirectiveTestComponent);
 
-    fixture.detectChanges();
+    fixture.detectChanges(); // initial binding
 
     // all elements with an attached AutoHideDirective
     des = fixture.debugElement.queryAll(By.directive(AutoHideDirective));
