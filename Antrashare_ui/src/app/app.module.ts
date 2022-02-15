@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
@@ -65,12 +66,13 @@ import { RegisterFormComponent } from './components/register-page/register-form/
     HttpClientModule,
     MatDialogModule,
     MatFormFieldModule,
+    MatSelectModule,
     MatInputModule,
     MatIconModule,
     MatMenuModule,
     MatButtonModule,
     MatCardModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [NewsService],
   bootstrap: [AppComponent]

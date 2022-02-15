@@ -31,17 +31,18 @@ export class RegisterFormComponent implements OnInit {
     usernameFormControl: new FormControl('', {
         validators: [
             Validators.required,
-            this.availableUsername
+            // this.availableUsername
+            this.registerService.availableUsername
         ],
-        updateOn: 'change'
+        updateOn: 'blur'
     }),
     emailFormControl: new FormControl('', {
       validators: [
           Validators.required,
           Validators.email,
-          this.availableEmail
+          this.registerService.availableEmail
       ],
-      updateOn: 'change'
+      updateOn: 'blur'
     }),
     passwordFormControl: new FormControl('',  {
         validators: [
@@ -55,6 +56,7 @@ export class RegisterFormComponent implements OnInit {
     passwordConfirmFormControl: new FormControl('',  {
       validators: [
           Validators.required,
+          // this.passwordsMatch
       ],
       updateOn: 'change'
     }),
@@ -111,28 +113,6 @@ export class RegisterFormComponent implements OnInit {
     }
   }
 
-  availableUsername = (control: AbstractControl): ValidationErrors => {
-    if (true){
-      console.log(this.checkUsername(control.value))
-        return null;
-    } else {
-        return { available: false};
-    }
-  }
-
-  checkUsername(username: string){
-    this.registerService.checkUsername(username)
-    .subscribe(result => {
-      if (result === 'Username is OK to use') {
-        console.log('approved user')
-        return true;
-      } else {
-        window.alert('Username already in use');
-        return false;
-      }
-    });
-  }
-
   oneUppercase(control: AbstractControl): ValidationErrors | null  {
     if (control.value !== control.value.toLowerCase()){
         return null;
@@ -146,7 +126,7 @@ export class RegisterFormComponent implements OnInit {
     if (specialChars.test(control.value)){
         return null;
     } else {
-        return { oneSpecialChar: false};
+        return { oneSpecialChar: false };
     }
   }
 
@@ -154,9 +134,11 @@ export class RegisterFormComponent implements OnInit {
     var password = control.get('passwordFormControl')?.value;
     var passwordConfirmation = control.get('passwordConfirmFormControl')?.value;
     if (password === passwordConfirmation) {
+      control.get('passwordConfirmFormControl')?.setErrors(null);
       return null;
     } else {
-      return {passwordsMatch: false};
+      control.get('passwordConfirmFormControl')?.setErrors({ passwordsMatch: false} );
+      return { passwordsMatch: false };
     }
   }
 
@@ -175,6 +157,9 @@ export class RegisterFormComponent implements OnInit {
       phone: this.registerFormGroup.get('phoneFormControl')?.value,
     }
 
+    console.log(newAccount);
+
+    // this.registerService.checkUsername(newAccount.userName).subscribe(console.log);
     // this.registerService.postNewAccount(newAccount).subscribe(console.log);
     // this.router.navigate(['/login/']);
     // this.registerFormGroup.reset();

@@ -5,6 +5,17 @@
   grid-template-rows: 20% 20% 20% auto;
 }
 
+#formSection {
+  display: grid;
+  grid-template-columns: 33% 34% 33%;
+  margin: 5% 0 auto;
+}
+
+#formSection mat-form-field {
+  width: 80%;
+  margin: 0 auto;
+}
+
 // input, select {
 //   display: block;
 //   margin: 0 auto;
@@ -22,8 +33,9 @@
 }
 
 // #registerForm {
+//   width: 100%;
 //   display: grid;
-//   grid-template-columns: 50% 50%;
+//   grid-template-rows: 33% 34% 33%;
 // }
 
 #registerSubmit {
