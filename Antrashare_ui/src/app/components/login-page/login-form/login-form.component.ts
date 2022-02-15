@@ -100,18 +100,39 @@ export class LoginFormComponent implements OnInit {
         })
       ).subscribe((data) => {
         this.userData = data;
+        localStorage.setItem(
+          'user-username',
+          JSON.stringify(this.userData.userName)
+        );
+        localStorage.setItem('user-name', JSON.stringify(this.userData.name));
+        localStorage.setItem(
+          'user-jwt',
+          JSON.stringify(this.userData.bearerToken)
+        );
+        localStorage.setItem(
+          'user-email',
+          JSON.stringify(this.userData.userEmail)
+        );
+        localStorage.setItem(
+          'user-role',
+          JSON.stringify(this.userData.userRole)
+        );
+        localStorage.setItem('user-id', JSON.stringify(this.userData._id));
         this.loginService.updateUserToken(this.userData.bearerToken);
         localStorage.setItem('login-data', this.userData.bearerToken);
-        this.router.navigate(['/profile']);
+        this.router.navigate(['/newsfeed']);
+        this.authService.login(this.loginForm.value); // navigate to newsfeed
       })
     }
   }
+
   signUp(): void {
     const dialogRef = this.dialog.open(signupUserComponent, {
       width: '80vw',
       height: '80vh',
     });
   }
+
   rememberMeButton() {
     this.rememberMe = !this.rememberMe;
   }
