@@ -1,30 +1,72 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators, ValidatorFn, AbstractControl, ValidationErrors, AsyncValidatorFn } from '@angular/forms';
+import {
+  FormGroup,
+  FormControl,
+  Validators,
+  ValidatorFn,
+  AbstractControl,
+  ValidationErrors,
+  AsyncValidatorFn,
+} from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import jwtDecode from 'jwt-decode';
-import { catchError, debounceTime, of } from 'rxjs';
+import { catchError, debounceTime, of, map, switchMap, throwError } from 'rxjs';
 // import { access } from 'fs';
 import { UserAccount } from 'src/app/models/user.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { Observable } from 'rxjs';
 
-const asyncValidator = (HttpClient: HttpClient) => (control: AbstractControl): Observable<ValidationErrors> | null => {
-  control.valueChanges.pipe(debounceTime(1000)).subscribe((email)=>{
-    return HttpClient.get("http://localhost:4231/api/register/checkExistByEmail/" + email).subscribe(
-      (response) =>{
-        console.log(email);
-        console.log(response);
-      }
-      // (catchError)
-     );
-    
-    // return HttpClient.get("http://localhost:4231/api/register/checkExistByEmail/" + email);
-  })
-  
-  return null;
-}
+const asyncValidator =
+  (HttpClient: HttpClient) : AsyncValidatorFn=>
+  (control: AbstractControl): Observable<ValidationErrors|null> => {
+    console.log('here');
+    // control.errors.push({"Registered": true});
+    return control.valueChanges.pipe(
+      debounceTime(1000),
+      //   console.log(email);
+      switchMap(() => {
+        return HttpClient.get(
+          'http://localhost:4231/api/register/checkExistByEmail/' + control.value
+        ).pipe(
+          // catchError((err) => {
+          //   console.log(err);
+          //   return throwError(err.message);
+          //   // return of({"registered": false});
+          //   // return of(null);
+          // }),
+          map((data: any) => {
+            console.log(data);
+            return {"registered": true};
+            // if(data === "Email has been registered."){
+            //   return {"Registered": false};
+            // }else{
+            //   return null;
+            // }
+            //make comparison between return data and
+            // return {"Registered": true};
+          }),
+          
+        );
+      })
+    );
+  };
 
+// const asyncValidator = (httpClient: HttpClient): AsyncValidatorFn => {
+
+//   return (control: AbstractControl): Observable<ValidationErrors | null> => {
+//     return control.valueChanges.pipe(
+//       debounceTime(500),
+//       switchMap(() => {
+//         return httpClient.get("http://localhost:4231/api/register/checkExistByEmail/" + control.value);
+//       }),
+//       map((data: any) => {
+//         console.log(data);
+//         return data ?? { "userEmailExist": false };
+//       })
+//     );
+//   }
+// }
 
 @Component({
   selector: 'app-login-form',
@@ -36,9 +78,9 @@ export class LoginFormComponent implements OnInit {
   userLoginForm = new FormGroup({
     email: new FormControl('', [
       Validators.required,
-      Validators.minLength(5),
-      asyncValidator(this.http),
-    ]),
+      Validators.minLength(5)],
+      [asyncValidator(this.http)]
+      ),
     password: new FormControl('', [
       Validators.required,
       Validators.minLength(5),
@@ -52,9 +94,9 @@ export class LoginFormComponent implements OnInit {
     private router: Router,
     private authService: AuthService,
     private http: HttpClient
-  ) { }
+  ) {}
 
-  ngOnInit(): void { }
+  ngOnInit(): void {}
 
   onSubmit() {
     // if (this.userLoginForm.invalid) {
@@ -65,16 +107,18 @@ export class LoginFormComponent implements OnInit {
 
     const account: UserAccount = {
       userEmail: this.userLoginForm.get('email')?.value,
-      password: this.userLoginForm.get('password')?.value
-    }
-    
+      password: this.userLoginForm.get('password')?.value,
+    };
+
     this.authService.login(account).subscribe(
       () => {
-        const redirectUrl = this.activatedRoute.snapshot.queryParamMap.get('redirectTo') || 'newsfeed';
+        const redirectUrl =
+          this.activatedRoute.snapshot.queryParamMap.get('redirectTo') ||
+          'newsfeed';
         this.router.navigateByUrl(redirectUrl);
         // console.log(this.authService.userName);
         // console.log(this.authService.userRole);
-      }, 
+      },
       (response) => {
         this.userLoginForm.enable();
       }
@@ -82,14 +126,15 @@ export class LoginFormComponent implements OnInit {
 
     //placeholder
     console.log(this.userLoginForm.value);
-    
   }
 
   getErrorMessageEmail() {
     if (this.userLoginForm.get('email')?.hasError('required')) {
       return 'You must enter a value';
     }
-
+    if(this.userLoginForm.get('email')?.hasError('registered')) {
+      return "Email has been registered";
+    }
     return this.userLoginForm.get('email')?.hasError('minlength')
       ? 'Require at least 5 characters'
       : '';
@@ -107,7 +152,6 @@ export class LoginFormComponent implements OnInit {
       return 'Require at least one capital letter';
     }
 
-
     return this.userLoginForm.get('password')?.hasError('minlength')
       ? 'Require at least 5 characters'
       : '';
@@ -119,24 +163,22 @@ export class LoginFormComponent implements OnInit {
     if (control.value && nameRegexp.test(control.value)) {
       return null;
     }
-    return { specialChar: { value: control.value } };
+    return { "specialChar": control.value};
   }
 
   capLetterValidator(control: FormControl): ValidationErrors | null {
     let hasCap = /[A-Z]/.test(control.value);
-    console.log('cap');
     if (hasCap) {
       return null;
     }
     return { capLetter: { value: control.value } };
   }
 
-  getValidate(): any{
-    if( this.userLoginForm.get('email')?.hasError('registered')){
-  
-      return "Email has been registered";
+  getValidate(): any {
+    if (this.userLoginForm.get('email')?.hasError('Registered')) {
+      console.log("hasError");
+      return 'Email has been registered';
     }
     return 'Email is OK to use';
   }
 }
-

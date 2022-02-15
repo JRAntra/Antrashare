@@ -3,9 +3,11 @@
         <mat-label>Email:</mat-label>
         <input matInput formControlName="email">
         <mat-error *ngIf="userLoginForm.get('email')?.invalid">{{getErrorMessageEmail()}}</mat-error>
-        <mat-hint>{{getValidate()}}</mat-hint>
+        
+        <mat-error *ngIf = "userLoginForm.get('email')?.hasError('registered')">email has been registered</mat-error>
+        
     </mat-form-field>
-
+    <div>{{userLoginForm.get('email')?.hasError('registered')}}</div>
     <mat-form-field class = "form-field" floatLabel="auto" appearance="fill" [formGroup]="userLoginForm">
         <mat-label>Password:</mat-label>
         <input matInput formControlName="password" [type]="hide ? 'password' : 'text'">
