@@ -160,8 +160,8 @@ export class RegisterFormComponent implements OnInit {
     console.log(newAccount);
 
     // this.registerService.checkUsername(newAccount.userName).subscribe(console.log);
-    // this.registerService.postNewAccount(newAccount).subscribe(console.log);
-    // this.router.navigate(['/login/']);
+    this.registerService.postNewAccount(newAccount).subscribe(console.log);
+    this.router.navigate(['/login/']);
     // this.registerFormGroup.reset();
   }
 
