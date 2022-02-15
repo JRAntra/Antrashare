@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HorizontalComponent } from './horizontal.component';
+import { HorizontalLayoutComponent } from './horizontal.component';
 
-describe('HorizontalComponent', () => {
-  let component: HorizontalComponent;
-  let fixture: ComponentFixture<HorizontalComponent>;
+describe('HorizontalLayoutComponent', () => {
+  let component: HorizontalLayoutComponent;
+  let fixture: ComponentFixture<HorizontalLayoutComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ HorizontalComponent ]
+      declarations: [ HorizontalLayoutComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HorizontalComponent);
+    fixture = TestBed.createComponent(HorizontalLayoutComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
