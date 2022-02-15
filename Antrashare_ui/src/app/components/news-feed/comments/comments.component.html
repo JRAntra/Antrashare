@@ -16,7 +16,8 @@
             <div 
                 class="publishing-details" 
             >
-                By {{ comment?.publisherName }} at {{ comment?.publishedTime | date:'short'}}
+                By <p class="usernameDisplay">{{ comment?.publisherName }}</p> 
+                at {{ comment?.publishedTime | date:'short'}}
             </div>
         </div>
         <!-- <div class="commentLikeBox">

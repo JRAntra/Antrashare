@@ -42,7 +42,7 @@ $secondary-color: #598392;
 $tertiary-color: #aec3b0;
 $font-color: #eff6e0;
 $font-family: "Garamond", Serif;
-$primary-font-size: 20px;
+$primary-font-size: 22px;
 $secondary-font-size: 15px;
 $font-size-header: 50px;
 
@@ -61,4 +61,5 @@ body {
   overflow: hidden;
   background-color: $background-color;
   color: $font-color;
+  font-size: $primary-font-size;
 }

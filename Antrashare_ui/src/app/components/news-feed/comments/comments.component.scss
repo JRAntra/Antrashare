@@ -1,12 +1,11 @@
 @use "../../../../styles.scss" as theme;
 
 .paginatorBox {
-    background-color: theme.$secondary-color;
-    color: theme.$font_color;
+    background-color: theme.$tertiary-color;
 }
 
 .story-comment {
-    background-color: theme.$secondary-color;
+    background-color: theme.$tertiary-color;
     padding: 20px;
 }
 
@@ -23,5 +22,13 @@
 }
 
 .commentItem {
-    margin-top: 20px;
+    margin: 20px 30px 20px 30px;
+    border-radius: 5px;
+    background-color: theme.$font-color;
+    padding: 15px;
+}
+
+.usernameDisplay {
+    font-weight: bold;
+    display: inline;
 }
