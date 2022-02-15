@@ -35,6 +35,7 @@ import { CommentsComponent } from './components/news-feed/comments/comments.comp
 import { AddCommentComponent } from './components/news-feed/add-comment/add-comment.component';
 import { SignupFormComponent } from './components/login-page/signup-form/signup-form.component';
 import { CommonModule } from '@angular/common';
+import { DeleteConfirmationDialogComponent } from './components/delete-confirmation-dialog/delete-confirmation-dialog.component';
 
 
 @NgModule({
@@ -56,7 +57,8 @@ import { CommonModule } from '@angular/common';
     PostNewsStoryComponent,
     CommentsComponent,
     AddCommentComponent,
-    SignupFormComponent
+    SignupFormComponent,
+    DeleteConfirmationDialogComponent
   ],
   imports: [
     BrowserModule,

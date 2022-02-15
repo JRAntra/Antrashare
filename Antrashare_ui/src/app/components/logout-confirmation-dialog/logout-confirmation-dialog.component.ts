@@ -9,7 +9,11 @@ import { idleTimeService } from '../../services/idle-time';
 })
 export class LogoutConfirmationDialogComponent implements OnInit {
 
-  constructor(private router: Router, private _idleTimeService: idleTimeService) { }
+  constructor(
+    private _router: Router,
+    private _idleTimeService: idleTimeService
+  ) { }
+
 
   ngOnInit(): void {
 
@@ -20,13 +24,13 @@ export class LogoutConfirmationDialogComponent implements OnInit {
   // After the dialog come out, click “Yes“ will navigate back to Login Page.
   clickedYes(): void {
     localStorage.removeItem('user-data');
-    this.router.navigate(['loginPage']);
+    this._router.navigate(['loginPage']);
   }
 
   // Click “No“ will stay in the page
   clickedNo(): void {
     clearTimeout(this._idleTimeService.timerId); // prevent jumping to home page
-    this.router.navigate([this._idleTimeService.currentPageForRouting]);
+    this._router.navigate([this._idleTimeService.currentPageForRouting]);
   }
 
 }

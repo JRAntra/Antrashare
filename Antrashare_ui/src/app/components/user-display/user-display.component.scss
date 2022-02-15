@@ -1,18 +1,41 @@
 @use "../../../styles.scss" as theme;
 
+a:link {
+  color: white;
+  background-color: transparent;
+  text-decoration: none;
+}
+a:visited {
+  color: white;
+  background-color: transparent;
+  text-decoration: none;
+}
+a:hover {
+  color: red;
+  background-color: transparent;
+  text-decoration: underline;
+}
+a:active {
+  color: yellow;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
 .userDisplay {
   width: 100%;
 }
 
 .userDisplayContent {
-  padding: 20px;
-  background-color: theme.$primary-color;
-  border-radius: 20px;
+  // background-color: theme.$primary-color;
+  // border-radius: 20px;
+  // padding: 10px;
 }
 
-.infoBox {
-  display: grid;
-  //   width: 80%;
+.infoBoxForMyProfile {
+  background-color: theme.$primary-color;
+  border-radius: 20px;
+  padding: 10px;
+  width: 200px;
   grid-template-columns: 1fr 1fr;
-  //   grid-column-gap: 10px;
+  grid-column-gap: 10px;
 }
