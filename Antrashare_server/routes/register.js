@@ -22,9 +22,9 @@ router.get("/getUserById/:id", async (req, res) => {
 
 router.get("/checkExistByEmail/:userEmail", async (req, res) => {
     console.log(req.params.userEmail);
-    
+
     const user = await UserProfile.findOne({ userEmail: req.params.userEmail.toLowerCase() });
-   
+
     if (!user) {
         return res.send(JSON.stringify("Email is OK to use."));
     }
@@ -33,9 +33,9 @@ router.get("/checkExistByEmail/:userEmail", async (req, res) => {
 
 router.get("/checkExistByUsername/:username", async (req, res) => {
 
-    
+
     const user = await UserProfile.findOne({ userName: req.params.username.toLowerCase() });
-   
+
     if (!user) {
         return res.send(JSON.stringify("username is OK to use"));
     }
@@ -69,13 +69,13 @@ router.post("/createNewAccount", async (req, res) => {
         phone: req.body.phone,
     });
     // Encrypting password;
-    const salt = await bcrypt.genSalt(10); 
+    const salt = await bcrypt.genSalt(10);
     user.password = await bcrypt.hash(user.password, salt);
     // Save to database;
     await user.save();
     // Generate token;
     const token = UserProfile.generateAuthToken.call(user);
-    
+
     res.header("bearerToken", token).send(
         _.pick(user, ["userEmail", "password", "userRole", "phone"])
     );
