@@ -34,8 +34,10 @@ const asyncValidator =
 
     // return control.valueChanges.pipe(
     //     debounceTime(1000),
+
     return of(control.value).pipe(
-      debounceTime(1000),
+      delay(1000),
+
       switchMap((value) => {
         console.log(value);
         return HttpClient.get(
