@@ -13,7 +13,7 @@ import { AutoHideDirective } from './auto-hide.directive';
 })
 class AutoHideDirectiveTestComponent { }
 
-fdescribe('AutoHideDirective', () => {
+describe('AutoHideDirective', () => {
   let fixture: ComponentFixture<AutoHideDirectiveTestComponent>;
   let des: DebugElement[];  // the two elements w/ the directive
   let bareH2: DebugElement; // the <h2> w/o the directive
