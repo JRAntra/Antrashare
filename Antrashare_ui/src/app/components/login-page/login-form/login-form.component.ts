@@ -10,9 +10,15 @@ import {
   AsyncValidatorFn,
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import jwtDecode from 'jwt-decode';
-
-import { catchError, debounceTime, of, map, switchMap, throwError } from 'rxjs';
+import {
+  catchError,
+  debounceTime,
+  of,
+  map,
+  switchMap,
+  throwError,
+  delay,
+} from 'rxjs';
 // =======
 // import { catchError, debounceTime, map, of, switchMap, tap } from 'rxjs';
 // >>>>>>> 9aa559f86683aaf26ee2ae0e131a155e4257c283
@@ -21,18 +27,19 @@ import { UserAccount } from 'src/app/models/user.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { Observable } from 'rxjs';
 
-
 const asyncValidator =
-  (HttpClient: HttpClient) : AsyncValidatorFn=>
-  (control: AbstractControl): Observable<ValidationErrors|null> => {
+  (HttpClient: HttpClient): AsyncValidatorFn =>
+  (control: AbstractControl): Observable<ValidationErrors | null> => {
     console.log('here');
-    // control.errors.push({"Registered": true});
-    return control.valueChanges.pipe(
+
+    // return control.valueChanges.pipe(
+    //     debounceTime(1000),
+    return of(control.value).pipe(
       debounceTime(1000),
-      //   console.log(email);
-      switchMap(() => {
+      switchMap((value) => {
+        console.log(value);
         return HttpClient.get(
-          'http://localhost:4231/api/register/checkExistByEmail/' + control.value
+          'http://localhost:4231/api/register/checkExistByEmail/' + value
         ).pipe(
           // catchError((err) => {
           //   console.log(err);
@@ -42,7 +49,7 @@ const asyncValidator =
           // }),
           map((data: any) => {
             console.log(data);
-            return {"registered": true};
+            return { registered: true };
             // if(data === "Email has been registered."){
             //   return {"Registered": false};
             // }else{
@@ -50,8 +57,7 @@ const asyncValidator =
             // }
             //make comparison between return data and
             // return {"Registered": true};
-          }),
-          
+          })
         );
       })
     );
@@ -97,7 +103,6 @@ const asyncValidator =
 //   }
 // }
 
-
 @Component({
   selector: 'app-login-form',
   templateUrl: './login-form.component.html',
@@ -106,10 +111,11 @@ const asyncValidator =
 export class LoginFormComponent implements OnInit {
   hide = true;
   userLoginForm = new FormGroup({
-    email: new FormControl('', [
-      Validators.required,
-      Validators.minLength(5)],
-      [asyncValidator(this.http)]),
+    email: new FormControl(
+      '',
+      [Validators.required, Validators.minLength(5)],
+      asyncValidator(this.http)
+    ),
     password: new FormControl('', [
       Validators.required,
       Validators.minLength(5),
@@ -124,7 +130,7 @@ export class LoginFormComponent implements OnInit {
     private authService: AuthService,
 
     public http: HttpClient
-  ) { }
+  ) {}
 
   ngOnInit(): void {}
 
@@ -137,9 +143,8 @@ export class LoginFormComponent implements OnInit {
 
     const account: UserAccount = {
       userEmail: this.userLoginForm.get('email')?.value,
-      password: this.userLoginForm.get('password')?.value
-    }
-
+      password: this.userLoginForm.get('password')?.value,
+    };
 
     this.authService.login(account).subscribe(
       () => {
@@ -163,8 +168,8 @@ export class LoginFormComponent implements OnInit {
     if (this.userLoginForm.get('email')?.hasError('required')) {
       return 'You must enter a value';
     }
-    if(this.userLoginForm.get('email')?.hasError('registered')) {
-      return "Email has been registered";
+    if (this.userLoginForm.get('email')?.hasError('registered')) {
+      return 'Email has been registered';
     }
     return this.userLoginForm.get('email')?.hasError('minlength')
       ? 'Require at least 5 characters'
@@ -194,7 +199,7 @@ export class LoginFormComponent implements OnInit {
     if (control.value && nameRegexp.test(control.value)) {
       return null;
     }
-    return { "specialChar": control.value};
+    return { specialChar: control.value };
   }
 
   capLetterValidator(control: FormControl): ValidationErrors | null {
@@ -206,11 +211,8 @@ export class LoginFormComponent implements OnInit {
   }
 
   getValidate(): any {
-
     if (this.userLoginForm.get('email')?.hasError('registered')) {
-
-      return "Email has been registered";
-
+      return 'Email has been registered';
     }
     return 'Email is OK to use';
   }
