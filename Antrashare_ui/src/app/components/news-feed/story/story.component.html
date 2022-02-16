@@ -11,7 +11,7 @@
                 Posted on: {{story.publishedTime}}
             </mat-card-subtitle>
         </div>
-        <div >
+        <div *ngIf="isPublisher">
             <button mat-raised-button id="delete-button" class="storyBottomBarButton" (click)="onDeletePost()">
                 <mat-icon>delete</mat-icon>
             </button>

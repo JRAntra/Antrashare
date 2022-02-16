@@ -30,6 +30,7 @@ export class StoryComponent implements OnInit {
   
   private userid!: string;
   comLength: number = 0; // length of story comment 
+  isPublisher: boolean = false; // Check whether the user is a publisher
 
   constructor(
     private _sanitizer: DomSanitizer,
@@ -38,6 +39,7 @@ export class StoryComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.checkPublisher();
     this.comLength = this.story.comment!.length;
     
     if (!this.story.content) {
@@ -58,9 +60,18 @@ export class StoryComponent implements OnInit {
     //link sanitizers
     this.safeVideo = this._sanitizer.bypassSecurityTrustResourceUrl(this.videoLink);
     this.safeImage = this._sanitizer.bypassSecurityTrustResourceUrl(this.imageLink);
-
+    
   }
-
+  
+  checkPublisher() {
+    if (this.story.publisherName === "Get hired test name") {
+      this.isPublisher = true;
+    }
+    else {
+      this.isPublisher = false;
+    }
+  }
+  
   //Makes text fill up box if no media is present.
   resizeTextbox() {
     if (!this.videoLink && !this.imageLink) {

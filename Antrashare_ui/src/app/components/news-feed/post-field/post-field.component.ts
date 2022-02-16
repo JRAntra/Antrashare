@@ -103,7 +103,7 @@ export class PostFieldComponent implements OnInit {
 
     this.newsFeed = {
       // avatar?: ImageBitmap,
-      publisherName: 'Get hired test name', //For test post
+      publisherName: "Get hired test name", //For test post
       publishedTime: Date.now(),
       //publishedTime: this.datePipe.transform((new Date), 'MM/dd/yyyy h:mm:ss'), //^^
       content: {

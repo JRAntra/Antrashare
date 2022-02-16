@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 import  jwt_decode  from 'jwt-decode';
 import { Role, UserProfile, UserAccount } from '../../models/user.models'
-import { Subject } from 'rxjs';
+import { Subject, switchMap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'

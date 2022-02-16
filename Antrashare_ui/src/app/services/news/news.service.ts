@@ -1,7 +1,7 @@
 import { EventEmitter, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 import { News, Story, StoryComment } from '../../models/newsfeed.models'
-import { Observable, of, Subject } from 'rxjs';
+import { Observable, of, Subject, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -31,9 +31,13 @@ export class NewsService {
   // initialize in newsFeed.ts
   getNews() {
     this.http.get<News[]>(this.baseurl)
+      .pipe(
+        tap(story => {
+          story.reverse();
+        })
+      )
       .subscribe(story => {
-        story.reverse();
-        this.sList = story.map((x) => x);
+        this.sList = story;
         this.storyList$.next(story);
       });
   }
@@ -69,12 +73,17 @@ export class NewsService {
   // call in comment-input-field.ts
   postCommentById(body: any, id: string) {
     this.http.patch<any>(this.baseurl + "/addComment/" + id, body)
+      .pipe(
+        tap(story => {
+          story[0].comment.reverse();
+        })
+      )
       .subscribe(story => {
+        console.log("post")
         this.cList = story[0].comment;
         body.publishedTime = "Just now";
-        this.cList.push(body);
-        this.commentsList$.next(this.cList.reverse());
-        console.log(story);
+        console.log(this.cList)
+        this.commentsList$.next(this.cList);
       });
   }
   
@@ -88,7 +97,7 @@ export class NewsService {
         this.sList.map((ele, i) => {
           if (ele._id === id) this.sList.splice(i, 1);
         });
-        this.commentsList$.next(this.sList);
+        this.storyList$.next(this.sList);
       });
   }
 

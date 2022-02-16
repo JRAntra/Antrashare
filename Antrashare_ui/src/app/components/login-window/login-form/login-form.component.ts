@@ -1,15 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
+import { AsyncValidatorFn, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AbstractControl } from '@angular/forms';
 import { LoginService } from 'src/app/services/login/login.service';
 import { UserAccount } from 'src/app/models/user.models';
+import { debounceTime, map, Observable, switchMap } from 'rxjs';
+import { UserService } from 'src/app/services/user.service';
 
 
 @Component({
-  selector: 'login-form',
-  templateUrl: './login-form.component.html',
-  styleUrls: ['./login-form.component.scss']
+    selector: 'login-form',
+    templateUrl: './login-form.component.html',
+    styleUrls: ['./login-form.component.scss']
 })
 
 export class LoginFormComponent implements OnInit {
@@ -17,7 +19,7 @@ export class LoginFormComponent implements OnInit {
     //by YuxuanWu, form control
     username = new FormControl('')
     */
-    
+
     //by YuxuanWu, form group
     public userFormGroup = new FormGroup({
         usernameFormControl: new FormControl('', {
@@ -27,7 +29,7 @@ export class LoginFormComponent implements OnInit {
             ],
             updateOn: 'change'
         }),
-        passwordFormControl: new FormControl('',  {
+        passwordFormControl: new FormControl('', {
             validators: [
                 Validators.required,
                 Validators.minLength(5),
@@ -41,8 +43,9 @@ export class LoginFormComponent implements OnInit {
 
     constructor(
         private router: Router,
-        private loginService: LoginService        
-        ){}
+        private loginService: LoginService,
+        private userService: UserService
+    ) { }
 
     ngOnInit(): void {
         localStorage.clear()
@@ -50,44 +53,41 @@ export class LoginFormComponent implements OnInit {
         if (localStorage.getItem('loginToken')) {
             this.router.navigate(['/newsFeed/'])
         }
-        
+
     };
 
-
-
-    oneUppercase(control: AbstractControl): ValidationErrors | null  {
-        if (control.value !== control.value.toLowerCase()){
+    oneUppercase(control: AbstractControl): ValidationErrors | null {
+        if (control.value !== control.value.toLowerCase()) {
             return null
         } else {
-            return { oneUppercase: false}
+            return { oneUppercase: false }
         }
     }
 
     oneSpecialChar(control: AbstractControl): ValidationErrors | null {
         const specialChars = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
-        if (specialChars.test(control.value)){
+        if (specialChars.test(control.value)) {
             return null
         } else {
-            return { oneSpecialChar: false}
+            return { oneSpecialChar: false }
         }
-       
+
     }
 
     SignIn() {
         let inputUsername = this.usernameValue;
         let inputPassword = this.passwordValue;
-        
+
         const postBody: UserAccount = {
             userEmail: inputUsername,
             password: inputPassword
         }
         console.log(this.userFormGroup.value);
-        this.loginService.postLogin(postBody).subscribe((res: any ) =>
-            {
-                localStorage.setItem('loginToken', res.bearerToken)
-                this.loginService.decodeToken(res.bearerToken)
-            }
-            
+        this.loginService.postLogin(postBody).subscribe((res: any) => {
+            localStorage.setItem('loginToken', res.bearerToken)
+            this.loginService.decodeToken(res.bearerToken)
+        }
+
         )
         this.router.navigate(['/newsFeed/'])
 
@@ -126,7 +126,5 @@ export class LoginFormComponent implements OnInit {
     get passwordValue() {
         return this.userFormGroup?.get('passwordFormControl')?.value
     }
-
-   
 
 }
