@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NewsService } from 'src/app/services/news/news.service';
-import { DatePipe } from '@angular/common';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { StoryComment } from 'src/app/models/newsfeed.models';
 
@@ -35,7 +34,7 @@ export class CommentInputFieldComponent implements OnInit {
 
   constructor(
     private newsService: NewsService,
-    public datePipe: DatePipe) { }
+    ) { }
 
   ngOnInit(): void {
 
@@ -53,11 +52,11 @@ export class CommentInputFieldComponent implements OnInit {
       return { validVideoUrl: false };
     }
   }
-  
+
   checkCommentValid() {
     return this.newCommentFormGroup.get('commentTextFormControl')?.valid;
   }
-  
+
   onSubmitComment() {
     var image = this.newCommentFormGroup.get('commentImageFormControl')?.value;
     var video = this.newCommentFormGroup.get('commentVideoFormControl')?.value;

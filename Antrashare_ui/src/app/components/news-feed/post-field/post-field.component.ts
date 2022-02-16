@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators, ValidationErrors, AbstractControl } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { NewsService } from 'src/app/services/news/news.service';
-import { DatePipe } from '@angular/common';
 import { News } from 'src/app/models/newsfeed.models';
 
 @Component({
@@ -58,7 +57,6 @@ export class PostFieldComponent implements OnInit {
   constructor(
     private _sanitizer: DomSanitizer,
     private newsService: NewsService,
-    public datePipe: DatePipe
     ) {
   }
 

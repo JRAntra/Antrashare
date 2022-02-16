@@ -20,6 +20,6 @@ export interface UserProfile {
 export interface UserAccount {
     _id?: string,
     userEmail: string,
-    _userRole?: string, 
+    _userRole?: string,
     password: string
 }
