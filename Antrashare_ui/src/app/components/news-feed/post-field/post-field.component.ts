@@ -5,6 +5,7 @@ import { NewsService } from 'src/app/services/news/news.service';
 import { News } from 'src/app/models/newsfeed.models';
 import { UserProfile } from 'src/app/models/user.models';
 import { LoginService } from 'src/app/services/login/login.service';
+import { debounceTime } from 'rxjs';
 
 @Component({
   selector: 'app-post-field',
@@ -69,26 +70,31 @@ export class PostFieldComponent implements OnInit {
       this.userName = data.userName;
     });
 
-    this.newPostFormGroup.get('imageFormControl')?.valueChanges.subscribe(image => {
-      if (image !== undefined) {
-        this.imageLink = image;
-        this.safeImage = this._sanitizer.bypassSecurityTrustResourceUrl(this.imageLink);
-        this.hasImage = true;
-      } else {
-        this.safeImage = undefined;
-        this.hasImage = false;
-      }
-    });
-    this.newPostFormGroup.get('videoFormControl')?.valueChanges.subscribe(video => {
-      if (video !== undefined && this.videoTest(video)) {
-        this.videoLink = '//www.youtube.com/embed/' + this.videoMatch[2];
-        this.safeVideo = this._sanitizer.bypassSecurityTrustResourceUrl(this.videoLink);
-        this.hasVideo = true;
-      } else {
-        this.safeVideo = undefined;
-        this.hasVideo = false;
-      }
-    });
+    this.newPostFormGroup.get('imageFormControl')?.valueChanges
+      .pipe(debounceTime(500))
+      .subscribe(image => {
+        if (image !== undefined) {
+          this.imageLink = image;
+          this.safeImage = this._sanitizer.bypassSecurityTrustResourceUrl(this.imageLink);
+          this.hasImage = true;
+        } else {
+          this.safeImage = undefined;
+          this.hasImage = false;
+        }
+      });
+
+    this.newPostFormGroup.get('videoFormControl')?.valueChanges
+      .pipe(debounceTime(500))
+      .subscribe(video => {
+        if (video !== undefined && this.videoTest(video)) {
+          this.videoLink = '//www.youtube.com/embed/' + this.videoMatch[2];
+          this.safeVideo = this._sanitizer.bypassSecurityTrustResourceUrl(this.videoLink);
+          this.hasVideo = true;
+        } else {
+          this.safeVideo = undefined;
+          this.hasVideo = false;
+        }
+      });
   }
 
   //video
