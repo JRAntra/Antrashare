@@ -7,7 +7,7 @@ import { AuthService } from 'src/app/services/auth.service';
 
 import { AuthGuard } from './auth.guard';
 
-fdescribe('AuthGuard', () => {
+describe('AuthGuard', () => {
   let authGuard: AuthGuard;
 
   beforeEach(() => {
