@@ -29,13 +29,13 @@ import { MyProfileComponent } from './components/my-profile/my-profile.component
 import { SettingsComponent } from './components/settings/settings.component';
 import { StoryComponent } from './components/news-feed/story/story.component';
 import { StoryCardComponent } from './components/news-feed/story/story-card/story-card.component';
-import { CommentListComponent } from './components/news-feed/story/comment-list/comment-list.component';
-import { CommentInputComponent } from './components/news-feed/story/comment-input/comment-input.component';
+import { CommentListComponent } from './components/news-feed/story/comment-list/comment-dialog.component';
+import { CommentInputComponent } from './components/news-feed/story/comment-list/comment-post/comment-input.component';
 import { CommentComponent } from './components/news-feed/story/comment-list/comment/comment.component';
-import { TimeoutDialogComponent } from './components/timeout-dialog/timeout-dialog.component';
+import { TimeoutDialogComponent } from './dialogs/timeout-dialog/timeout-dialog.component';
 import { HeaderComponent } from './components/header/header.component';
-import { LogOutDialogComponent } from './components/settings/logout-dialog/logout-dialog.component';
-import { signupUserComponent } from './components/login-page/signup-user/signup-user.component';
+import { LogOutDialogComponent } from './dialogs/logout-dialog/logout-dialog.component';
+import { signupUserComponent } from './dialogs/signupuser-dialog/signup-user.component';
 
 @NgModule({
   declarations: [
@@ -78,4 +78,4 @@ import { signupUserComponent } from './components/login-page/signup-user/signup-
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

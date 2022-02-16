@@ -8,8 +8,8 @@ import { newsStory } from 'src/app/models/newsStory.models';
 
 @Component({
   selector: 'app-comment-list',
-  templateUrl: './comment-list.component.html',
-  styleUrls: ['./comment-list.component.scss']
+  templateUrl: './comment-dialog.component.html',
+  styleUrls: ['./comment-dialog.component.scss']
 })
 
 export class CommentListComponent implements OnInit {
