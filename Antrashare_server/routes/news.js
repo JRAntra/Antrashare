@@ -11,10 +11,10 @@ router.get("/", async (req, res) => {
   res.send(news);
 });
 
-// router.get('/:id', async (req, res) => {
-//     const news = await News.findOne({id: req.params.id});
-//     res.send(news);
-// });
+router.get('/:id', async (req, res) => {
+    const news = await News.findOne({_id: req.params.id});
+    res.send(news);
+});
 
 router.post("/", async (req, res) => {
   const { error } = validate(req.body);

@@ -3,6 +3,8 @@ import { FormBuilder, FormControl, FormGroup, Validators, ValidationErrors, Abst
 import { DomSanitizer } from '@angular/platform-browser';
 import { NewsService } from 'src/app/services/news/news.service';
 import { News } from 'src/app/models/newsfeed.models';
+import { UserProfile } from 'src/app/models/user.models';
+import { LoginService } from 'src/app/services/login/login.service';
 
 @Component({
   selector: 'app-post-field',
@@ -28,23 +30,24 @@ export class PostFieldComponent implements OnInit {
 
   public newPostFormGroup = new FormGroup({
     textFormControl: new FormControl('', {
-        validators: [
-          Validators.required,
-          Validators.maxLength(5000)
-        ],
-        updateOn: 'change'
-    }),
-    imageFormControl: new FormControl('',  {
-      validators: [ ],
+      validators: [
+        Validators.required,
+        Validators.maxLength(5000)
+      ],
       updateOn: 'change'
     }),
-    videoFormControl: new FormControl('',  {
-        validators: [
-          this.validVideoUrl,
-        ],
-        updateOn: 'change'
+    imageFormControl: new FormControl('', {
+      validators: [],
+      updateOn: 'change'
+    }),
+    videoFormControl: new FormControl('', {
+      validators: [
+        this.validVideoUrl,
+      ],
+      updateOn: 'change'
     })
   })
+  userName!: string;
 
   // constructor(private fb: FormBuilder) {
   //   this.newPostFormGroup = this.fb.group({
@@ -57,10 +60,15 @@ export class PostFieldComponent implements OnInit {
   constructor(
     private _sanitizer: DomSanitizer,
     private newsService: NewsService,
-    ) {
+    private loginService: LoginService
+  ) {
   }
 
   ngOnInit(): void {
+    this.loginService.getUserInfo().subscribe((data: UserProfile) => {
+      this.userName = data.userName;
+    });
+
     this.newPostFormGroup.get('imageFormControl')?.valueChanges.subscribe(image => {
       if (image !== undefined) {
         this.imageLink = image;
@@ -101,7 +109,7 @@ export class PostFieldComponent implements OnInit {
 
     this.newsFeed = {
       // avatar?: ImageBitmap,
-      publisherName: "Get hired test name", //For test post
+      publisherName: this.userName ? this.userName : "Get hired test name", //For test post
       publishedTime: Date.now(),
       //publishedTime: this.datePipe.transform((new Date), 'MM/dd/yyyy h:mm:ss'), //^^
       content: {
@@ -113,22 +121,26 @@ export class PostFieldComponent implements OnInit {
         text: text
       },
       // comment: [{
-        // }],
-        // likedList: []
-      }
+      // }],
+      // likedList: []
+    }
     this.newsService.postNews(this.newsFeed);
-    this.newPostFormGroup.reset();
+    this.newPostFormGroup.reset({
+      imageFormControl: '',
+      videoFormControl: '',
+      textFormControl: ''
+    });
   }
 
   //Video Form Validator
-  validVideoUrl(control: AbstractControl): ValidationErrors | null  {
+  validVideoUrl(control: AbstractControl): ValidationErrors | null {
     var videoRegex = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=|\?v=)([^#\&\?]*).*/;
     var videoMatch = control.value.match(videoRegex);
     if (videoMatch && videoMatch[2].length === 11) {
       return null;
     }
     else {
-      return {validVideoUrl: false};
+      return { validVideoUrl: false };
     }
   }
 }

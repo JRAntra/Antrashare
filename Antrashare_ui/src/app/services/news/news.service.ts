@@ -9,8 +9,8 @@ import { Observable, of, Subject, tap } from 'rxjs';
 export class NewsService {
   baseurl = "http://localhost:4231/api/news"
   story!: Story;
-  sList!: News[];
-  storyList$ = new Subject();
+  sList: News[] = [];
+  storyList$ = new Subject<News[]>();
   cList!: StoryComment[];
   commentsList$ = new Subject();
 
@@ -19,12 +19,12 @@ export class NewsService {
   }
 
   // subscribe storylist, call in newsFeed.ts
-  getStoryList() {
+  getStoryList(): Observable<News[]> {
     return this.storyList$.asObservable();
   }
 
   // subscribe commentlist, call in comment-dialog.ts
-  getCommentList() {
+  getCommentList():Observable<any> {
     return this.commentsList$.asObservable();
   }
   
@@ -36,7 +36,7 @@ export class NewsService {
           story.reverse();
         })
       )
-      .subscribe(story => {
+      .subscribe((story: News[]) => {
         this.sList = story;
         this.storyList$.next(story);
       });
@@ -54,6 +54,7 @@ export class NewsService {
         this.commentsList$.next(this.story.comment?.reverse());
       });
   }
+  
   // getNewsById(id: string): Observable<any> {
   //   return this.http.get(this.baseurl + "/" + id);
   // }
@@ -79,9 +80,7 @@ export class NewsService {
         })
       )
       .subscribe(story => {
-        console.log("post")
         this.cList = story[0].comment;
-        body.publishedTime = "Just now";
         console.log(this.cList)
         this.commentsList$.next(this.cList);
       });

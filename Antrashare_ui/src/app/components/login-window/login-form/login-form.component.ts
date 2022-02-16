@@ -4,8 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AbstractControl } from '@angular/forms';
 import { LoginService } from 'src/app/services/login/login.service';
 import { UserAccount } from 'src/app/models/user.models';
-import { debounceTime, map, Observable, switchMap } from 'rxjs';
-import { UserInfoService } from 'src/app/services/userInfo.service';
+import { catchError, of } from 'rxjs';
+import { CacheService } from 'src/app/services/cache.service';
 
 
 @Component({
@@ -39,16 +39,18 @@ export class LoginFormComponent implements OnInit {
             updateOn: 'change'
         })
     })
-
+    
+    errortype: string = "default";
 
     constructor(
         private router: Router,
         private loginService: LoginService,
-        private userService: UserInfoService
+        private cacheService: CacheService
     ) { }
 
     ngOnInit(): void {
-        localStorage.clear()
+        // localStorage.clear() // cant not clear localstorage cuz because the expiration date may be used later
+        this.cacheService.postLogoutCache();
         //if already has the token, enter newsfeed directly
         if (localStorage.getItem('loginToken')) {
             this.router.navigate(['/newsFeed/'])
@@ -82,18 +84,40 @@ export class LoginFormComponent implements OnInit {
             userEmail: inputUsername,
             password: inputPassword
         }
-        console.log(this.userFormGroup.value);
-        this.loginService.postLogin(postBody).subscribe((res: any) => {
-            localStorage.setItem('loginToken', res.bearerToken)
-            this.loginService.decodeToken(res.bearerToken)
-        }
-
-        )
-        this.router.navigate(['/newsFeed/'])
-
-
+        // console.log(this.userFormGroup.value);
+        this.loginService.postLogin(postBody)
+            .pipe(
+                catchError(respond => {
+                    if (respond.error === "Cannot find this email.") {
+                        this.errortype = "emailError";
+                    }
+                    else if (respond.error === "Invalid email or password.") {
+                        this.errortype = "passwordError";
+                    }
+                    return of(null);
+                })
+            )
+            .subscribe((res: any) => {
+                if (res != null) {
+                    // localStorage.setItem('loginToken', res.bearerToken)
+                    this.cacheService.initLoginCache(res, res.bearerToken);
+                    this.loginService.decodeToken(res.bearerToken);
+                    this.router.navigate(['/newsFeed/'])
+                }
+                else {
+                    this.userFormGroup.reset({
+                        usernameFormControl: '', 
+                        passwordFormControl: ''
+                    });
+                }
+            }
+            )
     }
 
+    onTriggerForm() {
+        this.errortype = "default";
+    }
+    
     NeedHelp() {
         console.log('Need Help')
     }

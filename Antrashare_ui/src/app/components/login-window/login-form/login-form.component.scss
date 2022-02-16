@@ -1,9 +1,16 @@
 input.ng-invalid.ng-dirty {
     border: 1px solid #A62626;
 }
+
+#loginErrorHint {
+    width: 100%;
+    margin-top: 5%;
+    height: 20px;
+    color: #A62626;
+}
+
 #loginInput {
     height: 40%;
-    margin-top: 5%;
 }
 
 #loginInput input {

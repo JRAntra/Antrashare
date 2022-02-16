@@ -1,6 +1,7 @@
-import { Component, Inject, Input, NgZone, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog'
-import { News } from 'src/app/models/newsfeed.models';
+import { Component, Inject, Input, NgZone, OnInit, SimpleChanges } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Observable } from 'rxjs';
+import { StoryComment } from 'src/app/models/newsfeed.models';
 import { NewsService } from 'src/app/services/news/news.service';
 
 @Component({
@@ -11,8 +12,10 @@ import { NewsService } from 'src/app/services/news/news.service';
 export class CommentDialogComponent implements OnInit {
   //@Input() commentList!: News["comment"];
   storyId!: any
-  // commentList!: any
-  commentList$: any;
+  commentList!: StoryComment[];
+  // commentList$!: Observable<any>;
+  pageSize: number = 5; // setting one page contains 5 comments
+  pageNumber: number = 1; 
 
   constructor(
     @Inject(MAT_DIALOG_DATA) data: any,
@@ -25,18 +28,20 @@ export class CommentDialogComponent implements OnInit {
 
   ngOnInit(): void {
     // this.getCommentList();
-    
-    // subscribe comment list
-    this.commentList$ = this.newsService.getCommentList();
+
+    // this.commentList$ = this.newsService.getCommentList();
+    // subscribe comment list,
+    this.newsService.getCommentList().subscribe(res => {
+      if (res) this.commentList = res;
+    });
     this.newsService.getCommentByNewsId(this.storyId);
   }
 
-
-  getCommentList() {
+  //getCommentList() {
     // this.newsService.getNewsById(this.storyId).subscribe(story => {
     //   this.commentList = story.comment;
     // });
-  }
+  //}
   // updateComments() {
   //   this.newsService.getNewsById(this.storyId).subscribe(newStory => {
   //     this.updatedStory = newStory

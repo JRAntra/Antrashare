@@ -1,9 +1,11 @@
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { CommentDialogComponent } from '../comment-dialog/comment-dialog.component';
 import { DomSanitizer } from '@angular/platform-browser';
 import { News } from 'src/app/models/newsfeed.models';
 import { NewsService } from 'src/app/services/news/news.service';
+import { UserProfile } from 'src/app/models/user.models';
+import { CacheService } from 'src/app/services/cache.service';
 
 @Component({
   selector: 'story',
@@ -11,8 +13,7 @@ import { NewsService } from 'src/app/services/news/news.service';
   styleUrls: ['./story.component.scss']
 })
 export class StoryComponent implements OnInit {
-  @Input() story!: News
-  @Output() storyEmiter = new EventEmitter()
+  @Input() story!: News;
   dialogRef?: MatDialogRef<CommentDialogComponent>;
 
   //for conditional rendering
@@ -30,15 +31,17 @@ export class StoryComponent implements OnInit {
   //date to convert to iso format
   date: any;
 
-  private userid!: string;
   comLength: number = 0; // length of story comment 
+  userInfo: UserProfile | null;
+  private userName!: string;
   isPublisher: boolean = false; // Check whether the user is a publisher
 
   constructor(
     private _sanitizer: DomSanitizer,
     private dialog: MatDialog,
-    private newsService: NewsService
-  ) { }
+    private newsService: NewsService,
+    private cacheService: CacheService
+  ) { this.userInfo = this.cacheService.getUserInfo()}
 
   ngOnInit(): void {
     this.checkPublisher();
@@ -70,7 +73,8 @@ export class StoryComponent implements OnInit {
   }
   
   checkPublisher() {
-    if (this.story.publisherName === "Get hired test name") {
+    // console.log(this.userInfo?.name)
+    if (this.story.publisherName === "Get hired test name" || this.story.publisherName === this.userInfo?.name) {
       this.isPublisher = true;
     }
     else {
@@ -130,7 +134,6 @@ export class StoryComponent implements OnInit {
 
   // delelet a post with story id, (need to check userid later)
   onDeletePost() {
-    console.log(this.story._id!)
     this.newsService.deletePost(this.story._id!);
   }
 }
