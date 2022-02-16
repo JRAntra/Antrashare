@@ -5,7 +5,7 @@ import { AbstractControl } from '@angular/forms';
 import { LoginService } from 'src/app/services/login/login.service';
 import { UserAccount } from 'src/app/models/user.models';
 import { debounceTime, map, Observable, switchMap } from 'rxjs';
-import { UserService } from 'src/app/services/user.service';
+import { UserInfoService } from 'src/app/services/userInfo.service';
 
 
 @Component({
@@ -44,7 +44,7 @@ export class LoginFormComponent implements OnInit {
     constructor(
         private router: Router,
         private loginService: LoginService,
-        private userService: UserService
+        private userService: UserInfoService
     ) { }
 
     ngOnInit(): void {

@@ -16,9 +16,9 @@ export class StoryComponent implements OnInit {
   dialogRef?: MatDialogRef<CommentDialogComponent>;
 
   //for conditional rendering
-  public isCommentOpened = false;
-  public hasVideo = false;
-  public hasImage = false;
+  isCommentOpened = false;
+  hasVideo = false;
+  hasImage = false;
   //unsanitized links from db
   videoLink: any;
   imageLink: any;
@@ -27,7 +27,9 @@ export class StoryComponent implements OnInit {
   safeImage: any;
   //conditional textbox size based on presence of media
   textboxSize: any;
-  
+  //date to convert to iso format
+  date: any;
+
   private userid!: string;
   comLength: number = 0; // length of story comment 
   isPublisher: boolean = false; // Check whether the user is a publisher
@@ -41,7 +43,7 @@ export class StoryComponent implements OnInit {
   ngOnInit(): void {
     this.checkPublisher();
     this.comLength = this.story.comment!.length;
-    
+
     if (!this.story.content) {
       this.story.content = {
         text: '',
@@ -49,6 +51,10 @@ export class StoryComponent implements OnInit {
         image: '',
       }
     }
+    this.date = this.story.publishedTime?.toString();
+    this.date = new Date(this.date);
+    // this.date = this.date.toISOString().split('T')[0];
+
     this.videoLink = this.story.content.video ? this.story.content.video : '';
     this.imageLink = this.story.content.image ? this.story.content.image : '';
 

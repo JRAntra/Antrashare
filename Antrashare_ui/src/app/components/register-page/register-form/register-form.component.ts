@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
+import { Component, Injector, OnInit } from '@angular/core';
+import { AsyncValidatorFn, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AbstractControl } from '@angular/forms';
 import { RegisterService } from 'src/app/services/register/register.service';
+import { UserProfile } from 'src/app/models/user.models';
+
 
 @Component({
   selector: 'register-form',
@@ -11,8 +13,9 @@ import { RegisterService } from 'src/app/services/register/register.service';
 })
 
 export class RegisterFormComponent implements OnInit {
+  newAccount!: UserProfile;
 
-    public registerFormGroup = new FormGroup({
+  public registerFormGroup = new FormGroup({
     firstNameFormControl: new FormControl('', {
       validators: [
           Validators.required,
@@ -28,16 +31,18 @@ export class RegisterFormComponent implements OnInit {
     usernameFormControl: new FormControl('', {
         validators: [
             Validators.required,
-            Validators.minLength(5)
+            // this.availableUsername
+            this.registerService.availableUsername
         ],
-        updateOn: 'change'
+        updateOn: 'blur'
     }),
     emailFormControl: new FormControl('', {
       validators: [
           Validators.required,
-          Validators.email
+          Validators.email,
+          this.registerService.availableEmail
       ],
-      updateOn: 'change'
+      updateOn: 'blur'
     }),
     passwordFormControl: new FormControl('',  {
         validators: [
@@ -74,15 +79,39 @@ export class RegisterFormComponent implements OnInit {
       ],
       updateOn: 'change'
     }),
+  }, {
+    validators: [
+      this.passwordsMatch,
+    ]
   })
 
 
-  constructor(private router: Router, private registerService: RegisterService){}
+  constructor(
+    private router: Router,
+    private registerService: RegisterService
+  )
+  { }
 
-  ngOnInit(): void {
+  ngOnInit(): void { };
 
-
-  };
+  availableEmail(): ValidatorFn {
+    var availableEmail = false;
+    var checkEmail = (email: string) => {
+      this.registerService.checkEmail(email)
+      .subscribe(result => {
+        if (result === 'Email is OK to use.') {
+          availableEmail = true;
+        } else {
+          availableEmail = false;
+          window.alert('Email already in use');
+        }
+      });
+    }
+    return (control: AbstractControl) => {
+      checkEmail(control.value);
+      return availableEmail ? null : {availableEmail: false};
+    }
+  }
 
   oneUppercase(control: AbstractControl): ValidationErrors | null  {
     if (control.value !== control.value.toLowerCase()){
@@ -97,36 +126,42 @@ export class RegisterFormComponent implements OnInit {
     if (specialChars.test(control.value)){
         return null;
     } else {
-        return { oneSpecialChar: false};
+        return { oneSpecialChar: false };
     }
-
   }
 
   passwordsMatch(control: AbstractControl): ValidationErrors | null {
-    var password = this.registerFormGroup?.get('passwordFormControl')?.value;
-    var passwordConfirmation = this.registerFormGroup?.get('passwordConfirmFormControl')?.value;
+    var password = control.get('passwordFormControl')?.value;
+    var passwordConfirmation = control.get('passwordConfirmFormControl')?.value;
     if (password === passwordConfirmation) {
+      control.get('passwordConfirmFormControl')?.setErrors(null);
       return null;
     } else {
-      return {passwordsMatch: false};
+      control.get('passwordConfirmFormControl')?.setErrors({ passwordsMatch: false} );
+      return { passwordsMatch: false };
     }
   }
 
+
   Register() {
-    var name = this.registerFormGroup?.get('firstNameFormControl')?.value + ' ' + this.registerFormGroup?.get('lastNameFormControl')?.value;
+    var name = this.registerFormGroup.get('firstNameFormControl')?.value + ' ' + this.registerFormGroup.get('lastNameFormControl')?.value;
 
     var newAccount = {
       name: name,
-      userName: this.registerFormGroup?.get('usernameFormControl')?.value,
-      userEmail: this.registerFormGroup?.get('emailFormControl')?.value,
-      password: this.registerFormGroup?.get('passwordFormControl')?.value,
-      userRole: '',
-      age: this.registerFormGroup?.get('ageFormControl')?.value,
-      gender: this.registerFormGroup?.get('genderFormControl')?.value,
-      phone: this.registerFormGroup?.get('phoneFormControl')?.value,
+      userName: this.registerFormGroup.get('usernameFormControl')?.value,
+      userEmail: this.registerFormGroup.get('emailFormControl')?.value,
+      password: this.registerFormGroup.get('passwordFormControl')?.value,
+      userRole: 'User',
+      age: this.registerFormGroup.get('ageFormControl')?.value,
+      gender: this.registerFormGroup.get('genderFormControl')?.value,
+      phone: this.registerFormGroup.get('phoneFormControl')?.value,
     }
-    this.registerService.postNewAccount
+
+
+    // this.registerService.checkUsername(newAccount.userName).subscribe(console.log);
+    this.registerService.postNewAccount(newAccount).subscribe(console.log);
     this.router.navigate(['/login/']);
+    // this.registerFormGroup.reset();
   }
 
   NeedHelp() {
