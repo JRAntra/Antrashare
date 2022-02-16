@@ -69,7 +69,6 @@ export class NewsFeedComponent implements OnInit {
   }
 
   refreshNewsStory(event: boolean): void {
-    console.log('here')
     if (event) {
       this._newsFeedService.getRequest()
         .subscribe(
@@ -82,13 +81,23 @@ export class NewsFeedComponent implements OnInit {
               }
             );
 
+            // Handle data transferb when users interact with api 
             this._newsFeedService.contentList$.subscribe((value: any) => {
               let currentArray = value;
               let proxy = [];
 
-              for (let i = 0; i < currentArray.length; i ++) {
-                proxy.push(this.dataFromMongoDB[i]);
+              if (currentArray.length < this.dataFromMongoDB) {
+                //for comment and add new post
+                for (let i = 0; i < currentArray.length; i ++) {
+                  proxy.push(this.dataFromMongoDB[i]);
+                }
+              } else {
+                //for delete
+                for (let i = 0; i < (currentArray.length - 1); i ++) {
+                  proxy.push(this.dataFromMongoDB[i]);
+                }
               }
+
               this.storiesFromServer = proxy;
             })
 
@@ -117,7 +126,7 @@ export class NewsFeedComponent implements OnInit {
       let elementHeight = event.target.clientHeight * (this.storiesFromServer.length - 3);
       let scrollPosition = event.target.scrollTop;
       this._newsFeedService.scrollLocation$.next(scrollPosition);
-      if(elementHeight - scrollPosition < 50 && this.storiesFromServer.length < this.dataFromMongoDB.length) {
+      if(elementHeight - scrollPosition < 150 && this.storiesFromServer.length < this.dataFromMongoDB.length) {
         this.addElements();
       }
     }
