@@ -4,7 +4,7 @@
         <input matInput formControlName="email">
         <mat-error *ngIf="userLoginForm.get('email')?.invalid">{{getErrorMessageEmail()}}</mat-error>
         
-        <mat-error *ngIf = "userLoginForm.get('email')?.hasError('registered')">email has been registered</mat-error>
+        <!-- <mat-error *ngIf = "userLoginForm.get('email')?.hasError('registered')">email has been registered</mat-error> -->
         
     </mat-form-field>
     <div>{{userLoginForm.get('email')?.hasError('registered')}}</div>

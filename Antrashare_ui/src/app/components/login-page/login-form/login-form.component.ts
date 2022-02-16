@@ -65,45 +65,6 @@ const asyncValidator =
     );
   };
 
-// const asyncValidator = (httpClient: HttpClient): AsyncValidatorFn => {
-
-//   return (control: AbstractControl): Observable<ValidationErrors | null> => {
-//     return control.valueChanges.pipe(
-//       debounceTime(500),
-//       switchMap(() => {
-//         return httpClient.get("http://localhost:4231/api/register/checkExistByEmail/" + control.value);
-//       }),
-//       map((data: any) => {
-//         console.log(data);
-//         return data ?? { "userEmailExist": false };
-//       })
-//     );
-//   }
-// }
-
-// const asyncValidator = (httpClient: HttpClient): AsyncValidatorFn => {
-
-//   return (control: AbstractControl): Observable<ValidationErrors | null> => {
-//     // return httpClient.get("http://localhost:4231/api/register/checkExistByEmail/" + control.value).pipe(
-//     //         debounceTime(1000),
-//     //         map((data: any) => {
-//     //           console.log(data);
-//     //           return data ?? { "exist": true };
-//     //         })
-//     //       );
-//     // console.log(httpClient);
-//     return control.valueChanges.pipe(
-//       debounceTime(1000),
-//       switchMap(() => {
-//         return httpClient.get("http://localhost:4231/api/register/checkExistByEmail/" + control.value);
-//       }),
-//       map((data: any) => {
-//         console.log(data);
-//         return data ?? { "userEmailExist": false };
-//       })
-//     );
-//   }
-// }
 
 @Component({
   selector: 'app-login-form',
@@ -212,10 +173,10 @@ export class LoginFormComponent implements OnInit {
     return { capLetter: { value: control.value } };
   }
 
-  getValidate(): any {
-    if (this.userLoginForm.get('email')?.hasError('registered')) {
-      return 'Email has been registered';
-    }
-    return 'Email is OK to use';
-  }
+  // getValidate(): any {
+  //   if (this.userLoginForm.get('email')?.hasError('registered')) {
+  //     return 'Email has been registered';
+  //   }
+  //   return 'Email is OK to use';
+  // }
 }
