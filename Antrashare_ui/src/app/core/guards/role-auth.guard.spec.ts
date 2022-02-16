@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ProfileAuthService } from './profile-auth.guard';
+import { RoleAuthService } from './role-auth.guard';
 
-describe('ProfileAuthService', () => {
-  let service: ProfileAuthService;
+describe('RoleAuthService', () => {
+  let service: RoleAuthService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(ProfileAuthService);
+    service = TestBed.inject(RoleAuthService);
   });
 
   it('should be created', () => {

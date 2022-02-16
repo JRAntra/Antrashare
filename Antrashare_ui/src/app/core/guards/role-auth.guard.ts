@@ -6,7 +6,7 @@ import { UserService } from 'src/app/services/user.service';
 @Injectable({
   providedIn: 'root'
 })
-export class ProfileAuthService implements CanActivate {
+export class RoleAuthService implements CanActivate {
 
   constructor(
     private router: Router,
