@@ -21,7 +21,7 @@ export class CommentInputFieldComponent implements OnInit {
       updateOn: 'change'
     }),
     commentImageFormControl: new FormControl('', {
-      validators: [ ],
+      validators: [],
       updateOn: 'change'
     }),
     commentVideoFormControl: new FormControl('', {
@@ -34,7 +34,7 @@ export class CommentInputFieldComponent implements OnInit {
 
   constructor(
     private newsService: NewsService,
-    ) { }
+  ) { }
 
   ngOnInit(): void {
 
@@ -72,7 +72,11 @@ export class CommentInputFieldComponent implements OnInit {
       }
     };
     this.newsService.postCommentById(postBody, this.storyId);
-    this.newCommentFormGroup.reset();
+    this.newCommentFormGroup.reset({
+        commentTextFormControl: '',
+        commentImageFormControl: '',
+        commentVideoFormControl: ''
+      });
     // this.newsService.postNewsFeedStory(tempNews);
     console.log(postBody);
   }

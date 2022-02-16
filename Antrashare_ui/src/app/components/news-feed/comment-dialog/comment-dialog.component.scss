@@ -1,25 +1,40 @@
 @import '../../../../styles.scss';
 
 .commentDialogBody {
-  width: 50vw;
-  height: 65vh;
+  width: 65vw;
+  height: 85vh;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+mat-card {
+  padding: 0 0;
 }
 
 #commentList {
-  height: 50%;
-  padding: 3%;
+  height: 60%;
   background-color: $white2;
 }
 
+p {
+  padding: 0 2%;
+  font-size: 16px;
+}
+
 #comments {
-  height: 90%;
+  height: 85%;
   overflow-y: auto;
-  margin: 1%;
+  margin: 2%;
+}
+
+pagination-controls {
+  max-height: 5%;
+  text-align: center;
 }
 
 #newPost {
-  margin-top: 2%;
+  height: 35%;
   background-color: $white2;
 }
 
@@ -39,4 +54,22 @@
 
 ::-webkit-scrollbar-track:hover {
   cursor: pointer;
+}
+
+@media only screen and (max-height: 650px)  {
+  .commentDialogBody {
+    overflow: auto;
+  }
+  
+  #commentList {
+    min-height: 300px;
+  }
+  
+  pagination-controls {
+    min-height: 26px;
+  }
+  
+  #newPost {
+    min-height: 200px;
+  }
 }

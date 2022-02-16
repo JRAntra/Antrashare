@@ -2,10 +2,19 @@
     <!-- by YuxuanWu  hide-element directive
         <div id='loginInput' appHideElement>
     -->
-
+    <div id="loginErrorHint" [ngSwitch]="errortype">
+        <div *ngSwitchCase="'emailError'">
+            <p>Please check your email or phone and try again</p>
+        </div>
+        <div *ngSwitchCase="'passwordError'">
+            <p>Please double-check your password.</p>
+        </div>
+        <div *ngSwitchDefault></div>
+    </div>
+  
     <div id='loginInput'>
         <!-- by YuxuanWu form group-->
-        <form [formGroup] = "userFormGroup">
+        <form [formGroup] = "userFormGroup" (click)="onTriggerForm()">
             <input type='text' formControlName="usernameFormControl" placeholder='Email or phone number'/><br/>
             <input type='password' formControlName="passwordFormControl" placeholder = 'Password'/><br/>
         </form>
@@ -20,7 +29,12 @@
       
     </div>
      <!-- by Huazhen xu check formgroup vaild-->
-    <button class="default_button" mat-raised-button type="submit" [disabled]="!userFormGroup.valid" (click)='SignIn()'>Sign In</button>
+    <button 
+        class="default_button" 
+        mat-raised-button type="submit" 
+        [disabled]="!userFormGroup.valid" 
+        (click)='SignIn()'>Sign In
+    </button>
     <!-- by Daniel original
     <button (click)='SignIn()'>Sign In</button><br/>
      -->

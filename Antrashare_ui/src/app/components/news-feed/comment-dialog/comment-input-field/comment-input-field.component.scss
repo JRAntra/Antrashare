@@ -1,9 +1,8 @@
 @import '../../../../../styles.scss';
 
 .comment-input {
-  width: 100%;
+  width: 95%;
   margin: 0 auto;
-  margin-top: 5%;
 }
 
 #new-comment {
@@ -26,11 +25,11 @@ button:enabled:hover {
 #newCommentMedia {
     display: grid;
     grid-template-columns: 50% 50%;
-    width: 90%;
-    margin: 0 auto;
+    width: 100%;
+    margin: -10px auto;
 }
 
 #image, #video {
-    margin: 0 auto;
+    margin: -10px auto;
     width: 80%;
 }
