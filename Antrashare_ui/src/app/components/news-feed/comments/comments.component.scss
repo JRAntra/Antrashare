@@ -2,6 +2,7 @@
 
 .paginatorBox {
     background-color: theme.$tertiary-color;
+    height: 50%;
 }
 
 .story-comment {
@@ -22,7 +23,7 @@
 }
 
 .commentItem {
-    margin: 20px 30px 20px 30px;
+    margin: 10px 30px 10px 30px;
     border-radius: 5px;
     background-color: theme.$font-color;
     padding: 15px;

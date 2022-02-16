@@ -12,12 +12,11 @@ export class NewsFeedService {
   public isRefreshed$ = false;
   public contentList$: BehaviorSubject<NewsStory[]> = new BehaviorSubject<NewsStory[]>([]);
   public currentStoryId: string = "";
-
-
-  private childClickedEvent = new BehaviorSubject<string>('');
+  public scrollLocation$: BehaviorSubject<number> = new BehaviorSubject<number>(0);
+  public childClickedEvent = new BehaviorSubject<string>('');
 
   emitChildEvent(msg: string){
-     this.childClickedEvent.next(msg)
+    this.childClickedEvent.next(msg)
   }
 
   childEventListner(){

@@ -54,7 +54,7 @@ export class NewsFeedComponent implements OnInit {
             }
           );
 
-          for (let i = 0; i < 1; i ++) {
+          for (let i = 0; i < 2; i ++) {
             this.storiesFromServer.push(this.dataFromMongoDB[i]);
           }
 
@@ -69,6 +69,7 @@ export class NewsFeedComponent implements OnInit {
   }
 
   refreshNewsStory(event: boolean): void {
+    console.log('here')
     if (event) {
       this._newsFeedService.getRequest()
         .subscribe(
@@ -80,10 +81,19 @@ export class NewsFeedComponent implements OnInit {
                 return new Date(b.publishedTime).getTime() - new Date(a.publishedTime).getTime();
               }
             );
+
             this._newsFeedService.contentList$.subscribe((value: any) => {
-              this.storiesFromServer = value.map((item: any) => {
-                return this.dataFromMongoDB.filter((word: any) => word._id === item._id)[0];
-              })
+              let currentArray = value;
+              let proxy = [];
+
+              for (let i = 0; i < currentArray.length; i ++) {
+                proxy.push(this.dataFromMongoDB[i]);
+              }
+              this.storiesFromServer = proxy;
+            })
+
+            this._newsFeedService.scrollLocation$.subscribe((value: number) => {
+              document.getElementById('stories')?.setAttribute('scrollTop', value.toString());
             })
 
             console.log(`Data from server: `, this.storiesFromServer) // debug
@@ -104,8 +114,9 @@ export class NewsFeedComponent implements OnInit {
   @HostListener('window:scroll', ['$event']) 
   scrollHandler(event: any): void {
     if( this.storiesFromServer.length === this.renderedElements.length) {
-      let elementHeight = event.target.clientHeight * (this.storiesFromServer.length - 1.5);
+      let elementHeight = event.target.clientHeight * (this.storiesFromServer.length - 3);
       let scrollPosition = event.target.scrollTop;
+      this._newsFeedService.scrollLocation$.next(scrollPosition);
       if(elementHeight - scrollPosition < 50 && this.storiesFromServer.length < this.dataFromMongoDB.length) {
         this.addElements();
       }
