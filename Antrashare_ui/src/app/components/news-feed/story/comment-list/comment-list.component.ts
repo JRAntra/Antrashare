@@ -1,9 +1,10 @@
 import { Component, Inject, Input, OnInit, ViewChild } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { MatPaginator } from '@angular/material/paginator';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Observable } from 'rxjs';
 import { NewsFeedComment } from 'src/app/models/comments.models';
+import { newsStory } from 'src/app/models/newsStory.models';
 
 @Component({
   selector: 'app-comment-list',
@@ -12,38 +13,23 @@ import { NewsFeedComment } from 'src/app/models/comments.models';
 })
 
 export class CommentListComponent implements OnInit {
-  public commentsList: any;
+  public commentsList: NewsFeedComment[] = [];
   public storyId!: string;
-  public currentItemsToShow: any;
-  public Data: NewsFeedComment[] = [];
-  constructor(@Inject(MAT_DIALOG_DATA) public storyData: any) {
-
-  }
-  @ViewChild(MatPaginator)
-  paginator!: MatPaginator;
-  obs!: Observable<any>;
-  dataSource: MatTableDataSource<NewsFeedComment> = new MatTableDataSource<NewsFeedComment>(this.Data);
-
+  public commentsSlice: NewsFeedComment[] = [];
+  constructor(@Inject(MAT_DIALOG_DATA) public storyData: any) { }
 
   ngOnInit(): void {
-
     this.commentsList = this.storyData.storyComments;
     this.storyId = this.storyData.storyId;
-    this.dataSource.paginator = this.paginator;
-    this.addData();
-    console.log(this.dataSource.data);
+    this.commentsSlice = this.commentsList.slice(0, 4);
   }
 
-  onPageChange($event: { pageIndex: number; pageSize: number; }) {
-    console.log($event);
-    // this.currentItemsToShow =  this.items.slice($event.pageIndex*$event.pageSize, $event.pageIndex*$event.pageSize + $event.pageSize);
-
-  }
-  addData(): void {
-    this.commentsList.forEach((element: any) => {
-      this.Data.push(element);
-      //console.log(element);
-    });
-
+  onPageChange(event: PageEvent) {
+    const startIndex = event.pageIndex * event.pageSize;
+    let endIndex = startIndex + event.pageSize;
+    if (endIndex > this.commentsList.length) {
+      endIndex = this.commentsList.length;
+    }
+    this.commentsSlice = this.commentsList.slice(startIndex, endIndex);
   }
 }
