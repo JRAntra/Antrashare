@@ -126,6 +126,11 @@ export class StoryComponent implements OnInit {
       this.hasVideo = false;
     }
   }
+  
+  onCheckAuth() {
+    console.log(" hint")
+    // this.cacheService.checkedAuth();
+  }
 
   //opens comment dialog
   onTriggerCommentDialog() {

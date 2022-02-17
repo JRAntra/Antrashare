@@ -23,6 +23,12 @@
     height: 80%;
 }
 
+#publisherName:hover {
+    cursor: pointer;
+    color: $red;
+    transform: scale(0.95);
+}
+
 .avatar-card {
     height: 80%;
     width: 80%;
