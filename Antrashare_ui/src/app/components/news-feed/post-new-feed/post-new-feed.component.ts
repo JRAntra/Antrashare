@@ -10,8 +10,6 @@ import { UserService } from '../../../services/user.service';
   styleUrls: ['./post-new-feed.component.scss']
 })
 export class PostNewsStoryComponent implements OnInit {
-  @Output() refreshPage = new EventEmitter<boolean>();
-
   public postNewsStoryForm = this.formBuilder.group({
     textContent: ['', Validators.required],
     imageContent: ['', Validators.required],
@@ -41,10 +39,9 @@ export class PostNewsStoryComponent implements OnInit {
         text: this.postNewsStoryForm.get('textContent')?.value,
       }
     }
-    this._newsFeedService.postNewsFeed(currentBody).subscribe((data) => {
-      this.refreshPage.emit(true);
-      this.resetForm();
-    });
+    this._newsFeedService.postNewsFeed(currentBody);
+    //this.refreshPage.emit(true);
+    this.resetForm();
   }
 
   resetForm(): void {

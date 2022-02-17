@@ -1,12 +1,10 @@
-<div id="stories" (scroll)="scrollHandler($event)" >
+<div #stories id="stories" class="stories" (scroll)="scrollHandler($event)" >
   <app-post-new-feed
-    (refreshPage) = "refreshNewsStory($event)"
   ></app-post-new-feed>
   <app-content
     *ngFor="let story of storiesFromServer"
     [currentStory]="story"
     (rendered)="elementRendered($event)"
-    (storyDataChanged) = "refreshNewsStory($event)"
   ></app-content>
   <button
     mat-raised-button

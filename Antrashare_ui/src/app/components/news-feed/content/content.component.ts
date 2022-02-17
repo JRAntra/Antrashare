@@ -57,8 +57,6 @@ export class ContentComponent implements OnInit {
     this.isVideo = this.userInfoFromServer?.content?.video?.includes('https://www.youtube.com/embed/') ? true : false;
 
     this.commentList = this.currentStory.comment!;
-
-    
   }
 
   ngAfterViewInit() {

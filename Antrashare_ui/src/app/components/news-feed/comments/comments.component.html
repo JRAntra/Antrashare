@@ -20,20 +20,6 @@
                 at {{ comment?.publishedTime | date:'short'}}
             </div>
         </div>
-        <!-- <div class="commentLikeBox">
-            <div>
-                <mat-icon aria-hidden="false" aria-label="comment" class="labelDisplay">comment</mat-icon>
-                <label class="labelDisplay">
-                  {{ commentData[pageNumber.pageIndex]?.comment?.length }} Comment(s)
-                </label>
-            </div>
-            <div class="like-id-list">
-                <mat-icon aria-hidden="false" aria-label="favorite" class="labelDisplay">favorite</mat-icon>
-                <label class="labelDisplay">
-                  {{ currentStory.likedIdList?.length }}
-                </label>
-            </div>
-        </div> -->
         <mat-paginator
             [length]="pageNumber.length"
             [pageSize]="pageNumber.pageSize"
