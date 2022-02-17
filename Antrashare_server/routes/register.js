@@ -28,7 +28,8 @@ router.get("/checkExistByEmail/:userEmail", async (req, res) => {
     if (!user) {
         return res.send(JSON.stringify("Email is OK to use."));
     }
-    res.status(404).send("Email has been registered.")
+    res.status(404).send(JSON.stringify("username has been used"));
+    
 });
 
 router.get("/checkExistByUsername/:username", async (req, res) => {
