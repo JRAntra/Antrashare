@@ -1,7 +1,7 @@
 import { EventEmitter, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 import { News, Story, StoryComment } from '../../models/newsfeed.models'
-import { Observable, of, Subject } from 'rxjs';
+import { Observable, of, Subject, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,8 +9,8 @@ import { Observable, of, Subject } from 'rxjs';
 export class NewsService {
   baseurl = "http://localhost:4231/api/news"
   story!: Story;
-  sList!: News[];
-  storyList$ = new Subject();
+  sList: News[] = [];
+  storyList$ = new Subject<News[]>();
   cList!: StoryComment[];
   commentsList$ = new Subject();
 
@@ -19,21 +19,25 @@ export class NewsService {
   }
 
   // subscribe storylist, call in newsFeed.ts
-  getStoryList() {
+  getStoryList(): Observable<News[]> {
     return this.storyList$.asObservable();
   }
 
   // subscribe commentlist, call in comment-dialog.ts
-  getCommentList() {
+  getCommentList():Observable<any> {
     return this.commentsList$.asObservable();
   }
   
   // initialize in newsFeed.ts
   getNews() {
     this.http.get<News[]>(this.baseurl)
-      .subscribe(story => {
-        story.reverse();
-        this.sList = story.map((x) => x);
+      .pipe(
+        tap(story => {
+          story.reverse();
+        })
+      )
+      .subscribe((story: News[]) => {
+        this.sList = story;
         this.storyList$.next(story);
       });
   }
@@ -50,6 +54,7 @@ export class NewsService {
         this.commentsList$.next(this.story.comment?.reverse());
       });
   }
+  
   // getNewsById(id: string): Observable<any> {
   //   return this.http.get(this.baseurl + "/" + id);
   // }
@@ -69,12 +74,15 @@ export class NewsService {
   // call in comment-input-field.ts
   postCommentById(body: any, id: string) {
     this.http.patch<any>(this.baseurl + "/addComment/" + id, body)
+      .pipe(
+        tap(story => {
+          story[0].comment.reverse();
+        })
+      )
       .subscribe(story => {
         this.cList = story[0].comment;
-        body.publishedTime = "Just now";
-        this.cList.push(body);
-        this.commentsList$.next(this.cList.reverse());
-        console.log(story);
+        console.log(this.cList)
+        this.commentsList$.next(this.cList);
       });
   }
   
@@ -88,7 +96,7 @@ export class NewsService {
         this.sList.map((ele, i) => {
           if (ele._id === id) this.sList.splice(i, 1);
         });
-        this.commentsList$.next(this.sList);
+        this.storyList$.next(this.sList);
       });
   }
 

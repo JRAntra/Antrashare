@@ -4,6 +4,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Router} from '@angular/router';
 import { IdleService } from 'src/app/services/idle.service';
 import { environment } from 'src/environments/environment';
+import { CacheService } from 'src/app/services/cache.service';
 
 
 @Component({
@@ -19,7 +20,8 @@ export class LogoutDialogComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) data: any,
     private router: Router,
     private dialogRef: MatDialogRef<LogoutDialogComponent>,
-    private idleService: IdleService
+    private idleService: IdleService,
+    private cacheService: CacheService
   ) { }
 
   ngOnInit(): void {
@@ -39,6 +41,7 @@ export class LogoutDialogComponent implements OnInit {
     this.dialogRef.close();
   }
   onConfirm(): void {
+    this.cacheService.postLogoutCache();
     this.dialogRef.close();
     this.router.navigate(['/login']);
   }

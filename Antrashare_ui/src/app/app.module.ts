@@ -13,6 +13,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatCardModule } from '@angular/material/card';
+import { NgxPaginationModule } from 'ngx-pagination';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
@@ -81,6 +82,7 @@ import { NewsService } from 'src/app/services/news/news.service';
     MatMenuModule,
     MatButtonModule,
     MatCardModule,
+    NgxPaginationModule,
     ReactiveFormsModule,
   ],
   providers: [AuthorizedService, NewsService, DatePipe],

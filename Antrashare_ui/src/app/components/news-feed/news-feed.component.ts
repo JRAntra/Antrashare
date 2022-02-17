@@ -15,7 +15,7 @@ export class NewsFeedComponent implements OnInit {
   storyList$: any;
   storyList!: Array<object>;
   //userInfo stores all the user profile you may need in the future, feel free to use it!
-  userInfo!: UserProfile
+  userInfo!: UserProfile;
   currentStoryList!: any;
   currentPage: number =  0
   pageSize: number = 2 //each page's story amount
@@ -36,14 +36,12 @@ export class NewsFeedComponent implements OnInit {
       let slicedStoryList = this.sliceStoryList()
       this.currentStoryList = slicedStoryList[0]
     })
-
     
-
     //get user info
-    this.loginService.tokenInfo$.subscribe(value => {
-      this.userInfo = value
-      console.log("userInfo:", this.userInfo)
-    })
+    // this.loginService.tokenInfo$.subscribe(value => {
+    //   this.userInfo = value;
+    //   console.log("userInfo:", this.userInfo)
+    // })
   }
 
   onScroll() {

@@ -1,16 +1,23 @@
 <div class="commentDialogBody">
     <mat-card id="commentList">
-        <h1 mat-dialog-title>Comments</h1>
+        <p mat-dialog-title>Comments</p>
         <div mat-dialog-content id="comments">
-            <!-- <app-comment-list *ngFor="let comment of commentList" [comment]="comment"></app-comment-list> -->
-            <app-comment-list *ngFor="let comment of commentList$ | async" [comment]="comment"></app-comment-list>
+            <app-comment-list *ngFor="let comment of commentList | paginate: { id: 'comPaginate', itemsPerPage: pageSize, currentPage: pageNumber}"
+                 [comment]="comment"></app-comment-list>
+            <!-- <app-comment-list *ngFor="let comment of commentList$ | async" [comment]="comment"></app-comment-list> -->
             <!-- <mat-card *ngFor="let comment of commentList" id="comment">
                 {{comment.content.text}}
             </mat-card> -->
         </div>
     </mat-card>
+    
+    <pagination-controls 
+        id="comPaginate" 
+        (pageChange)="pageNumber = $event">
+    </pagination-controls>
+
     <mat-card id="newPost">
-        <h1>Post A New Comment</h1>
+        <p>Post A New Comment</p>
         <app-comment-input-field [storyId]="storyId"></app-comment-input-field>
         <!-- <app-comment-input-field [storyId]="storyId" (commentSubmitted)="updateComments()"></app-comment-input-field> -->
     </mat-card>

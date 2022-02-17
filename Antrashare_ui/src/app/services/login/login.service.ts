@@ -9,12 +9,16 @@ import { Subject } from 'rxjs';
 })
 export class LoginService {
   baseurl = "http://localhost:4231/api/login"
-  tokenInfo!: UserProfile
+  tokenInfo!: UserProfile;
   tokenInfo$ = new Subject<UserProfile>()
-
+  
   constructor(
     private http: HttpClient,
     ) { }
+  
+  getUserInfo() {
+    return this.tokenInfo$.asObservable();
+  }
   
   //to send: this.loginService.decodeToken(token)
   //to subscribe: this.loginService.tokenInfo$.subscribe(value => console.log(value))
@@ -26,7 +30,7 @@ export class LoginService {
   postLogin(body: UserAccount) {
     return this.http.post(this.baseurl, body)
   }
-
+  
 
 
 
