@@ -1,0 +1,18 @@
+<mat-card class="example-card">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>{{profile?.name ?? ""}}</mat-card-title>
+    <mat-card-subtitle>{{profile?.email ?? ""}}</mat-card-subtitle>
+  </mat-card-header>
+  <img mat-card-image [src]="profile?.avatar_url ?? 'https://material.angular.io/assets/img/examples/shiba2.jpg'"
+    alt="Photo of a Shiba Inu">
+  <mat-card-content>
+    <ul class="story">
+      <app-story-card *ngFor="let story of storyList" [storyItem]="story"></app-story-card>
+    </ul>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button>TOTAL LIKES</button>
+    <button mat-button>TOTAL COMMENTS</button>
+  </mat-card-actions>
+</mat-card>
