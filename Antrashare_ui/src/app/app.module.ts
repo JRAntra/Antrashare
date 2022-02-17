@@ -7,23 +7,13 @@ import { LoginPageComponent } from './components/login-page/login-page.component
 import { LoginFormComponent } from './components/login-page/login-form/login-form.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
-import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatTableModule } from '@angular/material/table';
-import { MatIconModule } from '@angular/material/icon';
-import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatDialogModule } from '@angular/material/dialog';
-import { ReactiveFormsModule } from '@angular/forms';
-import { MatButtonToggleModule } from '@angular/material/button-toggle';
-import { MatCardModule } from '@angular/material/card';
 
+import { ReactiveFormsModule } from '@angular/forms';
 import { UserDisplayComponent } from './components/user-display/user-display.component';
 import { MyProfileComponent } from './components/my-profile/my-profile.component';
 import { ContentComponent } from './components/news-feed/content/content.component';
 import { TimeoutElementDirective } from './directives/timeoutElement.directive';
 import { TimeoutDialogComponent } from './components/timeout-dialog/timeout-dialog.component';
-import { NavigationBarComponent } from './components/navigation-bar/navigation-bar.component';
 import { NewsFeedComponent } from './components/news-feed/news-feed.component';
 
 import { SettingsComponent } from './components/settings/settings.component';
@@ -34,12 +24,14 @@ import { PostNewsStoryComponent } from './components/news-feed/post-new-feed/pos
 import { CommentsComponent } from './components/news-feed/comments/comments.component';
 import { AddCommentComponent } from './components/news-feed/add-comment/add-comment.component';
 import { SignupFormComponent } from './components/login-page/signup-form/signup-form.component';
-import { CommonModule } from '@angular/common';
 import { DeleteConfirmationDialogComponent } from './components/delete-confirmation-dialog/delete-confirmation-dialog.component';
-import { AppHeaderComponent } from './components/app-header/app-header.component';
+import { AppHeaderComponent } from './shared/app-header/app-header.component';
+import { NavigationBarComponent } from './shared/navigation-bar/navigation-bar.component';
 
-// Custom module
-// import { AdminModule } from './admin/admin.module';
+// Custom modules
+import { AdminModule } from './admin/admin.module';
+import { SharedModule } from './shared/shared.module';
+
 
 @NgModule({
   declarations: [
@@ -51,7 +43,6 @@ import { AppHeaderComponent } from './components/app-header/app-header.component
     ContentComponent,
     TimeoutElementDirective,
     TimeoutDialogComponent,
-    NavigationBarComponent,
     NewsFeedComponent,
     SettingsComponent,
     SettingPanelComponent,
@@ -62,29 +53,18 @@ import { AppHeaderComponent } from './components/app-header/app-header.component
     AddCommentComponent,
     SignupFormComponent,
     DeleteConfirmationDialogComponent,
-    AppHeaderComponent
   ],
   imports: [
+    SharedModule,
     BrowserModule,
     /**
      * Feature module needs to be place before AppRoutingModule
      * If not, the routes in feature module won't work
      */
-    // AdminModule,
+    AdminModule,
     AppRoutingModule,
-    MatInputModule,
-    MatButtonModule,
-    MatCheckboxModule,
-    MatTableModule,
-    MatIconModule,
-    MatDialogModule,
-    MatPaginatorModule,
-    MatCardModule,
     BrowserAnimationsModule,
-    ReactiveFormsModule,
-    MatButtonToggleModule,
     HttpClientModule,
-    CommonModule, 
   ],
   providers: [],
   bootstrap: [AppComponent],

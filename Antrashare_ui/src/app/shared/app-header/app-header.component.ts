@@ -11,7 +11,16 @@ export class AppHeaderComponent implements OnInit {
     private _router: Router,
   ) { }
 
+  isAdmin: boolean = false;
   ngOnInit(): void {
+    let retrievedUserRole: string = JSON.parse(localStorage.getItem('user-role')!);
+    console.log(retrievedUserRole);
+    if (retrievedUserRole === 'admin') {
+      this.isAdmin = true;
+      console.log(retrievedUserRole);
+    }
+
+
   }
 
   clickedAdminAccess() {

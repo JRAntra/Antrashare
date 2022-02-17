@@ -1,0 +1,10 @@
+<header class="pageHeader">
+  Antrashare
+  <mat-button-toggle
+    *ngIf="isAdmin"
+    (click)="clickedAdminAccess()"
+    value="Admin Access"
+  >
+    Admin Access
+  </mat-button-toggle>
+</header>
