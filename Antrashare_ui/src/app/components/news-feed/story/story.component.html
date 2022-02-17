@@ -4,7 +4,10 @@
             <mat-icon id="avatar">person</mat-icon>
         </div>
         <div id='publicationInfo'>
-            <mat-card-title>
+            <mat-card-title id="publisherName" 
+                [routerLink]="['/otherProfile/' + story.publisherName]" 
+                routerLinkActive="router-link-active"
+                (click)="onCheckAuth()">
                 {{story.publisherName}}
             </mat-card-title>
             <mat-card-subtitle>
@@ -12,7 +15,9 @@
             </mat-card-subtitle>
         </div>
         <div *ngIf="isPublisher">
-            <button mat-raised-button id="delete-button" class="storyBottomBarButton" (click)="onDeletePost()">
+            <button mat-raised-button id="delete-button" 
+                class="storyBottomBarButton" 
+                (click)="onDeletePost()">
                 <mat-icon>delete</mat-icon>
             </button>
         </div>
