@@ -36,7 +36,10 @@ import { AddCommentComponent } from './components/news-feed/add-comment/add-comm
 import { SignupFormComponent } from './components/login-page/signup-form/signup-form.component';
 import { CommonModule } from '@angular/common';
 import { DeleteConfirmationDialogComponent } from './components/delete-confirmation-dialog/delete-confirmation-dialog.component';
+import { AppHeaderComponent } from './components/app-header/app-header.component';
 
+// Custom module
+// import { AdminModule } from './admin/admin.module';
 
 @NgModule({
   declarations: [
@@ -58,10 +61,16 @@ import { DeleteConfirmationDialogComponent } from './components/delete-confirmat
     CommentsComponent,
     AddCommentComponent,
     SignupFormComponent,
-    DeleteConfirmationDialogComponent
+    DeleteConfirmationDialogComponent,
+    AppHeaderComponent
   ],
   imports: [
     BrowserModule,
+    /**
+     * Feature module needs to be place before AppRoutingModule
+     * If not, the routes in feature module won't work
+     */
+    // AdminModule,
     AppRoutingModule,
     MatInputModule,
     MatButtonModule,
@@ -75,7 +84,7 @@ import { DeleteConfirmationDialogComponent } from './components/delete-confirmat
     ReactiveFormsModule,
     MatButtonToggleModule,
     HttpClientModule,
-    CommonModule,
+    CommonModule, 
   ],
   providers: [],
   bootstrap: [AppComponent],

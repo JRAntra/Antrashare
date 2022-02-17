@@ -9,6 +9,8 @@ import { SettingsComponent } from './components/settings/settings.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { AuthGuardService as AuthGuard } from './services/auth-guard.service';
 import { RoleGuardService as RoleGuard } from './services/role-guard.service';
+import { AdminPageComponent } from './admin/admin-page/admin-page.component';
+import { AdminModule } from './admin/admin.module';
 
 const routes: Routes = [
   // Default path
@@ -26,9 +28,13 @@ const routes: Routes = [
     canActivate: [RoleGuard]
   },
   { path: 'settings', component: SettingsComponent },
-
+  
+  // Lazy-loading for admin route 
+  { path: "adminPage", loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) },
+  
   // Error path
-  { path: '**', component: PageNotFoundComponent }
+  { path: '**', component: PageNotFoundComponent },
+
 ];
 
 @NgModule({
@@ -37,4 +43,4 @@ const routes: Routes = [
 })
 export class AppRoutingModule { }
 
-export const routingComponents = [NewsFeedComponent, SettingsComponent]
+// export const routingComponents = [NewsFeedComponent, SettingsComponent]

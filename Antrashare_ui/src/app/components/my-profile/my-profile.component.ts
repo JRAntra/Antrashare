@@ -49,7 +49,13 @@ export class MyProfileComponent implements OnInit {
   public key: any;
   public value: any;
 
-  constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer, private _idleTimeService: idleTimeService, private _userService: UserService, private router: Router) {
+  constructor(
+    iconRegistry: MatIconRegistry,
+    sanitizer: DomSanitizer,
+    private _idleTimeService: idleTimeService,
+    private _userService: UserService,
+    private router: Router
+  ) {
     _idleTimeService.currentPageIsSignInPage = false;
     _idleTimeService.currentPageForRouting = 'myProfile';
     iconRegistry.addSvgIconLiteral('thumbs-up', sanitizer.bypassSecurityTrustHtml(THUMBUP_ICON));
