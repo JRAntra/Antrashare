@@ -1,18 +1,15 @@
-import { Component, Inject, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { MatPaginator, PageEvent } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
-import { Observable } from 'rxjs';
+import { PageEvent } from '@angular/material/paginator';
 import { NewsFeedComment } from 'src/app/models/comments.models';
-import { newsStory } from 'src/app/models/newsStory.models';
 
 @Component({
-  selector: 'app-comment-list',
+  selector: 'app-comment-dialog',
   templateUrl: './comment-dialog.component.html',
   styleUrls: ['./comment-dialog.component.scss']
 })
 
-export class CommentListComponent implements OnInit {
+export class CommentDialogComponent implements OnInit {
   public commentsList: NewsFeedComment[] = [];
   public storyId!: string;
   public commentsSlice: NewsFeedComment[] = [];
