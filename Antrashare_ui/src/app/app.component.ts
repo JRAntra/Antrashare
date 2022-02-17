@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { TimeoutDialogComponent } from './components/timeout-dialog/timeout-dialog.component';
+import { TimeoutDialogComponent } from './dialogs/timeout-dialog/timeout-dialog.component';
 import { Router } from '@angular/router';
 import { TimeoutdialogService } from './services/timeoutdialog/timeoutdialog.service';
 import { environment } from 'src/environments/environment';
@@ -20,7 +20,7 @@ export class AppComponent {
     private router: Router,
     private timeoutDialogService: TimeoutdialogService,
     private authService: AuthService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.initialDialogSettings();

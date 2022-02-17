@@ -3,7 +3,7 @@
 
 
   </table> -->
-  <app-comment-input [storyId]="storyId"></app-comment-input>
+  <app-comment-post [storyId]="storyId"></app-comment-post>
 </div>
 <ul class="story">
   <app-comment *ngFor="let comment of commentsSlice" [comment]="comment">

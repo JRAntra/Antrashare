@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatDialogRef } from '@angular/material/dialog';
 
-import { AuthService } from '../../../auth/auth.service';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'dialog-overview-example-dialog',

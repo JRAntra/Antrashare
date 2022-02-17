@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { signupUserComponent } from '../signup-user/signup-user.component';
+import { signupUserComponent } from '../../../dialogs/signupuser-dialog/signup-user.component';
 import { AuthService } from '../../../auth/auth.service';
 import { LoginService } from 'src/app/services/login/login-service.service';
 import { Router } from '@angular/router';

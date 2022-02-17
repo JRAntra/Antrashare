@@ -5,11 +5,11 @@ import { NewsFeedComment } from 'src/app/models/comments.models';
 import { newsFeedService } from 'src/app/services/newsfeed/newsfeed.service';
 
 @Component({
-  selector: 'app-comment-input',
-  templateUrl: './comment-input.component.html',
-  styleUrls: ['./comment-input.component.scss'],
+  selector: 'app-comment-post',
+  templateUrl: './comment-post.component.html',
+  styleUrls: ['./comment-post.component.scss'],
 })
-export class CommentInputComponent implements OnInit {
+export class CommentPostComponent implements OnInit {
   @Input() storyId: any;
 
   commentForm = this.fb.group({

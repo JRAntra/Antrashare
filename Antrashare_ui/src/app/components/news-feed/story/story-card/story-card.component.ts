@@ -2,9 +2,9 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { newsStory } from 'src/app/models/newsStory.models';
-import { CommentListComponent } from '../comment-list/comment-list.component';
 import { newsFeedService } from 'src/app/services/newsfeed/newsfeed.service';
 import { AuthService } from 'src/app/auth/auth.service';
+import { CommentDialogComponent } from 'src/app/dialogs/comment-dialog/comment-dialog.component';
 
 @Component({
   selector: 'app-story-card',
@@ -34,7 +34,7 @@ export class StoryCardComponent implements OnInit {
   }
 
   openComment() {
-    const dialogRef = this.commentListDialog.open(CommentListComponent, {
+    const dialogRef = this.commentListDialog.open(CommentDialogComponent, {
       width: '600px',
       height: '800px',
       data: {
