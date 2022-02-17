@@ -3,7 +3,8 @@
     <mat-card-header>
       <!-- <mat-card class="storyMedia" *ngIf='hasImage'></mat-card> -->
       <!-- <img *ngIf="storyItem.image" mat-card-avatar src="{{storyItem.image}}" /> -->
-      <mat-card-title>{{ storyItem.publisherName }}</mat-card-title>
+      <mat-card-title><a [routerLink]="['/profile/' + storyItem.publisherName]" routerLinkActive="router-link-active"
+          [state]="{storyItem}">{{ storyItem.publisherName }}</a></mat-card-title>
       <mat-card-subtitle>{{
         storyItem.publishedTime | date: "short"
       }}</mat-card-subtitle>

@@ -8,6 +8,7 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { SettingsComponent } from './components/settings/settings.component';
 
 import { AuthGuard } from './auth/auth.guard';
+import { ProfileComponent } from './components/profile/profile.component';
 //import { AuthenticationService as AuthenticationGuard } from './services/guards/authentication.service';
 
 const routes: Routes = [
@@ -18,6 +19,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   { path: 'profile', component: MyProfileComponent },
+  { path: 'profile/:userName', component: ProfileComponent },
   { path: 'settings', component: SettingsComponent },
   { path: '', component: LoginPageComponent },
   { path: '**', component: PageNotFoundComponent },
@@ -27,4 +29,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

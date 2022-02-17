@@ -36,6 +36,7 @@ import { TimeoutDialogComponent } from './dialogs/timeout-dialog/timeout-dialog.
 import { HeaderComponent } from './components/header/header.component';
 import { LogOutDialogComponent } from './dialogs/logout-dialog/logout-dialog.component';
 import { signupUserComponent } from './dialogs/signupuser-dialog/signup-user.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { signupUserComponent } from './dialogs/signupuser-dialog/signup-user.com
     LogOutDialogComponent,
     signupUserComponent,
     CommentDialogComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
