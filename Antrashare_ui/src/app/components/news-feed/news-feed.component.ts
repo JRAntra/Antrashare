@@ -32,9 +32,12 @@ export class NewsFeedComponent implements OnInit {
 
     // Handle deleted post
     this._newsFeedService.childEventListner().subscribe(info => {
-      this._newsFeedService.deletePostNewsFeed(this._newsFeedService.currentStoryId).subscribe(() => {
-        this.refreshNewsStory(true);
-      });
+      // Prevent delete empty id
+      if (this._newsFeedService.currentStoryId !== '') {
+        this._newsFeedService.deletePostNewsFeed(this._newsFeedService.currentStoryId).subscribe(() => {
+          this.refreshNewsStory(true);
+        });
+      }
     })
 
     // Check idle time
