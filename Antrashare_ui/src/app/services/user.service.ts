@@ -16,6 +16,7 @@ export class UserService {
   // APIs for register
   private registerURL: string = 'http://localhost:4231/api/register/createNewAccount';
   private getUserByIdURL: string = 'http://localhost:4231/api/register/getUserById/';
+  private deleteUserByIdURL: string = 'http://localhost:4231/api/register/deleteUser/';
   private checkeExistByEmailURL: string = "http://localhost:4231/api/register/checkExistByEmail/";
   private checkeExistByUserNameURL: string = "http://localhost:4231/api/register/checkExistByUsername/";
 
@@ -33,7 +34,7 @@ export class UserService {
 
   updateNewUserFlag(flag: boolean) {
     console.log(`updateNewUserFlag`);
-    
+
     this.newUserChecker$.next(flag)
   }
 
@@ -88,6 +89,10 @@ export class UserService {
 
   getUserProfileById(userId: string) {
     return this._httpClient.get(this.getUserByIdURL + userId);
+  }
+
+  deleteUserProfileById(userId: string) {
+    return this._httpClient.delete(this.deleteUserByIdURL + userId);
   }
 
   checkExistByEmail(userEmail: string) {

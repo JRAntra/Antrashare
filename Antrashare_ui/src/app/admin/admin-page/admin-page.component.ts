@@ -61,5 +61,9 @@ export class AdminPageComponent implements OnInit {
 
   clickedDeleteUser(userId: string) {
     console.log(userId);
+    this._userService.deleteUserProfileById(userId).subscribe((result) => {
+      console.log(result);
+    });
+    window.location.reload();
   }
 }
