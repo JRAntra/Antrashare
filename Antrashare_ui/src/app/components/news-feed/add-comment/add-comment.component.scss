@@ -2,7 +2,7 @@
 
 .addCommentBox {
     display: flex;
-    padding: 5px;
+    padding-left: 30px;
     background-color: theme.$tertiary-color;
 }
 
@@ -12,8 +12,10 @@
 }
 
 .addButton {
-    padding: 5px;
-    margin: 10px;
-    background-color: theme.$primary_color;
+    display: inline;
+    padding-right: 20px;
+    margin: 10px 30px 10px 30px;
+    padding-left: 20px;
+    background-color: theme.$secondary_color;
     color: theme.$font-color;
 }

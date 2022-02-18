@@ -27,6 +27,7 @@ export class ContentComponent implements OnInit {
   videoUrl = "https://media.geeksforgeeks.org/wp-content/uploads/20200513195558/Placement100-_-GeeksforGeeks-1.mp4"
 
   @Input() currentStory!: NewsStory;
+  @Output() rendered = new EventEmitter();
   @Output() storyDataChanged = new EventEmitter<boolean>();
 
   public commentList: any[] = [];
@@ -54,13 +55,13 @@ export class ContentComponent implements OnInit {
 
     this.videoId = this.userInfoFromServer._id ? this.userInfoFromServer._id : '';
     this.isVideo = this.userInfoFromServer?.content?.video?.includes('https://www.youtube.com/embed/') ? true : false;
-    //videoBox.src = this.currentStory.content.video;
-    // Save comment list locally for comment section's *ngFor
+
     this.commentList = this.currentStory.comment!;
   }
 
   ngAfterViewInit() {
     document.getElementById(this.videoId)?.setAttribute('src', this.userInfoFromServer?.content?.video ? this.userInfoFromServer?.content?.video : '');
+    this.rendered.emit(this.userInfoFromServer._id);
   }
 
   hideImgTag(): boolean {

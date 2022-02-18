@@ -3,8 +3,7 @@
 .newPostBox {
     margin-left: 20%;
     margin-right: 20%; 
-    background-color: theme.$secondary_color;
-    color: theme.$font-color;
+    background-color: theme.$tertiary-color;
 }
 
 .contentBox {
@@ -20,7 +19,7 @@
 
 .postButton {
     margin-left: 40px;
-    background-color: theme.$primary_color;
+    background-color: theme.$secondary_color;
     color: theme.$font-color;
 }
 
