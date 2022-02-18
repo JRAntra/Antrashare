@@ -19,6 +19,7 @@ export class LoginPageComponent implements OnInit {
   displayTimer$: any;
 
   ngOnInit(): void {
+    localStorage.clear();
   }
 
   ngOnDestroy(): void {
