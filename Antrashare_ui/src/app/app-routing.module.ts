@@ -18,13 +18,13 @@ const routes: Routes = [
     component: NewsFeedComponent,
     canActivate: [AuthGuard],
   },
-  { path: 'profile', component: MyProfileComponent },
+  { path: 'profile', component: MyProfileComponent, canActivate: [AuthGuard] },
   {
     path: 'profile/:userName',
     component: ProfileComponent,
     canActivate: [AdminGuard],
   },
-  { path: 'settings', component: SettingsComponent },
+  { path: 'settings', component: SettingsComponent, canActivate: [AuthGuard] },
   { path: '', component: LoginPageComponent },
   { path: '**', component: PageNotFoundComponent },
 ];

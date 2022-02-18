@@ -22,7 +22,7 @@ export class AdminService {
       this.router.navigate([`/profile/${user.userName}`]);
     } else {
       this.admin.next(false);
-      this.router.navigate(['newsfeed']);
+      this.router.navigate(['/newsfeed']);
     }
   }
 }
