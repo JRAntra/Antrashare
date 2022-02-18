@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { BrowserModule } from '@angular/platform-browser'
 
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
@@ -24,6 +24,7 @@ import { NavigationBarComponent } from './navigation-bar/navigation-bar.componen
   ],
   imports: [
     CommonModule,
+    BrowserModule,
     // mat
     MatInputModule,
     MatButtonModule,
@@ -37,6 +38,7 @@ import { NavigationBarComponent } from './navigation-bar/navigation-bar.componen
     MatButtonToggleModule,
   ],
   exports: [
+    BrowserModule,
     MatInputModule,
     MatButtonModule,
     MatCheckboxModule,

@@ -23,7 +23,17 @@ export class RoleGuardService implements CanActivate {
     return this.adminFlagChecker$.asObservable();
   }
 
-  clearLocalStroageExceptLoginData(){
+  confirmAdminRoleFromLocalStorage() {
+    // Check admin for exclusive access
+    let retrievedUserRole: string = JSON.parse(localStorage.getItem('user-role')!);
+    if (retrievedUserRole === 'admin') {
+      this.updateAdminFlag(true)
+    } else {
+      this.updateAdminFlag(false)
+    }
+  }
+
+  clearLocalStroageExceptLoginData() {
     let myItem = localStorage.getItem('login-data');
     localStorage.clear();
     localStorage.setItem('login-data', myItem!);

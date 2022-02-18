@@ -1,2 +1,51 @@
-<p>admin-page works!</p>
+<div class="current-user-list">
+  <div class="admin-features">
+    <button
+      mat-button
+      mat-dialog-close
+      (click)="clickedAddUser()"
+      id="button-add-user"
+    >
+      Add User
+    </button>
+  </div>
+  <div id="table-scroll">
+    <table class="profileTable">
+      <thead>
+        <th colspan="3">Current Users</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of userList">
+          <td>
+            <a
+              href="{{ userMyProfileURL }}"
+              (click)="clickedToViewUserProfile(user.userName)"
+            >
+              {{ user.userName }}</a
+            >
+          </td>
+          <td>
+            {{ user.userRole }}
+          </td>
+
+          <td>
+            <button
+              mat-button
+              mat-dialog-close
+              (click)="clickedDeleteUser(user._id)"
+            >
+              Delete User
+            </button>
+          </td>
+
+          <!-- id for testing -->
+          <td>
+            {{ user._id }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
 <app-navigation-bar></app-navigation-bar>

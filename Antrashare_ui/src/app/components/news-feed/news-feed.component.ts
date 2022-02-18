@@ -13,9 +13,13 @@ import { AppHeaderComponent } from 'src/app/shared/app-header/app-header.compone
   styleUrls: ['./news-feed.component.scss']
 })
 export class NewsFeedComponent implements OnInit {
-  public storiesFromServer: NewsStory[] = [];
+  public userList: any;
+  public dataFromMongoDB2: any;
+  public storiesFromServer2: NewsStory[] = [];
 
   public dataFromMongoDB: any;
+  public storiesFromServer: NewsStory[] = [];
+
   public markToUnsubscribe: Subscription | undefined;
   public isCommentChanged: boolean = false;
 
@@ -34,12 +38,8 @@ export class NewsFeedComponent implements OnInit {
   ngOnInit(): void {
 
     // Check admin for exclusive access
-    let retrievedUserRole: string = JSON.parse(localStorage.getItem('user-role')!);
-    if (retrievedUserRole === 'admin') {
-      this._roleGuardService.updateAdminFlag(true)
-    } else {
-      this._roleGuardService.updateAdminFlag(false)
-    }
+    this._roleGuardService.confirmAdminRoleFromLocalStorage();
+
 
     // Check idle time
     this.markToUnsubscribe = this._idleTimeService.countIdleTime();
@@ -64,6 +64,7 @@ export class NewsFeedComponent implements OnInit {
             console.log(`Data from server: `, this.storiesFromServer) // debug
           }
         )
+
     }
   }
 }

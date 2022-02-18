@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import jwt_decode from 'jwt-decode';
 import { UserInfoStore } from '../interfaces/user.interface';
-import { catchError, map, Observable, throwError } from 'rxjs';
+import { BehaviorSubject, catchError, map, Observable, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +11,7 @@ export class UserService {
   public loginURL: string = 'http://localhost:4231/api/login';
   public userMyProfileURL: string = "http://localhost:4200/myProfile/";
   private getUserByUserName: string = 'http://localhost:4231/api/users/getProfile/';
+  private getAllUsersURL: string = 'http://localhost:4231/api/users/getAllUsers/';
 
   // APIs for register
   private registerURL: string = 'http://localhost:4231/api/register/createNewAccount';
@@ -27,6 +28,19 @@ export class UserService {
 
   private userInfo$: any;
   private userToken$: any;
+
+  private newUserChecker$ = new BehaviorSubject<boolean>(false);
+
+  updateNewUserFlag(flag: boolean) {
+    console.log(`updateNewUserFlag`);
+    
+    this.newUserChecker$.next(flag)
+  }
+
+  checkNewUserFlag() {
+    console.log(`checkNewUserFlag`);
+    return this.newUserChecker$.asObservable();
+  }
 
   constructor(private _httpClient: HttpClient) { }
 
@@ -65,6 +79,10 @@ export class UserService {
     console.log(this.getUserByUserName + userName);
 
     return this._httpClient.get(this.getUserByUserName + userName);
+  }
+
+  getAllUsers() {
+    return this._httpClient.get(this.getAllUsersURL);
   }
 
 

@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs';
 import { idleTimeService } from 'src/app/services/idle-time';
 import { UserService } from '../../services/user.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { RoleGuardService } from 'src/app/services/role-guard.service';
 
 @Component({
   selector: 'app-settings',
@@ -16,13 +17,17 @@ export class SettingsComponent implements OnInit {
   constructor(
     private _idleTimeService: idleTimeService,
     private _userService: UserService,
-    private _router: Router
+    private _router: Router,
+    private _roleGuardService: RoleGuardService,
   ) {
     _idleTimeService.currentPageIsSignInPage = false;
     _idleTimeService.currentPageForRouting = 'settings';
   }
 
   ngOnInit(): void {
+    // Check admin for exclusive access
+    this._roleGuardService.confirmAdminRoleFromLocalStorage();
+
     // Check idle time
     this.markToUnsubscribe = this._idleTimeService.countIdleTime();
     this._idleTimeService.eventRefreshesIdleTime();

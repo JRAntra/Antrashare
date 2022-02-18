@@ -7,6 +7,7 @@ import { UserService } from '../../../services/user.service';
 import { UserValidationService } from 'src/app/services/user-validation.service';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { RoleGuardService } from 'src/app/services/role-guard.service';
 
 
 @Component({
@@ -51,6 +52,7 @@ export class SignupFormComponent implements OnInit {
     private _router: Router,
     private _userValidationService: UserValidationService,
     private _httpClient: HttpClient,
+    private _roleGuardService: RoleGuardService,
   ) { }
 
 
@@ -84,6 +86,9 @@ export class SignupFormComponent implements OnInit {
       this._userService.createNewAccount(currentBody).subscribe((data) => {
         this.signUpSuccess = true;
       })
+
+      // Refresh the list for admin page
+      this._userService.updateNewUserFlag(true);
     }
   }
 }

@@ -19,7 +19,12 @@ export class LoginFormComponent implements OnInit {
   public loginData: any = null;
   public rememberedUserIsChecked: boolean = false;
 
-  constructor(private formBuilder: FormBuilder, private router: Router, public dialog: MatDialog, private _userService: UserService) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private router: Router,
+    public _dialog: MatDialog,
+    private _userService: UserService
+  ) {
   }
 
 
@@ -60,6 +65,6 @@ export class LoginFormComponent implements OnInit {
   }
 
   signUp(): void {
-    const dialogRef = this.dialog.open(SignupFormComponent);
+    const dialogRef = this._dialog.open(SignupFormComponent);
   }
 }

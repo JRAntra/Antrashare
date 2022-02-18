@@ -6,6 +6,7 @@ import { UserProfile } from '../../interfaces/user-display.interface';
 import { Subscription } from 'rxjs';
 import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
+import { RoleGuardService } from 'src/app/services/role-guard.service';
 
 const THUMBUP_ICON =
   `
@@ -54,7 +55,8 @@ export class MyProfileComponent implements OnInit {
     sanitizer: DomSanitizer,
     private _idleTimeService: idleTimeService,
     private _userService: UserService,
-    private router: Router
+    private router: Router,
+    private _roleGuardService: RoleGuardService,
   ) {
     _idleTimeService.currentPageIsSignInPage = false;
     _idleTimeService.currentPageForRouting = 'myProfile';
@@ -64,6 +66,9 @@ export class MyProfileComponent implements OnInit {
   markToUnsubscribe: Subscription | undefined;
 
   ngOnInit(): void {
+    // Check admin for exclusive access
+    this._roleGuardService.confirmAdminRoleFromLocalStorage();
+
     // Check local storage
     let userName = JSON.parse(localStorage.getItem('user-name')!);
     const path = window.location.href;

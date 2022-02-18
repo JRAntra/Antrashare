@@ -1,11 +1,10 @@
 <div id="stories">
-  <app-post-new-feed
-    (refreshPage) = "refreshNewsStory($event)"
-  ></app-post-new-feed>
   <app-content
     *ngFor="let story of storiesFromServer"
     [currentStory]="story"
-    (storyDataChanged) = "refreshNewsStory($event)"
-  ></app-content>
+    (storyDataChanged)="refreshNewsStory($event)"
+  >
+    {{ story }}
+  </app-content>
 </div>
 <app-navigation-bar></app-navigation-bar>
