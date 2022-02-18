@@ -4,22 +4,13 @@ import {
   FormGroup,
   FormControl,
   Validators,
-  ValidatorFn,
-  AbstractControl,
   ValidationErrors,
-  AsyncValidatorFn,
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-
-
 import { asyncEmailValidator } from 'src/app/services/auth.service';
-// =======
-// import { catchError, debounceTime, map, of, switchMap, tap } from 'rxjs';
-// >>>>>>> 9aa559f86683aaf26ee2ae0e131a155e4257c283
-// import { access } from 'fs';
+
 import { UserAccount } from 'src/app/models/user.model';
 import { AuthService } from 'src/app/services/auth.service';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-login-form',
@@ -48,9 +39,9 @@ export class LoginFormComponent implements OnInit {
     private authService: AuthService,
 
     public http: HttpClient
-  ) {}
+  ) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   onSubmit() {
     // if (this.userLoginForm.invalid) {
@@ -64,8 +55,8 @@ export class LoginFormComponent implements OnInit {
       password: this.userLoginForm.get('password')?.value,
     };
 
-    this.authService.login(account).subscribe(
-      () => {
+    this.authService.login(account).subscribe({
+      next: () => {
         const redirectUrl =
           this.activatedRoute.snapshot.queryParamMap.get('redirectTo') ||
           'newsfeed';
@@ -73,10 +64,10 @@ export class LoginFormComponent implements OnInit {
         // console.log(this.authService.userName);
         // console.log(this.authService.userRole);
       },
-      (response) => {
+      complete: () => {
         this.userLoginForm.enable();
       }
-    );
+    });
 
     //placeholder
     console.log(this.userLoginForm.value);
