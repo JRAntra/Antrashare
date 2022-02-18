@@ -40,10 +40,6 @@ export class SignupFormComponent implements OnInit {
     phone: [''],
   });
 
-  get userNameValue() {
-    return this.signupForm?.get('username')?.value;  // 
-  }
-
   public signUpSuccess: boolean = false;
 
   constructor(
@@ -59,12 +55,7 @@ export class SignupFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  get userNameEmail() {
-    return this.signupForm?.get('userEmail')?.value;
-  }
-
-
-  signUp() {
+  signUp(): boolean {
     // Check with sync validators
     if (
       !this.signupForm.controls['password'].errors
@@ -83,12 +74,19 @@ export class SignupFormComponent implements OnInit {
       }
 
       // Create a new account with given value
-      this._userService.createNewAccount(currentBody).subscribe((data) => {
+      this._userService.createNewAccount(currentBody).subscribe((result) => {
+        console.log(result);
         this.signUpSuccess = true;
+
+        // Refresh the list for admin page
+        this._userService.updateNewUserFlag(true);
+
+        return true;
       })
 
-      // Refresh the list for admin page
-      this._userService.updateNewUserFlag(true);
+      // Failed to create
+      this.signUpSuccess = false;
     }
+    return this.signUpSuccess;
   }
 }

@@ -46,6 +46,7 @@ export class UserService {
   constructor(private _httpClient: HttpClient) { }
 
   createNewAccount(body: any) {
+    console.log(body);
     return this._httpClient.post(this.registerURL, body);
   }
 
