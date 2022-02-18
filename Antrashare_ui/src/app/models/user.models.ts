@@ -35,14 +35,14 @@ export interface registerUser {
 }
 
 export interface loginData {
-  age: number,
-  exp: number,
-  gender: string,
-  iat: number,
-  name: string,
-  phone: number,
-  userEmail: string,
-  userName: string,
-  userRole: string,
-  _id: string,
-};
+  age: number;
+  exp: number;
+  gender: string;
+  iat: number;
+  name: string;
+  phone: number;
+  userEmail: string;
+  userName: string;
+  userRole: string;
+  _id: string;
+}

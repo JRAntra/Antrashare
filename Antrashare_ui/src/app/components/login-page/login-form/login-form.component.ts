@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { signupUserComponent } from '../../../dialogs/signupuser-dialog/signup-user.component';
 import { AuthService } from '../../../auth/auth.service';
+import { AdminService } from '../../../admin/admin.service';
 import { LoginService } from 'src/app/services/login/login-service.service';
 import { Router } from '@angular/router';
 import { catchError, throwError } from 'rxjs';
@@ -23,17 +24,23 @@ export class LoginFormComponent implements OnInit {
   private template = {
     age: 0,
     exp: 0,
-    gender: "template",
+    gender: 'template',
     iat: 0,
-    name: "template",
+    name: 'template',
     phone: 0,
-    userEmail: "template@gmail.com",
-    userName: "template",
-    userRole: "template",
-    _id: "template",
-  }
+    userEmail: 'template@gmail.com',
+    userName: 'template',
+    userRole: 'template',
+    _id: 'template',
+  };
 
-  constructor(public dialog: MatDialog, private authService: AuthService, private loginService: LoginService, private router: Router) {
+  constructor(
+    public dialog: MatDialog,
+    private authService: AuthService,
+    private adminService: AdminService,
+    private loginService: LoginService,
+    private router: Router
+  ) {
     this.loginForm = new FormGroup({
       userEmail: new FormControl('', [
         Validators.required,
@@ -65,9 +72,15 @@ export class LoginFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    let loginData: loginData = localStorage.getItem('login-data') ? jwt_decode(localStorage.getItem('login-data') || "") : this.template;
+    let loginData: loginData = localStorage.getItem('login-data')
+      ? jwt_decode(localStorage.getItem('login-data') || '')
+      : this.template;
     console.log(loginData.userEmail);
-    this.changeUserEmail(loginData.userName !== "template" ? JSON.stringify(loginData.userEmail) : "");
+    this.changeUserEmail(
+      loginData.userName !== 'template'
+        ? JSON.stringify(loginData.userEmail)
+        : ''
+    );
   }
 
   submitForm() {
@@ -76,23 +89,27 @@ export class LoginFormComponent implements OnInit {
       let loginInfo = {
         userEmail: this.userEmail,
         password: this.password,
-      }
+      };
       console.log(loginInfo);
-      this.loginService.userAuth(loginInfo).pipe(
-        catchError((err) => {
-          // console.log(err);
-          return throwError(() => {
-            alert("Invalid username and password combination");
-            return new Error("Invalid username and password combination");
-          });
-        })
-      ).subscribe((data) => {
-        this.userData = data;
-        this.loginService.updateUserToken(this.userData.bearerToken);
-        localStorage.setItem('login-data', this.userData.bearerToken);
-        this.router.navigate(['/newsfeed']);
-        this.authService.login(this.loginForm.value); // navigate to newsfeed
-      })
+      this.loginService
+        .userAuth(loginInfo)
+        .pipe(
+          catchError((err) => {
+            // console.log(err);
+            return throwError(() => {
+              alert('Invalid username and password combination');
+              return new Error('Invalid username and password combination');
+            });
+          })
+        )
+        .subscribe((data) => {
+          this.userData = data;
+          this.loginService.updateUserToken(this.userData.bearerToken);
+          localStorage.setItem('login-data', this.userData.bearerToken);
+          this.router.navigate(['/newsfeed']);
+          this.authService.login(this.loginForm.value); // navigate to newsfeed
+          this.adminService.checkIfAdmin(this.userData); // check if user is admin
+        });
     }
   }
 

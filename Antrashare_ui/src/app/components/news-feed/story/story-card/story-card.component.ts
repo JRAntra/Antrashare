@@ -1,9 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { newsStory } from 'src/app/models/newsStory.models';
 import { newsFeedService } from 'src/app/services/newsfeed/newsfeed.service';
 import { AuthService } from 'src/app/auth/auth.service';
+import { AdminService } from 'src/app/admin/admin.service';
 import { CommentDialogComponent } from 'src/app/dialogs/comment-dialog/comment-dialog.component';
 
 @Component({
@@ -13,15 +15,19 @@ import { CommentDialogComponent } from 'src/app/dialogs/comment-dialog/comment-d
 })
 export class StoryCardComponent implements OnInit {
   @Input() storyItem!: newsStory;
+  isAdmin$!: Observable<boolean>;
   private subscriptions = new Subscription();
 
   constructor(
     private commentListDialog: MatDialog,
     private newsfeedservice: newsFeedService,
-    private authService: AuthService
-  ) { }
+    private authService: AuthService,
+    private adminService: AdminService
+  ) {}
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.isAdmin$ = this.adminService.isAdmin;
+  }
 
   deletePost() {
     if (this.authService.getUserName() === this.storyItem.publisherName) {
