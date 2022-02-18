@@ -21,3 +21,11 @@ export interface UserProfile {
   age: number;
   phone: string;
 }
+
+export interface DecodedInfo {
+  _id: String;
+  name: String;
+  userName: String;
+  userEmail: String;
+  userRole: String;
+}
