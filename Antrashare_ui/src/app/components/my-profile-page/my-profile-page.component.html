@@ -47,7 +47,7 @@
                  alt="" />
             </div>
             <div id="img-button-container">
-                <input type="file" (change)="onFileChanged($event)" id="profpicfile_id" name="profpicfile_name" />
+                <input *ngIf="isLogIn && !isEditInfo" type="file" (change)="onFileChanged($event)" id="profpicfile_id" name="profpicfile_name" />
                 <button *ngIf="isLogIn && !isEditInfo" mat-raised-button class="default_button" (click)="onTriggerInput()">
                     Change Photo
                 </button>
