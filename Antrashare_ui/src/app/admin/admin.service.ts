@@ -19,8 +19,8 @@ export class AdminService {
   checkIfAdmin(user: loginData) {
     if (user.userRole === 'admin') {
       this.admin.next(true);
-      this.router.navigate([`/profile/${user.userName}`]);
-    } else {
+      this.router.navigate(['/admin']);
+    } else if (user.userRole === 'user') {
       this.admin.next(false);
       this.router.navigate(['/newsfeed']);
     }

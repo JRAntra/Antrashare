@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 import { LoginPageComponent } from './components/login-page/login-page.component';
 import { MyProfileComponent } from './components/my-profile/my-profile.component';
@@ -12,6 +12,15 @@ import { AuthGuard } from './auth/auth.guard';
 import { AdminGuard } from './admin/admin.guard';
 
 const routes: Routes = [
+  {
+    path: 'admin',
+    canActivate: [AuthGuard, AdminGuard],
+    data: {
+      preload: true,
+    },
+    loadChildren: () =>
+      import('./modules/admin/admin.module').then((m) => m.AdminModule),
+  },
   { path: 'login', component: LoginPageComponent },
   {
     path: 'newsfeed',
@@ -30,7 +39,9 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }),
+  ],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
