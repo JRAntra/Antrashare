@@ -12,20 +12,22 @@ import { NewsService } from 'src/app/services/news/news.service';
   styleUrls: ['./news-feed.component.scss']
 })
 export class NewsFeedComponent implements OnInit {
+
   storyList$: any;
   storyList!: Array<object>;
   //userInfo stores all the user profile you may need in the future, feel free to use it!
   userInfo!: UserProfile;
   currentStoryList!: any;
-  currentPage: number =  0
+  currentPage: number = 0
   pageSize: number = 2 //each page's story amount
   pageAmount!: Number
   stopFlag: boolean = false
+  message: string = '';
 
   constructor(
     private loginService: LoginService,
     private newsService: NewsService
-    ) { }
+  ) { }
 
   ngOnInit(): void {
     this.newsService.getNews();
@@ -36,7 +38,7 @@ export class NewsFeedComponent implements OnInit {
       let slicedStoryList = this.sliceStoryList()
       this.currentStoryList = slicedStoryList[0]
     })
-    
+
     //get user info
     // this.loginService.tokenInfo$.subscribe(value => {
     //   this.userInfo = value;
@@ -54,7 +56,7 @@ export class NewsFeedComponent implements OnInit {
   sliceStoryList() {
     let result = []
     this.pageAmount = Math.ceil(this.storyList.length / this.pageSize)
-    for (let i = 0; i < this.pageAmount; i++){
+    for (let i = 0; i < this.pageAmount; i++) {
       let start = i * this.pageSize
       let end = start + this.pageSize
       result.push(this.storyList.slice(start, end))
@@ -65,11 +67,20 @@ export class NewsFeedComponent implements OnInit {
   //when scroll down, this will be triggered to add a part of [this.storyList] to [this.currentStoryList]
   attachStoryList() {
     let slicedStoryList = this.sliceStoryList()
-    this.currentPage  = this.currentPage + 1
+    this.currentPage = this.currentPage + 1
     this.currentStoryList = this.currentStoryList.concat(slicedStoryList[this.currentPage])
     if (this.currentPage + 1 === this.pageAmount) {
       this.stopFlag = true
     }
-    
+
+  }
+
+  setAuthFailMessage(isLogIn: boolean) {
+    let ele = document.getElementById("authFailedNotification");
+    this.message = isLogIn ? "You don't have permission." : "Please log in first.";
+    ele!.style.display = "block";
+    setTimeout(() => {
+      ele!.style.display = "none"
+    }, 2000);
   }
 }

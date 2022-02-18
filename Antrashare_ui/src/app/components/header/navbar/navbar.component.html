@@ -13,7 +13,7 @@
         <mat-icon>account_circle</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
-        <button routerLink="login" mat-menu-item>LogIn</button>
+        <button mat-menu-item (click)="openLogoutDialog()">{{isLogIn ? "Log Out" : "Log In"}}</button>
         <button routerLink="myProfile" mat-menu-item>My profile</button>
         <button routerLink="settings" mat-menu-item>Setting</button>
     </mat-menu>

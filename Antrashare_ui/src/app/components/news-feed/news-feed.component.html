@@ -7,10 +7,20 @@ infiniteScroll
 >
     <app-post-field></app-post-field>
     <dialog open class="newsFeedNotification" appHideElement>Fide Out Notification(5s)</dialog>
-
+    <dialog id="authFailedNotification">
+        {{message}}
+    </dialog>
+    <!-- <ng-template #needLogIn>
+        Please log in first.
+    </ng-template> -->
     <div class="newsFeedContent">
         <!-- <story *ngFor="let story of storyList$ | async" [story]="story" class="newsFeedStory"> </story> -->
-        <story *ngFor="let story of currentStoryList" [story]="story" class="newsFeedStory"> </story>
+        <story 
+            *ngFor="let story of currentStoryList" 
+            [story]="story" 
+            (authRes)="setAuthFailMessage($event)" 
+            class="newsFeedStory"> 
+        </story>
 
     </div>
     <app-bottom-bar></app-bottom-bar>

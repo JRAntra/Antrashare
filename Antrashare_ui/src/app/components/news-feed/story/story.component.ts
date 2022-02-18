@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { CommentDialogComponent } from '../comment-dialog/comment-dialog.component';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -13,6 +13,7 @@ import { CacheService } from 'src/app/services/cache.service';
   styleUrls: ['./story.component.scss']
 })
 export class StoryComponent implements OnInit {
+  @Output() authRes = new EventEmitter();
   @Input() story!: News;
   dialogRef?: MatDialogRef<CommentDialogComponent>;
 
@@ -129,7 +130,14 @@ export class StoryComponent implements OnInit {
   
   onCheckAuth() {
     console.log(" hint")
-    // this.cacheService.checkedAuth();
+    if (!this.cacheService.isPassAuth) {
+      if (this.cacheService.isLogin) {
+        this.authRes.emit(true);
+      }
+      else {
+        this.authRes.emit(false);
+      }
+    }
   }
 
   //opens comment dialog
