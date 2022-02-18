@@ -26,10 +26,10 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('Antrashare_ui');
   });
 
-  it('should render title', () => {
+  it('should have a router-outlet element', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('Antrashare_ui app is running!');
+    expect(compiled.querySelector('router-outlet')?.childElementCount).toEqual(0);
   });
 });

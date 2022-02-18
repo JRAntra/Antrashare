@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { News, Story, Comment } from 'src/app/models/newsfeed.model';
+import { ConfirmationService } from 'src/app/services/confirmation.service';
 import { NewsService } from 'src/app/services/news.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -25,7 +26,8 @@ export class StoryComponent implements OnInit {
 
   constructor(
     private newsService: NewsService,
-    private userService: UserService
+    private userService: UserService,
+    private confirmationService: ConfirmationService
   ) { }
 
   newsData: News[] = [];
@@ -48,12 +50,33 @@ export class StoryComponent implements OnInit {
    * Delete the post
    */
   deletePost() {
-    const id = this.news._id || '';
-    this.newsService.deletePost(id).subscribe(
-      () => {
-        this.deleteEmitter.emit();
+    // Open confirmation dialog
+    const confirmation = this.confirmationService.open({
+      title: 'Delete post',
+      message: 'Are you sure that you want to delete this post?',
+      icon: {
+        name: 'warning'
+      },
+      actions: {
+        confirm: {
+          label: 'Delete'
+        }
       }
-    );
+    });
+
+    // after confirmed, do delete
+    confirmation.afterClosed().subscribe((result) => {
+      if (result === 'confirmed') {
+        const id = this.news._id || '';
+
+        // do the actual deletion
+        this.newsService.deletePost(id).subscribe(
+          () => {
+            this.deleteEmitter.emit();
+          }
+        );
+      }
+    })
   }
 
   showComment() {

@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ProfileAuthService } from './profile-auth.guard';
+import { ConfirmationService } from './confirmation.service';
 
-describe('ProfileAuthService', () => {
-  let service: ProfileAuthService;
+describe('ConfirmationService', () => {
+  let service: ConfirmationService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(ProfileAuthService);
+    service = TestBed.inject(ConfirmationService);
   });
 
   it('should be created', () => {

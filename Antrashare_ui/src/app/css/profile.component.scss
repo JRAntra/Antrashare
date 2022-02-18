@@ -32,10 +32,25 @@
     position: inherit;
   }
 
+  .mat-card-header {
+    justify-content: space-between;
+
+    .mat-card-title {
+      margin-top: 8px;
+
+      .mat-icon {
+        vertical-align: text-top;
+      }
+    }
+
+    button {
+      margin-bottom: 12px;
+    }
+  }
+
   .mat-list-item-content {
     padding: 0px;
   }
-
 }
 
 .profile-container {
