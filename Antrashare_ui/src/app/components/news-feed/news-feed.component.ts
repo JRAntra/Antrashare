@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { idleTimeService } from '../../services/idle-time';
 import { NewsStory } from 'src/app/interfaces/newfeed.interface';
 import { NewsFeedService } from '../../services/news-feed.service';
@@ -20,8 +20,10 @@ export class NewsFeedComponent implements OnInit {
   public dataFromMongoDB: any;
   public storiesFromServer: NewsStory[] = [];
 
+  public contentListlength: number = 0;
   public markToUnsubscribe: Subscription | undefined;
   public isCommentChanged: boolean = false;
+  public renderedElements: string[] = [];
 
   constructor(
     private _idleTimeService: idleTimeService,
@@ -36,6 +38,8 @@ export class NewsFeedComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // get all the stories for newfeed
+    this._newsFeedService.getRequest();
 
     // Check admin for exclusive access
     this._roleGuardService.confirmAdminRoleFromLocalStorage();
@@ -45,26 +49,44 @@ export class NewsFeedComponent implements OnInit {
     this.markToUnsubscribe = this._idleTimeService.countIdleTime();
     this._idleTimeService.eventRefreshesIdleTime();
 
-    this.refreshNewsStory(true);
+    //get the number of stories that needs to be displayed
+    this._newsFeedService.contentListLength$.subscribe((value) => {
+      this.contentListlength = value;
+    })
+
+    //get the stories from service
+    this._newsFeedService.contentList$.subscribe((value: any) => {
+      this.dataFromMongoDB = value;
+      this.storiesFromServer = [];
+      for (let i = 0; i < this.contentListlength; i++) {
+        this.dataFromMongoDB[i] && this.storiesFromServer.push(this.dataFromMongoDB[i]);
+      }
+    })
   }
 
   ngOnDestroy(): void {
     this.markToUnsubscribe?.unsubscribe();
   }
 
-  refreshNewsStory(event: boolean): void {
-    if (event) {
-      this._newsFeedService.getRequest()
-        .subscribe(
-          (data) => {
-            // Save the data locally to create dynamically with ngFor
-            this.dataFromMongoDB = data;
-            this.storiesFromServer = this.dataFromMongoDB;
+  elementRendered(id: any): void {
+    this.renderedElements.push(id);
+  }
 
-            console.log(`Data from server: `, this.storiesFromServer) // debug
-          }
-        )
+  //add new element to story list
+  addElements(): void {
+    this.storiesFromServer.push(this.dataFromMongoDB[this.storiesFromServer.length]);
+    this._newsFeedService.contentListLength$.next(this.contentListlength + 1);
+  }
 
+  //function to listen to scrolling
+  @HostListener('window:scroll', ['$event'])
+  scrollHandler(event: any): void {
+    if (this.storiesFromServer.length <= this.renderedElements.length) {
+      let elementHeight = event.target.clientHeight * (this.storiesFromServer.length - 3);
+      let scrollPosition = event.target.scrollTop;
+      if (elementHeight - scrollPosition < 150 && this.storiesFromServer.length < this.dataFromMongoDB.length) {
+        this.addElements();
+      }
     }
   }
 }

@@ -33,28 +33,24 @@ export class UserService {
   private newUserChecker$ = new BehaviorSubject<boolean>(false);
 
   updateNewUserFlag(flag: boolean) {
-    console.log(`updateNewUserFlag`);
-
     this.newUserChecker$.next(flag)
   }
 
   checkNewUserFlag() {
-    console.log(`checkNewUserFlag`);
     return this.newUserChecker$.asObservable();
   }
 
   constructor(private _httpClient: HttpClient) { }
 
-  createNewAccount(body: any) {
-    console.log(body);
+  createNewAccount(body: any): Observable<any> {
     return this._httpClient.post(this.registerURL, body);
   }
 
-  authenUser(body: any) {
+  authenUser(body: any): Observable<any> {
     return this._httpClient.post(this.loginURL, body);
   }
 
-  updateUserToken(token: string) {
+  updateUserToken(token: string): void {
     this.userToken$ = token;
     this.userInfo$ = jwt_decode(token);
     this.userProfile$ = {
@@ -65,7 +61,8 @@ export class UserService {
     }
   }
 
-  checkUserToken(token: string, userEmail: string) {
+
+  checkUserToken(token: string, userEmail: string): boolean {
     let tokenInfo: any;
 
     if (token) {
@@ -75,7 +72,7 @@ export class UserService {
     return false;
   }
 
-  getUserProfileByUserName(userName: string) {
+  getUserProfileByUserName(userName: string): Observable<any> {
     return this._httpClient.get(this.getUserByUserName + userName);
   }
 
@@ -84,7 +81,7 @@ export class UserService {
   }
 
 
-  getUserProfileById(userId: string) {
+  getUserProfileById(userId: string): Observable<any> {
     return this._httpClient.get(this.getUserByIdURL + userId);
   }
 

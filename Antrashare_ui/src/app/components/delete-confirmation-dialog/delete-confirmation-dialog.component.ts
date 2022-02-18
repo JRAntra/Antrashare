@@ -22,8 +22,8 @@ export class DeleteConfirmationDialogComponent implements OnInit {
   }
 
   clickedYes(): void {
-    console.log(this._newsFeedService.currentStoryId);
-    this._newsFeedService.emitChildEvent('clicked Yes to delete')
+    this._newsFeedService.deletePostNewsFeed();
+    //this._newsFeedService.emitChildEvent('clicked Yes to delete')
   }
 
   // Click “No“ will stay in the page

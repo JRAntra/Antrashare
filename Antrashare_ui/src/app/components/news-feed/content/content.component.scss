@@ -14,10 +14,9 @@
   justify-content: space-between;
 }
 
-
 .content-follow-up {
   display: block;
-  border: 2px solid lightblue;
+  border: 2px solid theme.$font-color;
   // display: grid;
   // grid-template-columns: 1fr 1fr 1fr 1fr;
   // margin-left: 10%;
@@ -32,21 +31,27 @@
 
 .content {
   background-color: theme.$secondary-color;
-  color: white;
-  padding: 30px;
+  color: theme.$font-color;
+  // padding: 30px;
 }
 
 .commentLikeBox {
   display: grid;
   grid-template-columns: 1fr 1fr;
   padding: 10px;
-  background-color: theme.$primary-color;
-  color: theme.$font-color;
+  background-color: theme.$tertiary-color;
 }
 
 .labelDisplay {
   margin-left: 10px;
 }
 
+.contentBox {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+}
 
-
+.content-body {
+  padding: 30px;
+}

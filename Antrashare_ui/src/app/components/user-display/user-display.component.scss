@@ -25,17 +25,19 @@ a:active {
   width: 100%;
 }
 
-.userDisplayContent {
-  // background-color: theme.$primary-color;
-  // border-radius: 20px;
-  // padding: 10px;
+.usernameDisplay {
+  font-weight: bold;
 }
 
 .infoBoxForMyProfile {
   background-color: theme.$primary-color;
   border-radius: 20px;
-  padding: 10px;
+  padding: 15px;
   width: 300px;
   grid-template-columns: 1fr 1fr;
   grid-column-gap: 10px;
+}
+
+.infoBox {
+  margin: 15px;
 }

@@ -1,24 +1,21 @@
 <div class="contentPage">
-  <div class="avatarDisplay">
-    <app-user-display [userInNewsStory]="userInfoFromServer">
-    </app-user-display>
-    <mat-icon
-      aria-hidden="false"
-      aria-label="delete"
-      class="labelDisplay"
-      (click)="deletePost()"
-      >delete</mat-icon
-    >
-    <!-- <div>p</div>
-    <div>p</div>
-    <div>p</div> -->
-  </div>
   <mat-card class="content">
-    <div>
+    <div class="avatarDisplay">
+      <app-user-display [userInNewsStory]="userInfoFromServer">
+      </app-user-display>
+      <mat-icon
+        aria-hidden="false"
+        aria-label="delete"
+        class="labelDisplay"
+        (click)="deletePost()"
+        >delete</mat-icon
+      >
+    </div>
+    <div class="content-body">
       <p>
         {{ userInfoFromServer.content.text }}
       </p>
-      <div>
+      <div class="contentBox">
         <img
           #image
           width="320"
@@ -28,7 +25,6 @@
           [hidden]="image.hidden"
         />
         <div *ngIf="isVideo === true">
-          <!-- iframe sends many requests -->
           <iframe
             width="420"
             height="315"
@@ -36,12 +32,6 @@
             class="videoLink"
             [id]="videoId"
           ></iframe>
-          <!-- <video width="320" height="240" controls>
-            <source
-              src="{{ userInfoFromServer.content.video }}"
-              type="video/mp4"
-            />
-          </video> -->
         </div>
       </div>
     </div>
@@ -70,10 +60,7 @@
           </label>
         </div>
       </div>
-      <app-add-comment
-        (isChanged)="refreshNewsStory($event)"
-        [serverData]="currentStory"
-      ></app-add-comment>
+      <app-add-comment [serverData]="currentStory"></app-add-comment>
       <app-comments
         *ngIf="commentList.length != 0"
         [commentData]="commentList"

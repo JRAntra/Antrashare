@@ -25,7 +25,7 @@ export class CommentsComponent implements OnInit {
     this.element = document.createElement('img');
   }
 
-  ngOnInit(): void {  
+  ngOnInit(): void {
   }
 
   ngAfterViewInit(): void {
@@ -47,6 +47,11 @@ export class CommentsComponent implements OnInit {
     this.commentsList = [];
     let currentArray = [];
 
+    this.commentData = this.commentData.sort(
+      function (a: any, b: any) {
+        return new Date(b.publishedTime).getTime() - new Date(a.publishedTime).getTime();
+      }
+    );
     for (let i = 0; i < this.arrayLength; i++) {
       currentArray = this.commentData.slice(this.pageNumber.pageSize * i, this.pageNumber.pageSize * (i + 1));
       this.commentsList.push(currentArray);

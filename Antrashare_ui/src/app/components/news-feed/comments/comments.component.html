@@ -13,38 +13,13 @@
                 (error)="image.hidden = true"
                 [hidden]="image.hidden"
             />
-            <!-- <iframe 
-                width="420" 
-                height="315" 
-                src="" 
-                class="videoBox"
-                id="videoBox"
-            ></iframe> -->
-            <!-- <div *ngIf="isVideo === true">
-                <video width="320" height="240" controls>
-                    <source src="{{ commentData[pageNumber.pageIndex]?.content?.video }}" type="video/mp4" />
-                </video>
-            </div> -->
             <div 
                 class="publishing-details" 
             >
-                By {{ comment?.publisherName }} at {{ comment?.publishedTime | date:'short'}}
+                By <p class="usernameDisplay">{{ comment?.publisherName }}</p> 
+                at {{ comment?.publishedTime | date:'short'}}
             </div>
         </div>
-        <!-- <div class="commentLikeBox">
-            <div>
-                <mat-icon aria-hidden="false" aria-label="comment" class="labelDisplay">comment</mat-icon>
-                <label class="labelDisplay">
-                  {{ commentData[pageNumber.pageIndex]?.comment?.length }} Comment(s)
-                </label>
-            </div>
-            <div class="like-id-list">
-                <mat-icon aria-hidden="false" aria-label="favorite" class="labelDisplay">favorite</mat-icon>
-                <label class="labelDisplay">
-                  {{ currentStory.likedIdList?.length }}
-                </label>
-            </div>
-        </div> -->
         <mat-paginator
             [length]="pageNumber.length"
             [pageSize]="pageNumber.pageSize"
