@@ -8,7 +8,6 @@ import { LoginFormComponent } from './components/login-page/login-form/login-for
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
-import { ReactiveFormsModule } from '@angular/forms';
 import { UserDisplayComponent } from './components/user-display/user-display.component';
 import { MyProfileComponent } from './components/my-profile/my-profile.component';
 import { ContentComponent } from './components/news-feed/content/content.component';
@@ -25,13 +24,11 @@ import { CommentsComponent } from './components/news-feed/comments/comments.comp
 import { AddCommentComponent } from './components/news-feed/add-comment/add-comment.component';
 import { SignupFormComponent } from './components/login-page/signup-form/signup-form.component';
 import { DeleteConfirmationDialogComponent } from './components/delete-confirmation-dialog/delete-confirmation-dialog.component';
-import { AppHeaderComponent } from './shared/app-header/app-header.component';
-import { NavigationBarComponent } from './shared/navigation-bar/navigation-bar.component';
 
 // Custom modules
 import { AdminModule } from './admin/admin.module';
 import { SharedModule } from './shared/shared.module';
-
+import { CustomPreloadingStrategyService } from './services/custom-preloading-strategy.service';
 
 @NgModule({
   declarations: [
@@ -60,13 +57,16 @@ import { SharedModule } from './shared/shared.module';
     /**
      * Feature module needs to be place before AppRoutingModule
      * If not, the routes in feature module won't work
+     * 
      */
     AdminModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [
+    CustomPreloadingStrategyService,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

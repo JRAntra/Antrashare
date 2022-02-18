@@ -7,7 +7,7 @@ import { SettingsComponent } from '../components/settings/settings.component';
 
 const routes: Routes = [
     // Default route: http://localhost:4200/adminPage
-    { path: '', component: AdminPageComponent },
+    { path: 'adminPage', component: AdminPageComponent },
 
     // Possible routes for admin module
     // { path: 'settings', component: AdminPageComponent }

@@ -5,7 +5,8 @@ import { NewsFeedService } from '../../services/news-feed.service';
 import { Subscription } from 'rxjs';
 import { UserService } from '../../services/user.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-
+import { RoleGuardService } from 'src/app/services/role-guard.service';
+import { AppHeaderComponent } from 'src/app/shared/app-header/app-header.component';
 @Component({
   selector: 'app-news-feed',
   templateUrl: './news-feed.component.html',
@@ -22,7 +23,9 @@ export class NewsFeedComponent implements OnInit {
     private _idleTimeService: idleTimeService,
     private _userService: UserService,
     private _newsFeedService: NewsFeedService,
-    private router: Router
+    private _router: Router,
+    private _roleGuardService: RoleGuardService,
+
   ) {
     _idleTimeService.currentPageIsSignInPage = false;
     _idleTimeService.currentPageForRouting = 'newsFeed';
@@ -30,15 +33,13 @@ export class NewsFeedComponent implements OnInit {
 
   ngOnInit(): void {
 
-    // Handle deleted post
-    this._newsFeedService.childEventListner().subscribe(info => {
-      // Prevent delete empty id
-      if (this._newsFeedService.currentStoryId !== '') {
-        this._newsFeedService.deletePostNewsFeed(this._newsFeedService.currentStoryId).subscribe(() => {
-          this.refreshNewsStory(true);
-        });
-      }
-    })
+    // Check admin for exclusive access
+    let retrievedUserRole: string = JSON.parse(localStorage.getItem('user-role')!);
+    if (retrievedUserRole === 'admin') {
+      this._roleGuardService.updateAdminFlag(true)
+    } else {
+      this._roleGuardService.updateAdminFlag(false)
+    }
 
     // Check idle time
     this.markToUnsubscribe = this._idleTimeService.countIdleTime();

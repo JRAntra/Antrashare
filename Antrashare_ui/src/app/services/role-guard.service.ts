@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
 import { UserService } from './user.service';
 
 @Injectable({
@@ -12,8 +13,18 @@ export class RoleGuardService implements CanActivate {
     private _router: Router,
   ) { }
 
+  private adminFlagChecker$ = new BehaviorSubject<boolean>(false);
+
+  updateAdminFlag(flag: boolean) {
+    this.adminFlagChecker$.next(flag)
+  }
+
+  checkAdminFlag() {
+    return this.adminFlagChecker$.asObservable();
+  }
 
   defaultMyProfileURL = "http://localhost:4200/newsFeed";
+
   canActivate(_route: ActivatedRouteSnapshot, _state: RouterStateSnapshot) {
     // // Check local storage
     let retrievedName: string = JSON.parse(localStorage.getItem('name')!);

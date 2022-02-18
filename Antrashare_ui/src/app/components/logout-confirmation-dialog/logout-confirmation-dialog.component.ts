@@ -1,5 +1,6 @@
 import { Component, OnInit, } from '@angular/core';
 import { Router } from '@angular/router';
+import { RoleGuardService } from 'src/app/services/role-guard.service';
 import { idleTimeService } from '../../services/idle-time';
 
 @Component({
@@ -11,7 +12,8 @@ export class LogoutConfirmationDialogComponent implements OnInit {
 
   constructor(
     private _router: Router,
-    private _idleTimeService: idleTimeService
+    private _idleTimeService: idleTimeService,
+    private _roleGuardService: RoleGuardService,
   ) { }
 
 
@@ -24,7 +26,11 @@ export class LogoutConfirmationDialogComponent implements OnInit {
   // After the dialog come out, click “Yes“ will navigate back to Login Page.
   clickedYes(): void {
     localStorage.removeItem('user-data');
+    localStorage.clear();
     this._router.navigate(['loginPage']);
+
+    // Reset admin flag
+    this._roleGuardService.updateAdminFlag(false);
   }
 
   // Click “No“ will stay in the page
