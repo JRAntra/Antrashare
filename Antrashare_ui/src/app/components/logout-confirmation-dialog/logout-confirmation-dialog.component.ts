@@ -25,10 +25,9 @@ export class LogoutConfirmationDialogComponent implements OnInit {
   // Create the logout confirmation Dialog that will pop up when user click logout button on setting page.
   // After the dialog come out, click “Yes“ will navigate back to Login Page.
   clickedYes(): void {
-    localStorage.removeItem('user-data');
-    localStorage.clear();
+    this._roleGuardService.clearLocalStroageExceptLoginData();
     this._router.navigate(['loginPage']);
-
+    
     // Reset admin flag
     this._roleGuardService.updateAdminFlag(false);
   }

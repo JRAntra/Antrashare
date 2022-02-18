@@ -23,6 +23,12 @@ export class RoleGuardService implements CanActivate {
     return this.adminFlagChecker$.asObservable();
   }
 
+  clearLocalStroageExceptLoginData(){
+    let myItem = localStorage.getItem('login-data');
+    localStorage.clear();
+    localStorage.setItem('login-data', myItem!);
+  }
+
   defaultMyProfileURL = "http://localhost:4200/newsFeed";
 
   canActivate(_route: ActivatedRouteSnapshot, _state: RouterStateSnapshot) {

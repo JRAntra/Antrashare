@@ -23,7 +23,7 @@ export class LoginPageComponent implements OnInit {
   displayTimer$: any;
 
   ngOnInit(): void {
-    localStorage.clear();
+    this._roleGuardService.clearLocalStroageExceptLoginData();
   }
 
   ngOnDestroy(): void {

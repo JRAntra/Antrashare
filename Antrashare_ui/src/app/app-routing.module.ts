@@ -26,7 +26,11 @@ const routes: Routes = [
   { path: 'settings', component: SettingsComponent },
 
   // Lazy-loading for admin route 
-  { path: "adminPage", loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) },
+  {
+    path: "adminPage",
+    loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule),
+    data: { preload: true, delay: 5000 }
+  },
 
   // Error path
   { path: '**', component: PageNotFoundComponent },
