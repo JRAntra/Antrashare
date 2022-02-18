@@ -22,8 +22,8 @@ export class LoginService {
     return this.http.post(this.loginUrl, body);
   }
 
-  getUserAccount() {
-    // return this.http.post(this.loginURL, body);
+  doesUserExist(username: string) {
+    // return this.http.get(this.loginURL, body);
   }
 
   updateUserToken(token: string) {

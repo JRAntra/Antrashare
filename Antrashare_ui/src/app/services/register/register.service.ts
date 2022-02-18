@@ -1,13 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, throwError } from 'rxjs';
-import { baseUrl, registerApiUrl } from 'src/environments/environment';
+import { baseUrl, createNewAccountApiUrl, registerApiUrl } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RegisterService {
-  private registerUrl = [baseUrl, registerApiUrl].join('');
+  private registerUrl = [baseUrl, registerApiUrl, createNewAccountApiUrl].join('');
   constructor(private http: HttpClient) { }
 
   registerUser(newUser: any) {
