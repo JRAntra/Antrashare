@@ -12,7 +12,7 @@
       </button>
       <mat-card-title><a [routerLink]="['/profile/' + news.publisherName]"
           routerLinkActive="router-link-active">{{news.publisherName}}</a></mat-card-title>
-      <mat-card-subtitle>{{news.publishedTime}}</mat-card-subtitle>
+      <mat-card-subtitle>{{news.publishedTime | date: 'EEEE, MMMM d, y, h:mm:ss a'}}</mat-card-subtitle>
     </mat-card-header>
 
     <button mat-button mat-icon-button class="delete" matTooltip="delete this post" *ngIf="canDelete()"

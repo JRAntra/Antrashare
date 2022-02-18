@@ -10,15 +10,9 @@ import {
   AsyncValidatorFn,
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import {
-  catchError,
-  debounceTime,
-  of,
-  map,
-  switchMap,
-  throwError,
-  delay,
-} from 'rxjs';
+
+
+import { asyncEmailValidator } from 'src/app/services/auth.service';
 // =======
 // import { catchError, debounceTime, map, of, switchMap, tap } from 'rxjs';
 // >>>>>>> 9aa559f86683aaf26ee2ae0e131a155e4257c283
@@ -26,45 +20,6 @@ import {
 import { UserAccount } from 'src/app/models/user.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { Observable } from 'rxjs';
-
-const asyncValidator =
-  (HttpClient: HttpClient): AsyncValidatorFn =>
-  (control: AbstractControl): Observable<ValidationErrors | null> => {
-    console.log('here');
-
-    // return control.valueChanges.pipe(
-    //     debounceTime(1000),
-
-    return of(control.value).pipe(
-      delay(1000),
-
-      switchMap((value) => {
-        console.log(value);
-        return HttpClient.get(
-          'http://localhost:4231/api/register/checkExistByEmail/' + value
-        ).pipe(
-          // catchError((err) => {
-          //   console.log(err);
-          //   return throwError(err.message);
-          //   // return of({"registered": false});
-          //   // return of(null);
-          // }),
-          map((data: any) => {
-            console.log(data);
-            return { registered: true };
-            // if(data === "Email has been registered."){
-            //   return {"Registered": false};
-            // }else{
-            //   return null;
-            // }
-            //make comparison between return data and
-            // return {"Registered": true};
-          })
-        );
-      })
-    );
-  };
-
 
 @Component({
   selector: 'app-login-form',
@@ -77,7 +32,7 @@ export class LoginFormComponent implements OnInit {
     email: new FormControl(
       '',
       [Validators.required, Validators.minLength(5)],
-      asyncValidator(this.http)
+      asyncEmailValidator(this.http)
     ),
     password: new FormControl('', [
       Validators.required,

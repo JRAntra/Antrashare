@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of} from 'rxjs';
+import { Observable, of, map, delay} from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { APP_CONFIG } from '../core/config/app.config';
@@ -9,6 +9,10 @@ import { UserAccount } from '../models/user.model';
 import { UserService } from './user.service';
 import jwtDecode from 'jwt-decode';
 import { DecodedInfo } from '../models/user.model';
+import { AsyncValidatorFn, ValidationErrors, AbstractControl } from '@angular/forms';
+
+
+
 
 
 const KEY: string = `${APP_CONFIG.localStorage.prefix}${APP_CONFIG.localStorage.token}`;
@@ -90,4 +94,30 @@ export class AuthService {
   }
 
   
+  
 }
+
+export const asyncEmailValidator =
+  (HttpClient: HttpClient): AsyncValidatorFn =>
+  (control: AbstractControl): Observable<ValidationErrors | null> => {
+    console.log('here');
+
+    // return control.valueChanges.pipe(
+    //     debounceTime(1000),
+
+    return of(control.value).pipe(
+      delay(1000),
+
+      switchMap((value) => {
+        console.log(value);
+        return HttpClient.get(
+          'http://localhost:4231/api/register/checkExistByEmail/' + value
+        ).pipe(
+          map((data: any) => {
+            console.log(data);
+            return { registered: true };
+          })
+        );
+      })
+    );
+  };
