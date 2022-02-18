@@ -21,7 +21,7 @@ export class StoryComponent implements OnInit {
     private fb: FormBuilder,
     private newsfeedservice: newsFeedService,
     private authService: AuthService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.newsfeedservice.getNewsFeed().subscribe((data: any) => {
