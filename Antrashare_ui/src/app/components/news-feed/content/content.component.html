@@ -1,32 +1,35 @@
 <div class="contentPage">
-  <div class="avatarDisplay">
-    <app-user-display [userInNewsStory]="userInfoFromServer"> </app-user-display>
-    <mat-icon 
-      aria-hidden="false" 
-      aria-label="delete" 
-      class="labelDisplay"
-      (click)="deletePost()"
-    >delete</mat-icon>
-  </div>
-  <mat-card>
-    <div class="content">
+  <mat-card class="content">
+    <div class="avatarDisplay">
+      <app-user-display [userInNewsStory]="userInfoFromServer">
+      </app-user-display>
+      <mat-icon
+        aria-hidden="false"
+        aria-label="delete"
+        class="labelDisplay"
+        (click)="deletePost()"
+        >delete</mat-icon
+      >
+    </div>
+    <div class="content-body">
       <p>
         {{ userInfoFromServer.content.text }}
       </p>
       <div class="contentBox">
         <img
           #image
-          width="320" height="240"
+          width="320"
+          height="240"
           [src]="userInfoFromServer.content.image"
           (error)="image.hidden = true"
           [hidden]="image.hidden"
         />
         <div *ngIf="isVideo === true">
-          <iframe 
-            width="420" 
-            height="315" 
-            src="" 
-            class="videoLink" 
+          <iframe
+            width="420"
+            height="315"
+            src=""
+            class="videoLink"
             [id]="videoId"
           ></iframe>
         </div>
@@ -35,23 +38,31 @@
     <div class="content-follow-up">
       <div class="commentLikeBox">
         <div>
-          <mat-icon aria-hidden="false" aria-label="comment" class="labelDisplay">comment</mat-icon>
+          <mat-icon
+            aria-hidden="false"
+            aria-label="comment"
+            class="labelDisplay"
+            >comment</mat-icon
+          >
           <label class="labelDisplay">
             {{ commentList.length }} Comment(s)
           </label>
         </div>
         <div class="like-id-list">
-          <mat-icon aria-hidden="false" aria-label="favorite" class="labelDisplay">favorite</mat-icon>
+          <mat-icon
+            aria-hidden="false"
+            aria-label="favorite"
+            class="labelDisplay"
+            >favorite</mat-icon
+          >
           <label class="labelDisplay">
             {{ currentStory.likedIdList?.length }}
           </label>
         </div>
       </div>
-      <app-add-comment 
-        [serverData] = "currentStory"
-      ></app-add-comment>
-      <app-comments 
-        *ngIf="commentList.length != 0" 
+      <app-add-comment [serverData]="currentStory"></app-add-comment>
+      <app-comments
+        *ngIf="commentList.length != 0"
         [commentData]="commentList"
       ></app-comments>
     </div>

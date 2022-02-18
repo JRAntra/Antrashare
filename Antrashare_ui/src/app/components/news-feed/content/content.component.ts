@@ -65,7 +65,6 @@ export class ContentComponent implements OnInit {
   }
 
   hideImgTag(): boolean {
-    console.log(`ERROR!`);
     return true;
   }
 

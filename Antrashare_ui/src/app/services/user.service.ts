@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import jwt_decode from 'jwt-decode';
 import { UserInfoStore } from '../interfaces/user.interface';
-import { catchError, map, Observable, throwError } from 'rxjs';
+import { BehaviorSubject, catchError, map, Observable, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,10 +11,12 @@ export class UserService {
   public loginURL: string = 'http://localhost:4231/api/login';
   public userMyProfileURL: string = "http://localhost:4200/myProfile/";
   private getUserByUserName: string = 'http://localhost:4231/api/users/getProfile/';
+  private getAllUsersURL: string = 'http://localhost:4231/api/users/getAllUsers/';
 
   // APIs for register
   private registerURL: string = 'http://localhost:4231/api/register/createNewAccount';
   private getUserByIdURL: string = 'http://localhost:4231/api/register/getUserById/';
+  private deleteUserByIdURL: string = 'http://localhost:4231/api/register/deleteUser/';
   private checkeExistByEmailURL: string = "http://localhost:4231/api/register/checkExistByEmail/";
   private checkeExistByUserNameURL: string = "http://localhost:4231/api/register/checkExistByUsername/";
 
@@ -27,6 +29,16 @@ export class UserService {
 
   private userInfo$: any;
   private userToken$: any;
+
+  private newUserChecker$ = new BehaviorSubject<boolean>(false);
+
+  updateNewUserFlag(flag: boolean) {
+    this.newUserChecker$.next(flag)
+  }
+
+  checkNewUserFlag() {
+    return this.newUserChecker$.asObservable();
+  }
 
   constructor(private _httpClient: HttpClient) { }
 
@@ -64,9 +76,17 @@ export class UserService {
     return this._httpClient.get(this.getUserByUserName + userName);
   }
 
+  getAllUsers() {
+    return this._httpClient.get(this.getAllUsersURL);
+  }
+
 
   getUserProfileById(userId: string): Observable<any> {
     return this._httpClient.get(this.getUserByIdURL + userId);
+  }
+
+  deleteUserProfileById(userId: string) {
+    return this._httpClient.delete(this.deleteUserByIdURL + userId);
   }
 
   checkExistByEmail(userEmail: string) {

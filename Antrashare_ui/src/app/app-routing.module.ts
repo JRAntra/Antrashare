@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 // Import component that needs to navigate around
 import { LoginPageComponent } from './components/login-page/login-page.component';
@@ -9,6 +9,7 @@ import { SettingsComponent } from './components/settings/settings.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { AuthGuardService as AuthGuard } from './services/auth-guard.service';
 import { RoleGuardService as RoleGuard } from './services/role-guard.service';
+import { CustomPreloadingStrategyService } from './services/custom-preloading-strategy.service';
 
 const routes: Routes = [
   // Default path
@@ -17,24 +18,32 @@ const routes: Routes = [
   // Other possible paths
   { path: 'loginPage', component: LoginPageComponent },
   {
-    path: 'newsFeed', component: NewsFeedComponent,
-    canActivate: [AuthGuard]
+    path: 'newsFeed', component: NewsFeedComponent, canActivate: [AuthGuard]
   },
   {
-    // path: 'myProfile', component: MyProfileComponent,
-    path: 'myProfile/:userName', component: MyProfileComponent,
-    canActivate: [RoleGuard]
+    path: 'myProfile/:userName', component: MyProfileComponent, canActivate: [RoleGuard]
   },
   { path: 'settings', component: SettingsComponent },
 
+  // Lazy-loading for admin route 
+  {
+    path: "adminPage",
+    loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule),
+    data: { preload: true, delay: 5000 }
+  },
+
   // Error path
-  { path: '**', component: PageNotFoundComponent }
+  { path: '**', component: PageNotFoundComponent },
+
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes,
+    {
+      // NOTE: There are two preloading strategies
+      preloadingStrategy: CustomPreloadingStrategyService
+    }
+  )],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-
-export const routingComponents = [NewsFeedComponent, SettingsComponent]

@@ -38,7 +38,6 @@ export class NewsFeedService {
         }
       );
 
-      console.log(storyList)
       this.contentList$.next(storyList);
       }
     )

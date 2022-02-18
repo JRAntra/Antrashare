@@ -7,6 +7,7 @@ import { UserService } from '../../../services/user.service';
 import { UserValidationService } from 'src/app/services/user-validation.service';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { RoleGuardService } from 'src/app/services/role-guard.service';
 
 
 @Component({
@@ -39,10 +40,6 @@ export class SignupFormComponent implements OnInit {
     phone: [''],
   });
 
-  get userNameValue() {
-    return this.signupForm?.get('username')?.value;  // 
-  }
-
   public signUpSuccess: boolean = false;
 
   constructor(
@@ -51,18 +48,14 @@ export class SignupFormComponent implements OnInit {
     private _router: Router,
     private _userValidationService: UserValidationService,
     private _httpClient: HttpClient,
+    private _roleGuardService: RoleGuardService,
   ) { }
 
 
   ngOnInit(): void {
   }
 
-  get userNameEmail() {
-    return this.signupForm?.get('userEmail')?.value;
-  }
-
-
-  signUp() {
+  signUp(): boolean {
     // Check with sync validators
     if (
       !this.signupForm.controls['password'].errors
@@ -81,9 +74,19 @@ export class SignupFormComponent implements OnInit {
       }
 
       // Create a new account with given value
-      this._userService.createNewAccount(currentBody).subscribe((data) => {
+      this._userService.createNewAccount(currentBody).subscribe((result) => {
+        console.log(result);
         this.signUpSuccess = true;
+
+        // Refresh the list for admin page
+        this._userService.updateNewUserFlag(true);
+
+        return true;
       })
+
+      // Failed to create
+      this.signUpSuccess = false;
     }
+    return this.signUpSuccess;
   }
 }

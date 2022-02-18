@@ -1,0 +1,62 @@
+@use "../../../styles.scss" as theme;
+
+a:link {
+  color: white;
+  background-color: transparent;
+  text-decoration: none;
+}
+a:visited {
+  color: white;
+  background-color: transparent;
+  text-decoration: none;
+}
+a:hover {
+  color: red;
+  background-color: transparent;
+  text-decoration: underline;
+}
+a:active {
+  color: yellow;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+.admin-features {
+  text-align: center;
+}
+
+#button-add-user {
+  background-color: darkgray;
+  text-align: center;
+}
+
+#table-scroll {
+  height: 600px;
+  overflow: auto;
+}
+
+.profileTable {
+  background-color: theme.$primary_color;
+  padding: 100px;
+  margin-top: 5%;
+  margin-left: 5%;
+  margin-right: 10%;
+  border-radius: 20px;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+td {
+  padding: 20px;
+  width: 60%;
+  padding-right: 150px;
+  text-align: center;
+  border: 1px solid;
+  border-width: 0 0 1px 0;
+}
+
+tr:last-child > td {
+  border-bottom: 0;
+}

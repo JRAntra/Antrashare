@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
 import { UserService } from './user.service';
 
 @Injectable({
@@ -12,8 +13,34 @@ export class RoleGuardService implements CanActivate {
     private _router: Router,
   ) { }
 
+  private adminFlagChecker$ = new BehaviorSubject<boolean>(false);
+
+  updateAdminFlag(flag: boolean) {
+    this.adminFlagChecker$.next(flag)
+  }
+
+  checkAdminFlag() {
+    return this.adminFlagChecker$.asObservable();
+  }
+
+  confirmAdminRoleFromLocalStorage() {
+    // Check admin for exclusive access
+    let retrievedUserRole: string = JSON.parse(localStorage.getItem('user-role')!);
+    if (retrievedUserRole === 'admin') {
+      this.updateAdminFlag(true)
+    } else {
+      this.updateAdminFlag(false)
+    }
+  }
+
+  clearLocalStroageExceptLoginData() {
+    let myItem = localStorage.getItem('login-data');
+    localStorage.clear();
+    localStorage.setItem('login-data', myItem!);
+  }
 
   defaultMyProfileURL = "http://localhost:4200/newsFeed";
+
   canActivate(_route: ActivatedRouteSnapshot, _state: RouterStateSnapshot) {
     // // Check local storage
     let retrievedName: string = JSON.parse(localStorage.getItem('name')!);
