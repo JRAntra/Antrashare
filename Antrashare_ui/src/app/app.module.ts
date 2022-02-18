@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -53,12 +52,6 @@ import { CustomPreloadingStrategyService } from './services/custom-preloading-st
   ],
   imports: [
     SharedModule,
-    BrowserModule,
-    /**
-     * Feature module needs to be place before AppRoutingModule
-     * If not, the routes in feature module won't work
-     * 
-     */
     AdminModule,
     AppRoutingModule,
     BrowserAnimationsModule,

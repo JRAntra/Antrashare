@@ -50,8 +50,6 @@ export class UserService {
   }
 
   authenUser(body: any) {
-    console.log(body);
-
     return this._httpClient.post(this.loginURL, body);
   }
 
@@ -77,8 +75,6 @@ export class UserService {
   }
 
   getUserProfileByUserName(userName: string) {
-    console.log(this.getUserByUserName + userName);
-
     return this._httpClient.get(this.getUserByUserName + userName);
   }
 
