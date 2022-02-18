@@ -1,13 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, OnInit } from '@angular/core';
 import { catchError, throwError } from 'rxjs';
-import { baseUrl, getProfileApiUrl } from 'src/environments/environment';
+import { baseUrl, getProfileApiUrl, usersApiUrl } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProfileService {
-  private getProfileUrl = [baseUrl, getProfileApiUrl].join('');
+  private getProfileUrl = [baseUrl, usersApiUrl, getProfileApiUrl].join('');
   constructor(private http: HttpClient) { }
 
   getProfileAccount(username: string) {

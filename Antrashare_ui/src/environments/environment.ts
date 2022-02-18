@@ -7,15 +7,24 @@ export const environment = {
   idleTimeInSeconds: 600,
 };
 
+/* Local host */
 export const baseUrl = 'http://localhost:4231/api/';
 
+/* Login Api */
 export const loginApiUrl = 'login/';
+
+/* NewsFeed Api */
 export const newsApiUrl = 'news/';
-export const registerApiUrl = 'register/createNewAccount/';
+
+/* Register Api */
+export const registerApiUrl = 'register/';
+export const createNewAccountApiUrl = 'createNewAccount/';
+export const checkUserByEmailApiUrl = 'getUserById/:id';
+export const checkUserByUsernameApiUrl = 'checkExistByEmail/:userEmail'
+
+/* Users/Profile Api */
 export const usersApiUrl = 'users/';
-
-export const getProfileApiUrl = 'users/getProfile/';
-
+export const getProfileApiUrl = 'getProfile/';
 export const getUsersTable = 'getAllUsers/';
 /*
  * For easier debugging in development mode, you can import the following file
