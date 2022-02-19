@@ -31,19 +31,13 @@ export class MyProfileComponent implements OnInit {
     userEmail: '',
     userRole: '',
     name: '',
-    // password: '',
     phone: 0,
-    // userEmail: '',
     userName: '',
-    // userRole: '',
-    // __v: 0,
-    // _id: '',
   }
 
   public userInfo = {
     userName: "",
     userEmail: "",
-    // userJWT: "",
   };
 
   public userProfileList: any;
@@ -74,7 +68,7 @@ export class MyProfileComponent implements OnInit {
     const path = window.location.href;
     const userIdFromURL = path.slice(32, path.length);
     if (userIdFromURL !== userName) {
-      console.log('Admin view other users, use userIdFromURL');
+      // Admin view other users, use userIdFromURL
       userName = userIdFromURL;
     }
 

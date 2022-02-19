@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { NewsStory } from 'src/app/interfaces/newfeed.interface';
 import { idleTimeService } from 'src/app/services/idle-time';
 import { NewsFeedService } from '../../../services/news-feed.service';
@@ -10,6 +11,9 @@ import { NewsFeedComponent } from '../news-feed.component';
   styleUrls: ['./content.component.scss']
 })
 export class ContentComponent implements OnInit {
+  @Input() currentStory!: NewsStory;
+  @Output() rendered = new EventEmitter();
+  @Output() storyDataChanged = new EventEmitter<boolean>();
   @ViewChild(NewsFeedComponent, { static: true }) child: NewsFeedComponent | null = null;
 
   public userInfoFromServer: NewsStory = {
@@ -26,17 +30,14 @@ export class ContentComponent implements OnInit {
   badImgUrl = "https://www.gannpg?width";
   videoUrl = "https://media.geeksforgeeks.org/wp-content/uploads/20200513195558/Placement100-_-GeeksforGeeks-1.mp4"
 
-  @Input() currentStory!: NewsStory;
-  @Output() rendered = new EventEmitter();
-  @Output() storyDataChanged = new EventEmitter<boolean>();
 
   public commentList: any[] = [];
   public videoId: string;
 
-  // listSize = 3;
   constructor(
     private _idleTimeService: idleTimeService,
     private _newsFeedService: NewsFeedService,
+    private _router: Router,
   ) {
     this.videoId = this.userInfoFromServer._id ? this.userInfoFromServer._id : '';
   }
@@ -80,7 +81,25 @@ export class ContentComponent implements OnInit {
 
 
   deletePost(): void {
-    this._idleTimeService.popDeleteDialog(); // pop logout dialog
-    this._newsFeedService.currentStoryId = this.currentStory._id!;
+    let retrievedUserName: string = JSON.parse(localStorage.getItem('user-name')!);
+    let retrievedUserRole: string = JSON.parse(localStorage.getItem('user-role')!);
+
+    // Prevent normal user delete other's post
+    if (
+      retrievedUserRole === 'admin'
+      || retrievedUserRole === 'Admin'
+      || retrievedUserName === this.currentStory.publisherName
+    ) {
+      console.log(`can delete`);
+      this._idleTimeService.popDeleteDialog(); // pop logout dialog
+      this._newsFeedService.currentStoryId = this.currentStory._id!;
+    } else {
+      // Block normal users
+      alert(`You cannot delete someone's story`);
+
+      // Reroute to newsFeed page
+      this._router.navigate(['newsFeed/']);
+    }
   }
+
 }
