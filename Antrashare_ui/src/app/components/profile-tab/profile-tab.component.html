@@ -5,3 +5,14 @@
 <app-profile-form *ngIf="editMode" [profile]="profile" (saveEmitter)="editMode = false"></app-profile-form>
 
 <app-profile-info *ngIf="!editMode && profile" [profile]="profile" (editEmitter)="editMode = true"></app-profile-info>
+
+<!-- No Profile -->
+<mat-card *ngIf="!editMode && !profile" class='info-container no-profile'>
+  <mat-card-content class="info-content">
+    <img class="no-profile-img" src="../../../assets/images/no-profile-icon.png">
+
+    <mat-card-title class="no-profile-title">
+      Oops! Cannot find the information of "{{getUrlUserName()}}"!
+    </mat-card-title>
+  </mat-card-content>
+</mat-card>
