@@ -8,22 +8,12 @@
         >Blog Site</span
       >
     </div>
-    <div
-      *ngIf="isAdmin$ | async as isAdmin; else elseUserHeaderBlock"
-      class="navbar-links"
-    >
+    <div class="navbar-links">
       <!--<span routerLink="login">Sign In</span>-->
-      <span routerLink="admin">Admin</span>
+      <span *ngIf="isAdmin$ | async as isAdmin" routerLink="admin">Admin</span>
       <span routerLink="profile">My Profile</span>
       <span routerLink="newsfeed">News Feed</span>
       <span routerLink="settings">Settings</span>
     </div>
-    <ng-template #elseUserHeaderBlock>
-      <div class="navbar-links">
-        <span routerLink="profile">My Profile</span>
-        <span routerLink="newsfeed">News Feed</span>
-        <span routerLink="settings">Settings</span>
-      </div></ng-template
-    >
   </mat-toolbar>
 </header>
