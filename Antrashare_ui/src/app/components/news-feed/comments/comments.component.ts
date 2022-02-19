@@ -28,7 +28,7 @@ export class CommentsComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  ngAfterViewInit(): void {
+  ngAfterContentInit(): void {
     this.changePage(this.pageNumber);
   }
 
