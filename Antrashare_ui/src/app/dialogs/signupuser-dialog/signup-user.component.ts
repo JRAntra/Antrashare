@@ -22,20 +22,22 @@ export class signupUserComponent implements OnInit {
       ],
     ],
     name: ['', [Validators.required, Validators.minLength(3)]],
-    userEmail: [''],
+    userEmail: ['',
+      [Validators.required]],
     age: [''],
     gender: [''],
     phone: [''],
-  });
+  },
+    { updateOn: 'blur' });
   signUpSuccess: boolean = false;
 
   constructor(
     public dialog: MatDialog,
     private fb: FormBuilder,
     private registerService: RegisterService
-  ) {}
+  ) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   submitForm() {
     let signupForm = {
@@ -53,5 +55,13 @@ export class signupUserComponent implements OnInit {
       console.log(x);
       this.signUpSuccess = true;
     });
+  }
+  checkEmail() {
+    // console.log(
+    this.registerService.checkUserByEmail(this.signupForm.get('userEmail')?.value).subscribe(
+      data => { console.log(data) }
+    )
+    // this.signupForm.get('userEmail')?.errors
+    // )
   }
 }

@@ -39,6 +39,7 @@ import { SettingsComponent } from './components/settings/settings.component';
 import { StoryComponent } from './components/news-feed/story/story.component';
 import { StoryCardComponent } from './components/news-feed/story/story-card/story-card.component';
 import { TimeoutDialogComponent } from './dialogs/timeout-dialog/timeout-dialog.component';
+import { UniqueUserEmailDirective } from './directive/unique-user/unique-user-email.directive';
 
 @NgModule({
   declarations: [
@@ -61,6 +62,7 @@ import { TimeoutDialogComponent } from './dialogs/timeout-dialog/timeout-dialog.
     signupUserComponent,
     CommentDialogComponent,
     ProfileComponent,
+    UniqueUserEmailDirective,
   ],
   imports: [
     BrowserModule,
@@ -83,4 +85,4 @@ import { TimeoutDialogComponent } from './dialogs/timeout-dialog/timeout-dialog.
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
