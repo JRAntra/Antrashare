@@ -18,7 +18,6 @@ import { AppComponent } from './app.component';
 import { CommentComponent } from './components/news-feed-tab/story-list/comment-list/comment/comment.component';
 import { CommentInputComponent } from './components/news-feed-tab/story-list/comment-input/comment-input.component';
 import { CommentListComponent } from './components/news-feed-tab/story-list/comment-list/comment-list.component';
-import { ConfirmationDialogComponent } from './dialogs/confirmation/confirmation.dialog.component';
 import { ErrorPageComponent } from './components/error-page/error-page.component';
 import { Error404Component } from './components/error-page/error404/error404.component';
 import { LayoutsModule } from './components/layouts/layouts.module';
@@ -42,7 +41,6 @@ import { NgxPaginationModule } from 'ngx-pagination';
     CommentComponent,
     CommentInputComponent,
     CommentListComponent,
-    ConfirmationDialogComponent,
     ErrorPageComponent,
     Error404Component,
     LoginPageComponent,
