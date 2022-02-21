@@ -19,8 +19,8 @@ export const newsApiUrl = 'news/';
 /* Register Api */
 export const registerApiUrl = 'register/';
 export const createNewAccountApiUrl = 'createNewAccount/';
-export const checkUserByEmailApiUrl = 'getUserById/:id';
-export const checkUserByUsernameApiUrl = 'checkExistByEmail/:userEmail'
+export const checkUserByUsernameApiUrl = 'checkExistByUsername/';
+export const checkUserByEmailApiUrl = 'checkExistByEmail/'
 
 /* Users/Profile Api */
 export const usersApiUrl = 'users/';

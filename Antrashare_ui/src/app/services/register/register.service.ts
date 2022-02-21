@@ -1,21 +1,42 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, throwError } from 'rxjs';
-import { baseUrl, createNewAccountApiUrl, registerApiUrl } from 'src/environments/environment';
+import { AbstractControl, AsyncValidatorFn, ValidationErrors } from '@angular/forms';
+import { catchError, debounceTime, delay, first, map, Observable, of, switchMap, throwError } from 'rxjs';
+import { baseUrl, checkUserByEmailApiUrl, checkUserByUsernameApiUrl, createNewAccountApiUrl, registerApiUrl } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RegisterService {
-  private registerUrl = [baseUrl, registerApiUrl, createNewAccountApiUrl].join('');
   constructor(private http: HttpClient) { }
 
   registerUser(newUser: any) {
-    return this.http.post(this.registerUrl, newUser).pipe(
+    let registerUrl = [baseUrl, registerApiUrl, createNewAccountApiUrl].join('');
+    return this.http.post(registerUrl, newUser).pipe(
       catchError((err) => {
         console.log(err);
         return throwError(() => new Error('Error while registering a new user!'));
       })
-    );;
+    );
+  }
+
+  checkUserByEmail(email: string): Observable<any> {
+    let checkUserByUsernameUrl: string = [baseUrl, registerApiUrl, checkUserByEmailApiUrl, email].join('');
+    return this.http.get(checkUserByUsernameUrl)
+    // .pipe(
+    //   catchError((err) => {
+    //     return throwError(() => new Error('Error while checking for this email in the database!'));
+    //   })
+    // );
+  }
+
+  checkUserByUsername(username: string) {
+    let checkUserByUsernameUrl: string = [baseUrl, registerApiUrl, checkUserByUsernameApiUrl, username].join('');
+    return this.http.get(checkUserByUsernameUrl).pipe(
+      catchError((err) => {
+        console.log(err);
+        return throwError(() => new Error('Error while checking for this username in the database!'));
+      })
+    );
   }
 }

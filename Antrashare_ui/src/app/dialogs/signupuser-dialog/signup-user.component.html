@@ -1,4 +1,5 @@
 <form [formGroup]="signupForm">
+
   <mat-form-field appearance="fill">
     <mat-label>Username </mat-label>
     <input matInput formControlName="username">
@@ -16,24 +17,29 @@
 
   <mat-form-field appearance="fill">
     <mat-label> userEmail</mat-label>
-    <input matInput formControlName="userEmail">
+    <input matInput formControlName="userEmail" UniqueEmail required name="userEmail">
+    <small class="text-danger" *ngIf="signupForm.get('userEmail')?.hasError('UniqueEmail')">
+      <!-- {{signupForm.get('userEmail')?.errors?.['value']}} -->
+      Email has been <strong>registered.</strong>
+    </small>
   </mat-form-field>
+  <button (click)="checkEmail()">checkEmail</button>
 
   <mat-form-field appearance="fill">
     <mat-label> age</mat-label>
     <input matInput formControlName="age">
   </mat-form-field>
 
+
   <mat-form-field appearance="fill">
     <mat-label> gender</mat-label>
     <input matInput formControlName="gender">
   </mat-form-field>
 
-  <mat-form-field appearance="fill">
+
+  <mat-form-field>
     <mat-label> phone</mat-label>
     <input matInput formControlName="phone">
   </mat-form-field>
-
-
   <button (click)="submitForm()">SignUp</button>
 </form>
