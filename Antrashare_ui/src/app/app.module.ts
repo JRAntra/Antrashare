@@ -1,5 +1,4 @@
 /* Directive */
-import { TmpElementDirective } from './directive/tmp_element/tmp-element.directive';
 
 /* Modules */
 import { AppRoutingModule } from './app-routing.module';
@@ -44,7 +43,6 @@ import { UniqueUserEmailDirective } from './directive/unique-user/unique-user-em
 @NgModule({
   declarations: [
     AppComponent,
-    TmpElementDirective,
     LoginPageComponent,
     LoginFormComponent,
     NewsFeedComponent,
