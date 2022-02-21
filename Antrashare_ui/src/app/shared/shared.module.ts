@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BrowserModule } from '@angular/platform-browser'
 
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
@@ -24,8 +23,8 @@ import { NavigationBarComponent } from './navigation-bar/navigation-bar.componen
   ],
   imports: [
     CommonModule,
-    BrowserModule,
-    // mat
+    
+    // Angular Materials
     MatInputModule,
     MatButtonModule,
     MatCheckboxModule,
@@ -38,7 +37,10 @@ import { NavigationBarComponent } from './navigation-bar/navigation-bar.componen
     MatButtonToggleModule,
   ],
   exports: [
-    BrowserModule,
+    CommonModule,
+    ReactiveFormsModule,
+
+    // Angular Materials
     MatInputModule,
     MatButtonModule,
     MatCheckboxModule,
@@ -49,7 +51,8 @@ import { NavigationBarComponent } from './navigation-bar/navigation-bar.componen
     MatCardModule,
     ReactiveFormsModule,
     MatButtonToggleModule,
-    ReactiveFormsModule,
+
+    // Components
     AppHeaderComponent,
     NavigationBarComponent,
   ]

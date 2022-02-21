@@ -14,7 +14,6 @@ import { AdminPageComponent } from './admin-page/admin-page.component';
   imports: [
     AdminRoutingModule,
     SharedModule,
-    // NOTE: AdminRoutingModule must be be imports array else can't navigate
   ],
   exports: [
     AdminPageComponent,

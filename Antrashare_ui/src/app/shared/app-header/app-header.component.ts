@@ -27,10 +27,6 @@ export class AppHeaderComponent implements OnInit {
   }
 
   clickedAdminAccess() {
-    console.log(`clickedAdminAccess`);
-
-    // Put the user name in the url on my profile page
-    // let retrievedUserName: string = localStorage.getItem('user-name')!;
     this._router.navigate(['/adminPage'])
   }
 }
