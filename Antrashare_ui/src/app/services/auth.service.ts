@@ -11,11 +11,8 @@ import jwtDecode from 'jwt-decode';
 import { DecodedInfo } from '../models/user.model';
 import { AsyncValidatorFn, ValidationErrors, AbstractControl } from '@angular/forms';
 
-
-
-
-
 const KEY: string = `${APP_CONFIG.localStorage.prefix}${APP_CONFIG.localStorage.token}`;
+
 const PATH_LOGIN: string = [environment.apiEndPoint, 'login'].join('/');
 const PATH_REGISTER: string = [environment.apiEndPoint, 'register'].join('/');
 
@@ -24,9 +21,10 @@ const PATH_REGISTER: string = [environment.apiEndPoint, 'register'].join('/');
 })
 export class AuthService {
   private authenticated: boolean = false;
-  public userName!: String;
-  public userRole!: String;
+
   private decodedInfo!: DecodedInfo;
+  public userName!: string;
+  public userRole!: string;
 
   /**
    * Constructor
@@ -50,11 +48,55 @@ export class AuthService {
    * @returns Observable<boolean>
    */
   check(): Observable<boolean> {
-    if (this.authenticated || (this.accessToken && this.accessToken.localeCompare(this.userService.userAccount.bearerToken || '') === 0)) {
+    if (this.authenticated) {
       return of(true);
     }
 
-    return of(false);
+    if (!this.accessToken || this.hasTokenExpired(this.accessToken)) {
+      return of(false);
+    }
+
+    this.setUserAccount(this.accessToken);
+    return of(true);
+  }
+
+  /**
+   * decode token
+   * @param token 
+   * @returns DecodedInfo
+   */
+  private decodeToken(token: string): DecodedInfo {
+    return jwtDecode(this.accessToken);
+  }
+
+  private getTokenExpirationDate(token: string): Date | null {
+    const decodeInfo = this.decodeToken(token);
+
+    if (!decodeInfo.exp) {
+      return null;
+    }
+
+    const date = new Date(0);
+    date.setUTCSeconds(decodeInfo.exp);
+
+    return date;
+  }
+
+  /**
+   * Check if the token has expired or not
+   * @param token 
+   */
+  hasTokenExpired(token: string) {
+    if (!token || token === '') {
+      return true;
+    }
+
+    const date = this.getTokenExpirationDate(token);
+    if (!date) {
+      return true;
+    }
+
+    return date.valueOf() <= new Date().valueOf();
   }
 
   login(entity: UserAccount) {
@@ -62,12 +104,12 @@ export class AuthService {
 
     return this.http.post<UserAccount>(PATH_LOGIN, entity, DEFAULT_HTTP_CONFIG.httpOptions).pipe(
       switchMap((response: any) => {
-        this.userService.userAccount = response;
-
         this.accessToken = response.bearerToken;
-        this.decodedInfo = jwtDecode(this.accessToken);
+        this.decodedInfo = this.decodeToken(this.accessToken);
         this.userName = this.decodedInfo.userName;
         this.userRole = this.decodedInfo.userRole;
+
+        this.setUserAccount(this.accessToken);
 
         this.authenticated = true;
 
@@ -88,6 +130,20 @@ export class AuthService {
     this.userService.userAccount.bearerToken = '';
 
     this.authenticated = false;
+  }
+
+  private setUserAccount(token: string): void {
+    if (!token || token === '') {
+      return;
+    }
+
+    const decodeInfo = this.decodeToken(token);
+    this.userService.userAccount = {
+      userName: decodeInfo.userName,
+      userEmail: decodeInfo.userEmail,
+      userRole: decodeInfo.userRole,
+      bearerToken: token
+    }
   }
 
   checkEmailExist(email: String): Observable<object> {

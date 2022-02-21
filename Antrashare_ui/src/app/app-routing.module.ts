@@ -9,6 +9,7 @@ import { LogoutWindowComponent } from './dialogs/logout-window/logout-window.dia
 import { NewsFeedTabComponent } from './components/news-feed-tab/news-feed-tab.component';
 import { AuthGuard } from './core/guards/auth.guard';
 import { RoleAuthService } from './core/guards/role-auth.guard';
+import { ProfileResolver } from './core/resolvers/profile.resolver';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -31,8 +32,19 @@ const routes: Routes = [
     component: LayoutsComponent,
     children: [
       { path: 'newsfeed', component: NewsFeedTabComponent },
-      { path: 'profile', loadChildren: () => import('./components/profile-tab/profile-tab.module').then(m => m.ProfileTabModule) },
-      { path: 'profile/:userName', canActivate: [RoleAuthService], loadChildren: () => import('./components/profile-tab/profile-tab.module').then(m => m.ProfileTabModule) },
+      // proifle
+      {
+        path: 'profile',
+        loadChildren: () => import('./components/profile-tab/profile-tab.module').then(m => m.ProfileTabModule),
+        resolve: { profile: ProfileResolver }
+      },
+      {
+        path: 'profile/:userName',
+        canActivate: [RoleAuthService],
+        loadChildren: () => import('./components/profile-tab/profile-tab.module').then(m => m.ProfileTabModule),
+        resolve: { profile: ProfileResolver }
+      },
+      // settings
       { path: 'settings', loadChildren: () => import('./components/settings-tab/settings-tab.module').then(m => m.SettingsTabModule) },
 
       { path: '404', component: ErrorPageComponent, pathMatch: 'full' },

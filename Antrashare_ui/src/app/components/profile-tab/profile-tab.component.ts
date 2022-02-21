@@ -19,7 +19,8 @@ export class ProfileTabComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getProfile();
+    // get profile from resolver
+    this.profile = this.route.snapshot.data['profile'];
   }
 
   back(): void {
@@ -28,13 +29,5 @@ export class ProfileTabComponent implements OnInit {
 
   getUrlUserName(): string {
     return this.userService.isAdmin() ? this.route.snapshot.params['userName'] : undefined;
-  }
-
-  getProfile(): void {
-    const userName = this.getUrlUserName() ?? this.userService.userAccount.userName;
-
-    this.userService.getProfile(userName).subscribe((user) => {
-      this.profile = user;
-    });
   }
 }

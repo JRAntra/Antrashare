@@ -21,6 +21,9 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
+// Custom Angular Library Modules
+import { NgxAutohideModule } from 'ngx-autohide';
+
 // Angular Material Modules
 const matModules = [
   MatButtonModule,
@@ -38,6 +41,11 @@ const matModules = [
   MatTooltipModule,
 ]
 
+// Custom Angular Library Modules
+const ngxModules = [
+  NgxAutohideModule
+]
+
 @NgModule({
   declarations: [
     // Directive
@@ -51,6 +59,9 @@ const matModules = [
 
     // Angular Material Modules
     ...matModules,
+
+    // Custom Angular Library Modules
+    ...ngxModules,
   ],
   exports: [
     CommonModule,
@@ -63,6 +74,9 @@ const matModules = [
 
     // Angular Material Modules
     ...matModules,
+
+    // Custom Angular Library Modules
+    ...ngxModules,
   ]
 })
 export class SharedModule { }

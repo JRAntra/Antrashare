@@ -53,6 +53,27 @@
   }
 }
 
+.no-profile {
+  text-align: center;
+
+  .no-profile-img {
+    width: 120px;
+    filter: saturate(0%);
+    margin-right: 16px;
+    vertical-align: middle;
+  }
+
+  .no-profile-title {
+    display: inline-grid;
+    text-align: left;
+    vertical-align: middle;
+
+    span + span {
+      margin-top: 16px;
+    }
+  }
+}
+
 .profile-container {
   display: flex;
   .mat-form-field + .mat-form-field {

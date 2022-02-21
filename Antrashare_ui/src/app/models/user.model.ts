@@ -23,9 +23,11 @@ export interface UserProfile {
 }
 
 export interface DecodedInfo {
-  _id: String;
-  name: String;
-  userName: String;
-  userEmail: String;
-  userRole: String;
+  _id: string;
+  name: string;
+  userName: string;
+  userEmail: string;
+  userRole: string;
+  iat: number;
+  exp: number;
 }

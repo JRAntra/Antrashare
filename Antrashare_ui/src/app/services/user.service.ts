@@ -12,8 +12,8 @@ const PATH: string = [environment.apiEndPoint, 'users'].join('/');
 })
 export class UserService {
   private account: UserAccount = {
-    userName: "Team Best Devs",
-    userEmail: "teambestdevs@gmail.com",
+    userName: "",
+    userEmail: "",
     userRole: "User"
   };
 

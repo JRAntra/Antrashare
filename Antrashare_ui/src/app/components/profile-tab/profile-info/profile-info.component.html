@@ -1,7 +1,7 @@
 <mat-card class='info-container'>
   <mat-card-header>
     <mat-card-title>
-      {{ profile.name ?? profile.userName | titlecase }}
+      {{ profile.name || profile.userName | titlecase }}
       <mat-icon color="primary" *ngIf="isAdmin()" matTooltip="admin">admin_panel_settings</mat-icon>
     </mat-card-title>
     <button mat-stroked-button *ngIf="canEdit()" (click)="edit()">
