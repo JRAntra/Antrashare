@@ -40,13 +40,23 @@ export class StoryListComponent implements OnInit {
     });
   }
 
+  /**
+   * use trackBy to optimize render the story list
+   * @param index
+   * @param story
+   * @returns string
+   */
+  listTrackBy(index: number, story: any): string {
+    return story._id;
+  }
+
   refreshStoryList(): void {
     this.storyList = this.newsService.getStoryList();
   }
 
   scrolled(): void {
     if (this.isEnd) return;
-    
+
     this.isQuerying = true;
     this.getNewsByPage();
   }
