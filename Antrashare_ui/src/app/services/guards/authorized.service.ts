@@ -22,8 +22,9 @@ export class AuthorizedService implements CanActivate {
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
-    console.log("run canactive")
-    this.userRole = this.cacheService.getUserInfo()?.userRole; // for testing
+    // console.log("run canactive")
+    this.userRole = this.cacheService.getUserInfo()?.userRole.toLowerCase(); // for testing
+    console.log(this.userRole);
     if (this.userRole === "admin") {
       this.cacheService.checkedAuth(true);
       return of(true);

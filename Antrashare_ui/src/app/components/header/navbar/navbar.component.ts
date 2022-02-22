@@ -13,8 +13,9 @@ import { LogoutDialogComponent } from '../../logout-dialog/logout-dialog.compone
 })
 export class NavbarComponent implements OnInit {
   userInfo!: UserProfile | null;
-  role: string = "Admin/User";
+  role?: string;
   isLogIn: boolean = false;
+  isAdmin?: boolean = false;
   dialogRef?: MatDialogRef<LogoutDialogComponent>;
   
   constructor(
@@ -28,20 +29,31 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    const isSignIn = this.cacheService.isLogin;
+    this.userInfo = this.cacheService.getUserInfo();
+    this.role = this.userInfo?.userRole.toLowerCase();
+    if (this.role === 'admin') {
+      this.isAdmin = true;
+    } else {
+      this.isAdmin = false;
+    }
   }
-
+  
   onTestRole() {
     const isSignIn = this.cacheService.isLogin;
     this.userInfo = this.cacheService.getUserInfo();
+    console.log(this.role);
     if (isSignIn) {
-      if (this.userInfo?.userRole === "user") {
+      if (this.userInfo?.userRole.toLowerCase() === "user") {
         this.userInfo.userRole = "admin";
         this.role = "user";
+        this.isAdmin = true;
         localStorage.setItem("userInfo", JSON.stringify(this.userInfo));
       }
-      else if (this.userInfo?.userRole === "admin") {
+      else if (this.userInfo?.userRole.toLowerCase() === "admin") {
         this.userInfo.userRole = "user";
         this.role = "admin";
+        this.isAdmin = false;
         localStorage.setItem("userInfo", JSON.stringify(this.userInfo));
       }
     }
