@@ -7,8 +7,11 @@
         <button class="default_button" routerLink="newsFeed" mat-raised-button>NewsFeed</button>
     </div>
     <div class="nav_button">
-        <button class="default_button" mat-raised-button (click)="onTestRole()"> Set to {{role}}</button>
+        <button class="default_button" mat-raised-button (click)="onTestRole()"> Set to {{isAdmin ? 'User' : 'Admin'}}</button>
     </div>
+    <!-- <div *ngIf="isAdmin" class="nav_button">
+        <button *ngIf="isAdmin" class="default_button" mat-raised-button routerLink="admin">Admin</button>
+    </div> -->
     <button id="account-button" mat-icon-button [matMenuTriggerFor]="menu">
         <mat-icon>account_circle</mat-icon>
     </button>
@@ -16,5 +19,6 @@
         <button mat-menu-item (click)="openLogoutDialog()">{{isLogIn ? "Log Out" : "Log In"}}</button>
         <button routerLink="myProfile" mat-menu-item>My profile</button>
         <button routerLink="settings" mat-menu-item>Setting</button>
+        <button *ngIf='isAdmin' routerLink="admin" mat-menu-item>Admin</button>
     </mat-menu>
 </div>

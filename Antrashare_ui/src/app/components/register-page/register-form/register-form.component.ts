@@ -94,24 +94,6 @@ export class RegisterFormComponent implements OnInit {
 
   ngOnInit(): void { };
 
-  availableEmail(): ValidatorFn {
-    var availableEmail = false;
-    var checkEmail = (email: string) => {
-      this.registerService.checkEmail(email)
-      .subscribe(result => {
-        if (result === 'Email is OK to use.') {
-          availableEmail = true;
-        } else {
-          availableEmail = false;
-          window.alert('Email already in use');
-        }
-      });
-    }
-    return (control: AbstractControl) => {
-      checkEmail(control.value);
-      return availableEmail ? null : {availableEmail: false};
-    }
-  }
 
   oneUppercase(control: AbstractControl): ValidationErrors | null  {
     if (control.value !== control.value.toLowerCase()){
@@ -143,7 +125,7 @@ export class RegisterFormComponent implements OnInit {
   }
 
 
-  Register() {
+  register() {
     var name = this.registerFormGroup.get('firstNameFormControl')?.value + ' ' + this.registerFormGroup.get('lastNameFormControl')?.value;
 
     var newAccount = {
@@ -151,14 +133,13 @@ export class RegisterFormComponent implements OnInit {
       userName: this.registerFormGroup.get('usernameFormControl')?.value,
       userEmail: this.registerFormGroup.get('emailFormControl')?.value,
       password: this.registerFormGroup.get('passwordFormControl')?.value,
-      userRole: 'User',
+      userRole: 'user',
       age: this.registerFormGroup.get('ageFormControl')?.value,
       gender: this.registerFormGroup.get('genderFormControl')?.value,
       phone: this.registerFormGroup.get('phoneFormControl')?.value,
     }
 
 
-    // this.registerService.checkUsername(newAccount.userName).subscribe(console.log);
     this.registerService.postNewAccount(newAccount).subscribe(console.log);
     this.router.navigate(['/login/']);
     // this.registerFormGroup.reset();
