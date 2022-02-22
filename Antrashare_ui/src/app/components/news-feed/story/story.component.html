@@ -1,12 +1,12 @@
-<form [formGroup]="newsFeedForm">
+<form mat-form [formGroup]="newsFeedForm">
   <mat-form-field appearance="fill">
     <mat-label>Picture url: </mat-label>
-    <input matInput formControlName="image">
+    <input matInput formControlName="image" />
   </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>Video url: </mat-label>
-    <input matInput formControlName="video">
+    <input matInput formControlName="video" />
   </mat-form-field>
 
   <mat-form-field appearance="fill">
@@ -14,10 +14,18 @@
     <textarea matInput formControlName="text"></textarea>
   </mat-form-field>
 
-  <button (click)="newsPostSubmit()">Post a new story</button>
+  <button mat-button (click)="newsPostSubmit()">Post a new story</button>
 </form>
 
-
-<ul class="story">
-  <app-story-card *ngFor="let story of storyList" [storyItem]="story"></app-story-card>
+<ul
+  class="story"
+  infiniteScroll
+  [infiniteScrollDistance]="2"
+  [infiniteScrollThrottle]="50"
+  (scrolled)="onScroll()"
+>
+  <app-story-card
+    *ngFor="let story of arr"
+    [storyItem]="story"
+  ></app-story-card>
 </ul>

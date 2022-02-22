@@ -11,7 +11,8 @@ import { newsStory } from 'src/app/models/newsStory.models';
 })
 export class StoryComponent implements OnInit {
   public storyList: newsStory[] = [];
-
+  public arr: newsStory[] = [];
+  public sum = 7;
   public newsFeedForm = this.fb.group({
     text: [''],
     image: [''],
@@ -21,11 +22,14 @@ export class StoryComponent implements OnInit {
     private fb: FormBuilder,
     private newsfeedservice: newsFeedService,
     private authService: AuthService
-  ) {}
+  ) {
+    
+  }
 
   ngOnInit(): void {
     this.newsfeedservice.getNewsFeed().subscribe((data: any) => {
       this.storyList = data;
+      this.arr = data;
       // console.log(data);
     });
   }
@@ -52,4 +56,24 @@ export class StoryComponent implements OnInit {
 
     this.newsfeedservice.postNewsFeed(newStory).subscribe();
   }
-}
+  public onScroll() : void{
+    const length = this.arr.length;
+    console.log(length);
+    this.addItems(0,length);
+    console.log("scrolled!!");
+    //onsole.log(this.arr);
+  }
+  
+  public addItems(index: number, sum: number) {  
+    for (let i = 0; i < sum; i++) {  
+      
+      this.arr.push(this.storyList[i]);  
+      console.log(this.arr);  
+  
+    }  
+  }  
+  
+  } 
+  
+ 
+
