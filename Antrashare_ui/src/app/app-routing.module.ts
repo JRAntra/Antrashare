@@ -31,6 +31,13 @@ const routes: Routes = [
     canActivateChild: [AuthGuard],
     component: LayoutsComponent,
     children: [
+      // admin
+      {
+        path: 'admin',
+        canActivate: [RoleAuthService],
+        loadChildren: () => import('./components/admin/admin.module').then(m => m.AdminModule)
+      },
+      // news feed
       { path: 'newsfeed', component: NewsFeedTabComponent },
       // proifle
       {
@@ -44,16 +51,12 @@ const routes: Routes = [
         loadChildren: () => import('./components/profile-tab/profile-tab.module').then(m => m.ProfileTabModule),
         resolve: { profile: ProfileResolver }
       },
-      {
-        path: 'adminpage', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule),
-        resolve: { profile: ProfileResolver }
-      },
       // settings
       { path: 'settings', loadChildren: () => import('./components/settings-tab/settings-tab.module').then(m => m.SettingsTabModule) },
 
       { path: '404', component: ErrorPageComponent, pathMatch: 'full' },
       { path: '**', redirectTo: '404' },
-      
+
     ]
   },
 ];

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { AdminPageComponent } from './admin-page/admin-page.component';
 import { AdminRoutingModule } from './admin-routing.module';
-import { SharedModule } from '../shared/shared.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   imports: [
@@ -11,8 +11,8 @@ import { SharedModule } from '../shared/shared.module';
   declarations: [
     AdminPageComponent
   ],
-  exports: [
-    AdminPageComponent
-  ]
+  // exports: [
+  //   AdminPageComponent
+  // ]
 })
 export class AdminModule { }
