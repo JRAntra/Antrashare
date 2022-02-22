@@ -4,20 +4,19 @@ import { delay, map, Observable, of, switchMap } from 'rxjs';
 import { RegisterService } from 'src/app/services/register/register.service';
 
 @Directive({
-  selector: '[UniqueEmail]',
-  providers: [{ provide: NG_ASYNC_VALIDATORS, useExisting: UniqueUserEmailDirective, multi: true }]
+  selector: '[UniqueUserName]',
+  providers: [{ provide: NG_ASYNC_VALIDATORS, useExisting: UniqueUserNameDirective, multi: true }]
 })
-export class UniqueUserEmailDirective implements AsyncValidator {
+export class UniqueUserNameDirective implements AsyncValidator {
 
   constructor(private registerService: RegisterService) { }
-
   validate(control: AbstractControl): Observable<ValidationErrors | null> {
     return of(control.valueChanges).pipe(
       delay(1500),
       switchMap(() => {
-        return this.registerService.checkUserByEmail(control.value).pipe(
+        return this.registerService.checkUserByUsername(control.value).pipe(
           map((data) => {
-            return data ? { UniqueEmail: true } : null;
+            return data ? { UniqueUserName: true } : null;
           }
           )
         )
