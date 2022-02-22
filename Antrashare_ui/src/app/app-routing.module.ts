@@ -27,8 +27,13 @@ const routes: Routes = [
     pathMatch:'prefix',
     canActivate: [AuthorizedService]
   },
+  /*
   {path:'admin',
     component:AdminPageComponent, 
+    canActivate: [AuthorizedService]
+  },*/
+  {path:'admin',
+    loadChildren: () => import('./modules/admin/admin.module').then(m => m.AdminModule),
     canActivate: [AuthorizedService]
   },
   {path:'newsFeed',component:NewsFeedComponent},

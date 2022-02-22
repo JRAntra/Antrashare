@@ -1,14 +1,16 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, NgModule } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { UserProfile } from 'src/app/models/user.models';
 import { CacheService } from 'src/app/services/cache.service';
 import { RegisterService } from 'src/app/services/register/register.service';
+
 
 @Component({
   selector: 'admin-page',
   templateUrl: './admin-page.component.html',
   styleUrls: ['./admin-page.component.scss']
 })
+
 export class AdminPageComponent implements OnInit {
   isLogIn!: boolean;
   isAdmin!: boolean;

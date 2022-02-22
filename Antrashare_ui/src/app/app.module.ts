@@ -37,7 +37,7 @@ import { CommentInputFieldComponent } from './components/news-feed/comment-dialo
 import { CommentListComponent } from './components/news-feed/comment-dialog/comment-list/comment-list.component';
 import { RegisterPageComponent } from './components/register-page/register-page.component';
 import { RegisterFormComponent } from './components/register-page/register-form/register-form.component';
-import { AdminPageComponent } from './components/admin-page/admin-page.component';
+//import { AdminPageComponent } from './components/admin-page/admin-page.component';
 
 //service
 import { AuthorizedService } from './services/guards/authorized.service';
@@ -67,7 +67,7 @@ import { NewsService } from 'src/app/services/news/news.service';
     CommentListComponent,
     RegisterPageComponent,
     RegisterFormComponent,
-    AdminPageComponent
+    //AdminPageComponent
   ],
   imports: [
     BrowserModule,
