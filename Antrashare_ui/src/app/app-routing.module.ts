@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 import { LoginWindowComponent } from './components/login-window/login-window.component';
 import { MyProfilePageComponent } from './components/my-profile-page/my-profile-page.component';
@@ -43,8 +43,16 @@ const routes: Routes = [
 
 ];
 
+/*
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
+})*/
+
+//preloading
+@NgModule({
+  imports: [RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })],
+  exports: [RouterModule]
 })
+
 export class AppRoutingModule { }
