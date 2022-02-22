@@ -1,6 +1,16 @@
+@import '../../../styles.scss';
+
 .newsFeedNotification {
     position: absolute;
     top: 5%;
+}
+
+#authFailedNotification {
+    position: fixed;
+    top: 40px;
+    z-index: 100;
+    border: solid 2px $red;
+    border-radius: 4px;
 }
 
 .newsFeedContent {

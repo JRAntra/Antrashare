@@ -48,7 +48,7 @@ export class PostFieldComponent implements OnInit {
       updateOn: 'change'
     })
   })
-  userName!: string;
+  userName!: string | undefined;
 
   // constructor(private fb: FormBuilder) {
   //   this.newPostFormGroup = this.fb.group({
@@ -66,8 +66,12 @@ export class PostFieldComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.loginService.getUserInfo().subscribe((data: UserProfile) => {
-      this.userName = data.userName;
+    this.loginService.getUserInfo().subscribe((data: UserProfile | undefined) => {
+      if (data) {
+        this.userName = data!.userName;
+      } else {
+        this.userName = undefined;
+      }
     });
 
     this.newPostFormGroup.get('imageFormControl')?.valueChanges

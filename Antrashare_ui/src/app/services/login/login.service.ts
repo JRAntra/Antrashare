@@ -10,7 +10,7 @@ import { Subject } from 'rxjs';
 export class LoginService {
   baseurl = "http://localhost:4231/api/login"
   tokenInfo!: UserProfile;
-  tokenInfo$ = new Subject<UserProfile>()
+  tokenInfo$ = new Subject<UserProfile |undefined>()
   
   constructor(
     private http: HttpClient,
