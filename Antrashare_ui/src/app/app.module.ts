@@ -39,6 +39,8 @@ import { StoryComponent } from './components/news-feed/story/story.component';
 import { StoryCardComponent } from './components/news-feed/story/story-card/story-card.component';
 import { TimeoutDialogComponent } from './dialogs/timeout-dialog/timeout-dialog.component';
 import { UniqueUserEmailDirective } from './directive/unique-user/unique-user-email.directive';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+
 
 @NgModule({
   declarations: [
@@ -79,6 +81,7 @@ import { UniqueUserEmailDirective } from './directive/unique-user/unique-user-em
     HttpClientModule,
     MatPaginatorModule,
     MatTableModule,
+    InfiniteScrollModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
