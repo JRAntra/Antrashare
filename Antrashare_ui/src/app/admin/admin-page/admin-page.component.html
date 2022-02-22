@@ -1,0 +1,34 @@
+<div class="form">
+    <div>
+        <h2>User Information</h2>
+    </div>
+    <form>
+        <div class="profile-container">
+            <mat-form-field appearance="fill">
+                <mat-label>Username</mat-label>
+                <input matInput>
+            </mat-form-field><br>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Email address</mat-label>
+                <input matInput>
+            </mat-form-field>
+        </div>
+        
+        <div class="profile-container">
+            <mat-form-field appearance="fill">
+                <mat-label>First Name</mat-label>
+                <input matInput>
+            </mat-form-field><br>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Last Name</mat-label>
+                <input matInput required>
+            </mat-form-field>
+        </div>
+        <div class="buttons-container">
+            <button mat-raised-button color="primary" (click)="addNewUser()">Add User</button>
+            <button mat-raised-button color="primary" (click)="deleteUser()">Delete User</button>
+        </div>
+    </form>
+</div>

@@ -33,6 +33,7 @@ import { TimeoutComponent } from './dialogs/timeout/timeout.dialog.component';
 import { SharedModule } from './shared/shared.module';
 
 import { NgxPaginationModule } from 'ngx-pagination';
+//import { AdminPageComponent } from './admin/admin-page/admin-page.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     StoryFormComponent,
     StoryListComponent,
     TimeoutComponent,
+    //AdminPageComponent,
   ],
   imports: [
     BrowserModule,
