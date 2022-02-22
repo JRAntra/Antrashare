@@ -2,7 +2,14 @@
 
   <mat-form-field appearance="fill">
     <mat-label>Username </mat-label>
-    <input matInput formControlName="username">
+    <input matInput formControlName="username" UniqueUserName required name="username">
+    <small class="text-danger" *ngIf="signupForm.get('username')?.hasError ('UniqueUserName')">
+      username has been <strong>registered.</strong>
+    </small>
+
+    <small *ngIf="signupForm.get('username')?.errors?.['minlength']">
+      Username must be at least 5 characters long.
+    </small>
   </mat-form-field>
 
   <mat-form-field appearance="fill">
@@ -18,12 +25,16 @@
   <mat-form-field appearance="fill">
     <mat-label> userEmail</mat-label>
     <input matInput formControlName="userEmail" UniqueEmail required name="userEmail">
+    <!-- <small class="text-danger" *ngIf="signupForm.get('userEmail')?.hasError('UniqueEmail')"> -->
     <small class="text-danger" *ngIf="signupForm.get('userEmail')?.hasError('UniqueEmail')">
-      <!-- {{signupForm.get('userEmail')?.errors?.['value']}} -->
       Email has been <strong>registered.</strong>
     </small>
+
+    <small class="text-danger" *ngIf="signupForm.get('userEmail')?.hasError('email')">
+      Not a valid email
+    </small>
+    <!-- <button (click)="check()">Check it</button> -->
   </mat-form-field>
-  <button (click)="checkEmail()">checkEmail</button>
 
   <mat-form-field appearance="fill">
     <mat-label> age</mat-label>

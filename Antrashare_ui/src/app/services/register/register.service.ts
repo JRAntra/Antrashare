@@ -20,19 +20,19 @@ export class RegisterService {
     );
   }
 
-  checkUserByEmail(email: string): Observable<any> {
+  checkUserByEmail(email: string): Observable<string> {
     let checkUserByUsernameUrl: string = [baseUrl, registerApiUrl, checkUserByEmailApiUrl, email].join('');
-    return this.http.get(checkUserByUsernameUrl)
-    // .pipe(
-    //   catchError((err) => {
-    //     return throwError(() => new Error('Error while checking for this email in the database!'));
-    //   })
-    // );
+    return this.http.get<string>(checkUserByUsernameUrl)
+      .pipe(
+        catchError((err) => {
+          return throwError(() => new Error('Error while checking for this email in the database!'));
+        })
+      );
   }
 
-  checkUserByUsername(username: string) {
+  checkUserByUsername(username: string): Observable<string> {
     let checkUserByUsernameUrl: string = [baseUrl, registerApiUrl, checkUserByUsernameApiUrl, username].join('');
-    return this.http.get(checkUserByUsernameUrl).pipe(
+    return this.http.get<string>(checkUserByUsernameUrl).pipe(
       catchError((err) => {
         console.log(err);
         return throwError(() => new Error('Error while checking for this username in the database!'));
