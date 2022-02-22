@@ -1,1 +1,46 @@
 @import '../../../styles.scss';
+
+#createAccount, #deleteAccount {
+    height: 40vh;
+    margin: 2%;
+}
+
+#createForm {
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+#createSubmit {
+    display: block;
+    width: 30%;
+    height: 30%;
+    margin: 0 auto;
+    margin-top: 1%;
+    transition: 0.3s ease-in-out;
+    background-color: $red;
+    color: $white;
+}
+
+#createSubmit:hover {
+    color: $red;
+    background-color: $white;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
+#formSection {
+    display: grid;
+    grid-template-rows: auto;
+    margin: 2% 0 auto;
+}
+
+#formSection mat-form-field {
+    width: 80%;
+    margin: 0 auto;
+}
+
+// #nameField {
+//     // width: 100%;
+//     // margin: 0 auto;
+//     text-align: center;
+// }
