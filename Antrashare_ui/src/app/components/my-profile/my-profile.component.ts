@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from 'src/app/auth/auth.service';
+import { AuthService } from 'src/app/guards/auth/auth.service';
 import { newsStory } from 'src/app/models/newsStory.models';
 import { newsFeedService } from 'src/app/services/newsfeed/newsfeed.service';
 

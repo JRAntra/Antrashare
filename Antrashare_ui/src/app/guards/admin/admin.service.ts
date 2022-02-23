@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
-import { loginData } from '../models/user.models';
-import { LoginService } from '../services/login/login-service.service';
+import { loginData } from '../../models/user.models';
+import { LoginService } from '../../services/login/login-service.service';
 import jwt_decode from 'jwt-decode';
 
 @Injectable({
@@ -17,10 +17,10 @@ export class AdminService {
   }
 
   checkIfAdmin(user: loginData) {
-    if (user.userRole === 'admin') {
+    if (user.userRole.toLowerCase() === 'admin') {
       this.admin.next(true);
       this.router.navigate(['/admin']);
-    } else if (user.userRole === 'user') {
+    } else if (user.userRole.toLowerCase() === 'user') {
       this.admin.next(false);
       this.router.navigate(['/newsfeed']);
     }

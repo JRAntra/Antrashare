@@ -7,7 +7,6 @@ import { NewsFeedComponent } from './components/news-feed/news-feed.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { SettingsComponent } from './components/settings/settings.component';
-
 import { AuthGuard } from './auth/auth.guard';
 import { AdminGuard } from './admin/admin.guard';
 import { BasicScrollComponent } from './components/basic-scroll/basic-scroll.component';

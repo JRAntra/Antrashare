@@ -1,7 +1,29 @@
 <header *ngIf="isLoggedIn$ | async as isLoggedIn">
   <mat-toolbar class="navbar">
-    <div class="menu-btn">
-      <mat-icon>view_headline</mat-icon>
+    <mat-drawer #drawer class="example-sidenav" mode="side">
+      <div class="sidenav-links">
+        <button
+          *ngIf="isAdmin$ | async as isAdmin"
+          routerLink="admin"
+          mat-raised-button
+        >
+          Admin
+        </button>
+        <button routerLink="profile" mat-raised-button>My Profile</button>
+        <button routerLink="newsfeed" mat-raised-button>News Feed</button>
+        <button routerLink="settings" mat-raised-button>Settings</button>
+      </div>
+    </mat-drawer>
+
+    <div class="example-sidenav-content">
+      <button
+        type="button"
+        mat-button
+        (click)="drawer.toggle()"
+        class="menu-btn"
+      >
+        <mat-icon>view_headline</mat-icon>
+      </button>
     </div>
     <div>
       <span routerLink="/newsfeed" routerLinkActive="active" class="navbar-logo"

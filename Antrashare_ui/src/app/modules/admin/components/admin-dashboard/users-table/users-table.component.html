@@ -1,31 +1,50 @@
-<table mat-table [dataSource]="usersList" class="mat-elevation-z8">
-  <!--- Note that these columns can be defined in any order.
+<main>
+  <table mat-table [dataSource]="usersList" class="mat-elevation-z8">
+    <!--- Note that these columns can be defined in any order.
         The actual rendered columns are set as a property on the row definition" -->
 
-  <!-- Id Column -->
-  <ng-container matColumnDef="_id">
-    <th mat-header-cell *matHeaderCellDef>ID</th>
-    <td mat-cell *matCellDef="let element">{{ element._id }}</td>
-  </ng-container>
+    <!-- Id Column -->
+    <ng-container matColumnDef="_id">
+      <th mat-header-cell *matHeaderCellDef>ID</th>
+      <td mat-cell *matCellDef="let element">{{ element._id }}</td>
+    </ng-container>
 
-  <!-- Name Column -->
-  <ng-container matColumnDef="userName">
-    <th mat-header-cell *matHeaderCellDef>NAME</th>
-    <td mat-cell *matCellDef="let element">{{ element.userName }}</td>
-  </ng-container>
+    <!-- Name Column -->
+    <ng-container matColumnDef="userName">
+      <th mat-header-cell *matHeaderCellDef>NAME</th>
+      <td mat-cell *matCellDef="let element">{{ element.userName }}</td>
+    </ng-container>
 
-  <!-- Email Column -->
-  <ng-container matColumnDef="userEmail">
-    <th mat-header-cell *matHeaderCellDef>EMAIL</th>
-    <td mat-cell *matCellDef="let element">{{ element.userEmail }}</td>
-  </ng-container>
+    <!-- Email Column -->
+    <ng-container matColumnDef="userEmail">
+      <th mat-header-cell *matHeaderCellDef>EMAIL</th>
+      <td mat-cell *matCellDef="let element">{{ element.userEmail }}</td>
+    </ng-container>
 
-  <!-- Role Column -->
-  <ng-container matColumnDef="userRole">
-    <th mat-header-cell *matHeaderCellDef>ROLE</th>
-    <td mat-cell *matCellDef="let element">{{ element.userRole }}</td>
-  </ng-container>
+    <!-- Role Column -->
+    <ng-container matColumnDef="userRole">
+      <th mat-header-cell *matHeaderCellDef>ROLE</th>
+      <td mat-cell *matCellDef="let element">{{ element.userRole }}</td>
+    </ng-container>
 
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-</table>
+    <!-- Button Column -->
+    <ng-container matColumnDef="btn">
+      <th mat-header-cell *matHeaderCellDef>ACTION</th>
+      <td mat-cell *matCellDef="let element">
+        <button
+          mat-raised-button
+          color="warn"
+          (click)="clickedDeleteUser(element._id)"
+        >
+          Delete User
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+  <button mat-raised-button mat-dialog-close (click)="clickedAddUser()">
+    Add User
+  </button>
+</main>

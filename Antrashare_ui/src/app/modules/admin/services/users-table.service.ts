@@ -10,6 +10,7 @@ import {
   baseUrl,
   usersApiUrl,
   getUsersTable,
+  deleteUserById,
 } from 'src/environments/environment';
 
 @Injectable({
@@ -24,9 +25,14 @@ export class UsersTableService {
       catchError((err) => {
         console.log(err);
         return throwError(
-          () => new Error('Error while running fetching all the users!')
+          () => new Error('Error while fetching all the users!')
         );
       })
     );
+  }
+
+  deleteUserProfileById(userId: string) {
+    let path = baseUrl + usersApiUrl + deleteUserById;
+    return this.http.delete(path + userId);
   }
 }

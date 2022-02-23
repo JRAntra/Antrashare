@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { AuthService } from 'src/app/auth/auth.service';
+import { AuthService } from 'src/app/guards/auth/auth.service';
 import { newsFeedService } from 'src/app/services/newsfeed/newsfeed.service';
 import { newsStory } from 'src/app/models/newsStory.models';
 
@@ -22,9 +22,7 @@ export class StoryComponent implements OnInit {
     private fb: FormBuilder,
     private newsfeedservice: newsFeedService,
     private authService: AuthService
-  ) {
-
-  }
+  ) {}
 
   ngOnInit(): void {
     this.newsfeedservice.getNewsFeed().subscribe((data: any) => {
@@ -60,7 +58,7 @@ export class StoryComponent implements OnInit {
     const length = this.arr.length;
     console.log(length);
     this.addItems(0, length);
-    console.log("scrolled!!");
+    console.log('scrolled!!');
     //onsole.log(this.arr);
   }
 
@@ -68,11 +66,6 @@ export class StoryComponent implements OnInit {
     for (let i = 0; i < sum; i++) {
       this.arr.push(this.storyList[i]);
       console.log(this.arr);
-
     }
   }
-
 }
-
-
-
