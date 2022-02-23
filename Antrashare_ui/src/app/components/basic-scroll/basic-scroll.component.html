@@ -5,15 +5,10 @@
     (scrolledIndexChange)="nextBatch($event, (people[people.length - 1].name))">
 
 
-    <li *cdkVirtualFor="let p of people; let i = index; trackBy: trackByIdx" class="animated lightSpeedIn">
-      <h2>{{ i }}. {{ p._id }}</h2>
-      <p> {{ p.publisherName }} </p>s
+    <li *cdkVirtualFor="let story of people; let i = index; trackBy: trackByIdx" class="animated lightSpeedIn">
+      <!-- <app-story-card [storyItem]="story"></app-story-card> -->
+      <p>{{story.id}}</p>
     </li>
-
-
-
-    <iframe style="margin: 0 auto; display: flex" *ngIf="theEnd" src="https://giphy.com/embed/lD76yTC5zxZPG" width="480"
-      height="352" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
 
   </cdk-virtual-scroll-viewport>
 

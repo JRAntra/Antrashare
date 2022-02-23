@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { AuthService } from 'src/app/guards/auth/auth.service';
 import { newsFeedService } from 'src/app/services/newsfeed/newsfeed.service';
-import { newsStory } from 'src/app/models/newsStory.models';
 
 @Component({
   selector: 'app-story',
@@ -10,9 +9,6 @@ import { newsStory } from 'src/app/models/newsStory.models';
   styleUrls: ['./story.component.scss'],
 })
 export class StoryComponent implements OnInit {
-  public storyList: newsStory[] = [];
-  public arr: newsStory[] = [];
-  public sum = 7;
   public newsFeedForm = this.fb.group({
     text: [''],
     image: [''],
@@ -22,14 +18,10 @@ export class StoryComponent implements OnInit {
     private fb: FormBuilder,
     private newsfeedservice: newsFeedService,
     private authService: AuthService
-  ) {}
+  ) {
+  }
 
   ngOnInit(): void {
-    this.newsfeedservice.getNewsFeed().subscribe((data: any) => {
-      this.storyList = data;
-      this.arr = data;
-      // console.log(data);
-    });
   }
 
   newsPostSubmit() {
@@ -52,20 +44,53 @@ export class StoryComponent implements OnInit {
       // likedIdList: [{}],
     };
 
-    this.newsfeedservice.postNewsFeed(newStory).subscribe();
+    this.newsfeedservice.postNewsFeed(newStory);
   }
-  public onScroll(): void {
-    const length = this.arr.length;
-    console.log(length);
-    this.addItems(0, length);
-    console.log('scrolled!!');
-    //onsole.log(this.arr);
-  }
+  // public onScroll(): void {
+  //   const length = this.arr.length;
+  //   console.log(length);
+  //   this.addItems(0, length);
+  //   console.log('scrolled!!');
+  //   //onsole.log(this.arr);
+  // }
 
-  public addItems(index: number, sum: number) {
-    for (let i = 0; i < sum; i++) {
-      this.arr.push(this.storyList[i]);
-      console.log(this.arr);
-    }
-  }
+  // public addItems(index: number, sum: number) {
+  //   for (let i = 0; i < sum; i++) {
+  //     this.arr.push(this.storyList[i]);
+  //     console.log(this.arr);
+  //   }
+  // }
+
+  // getBatch(offset: any) {
+  //   console.log(offset);
+  //   return this.newsfeedservice.getNewsFeed()
+  //     // return this.http.get('https://jsonplaceholder.typicode.com/posts')
+  //     // return of(tmpObj)
+  //     .pipe(
+  //       tap(arr => (arr.length ? null : (this.theEnd = true))),
+  //       map(arr => {
+  //         return arr.reduce((acc: any, cur: any, i: any) => {
+  //           const id = i
+  //           const data = cur;
+  //           return { ...acc, [id]: data };
+  //         }, {});
+  //       })
+  //     );
+  // }
+  // nextBatch(e: any, offset: any) {
+  //   if (this.theEnd) {
+  //     return;
+  //   }
+
+  //   const end = this.viewport.getRenderedRange().end;
+  //   const total = this.viewport.getDataLength();
+  //   console.log(`${end}, '>=', ${total}`);
+  //   if (end === total) {
+  //     this.offset.next(offset);
+  //   }
+  // }
+
+  // trackByIdx(i: any) {
+  //   return i;
+  // }
 }

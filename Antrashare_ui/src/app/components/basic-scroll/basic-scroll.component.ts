@@ -2,6 +2,7 @@ import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { BehaviorSubject, map, mergeMap, Observable, of, scan, tap, throttleTime } from 'rxjs';
+import { newsStory } from 'src/app/models/newsStory.models';
 import { newsFeedService } from 'src/app/services/newsfeed/newsfeed.service';
 import { tmpObj } from 'src/environments/environment';
 
@@ -12,7 +13,7 @@ import { tmpObj } from 'src/environments/environment';
 })
 export class BasicScrollComponent implements OnInit {
   @ViewChild(CdkVirtualScrollViewport)
-
+  public storyList: newsStory[] = [];
   viewport!: CdkVirtualScrollViewport;
 
   batch = 20;
@@ -20,7 +21,7 @@ export class BasicScrollComponent implements OnInit {
 
   offset = new BehaviorSubject(null);
   infinite: Observable<any[]>;
-  constructor(private news: newsFeedService, private http: HttpClient) {
+  constructor(private newsfeedservice: newsFeedService, private http: HttpClient) {
     const batchMap = this.offset.pipe(
       throttleTime(500),
       mergeMap(n => this.getBatch(n)),
@@ -33,13 +34,15 @@ export class BasicScrollComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.http.get('https://jsonplaceholder.typicode.com/posts'))
+    this.newsfeedservice.getNewsFeed().subscribe((data: any) => {
+      this.storyList = data;
+    });
   }
 
 
   getBatch(offset: any) {
     console.log(offset);
-    // return this.news.getNewsFeed()
+    // return this.newsfeedservice.getNewsFeed()
     // return this.http.get('https://jsonplaceholder.typicode.com/posts')
     return of(tmpObj)
       .pipe(
@@ -62,18 +65,11 @@ export class BasicScrollComponent implements OnInit {
 
     const end = this.viewport.getRenderedRange().end;
     const total = this.viewport.getDataLength();
-    console.log(`${end}, '>=', ${total}`);
+    // console.log(`${end}, '>=', ${total}`);
     if (end === total) {
       this.offset.next(offset);
     }
   }
-
-  //   const startIndex = event.pageIndex * event.pageSize;
-  //     let endIndex = startIndex + event.pageSize;
-  // if (endIndex > this.commentsList.length) {
-  //   endIndex = this.commentsList.length;
-  // }
-  // this.commentsSlice = this.commentsList.slice(startIndex, endIndex);
 
   trackByIdx(i: any) {
     return i;
