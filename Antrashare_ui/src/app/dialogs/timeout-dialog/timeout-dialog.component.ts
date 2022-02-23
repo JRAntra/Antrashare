@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Subject } from 'rxjs';
 import { TimeoutdialogService } from 'src/app/services/timeoutdialog/timeoutdialog.service';
-import { AuthService } from '../../auth/auth.service';
+import { AuthService } from '../../guards/auth/auth.service';
 
 @Component({
   selector: 'app-timeout-dialog',

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatDialogRef } from '@angular/material/dialog';
 
-import { AuthService } from '../../auth/auth.service';
+import { AuthService } from '../../guards/auth/auth.service';
 
 @Component({
   selector: 'dialog-overview-example-dialog',
@@ -13,7 +13,7 @@ export class LogOutDialogComponent {
     public dialogRef: MatDialogRef<LogOutDialogComponent>,
     private router: Router,
     private authService: AuthService
-  ) { }
+  ) {}
 
   // click no to stay logged in
   onNoClick(): void {

@@ -8,8 +8,8 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { ProfileComponent } from './components/profile/profile.component';
 import { SettingsComponent } from './components/settings/settings.component';
 
-import { AuthGuard } from './auth/auth.guard';
-import { AdminGuard } from './admin/admin.guard';
+import { AuthGuard } from './guards/auth/auth.guard';
+import { AdminGuard } from './guards/admin/admin.guard';
 
 const routes: Routes = [
   {

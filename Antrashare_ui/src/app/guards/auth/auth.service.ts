@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
-import { loginData, UserProfile } from '../models/user.models';
-import { LoginService } from '../services/login/login-service.service';
+import { loginData, UserProfile } from '../../models/user.models';
+import { LoginService } from '../../services/login/login-service.service';
 import jwt_decode from 'jwt-decode';
 
 @Injectable({
