@@ -27,12 +27,19 @@
         {{ storyItem.content.text }}
       </p>
     </mat-card-content>
+
     <mat-card-actions>
       <button mat-button>LIKE</button>
       <button mat-button (click)="openComment()">COMMENT</button>
     </mat-card-actions>
+
     <mat-card-actions>
-      <button aria-hidden="false" aria-label="Post-delete button">
+      <button
+        mat-icon-button
+        color="warn"
+        aria-hidden="false"
+        aria-label="Post-delete button"
+      >
         <mat-icon (click)="deletePost()">delete</mat-icon>
       </button>
     </mat-card-actions>

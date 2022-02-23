@@ -10,6 +10,7 @@ import {
   baseUrl,
   usersApiUrl,
   getUsersTable,
+  deleteUserById,
 } from 'src/environments/environment';
 
 @Injectable({
@@ -28,5 +29,10 @@ export class UsersTableService {
         );
       })
     );
+  }
+
+  deleteUserProfileById(userId: string) {
+    let path = baseUrl + usersApiUrl + deleteUserById;
+    return this.http.delete(path + userId);
   }
 }

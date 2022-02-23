@@ -20,12 +20,14 @@ export const newsApiUrl = 'news/';
 export const registerApiUrl = 'register/';
 export const createNewAccountApiUrl = 'createNewAccount/';
 export const checkUserByUsernameApiUrl = 'checkExistByUsername/';
-export const checkUserByEmailApiUrl = 'checkExistByEmail/'
+export const checkUserByEmailApiUrl = 'checkExistByEmail/';
 
 /* Users/Profile Api */
 export const usersApiUrl = 'users/';
 export const getProfileApiUrl = 'getProfile/';
 export const getUsersTable = 'getAllUsers/';
+export const deleteUserById = 'deleteUser/';
+
 /*
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
