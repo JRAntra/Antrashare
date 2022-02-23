@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -15,6 +15,8 @@ export class AdminListComponent implements OnInit {
   displayedColumns: string[] = ['name', 'userName', 'userEmail', 'userRole', 'action'];
   dataSource!: MatTableDataSource<UserProfile>;
 
+  @Output() addEmitter = new EventEmitter();
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
@@ -23,8 +25,12 @@ export class AdminListComponent implements OnInit {
     private confirmationService: NgxConfirmationService
   ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.getAllUsers();
+  }
+
+  addUser(): void {
+    this.addEmitter.emit();
   }
 
   applyFilter(event: Event): void {
@@ -36,8 +42,7 @@ export class AdminListComponent implements OnInit {
     }
   }
 
-  deleteUser(id: string): void {
-
+  deleteUser(user: UserProfile): void {
     // Open confirmation dialog
     const confirmation = this.confirmationService.open({
       title: 'Delete user',
@@ -56,7 +61,10 @@ export class AdminListComponent implements OnInit {
     confirmation.afterClosed().subscribe((result) => {
       if (result === 'confirmed') {
         // do the actual deletion
-        this.adminService.deleteUser(id).subscribe();
+        this.adminService.deleteUser(user._id).subscribe(() => {
+          this.dataSource.data.splice(this.dataSource.data.indexOf(user), 1);
+          this.dataSource.data = [...this.dataSource.data];
+        });
       }
     })
   }

@@ -3,7 +3,7 @@
     <mat-card-title>
       User List
     </mat-card-title>
-    <button mat-stroked-button>
+    <button mat-stroked-button (click)="addUser()">
       <mat-icon>person_add_alt</mat-icon>
       Add User
     </button>
@@ -45,7 +45,7 @@
       <th mat-header-cell *matHeaderCellDef></th>
       <td mat-cell *matCellDef="let user">
         <button mat-button mat-icon-button class="delete" matTooltip="delete {{user.userName}}"
-          (click)="deleteUser(user._id)">
+          (click)="deleteUser(user)">
           <mat-icon>delete</mat-icon>
         </button>
       </td>

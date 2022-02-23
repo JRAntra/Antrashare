@@ -11,7 +11,7 @@ export interface UserAccount {
 }
 
 export interface UserProfile {
-  id: string;
+  _id: string;
   userEmail: string;
   userRole: string;
   userName: string;
