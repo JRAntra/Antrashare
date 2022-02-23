@@ -19,17 +19,8 @@
 
 <!-- <app-basic-scroll></app-basic-scroll> -->
 
-<ul
-  class="story"
-  infiniteScroll
-  [infiniteScrollDistance]="1"
-  [infiniteScrollUpDistance]="2"
-  [infiniteScrollThrottle]="50"
-  (scrolled)="onScroll()"
->
-  <app-story-card
-    *ngFor="let story of arr"
-    [storyItem]="story"
-  ></app-story-card>
+<ul class="story" infiniteScroll [infiniteScrollDistance]="1" [infiniteScrollUpDistance]="2"
+  [infiniteScrollThrottle]="50" (scrolled)="onScroll()">
+  <app-story-card *ngFor="let story of arr" [storyItem]="story"></app-story-card>
 
 </ul>

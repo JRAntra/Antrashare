@@ -64,6 +64,7 @@ export class LoginFormComponent implements OnInit {
   }
 
   changeUserEmail(val: string) {
+    val = val.substring(1, val.length - 1); // removing the ""
     this.loginForm.get('userEmail')?.setValue(val);
   }
 

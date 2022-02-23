@@ -9,7 +9,6 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { AuthGuard } from './guards/auth/auth.guard';
 import { AdminGuard } from './guards/admin/admin.guard';
-import { BasicScrollComponent } from './components/basic-scroll/basic-scroll.component';
 
 const routes: Routes = [
   {
@@ -33,7 +32,6 @@ const routes: Routes = [
     component: ProfileComponent,
     canActivate: [AdminGuard],
   },
-  { path: 'scroll', component: BasicScrollComponent },
   { path: 'settings', component: SettingsComponent, canActivate: [AuthGuard] },
   { path: '', component: LoginPageComponent },
   { path: '**', component: PageNotFoundComponent },
