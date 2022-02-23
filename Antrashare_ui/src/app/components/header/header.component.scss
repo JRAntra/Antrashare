@@ -54,4 +54,37 @@ span {
   #click {
     display: none;
   }
+
+  .example-sidenav {
+    display: none;
+  }
+}
+
+// sidenav
+.example-container {
+  width: 500px;
+  height: 300px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.example-sidenav-content {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.example-sidenav {
+  padding: 0;
+  background-color: variables.$primary-black;
+  color: variables.$primary-white;
+}
+
+.sidenav-links {
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  top: 40px;
 }
