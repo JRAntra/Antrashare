@@ -23,7 +23,7 @@ export class StoryComponent implements OnInit {
     private newsfeedservice: newsFeedService,
     private authService: AuthService
   ) {
-    
+
   }
 
   ngOnInit(): void {
@@ -56,24 +56,23 @@ export class StoryComponent implements OnInit {
 
     this.newsfeedservice.postNewsFeed(newStory).subscribe();
   }
-  public onScroll() : void{
+  public onScroll(): void {
     const length = this.arr.length;
     console.log(length);
-    this.addItems(0,length);
+    this.addItems(0, length);
     console.log("scrolled!!");
     //onsole.log(this.arr);
   }
-  
-  public addItems(index: number, sum: number) {  
-    for (let i = 0; i < sum; i++) {  
-      
-      this.arr.push(this.storyList[i]);  
-      console.log(this.arr);  
-  
-    }  
-  }  
-  
-  } 
-  
- 
+
+  public addItems(index: number, sum: number) {
+    for (let i = 0; i < sum; i++) {
+      this.arr.push(this.storyList[i]);
+      console.log(this.arr);
+
+    }
+  }
+
+}
+
+
 
