@@ -1,7 +1,11 @@
 import { NgModule } from '@angular/core';
-import { AdminPageComponent } from './admin-page/admin-page.component';
+
 import { AdminRoutingModule } from './admin-routing.module';
 import { SharedModule } from 'src/app/shared/shared.module';
+
+import { AdminComponent } from './admin.component';
+import { AdminListComponent } from './admin-list/admin-list.component';
+import { AdminPageComponent } from './admin-page/admin-page.component';
 
 @NgModule({
   imports: [
@@ -9,10 +13,9 @@ import { SharedModule } from 'src/app/shared/shared.module';
     SharedModule
   ],
   declarations: [
+    AdminComponent,
+    AdminListComponent,
     AdminPageComponent
-  ],
-  // exports: [
-  //   AdminPageComponent
-  // ]
+  ]
 })
 export class AdminModule { }

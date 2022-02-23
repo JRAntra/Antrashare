@@ -14,7 +14,6 @@ import { HttpHandlerInterceptorModule } from './core/interceptors/http-handler.i
 
 // Components
 import { AppComponent } from './app.component';
-// import { AutoHideDirective } from './directives/auto-hide.directive';
 import { CommentComponent } from './components/news-feed-tab/story-list/comment-list/comment/comment.component';
 import { CommentInputComponent } from './components/news-feed-tab/story-list/comment-input/comment-input.component';
 import { CommentListComponent } from './components/news-feed-tab/story-list/comment-list/comment-list.component';
@@ -33,12 +32,10 @@ import { TimeoutComponent } from './dialogs/timeout/timeout.dialog.component';
 import { SharedModule } from './shared/shared.module';
 
 import { NgxPaginationModule } from 'ngx-pagination';
-//import { AdminPageComponent } from './admin/admin-page/admin-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    // AutoHideDirective,
     CommentComponent,
     CommentInputComponent,
     CommentListComponent,
@@ -52,7 +49,6 @@ import { NgxPaginationModule } from 'ngx-pagination';
     StoryFormComponent,
     StoryListComponent,
     TimeoutComponent,
-    //AdminPageComponent,
   ],
   imports: [
     BrowserModule,

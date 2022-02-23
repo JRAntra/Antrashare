@@ -1,9 +1,29 @@
-.buttons-container{
-    margin: 20px;
+.buttons-container {
+  margin: 20px;
 }
-.profile-container{
-    margin:20px;
+
+h2 {
+  margin: 20px;
 }
-h2{
-    margin: 20px;
+
+.profile-container {
+  margin: 20px;
+}
+
+.list-container {
+  margin: 20px;
+
+  .mat-table {
+    width: 100%;
+  }
+
+  .mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+
+  td, th {
+    width: 25%;
+    vertical-align: middle;
+  }
 }
