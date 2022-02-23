@@ -10,6 +10,7 @@ import { SettingsComponent } from './components/settings/settings.component';
 
 import { AuthGuard } from './auth/auth.guard';
 import { AdminGuard } from './admin/admin.guard';
+import { BasicScrollComponent } from './components/basic-scroll/basic-scroll.component';
 
 const routes: Routes = [
   {
@@ -33,6 +34,7 @@ const routes: Routes = [
     component: ProfileComponent,
     canActivate: [AdminGuard],
   },
+  { path: 'scroll', component: BasicScrollComponent },
   { path: 'settings', component: SettingsComponent, canActivate: [AuthGuard] },
   { path: '', component: LoginPageComponent },
   { path: '**', component: PageNotFoundComponent },
@@ -44,4 +46,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

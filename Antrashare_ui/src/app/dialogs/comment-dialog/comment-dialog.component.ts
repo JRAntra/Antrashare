@@ -16,6 +16,7 @@ export class CommentDialogComponent implements OnInit {
   constructor(@Inject(MAT_DIALOG_DATA) public storyData: any) { }
 
   ngOnInit(): void {
+    console.log(this.storyData.storyComments);
     this.commentsList = this.storyData.storyComments;
     this.storyId = this.storyData.storyId;
     this.commentsSlice = this.commentsList.slice(0, 4);
