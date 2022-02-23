@@ -16,7 +16,6 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
-import { MatSortModule } from '@angular/material/sort';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 
@@ -43,7 +42,8 @@ import { UniqueUserNameDirective } from './directive/unique-user-name/unique-use
 
 // external
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
-
+import { BasicScrollComponent } from './components/basic-scroll/basic-scroll.component';
+import { ScrollingModule } from '@angular/cdk/scrolling'
 
 @NgModule({
   declarations: [
@@ -67,6 +67,7 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
     ProfileComponent,
     UniqueUserEmailDirective,
     UniqueUserNameDirective,
+    BasicScrollComponent,
   ],
   imports: [
     BrowserModule,
@@ -86,6 +87,7 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
     MatPaginatorModule,
     MatTableModule,
     InfiniteScrollModule,
+    ScrollingModule
   ],
   providers: [],
   bootstrap: [AppComponent],
