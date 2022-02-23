@@ -24,7 +24,7 @@ export class UsersTableService {
       catchError((err) => {
         console.log(err);
         return throwError(
-          () => new Error('Error while running fetching all the users!')
+          () => new Error('Error while fetching all the users!')
         );
       })
     );

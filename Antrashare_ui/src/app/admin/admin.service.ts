@@ -17,10 +17,10 @@ export class AdminService {
   }
 
   checkIfAdmin(user: loginData) {
-    if (user.userRole === 'admin') {
+    if (user.userRole.toLowerCase() === 'admin') {
       this.admin.next(true);
       this.router.navigate(['/admin']);
-    } else if (user.userRole === 'user') {
+    } else if (user.userRole.toLowerCase() === 'user') {
       this.admin.next(false);
       this.router.navigate(['/newsfeed']);
     }
