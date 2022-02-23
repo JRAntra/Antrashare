@@ -1,1 +1,2 @@
-<app-admin-list></app-admin-list>
+<app-admin-list *ngIf="!addMode"></app-admin-list>
+<app-admin-page *ngIf="addMode"></app-admin-page>

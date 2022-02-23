@@ -13,8 +13,25 @@ h2 {
 .list-container {
   margin: 20px;
 
-  .mat-table {
-    width: 100%;
+  .header {
+    display: flex;
+    justify-content: space-between;
+
+    .mat-card-header-text {
+      margin: 0px;
+    }
+
+    .mat-card-title {
+      margin-top: 8px;
+
+      .mat-icon {
+        vertical-align: text-top;
+      }
+    }
+
+    button {
+      margin-bottom: 12px;
+    }
   }
 
   .mat-form-field {
@@ -22,7 +39,12 @@ h2 {
     width: 100%;
   }
 
-  td, th {
+  .mat-table {
+    width: 100%;
+  }
+
+  td,
+  th {
     width: 25%;
     vertical-align: middle;
   }

@@ -6,6 +6,9 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ['../../css/admin.component.scss']
 })
 export class AdminComponent implements OnInit {
+
+  addMode: boolean = false;
+
   constructor() { }
 
   ngOnInit(): void {
