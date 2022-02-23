@@ -11,15 +11,15 @@ export interface UserAccount {
 }
 
 export interface UserProfile {
-  _id: string;
+  _id?: string;
   userEmail: string;
   userRole: string;
   userName: string;
   password: string;
   name: string;
-  gender: string;
-  age: number;
-  phone: string;
+  gender?: string;
+  age?: number;
+  phone?: string;
 }
 
 export interface DecodedInfo {

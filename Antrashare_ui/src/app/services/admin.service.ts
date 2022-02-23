@@ -24,7 +24,7 @@ export class AdminService {
   addUser(entity: UserProfile): Observable<any> {
     const url = [PATH, 'register', 'createNewAccount'].join('/');
 
-    return this.http.post<UserProfile>(PATH, entity, DEFAULT_HTTP_CONFIG.httpOptions);
+    return this.http.post<UserProfile>(url, entity, DEFAULT_HTTP_CONFIG.httpOptions);
   }
 
   /**

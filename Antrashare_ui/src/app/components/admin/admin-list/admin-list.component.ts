@@ -61,7 +61,7 @@ export class AdminListComponent implements OnInit {
     confirmation.afterClosed().subscribe((result) => {
       if (result === 'confirmed') {
         // do the actual deletion
-        this.adminService.deleteUser(user._id).subscribe(() => {
+        this.adminService.deleteUser(user?._id || '').subscribe(() => {
           this.dataSource.data.splice(this.dataSource.data.indexOf(user), 1);
           this.dataSource.data = [...this.dataSource.data];
         });
