@@ -12,7 +12,9 @@ import { newsStory } from 'src/app/models/newsStory.models';
 export class StoryComponent implements OnInit {
   public storyList: newsStory[] = [];
   public arr: newsStory[] = [];
-  public sum = 7;
+  public start = 0;
+  public sum = 5;
+  public direction = "";
   public newsFeedForm = this.fb.group({
     text: [''],
     image: [''],
@@ -27,8 +29,7 @@ export class StoryComponent implements OnInit {
   ngOnInit(): void {
     this.newsfeedservice.getNewsFeed().subscribe((data: any) => {
       this.storyList = data;
-      this.arr = data;
-      // console.log(data);
+      
     });
   }
 
@@ -55,17 +56,25 @@ export class StoryComponent implements OnInit {
     this.newsfeedservice.postNewsFeed(newStory).subscribe();
   }
   public onScroll(): void {
-    const length = this.arr.length;
-    console.log(length);
-    this.addItems(0, length);
-    console.log('scrolled!!');
-    //onsole.log(this.arr);
+    this.start = this.sum;  
+    this.sum += this.arr.length;  
+    this.getData();  
+    this.direction = "down";  
   }
 
+  public getData(){
+    this.newsfeedservice.getNewsFeed().subscribe((data: any) => {
+      this.arr = data;
+      this.addItems(this.start,this.sum);
+    });
+  }
   public addItems(index: number, sum: number) {
-    for (let i = 0; i < sum; i++) {
-      this.arr.push(this.storyList[i]);
-      console.log(this.arr);
+    let count = 0;
+    for (let i = index; i < sum; i++) {
+      
+      this.arr.push(this.arr[count]);
+      //console.log(this.arr);
+      count++;
     }
   }
 }
