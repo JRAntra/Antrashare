@@ -17,6 +17,18 @@
   <button mat-button (click)="newsPostSubmit()">Post a new story</button>
 </form>
 
-<ul class="story" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="onScroll()">
-  <app-story-card *ngFor="let story of arr" [storyItem]="story"></app-story-card>
+
+<ul
+  class="story"
+  infiniteScroll
+  [infiniteScrollDistance]="1"
+  [infiniteScrollUpDistance]="2"
+  [infiniteScrollThrottle]="50"
+  (scrolled)="onScroll()"
+>
+  <app-story-card
+    *ngFor="let story of arr"
+    [storyItem]="story"
+  ></app-story-card>
+
 </ul>
