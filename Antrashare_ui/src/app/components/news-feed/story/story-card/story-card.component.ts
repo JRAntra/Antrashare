@@ -17,7 +17,6 @@ export class StoryCardComponent implements OnInit {
   @Input() storyItem!: newsStory;
   public isAdmin$!: Observable<boolean>;
   public isPublisher: boolean = false;
-  public userName!: string;
   private subscriptions = new Subscription();
 
   constructor(
@@ -31,7 +30,6 @@ export class StoryCardComponent implements OnInit {
     this.isAdmin$ = this.adminService.isAdmin;
     if (this.authService.getUserName() === this.storyItem.publisherName) {
       this.isPublisher = true;
-      this.userName = this.authService.getUserName();
     }
   }
 
