@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { LogoutWindowComponent } from '../../dialogs/logout-window/logout-window.dialog.component';
 import { MatDialog } from '@angular/material/dialog';
-import { Router } from "@angular/router";
+import { NgxConfirmationService } from 'ngx-autohide';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-settings-tab',
@@ -9,17 +10,45 @@ import { Router } from "@angular/router";
   styleUrls: ['../../css/settings.component.scss']
 })
 export class SettingsTabComponent implements OnInit {
-  
+
   constructor(
-    private router: Router,
-    public logOutDialog: MatDialog
+    private authService: AuthService,
+    public logOutDialog: MatDialog,
+    private confirmationService: NgxConfirmationService
   ) { }
 
   ngOnInit(): void {
   }
 
   onLogOut() {
-    //this.router.navigate(['logout'])
     this.logOutDialog.open(LogoutWindowComponent);
+
+    // // Open confirmation dialog
+    // const confirmation = this.confirmationService.open({
+    //   title: 'Log out',
+    //   icon: {
+    //     name: 'information',
+    //     color: "primary"
+    //   },
+    //   message: 'Are you sure that you want to log out?',
+    //   actions: {
+    //     confirm: {
+    //       label: 'Yes',
+    //       color: 'primary'
+    //     },
+    //     cancel: {
+    //       label: 'No'
+    //     }
+    //   },
+    //   disableClose: false
+    // });
+
+    // // logout after confirmed
+    // confirmation.afterClosed().subscribe((result) => {
+    //   if (result === 'confirmed') {
+    //     this.authService.logout();
+    //     location.reload();
+    //   }
+    // })
   }
 }
