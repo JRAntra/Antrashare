@@ -4,32 +4,38 @@
         The actual rendered columns are set as a property on the row definition" -->
 
     <!-- Id Column -->
-    <ng-container matColumnDef="_id">
-      <th mat-header-cell *matHeaderCellDef>ID</th>
-      <td mat-cell *matCellDef="let element">{{ element._id }}</td>
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef><h4>ID</h4></th>
+      <td mat-cell *matCellDef="let element" class="id">{{ element._id }}</td>
     </ng-container>
 
     <!-- Name Column -->
     <ng-container matColumnDef="userName">
-      <th mat-header-cell *matHeaderCellDef>NAME</th>
-      <td mat-cell *matCellDef="let element">{{ element.userName }}</td>
+      <th mat-header-cell *matHeaderCellDef><h4>NAME</h4></th>
+      <td mat-cell *matCellDef="let element" class="name">
+        {{ element.userName }}
+      </td>
     </ng-container>
 
     <!-- Email Column -->
     <ng-container matColumnDef="userEmail">
-      <th mat-header-cell *matHeaderCellDef>EMAIL</th>
-      <td mat-cell *matCellDef="let element">{{ element.userEmail }}</td>
+      <th mat-header-cell *matHeaderCellDef><h4>EMAIL</h4></th>
+      <td mat-cell *matCellDef="let element" class="email">
+        {{ element.userEmail }}
+      </td>
     </ng-container>
 
     <!-- Role Column -->
     <ng-container matColumnDef="userRole">
-      <th mat-header-cell *matHeaderCellDef>ROLE</th>
-      <td mat-cell *matCellDef="let element">{{ element.userRole }}</td>
+      <th mat-header-cell *matHeaderCellDef><h4>ROLE</h4></th>
+      <td mat-cell *matCellDef="let element" class="role">
+        {{ element.userRole }}
+      </td>
     </ng-container>
 
     <!-- Button Column -->
-    <ng-container matColumnDef="btn">
-      <th mat-header-cell *matHeaderCellDef>ACTION</th>
+    <ng-container matColumnDef="btn" class="action">
+      <th mat-header-cell *matHeaderCellDef><h4>ACTION</h4></th>
       <td mat-cell *matCellDef="let element">
         <button
           mat-raised-button
