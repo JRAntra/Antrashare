@@ -26,6 +26,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 
 // Custom Angular Library Modules
 import { NgxAutohideModule } from 'ngx-autohide';
+import { NgxConfirmationModule } from 'ngx-confirmation';
 
 // Angular Material Modules
 const matModules = [
@@ -49,7 +50,8 @@ const matModules = [
 
 // Custom Angular Library Modules
 const ngxModules = [
-  NgxAutohideModule
+  NgxAutohideModule,
+  NgxConfirmationModule
 ]
 
 @NgModule({

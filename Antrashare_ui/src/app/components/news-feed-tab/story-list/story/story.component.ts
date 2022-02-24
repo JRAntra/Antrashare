@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { NgxConfirmationService } from 'ngx-autohide';
+import { NgxConfirmationService } from 'ngx-confirmation';
 import { News, Story, Comment } from 'src/app/models/newsfeed.model';
 import { NewsService } from 'src/app/services/news.service';
 import { UserService } from 'src/app/services/user.service';
