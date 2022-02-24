@@ -6,7 +6,7 @@
       <mat-card-title
         ><a
           *ngIf="isAdmin$ | async as isAdmin; else elseUserBlock"
-          [routerLink]="['/profile/' + userName]"
+          [routerLink]="['/profile/' + storyItem.publisherName]"
           routerLinkActive="router-link-active"
           [state]="{storyItem}"
           >{{ storyItem.publisherName }}</a
