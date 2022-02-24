@@ -4,7 +4,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { BehaviorSubject, map, mergeMap, Observable, of, scan, tap, throttleTime } from 'rxjs';
 import { newsStory } from 'src/app/models/newsStory.models';
 import { newsFeedService } from 'src/app/services/newsfeed/newsfeed.service';
-import { tmpObj } from 'src/environments/environment';
+// import { tmpObj } from 'src/environments/environment';
 
 @Component({
   selector: 'app-basic-scroll',
@@ -17,7 +17,7 @@ export class BasicScrollComponent implements OnInit {
   viewport!: CdkVirtualScrollViewport;
   public storyList: newsStory[] = [];
 
-  batch = 20;
+  batch = 3;
   theEnd = false;
 
   offset = new BehaviorSubject(null);

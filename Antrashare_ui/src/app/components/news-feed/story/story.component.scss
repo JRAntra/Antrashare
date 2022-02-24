@@ -25,4 +25,10 @@ form {
   margin: 0 3rem 1rem 3rem;
   padding: 0.5rem .5rem .5rem .5rem;
   border-radius: 1rem;
+  min-width: 300px;
+  max-width: 700px;
+}
+
+app-basic-scroll {
+  min-width: 500px;
 }

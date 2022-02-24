@@ -1,7 +1,7 @@
 <ng-container *ngIf="infinite | async as storyList">
 
 
-  <cdk-virtual-scroll-viewport itemSize="100"
+  <cdk-virtual-scroll-viewport itemSize="200"
     (scrolledIndexChange)="nextBatch($event, (storyList[storyList.length - 1].publisherName))">
 
     <app-story-card [storyItem]="story" *cdkVirtualFor="let story of storyList; let i = index; trackBy: trackByIdx"

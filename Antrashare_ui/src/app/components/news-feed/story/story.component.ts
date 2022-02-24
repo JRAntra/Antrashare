@@ -24,7 +24,7 @@ export class StoryComponent implements OnInit {
     private fb: FormBuilder,
     private newsfeedservice: newsFeedService,
     private authService: AuthService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.newsfeedservice.getNewsFeed().subscribe((data: any) => {
@@ -73,7 +73,7 @@ export class StoryComponent implements OnInit {
     let count = 0;
     for (let i = index; i < sum; i++) {
       this.arr.push(this.arr[count]);
-      //console.log(this.arr);
+      console.log(this.arr);
       count++;
     }
   }
