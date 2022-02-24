@@ -15,9 +15,7 @@ import { CommentDialogComponent } from 'src/app/dialogs/comment-dialog/comment-d
 })
 export class StoryCardComponent implements OnInit {
   @Input() storyItem!: newsStory;
-  public isAdmin$!: Observable<boolean>;
-  public isPublisher: boolean = false;
-  public userName!: string;
+  isAdmin$!: Observable<boolean>;
   private subscriptions = new Subscription();
 
   constructor(
@@ -29,10 +27,6 @@ export class StoryCardComponent implements OnInit {
 
   ngOnInit(): void {
     this.isAdmin$ = this.adminService.isAdmin;
-    if (this.authService.getUserName() === this.storyItem.publisherName) {
-      this.isPublisher = true;
-      this.userName = this.authService.getUserName();
-    }
   }
 
   deletePost() {
@@ -40,6 +34,8 @@ export class StoryCardComponent implements OnInit {
       this.subscriptions.add(
         this.newsfeedservice.deletePostNewsFeed(this.storyItem._id!).subscribe()
       );
+    } else {
+      alert('You can only delete your posts.');
     }
   }
 

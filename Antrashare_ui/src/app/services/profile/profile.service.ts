@@ -1,19 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, OnInit } from '@angular/core';
 import { catchError, throwError } from 'rxjs';
-import {
-  baseUrl,
-  getProfileApiUrl,
-  usersApiUrl,
-} from 'src/environments/environment';
+import { baseUrl, getProfileApiUrl, usersApiUrl } from 'src/environments/environment';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class ProfileService {
   private getProfileUrl = [baseUrl, usersApiUrl, getProfileApiUrl].join('');
-
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getProfileAccount(username: string) {
     const profile = [this.getProfileUrl, username].join('');
@@ -22,8 +17,8 @@ export class ProfileService {
       catchError((err) => {
         console.log(err);
         return throwError(
-          () => new Error('Error while fetching this user profile!')
-        );
+          () => new Error('Error while running fetching this user profile!')
+        )
       })
     );
   }
