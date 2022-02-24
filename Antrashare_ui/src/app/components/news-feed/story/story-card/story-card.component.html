@@ -3,9 +3,14 @@
     <mat-card-header>
       <!-- <mat-card class="storyMedia" *ngIf='hasImage'></mat-card> -->
       <!-- <img *ngIf="storyItem.image" mat-card-avatar src="{{storyItem.image}}" /> -->
-      <mat-card-title><a *ngIf="isAdmin$ | async as isAdmin; else elseUserBlock"
-          [routerLink]="['/profile/' + storyItem.publisherName]" routerLinkActive="router-link-active"
-          [state]="{storyItem}">{{ storyItem.publisherName }}</a>
+      <mat-card-title
+        ><a
+          *ngIf="isAdmin$ | async as isAdmin; else elseUserBlock"
+          [routerLink]="['/profile/' + userName]"
+          routerLinkActive="router-link-active"
+          [state]="{storyItem}"
+          >{{ storyItem.publisherName }}</a
+        >
         <ng-template #elseUserBlock>
           {{ storyItem.publisherName }}
         </ng-template>
@@ -27,7 +32,13 @@
     <mat-card-actions>
       <button mat-button>LIKE</button>
       <button mat-button (click)="openComment()">COMMENT</button>
-      <button mat-icon-button color="warn" aria-hidden="false" aria-label="Post-delete button">
+      <button
+        *ngIf="isPublisher"
+        mat-icon-button
+        color="warn"
+        aria-hidden="false"
+        aria-label="Post-delete button"
+      >
         <mat-icon (click)="deletePost()">delete</mat-icon>
       </button>
     </mat-card-actions>

@@ -28,7 +28,7 @@ export class newsFeedService {
       catchError((err) => {
         console.log(err);
         return throwError(
-          () => new Error('Error while running fetching the storyList!')
+          () => new Error('Error while fetching the storyList!')
         );
       })
     );
