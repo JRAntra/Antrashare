@@ -102,14 +102,14 @@ router.post("/createNewAccount", async (req, res) => {
 //     res.send(await Product.find());
 // });
 
-router.delete("/:id", async (req, res) => {
-     const product = await Product.find({ _id: req.params.id });
+router.delete("/:id", async (req, res) => {  
+     const product = await UserProfile.find({ _id: req.params.id }); 
      if (!product) {
          return res.status(404).send("not found.");
      }
 
-     await Product.deleteOne({ _id: req.params.id });
-     res.send(await Product.find());
+     await UserProfile.deleteOne({ _id: req.params.id });
+     res.send(await UserProfile.find());
 });
 
 module.exports = router;

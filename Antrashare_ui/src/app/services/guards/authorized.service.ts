@@ -22,13 +22,12 @@ export class AuthorizedService implements CanActivate {
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
-    // console.log("run canactive")
     this.userRole = this.cacheService.getUserInfo()?.userRole.toLowerCase(); // for testing
-    console.log(this.userRole);
+    console.log("userrole:", this.userRole);
     if (this.userRole === "admin") {
       this.cacheService.checkedAuth(true);
       return of(true);
-    } else {
+    } else  {
       this.cacheService.checkedAuth(false);
       console.log("you do not have permission");
       this.router.navigate(["/newsFeed/"]);

@@ -28,6 +28,25 @@
     transition: 0.3s ease-in-out;
 }
 
+#deleteAccount {
+    overflow: auto;
+}
+
+.deleteUser {
+    display: block;
+    margin: 0 auto;
+    transition: 0.3s ease-in-out;
+    background-color: $red;
+    color: $white;
+}
+
+.deleteUser:hover {
+    color: $red;
+    background-color: $white;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
 #formSection {
     display: grid;
     grid-template-rows: auto;
@@ -38,6 +57,15 @@
     width: 80%;
     margin: 0 auto;
 }
+
+#userList {
+    display: grid; 
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    justify-items: center;
+
+}
+
 
 // #nameField {
 //     // width: 100%;

@@ -2,8 +2,9 @@ import { Component, OnInit, Input, NgModule } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { UserProfile } from 'src/app/models/user.models';
 import { CacheService } from 'src/app/services/cache.service';
+import { Observable, Subject } from 'rxjs';
 import { RegisterService } from 'src/app/services/register/register.service';
-
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'admin-page',
@@ -15,6 +16,8 @@ export class AdminPageComponent implements OnInit {
   isLogIn!: boolean;
   isAdmin!: boolean;
   myProfile!: UserProfile | null;
+  userList$ = new Observable<UserProfile[]>();
+  userList: UserProfile[] = []
   public newAccountFormGroup = new FormGroup({
     firstNameFormControl: new FormControl('', {
       validators: [
@@ -87,7 +90,10 @@ export class AdminPageComponent implements OnInit {
     }),
   })
   
-  constructor(private cacheService: CacheService, private registerService: RegisterService) { }
+  constructor(private cacheService: CacheService, 
+    private registerService: RegisterService,
+    private userService: UserService
+    ) { }
 
   ngOnInit(): void {
     this.isLogIn = this.cacheService.isLogin;
@@ -102,6 +108,13 @@ export class AdminPageComponent implements OnInit {
       // this.userInfoFormGroup.get("userPhoneControl")?.setValue(this.myProfile?.phone ? this.myProfile?.phone : '');
     }
     // this.userInfoFormGroup.disable();
+
+    this.userService.getAllUsersProfile()
+    this.userList$ = this.userService.getuList()
+    this.userList$.subscribe((userList: UserProfile[]) => {
+      this.userList = userList
+      
+    })
   }
 
   createAccount() {
@@ -121,6 +134,13 @@ export class AdminPageComponent implements OnInit {
 
     this.registerService.postNewAccount(newAccount).subscribe(console.log);
     this.newAccountFormGroup.reset();
+  }
+
+  //delete a user account, need userId
+  deleteAccount(index: any) {
+    console.log("account deleted!")
+    this.userService.deleteUser(this.userList[index]._id)
+
   }
 
   oneUppercase(control: AbstractControl): ValidationErrors | null  {
