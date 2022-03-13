@@ -22,7 +22,7 @@
     "@angular/router": "~13.1.0",
     "jwt-decode": "^3.1.2",
     "ngx-autohide": "^2.0.9",
-    "ngx-confirmation": "^1.0.1",
+    "ngx-confirmation": "^1.1.1",
     "ngx-pagination": "^5.1.1",
     "rxjs": "~7.4.0",
     "tslib": "^2.3.0",
